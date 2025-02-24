@@ -1,8 +1,16 @@
-
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const [loginWithEmail, setLoginWithEmail] = useState(true);
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // You can add API call for authentication here
+    navigate("/otp-verification"); // Redirect to OTP verification page
+  };
+
   return (
     <div className="min-h-screen bg-cover bg-center flex flex-col justify-between" style={{ backgroundImage: "url('/gov-bg.jpg')" }}>
       {/* Navbar */}
@@ -22,22 +30,29 @@ const Login = () => {
           <h2 className="text-3xl font-bold text-center text-blue-900">Login to AI Medha</h2>
           <p className="text-center text-gray-600 mt-2">Government AI Portal</p>
 
-          <form className="mt-6">
+          <form className="mt-6" onSubmit={handleSubmit}>
             <div>
-              <label className="block text-gray-700 font-semibold">Email</label>
-              <input type="email" className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" required />
+              <label className="block text-gray-700 font-semibold">{loginWithEmail ? "Email" : "Mobile Number"}</label>
+              <input type={loginWithEmail ? "email" : "tel"} className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" required />
             </div>
             <div className="mt-4">
               <label className="block text-gray-700 font-semibold">Password</label>
               <input type="password" className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" required />
             </div>
-            <button type="submit" className="w-full bg-blue-900 text-white px-4 py-2 mt-6 rounded-md hover:bg-blue-800 transition">
+            <p className="mt-2 text-right text-blue-900 font-semibold cursor-pointer hover:underline">
+              <Link to="/forgot-password">Forgot Password?</Link>
+            </p>
+            <button type="submit" className="w-full bg-blue-900 text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-800 transition">
               Login
             </button>
           </form>
 
           <p className="mt-4 text-center text-gray-700">
             Don't have an account? <Link to="/register" className="text-blue-900 font-semibold">Register here</Link>
+          </p>
+
+          <p className="mt-4 text-center text-gray-700 cursor-pointer hover:underline" onClick={() => setLoginWithEmail(!loginWithEmail)}>
+            {loginWithEmail ? "Login with Mobile Number" : "Login with Email"}
           </p>
         </div>
       </div>
