@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
-    <div className="min-h-screen bg-cover bg-center flex flex-col justify-between " style={{ backgroundImage: "url('/gov-bg.jpg')" }}>
+    <div className="min-h-screen bg-cover bg-center flex flex-col justify-between" style={{ backgroundImage: "url('/gov-bg.jpg')" }}>
       {/* Navbar */}
       <nav className="bg-blue-900 text-white py-4 shadow-lg">
         <div className="max-w-screen-xl mx-auto flex justify-between items-center px-6 xl:px-20">
@@ -24,27 +24,64 @@ const Register = () => {
           <form className="mt-6">
             <div>
               <label className="block text-gray-700 font-semibold">First Name</label>
-              <input type="text" className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" required />
+              <input 
+                type="text" 
+                placeholder="Enter your first name" 
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" 
+                required 
+              />
             </div>
             <div className="mt-4">
               <label className="block text-gray-700 font-semibold">Middle Name</label>
-              <input type="text" className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" />
+              <input 
+                type="text" 
+                placeholder="Enter your middle name (optional)" 
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" 
+              />
             </div>
             <div className="mt-4">
               <label className="block text-gray-700 font-semibold">Last Name</label>
-              <input type="text" className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" required />
+              <input 
+                type="text" 
+                placeholder="Enter your last name" 
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" 
+                required 
+              />
             </div>
             <div className="mt-4">
               <label className="block text-gray-700 font-semibold">Email</label>
-              <input type="email" className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" required />
+              <input 
+                type="email" 
+                placeholder="Enter your email address" 
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" 
+                required 
+              />
+            </div>
+            <div className="mt-4">
+              <label className="block text-gray-700 font-semibold">Mobile Number</label>
+              <input 
+                type="tel" 
+                placeholder="Enter 10-digit mobile number" 
+                pattern="[0-9]{10}" 
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" 
+                required 
+              />
             </div>
             <div className="mt-4">
               <label className="block text-gray-700 font-semibold">Password</label>
-              <input type="password" className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" required />
+              <input 
+                type="password" 
+                placeholder="Enter a strong password" 
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" 
+                required 
+              />
             </div>
             <div className="mt-4">
               <label className="block text-gray-700 font-semibold">Organization Type</label>
-              <select className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" required>
+              <select 
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" 
+                required
+              >
                 <option value="">Select Organization Type</option>
                 <option value="government">Government</option>
                 <option value="private">Private</option>

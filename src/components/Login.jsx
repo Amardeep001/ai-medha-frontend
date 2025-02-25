@@ -33,11 +33,11 @@ const Login = () => {
           <form className="mt-6" onSubmit={handleSubmit}>
             <div>
               <label className="block text-gray-700 font-semibold">{loginWithEmail ? "Email" : "Mobile Number"}</label>
-              <input type={loginWithEmail ? "email" : "tel"} className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" required />
+              <input type={loginWithEmail ? "email" : "tel"} placeholder={loginWithEmail ? "Enter your email" : "Enter your mobile number"} className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" required />
             </div>
             <div className="mt-4">
               <label className="block text-gray-700 font-semibold">Password</label>
-              <input type="password" className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" required />
+              <input type="password" placeholder="Enter your password" className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" required />
             </div>
             <p className="mt-2 text-right text-blue-900 font-semibold cursor-pointer hover:underline">
               <Link to="/forgot-password">Forgot Password?</Link>

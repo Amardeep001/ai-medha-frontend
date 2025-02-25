@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const OtpVerification = () => {
+  const navigate = useNavigate();
   const [otp, setOtp] = useState("");
   const [resendDisabled, setResendDisabled] = useState(false);
 
   const handleOTPSubmit = (e) => {
     e.preventDefault();
     console.log("Entered OTP:", otp);
+    navigate("/reset-password");
   };
 
   const handleResendOTP = () => {
@@ -38,6 +40,7 @@ const OtpVerification = () => {
                 type="text"
                 value={otp}
                 onChange={(e) => setOtp(e.target.value)}
+                placeholder="Enter your OTP"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300"
                 required
               />

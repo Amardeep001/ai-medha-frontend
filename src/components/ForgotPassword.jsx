@@ -33,7 +33,7 @@ const ForgotPassword = () => {
           <form className="mt-6" onSubmit={handleSubmit}>
             <div>
               <label className="block text-gray-700 font-semibold">{useEmail ? "Email" : "Mobile Number"}</label>
-              <input type={useEmail ? "email" : "tel"} className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" required />
+              <input type={useEmail ? "email" : "tel"} placeholder={useEmail ? "Enter your email" : "Enter your mobile number"} className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" required />
             </div>
 
             <button type="submit" className="w-full bg-blue-900 text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-800 transition">

@@ -45,6 +45,7 @@ const ResetPassword = () => {
               <input 
                 type="password" 
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" 
+                placeholder="Enter new password"
                 required 
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -55,6 +56,7 @@ const ResetPassword = () => {
               <input 
                 type="password" 
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300" 
+                placeholder="Confirm new password"
                 required 
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
