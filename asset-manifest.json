@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ai-medha-frontend/static/css/main.66b84ae8.css",
+    "main.js": "/ai-medha-frontend/static/js/main.bed6e1bf.js",
+    "static/js/453.2a8f65c3.chunk.js": "/ai-medha-frontend/static/js/453.2a8f65c3.chunk.js",
+    "index.html": "/ai-medha-frontend/index.html",
+    "main.66b84ae8.css.map": "/ai-medha-frontend/static/css/main.66b84ae8.css.map",
+    "main.bed6e1bf.js.map": "/ai-medha-frontend/static/js/main.bed6e1bf.js.map",
+    "453.2a8f65c3.chunk.js.map": "/ai-medha-frontend/static/js/453.2a8f65c3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.66b84ae8.css",
+    "static/js/main.bed6e1bf.js"
+  ]
+}
