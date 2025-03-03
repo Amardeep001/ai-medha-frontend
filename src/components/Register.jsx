@@ -1,7 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+
 
 const Register = () => {
+  const navigate = useNavigate(); 
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate("/verify-account");
+  };
+
   return (
     <div className="min-h-screen bg-cover bg-center flex flex-col justify-between" style={{ backgroundImage: "url('/gov-bg.jpg')" }}>
       {/* Navbar */}
@@ -21,7 +30,7 @@ const Register = () => {
           <h2 className="text-3xl font-bold text-center text-blue-900">Register for AI Medha</h2>
           <p className="text-center text-gray-600 mt-2">Government AI Portal</p>
 
-          <form className="mt-6">
+          <form className="mt-6" onSubmit={handleSubmit}>
             <div>
               <label className="block text-gray-700 font-semibold">First Name</label>
               <input 
