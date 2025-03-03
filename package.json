@@ -2,7 +2,7 @@
   "name": "ai-medha-frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://amardeep001.github.io/ai-medha-frontend/",
+  "homepage": "https://amardeep001.github.io/ai-medha-frontend",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
