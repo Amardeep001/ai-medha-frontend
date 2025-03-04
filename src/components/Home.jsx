@@ -7,7 +7,7 @@ const Home = () => {
       {/* Navbar */}
       <nav className="bg-blue-900 text-white py-4 shadow-lg">
         <div className="max-w-screen-xl mx-auto flex flex-wrap justify-between items-center px-6 xl:px-20">
-          <h1 className="text-2xl font-bold">AI Medha</h1>
+          <h1 className="text-2xl font-bold">AI MEDHA</h1>
           <ul className="flex flex-wrap space-x-6">
             <li><a href="#about" className="hover:text-yellow-400">About</a></li>
             <li><a href="#features" className="hover:text-yellow-400">Features</a></li>
@@ -22,7 +22,7 @@ const Home = () => {
       <header className="text-center py-24 lg:py-32 text-white bg-gradient-to-b from-blue-800 to-blue-500">
         <h2 className="text-4xl md:text-5xl font-bold">Empowering Governance with AI</h2>
         <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto px-4">
-          AI Medha is an advanced AI-driven platform facilitating seamless automation and insights for government services.
+          AI MEDHA is an advanced AI-driven platform facilitating seamless automation and insights for government services.
         </p>
         <button className="mt-6 bg-yellow-400 text-blue-900 px-8 py-3 text-lg md:text-xl rounded-lg font-semibold hover:bg-yellow-500 transition">
           Get Started
@@ -50,7 +50,7 @@ const Home = () => {
       
       {/* Footer */}
       <footer className="bg-blue-900 text-white text-center py-6">
-        <p>&copy; 2025 AI Medha. All Rights Reserved.</p>
+        <p>&copy; 2025 AI MEDHA. All Rights Reserved.</p>
         <p><a href="#contact" className="underline">Contact Us</a></p>
       </footer>
     </div>
