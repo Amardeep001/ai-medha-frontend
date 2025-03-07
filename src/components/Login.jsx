@@ -11,6 +11,10 @@ const Login = () => {
     navigate("/otp-verification"); // Redirect to OTP verification page
   };
 
+  const handleParichayLogin = () => {
+    // navigate("/parichay-login"); 
+  };
+
   return (
     <div className="min-h-screen bg-cover bg-center flex flex-col justify-between" style={{ backgroundImage: "url('/gov-bg.jpg')" }}>
       {/* Navbar */}
@@ -42,8 +46,19 @@ const Login = () => {
             <p className="mt-2 text-right text-blue-900 font-semibold cursor-pointer hover:underline">
               <Link to="/forgot-password">Forgot Password?</Link>
             </p>
+
+            {/* Normal Login Button */}
             <button type="submit" className="w-full bg-blue-900 text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-800 transition">
               Login
+            </button>
+
+            {/* Parichay Login Button */}
+            <button
+              type="button"
+              onClick={handleParichayLogin}
+              className="w-full bg-green-500 text-white px-4 py-2 mt-4 rounded-md hover:bg-green-700 transition"
+            >
+              Login with Parichay
             </button>
           </form>
 

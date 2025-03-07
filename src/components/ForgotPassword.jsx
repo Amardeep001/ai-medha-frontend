@@ -8,7 +8,7 @@ const ForgotPassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // API call for sending OTP or email verification code goes here
-    navigate("/otp-verification"); // Redirect to OTP Verification page
+    navigate("/verify-otp"); // Redirect to OTP Verification page
   };
 
   return (

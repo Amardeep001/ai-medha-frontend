@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const OtpVerification = () => {
+const ForgotOtpVerification = () => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState("");
   const [resendDisabled, setResendDisabled] = useState(false);
@@ -9,7 +9,7 @@ const OtpVerification = () => {
   const handleOTPSubmit = (e) => {
     e.preventDefault();
     console.log("Entered OTP:", otp);
-    navigate("/");
+    navigate("/reset-password");
   };
 
   const handleResendOTP = () => {
@@ -72,4 +72,4 @@ const OtpVerification = () => {
   );
 };
 
-export default OtpVerification;
+export default ForgotOtpVerification;
