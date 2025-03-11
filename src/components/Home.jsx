@@ -45,6 +45,30 @@ const Home = () => {
             <h4 className="text-xl font-bold text-blue-800">Secure Login</h4>
             <p className="mt-2 text-gray-700">Ensures authentication via Parichay and Jan Parichay.</p>
           </div>
+          <div className="bg-white p-6 shadow-md rounded-lg text-center">
+            <h4 className="text-xl font-bold text-blue-800">AI-Powered Chatbot</h4>
+            <p className="mt-2 text-gray-700">Get instant support and responses through AI-driven chatbot assistance.</p>
+          </div>
+          <div className="bg-white p-6 shadow-md rounded-lg text-center">
+            <h4 className="text-xl font-bold text-blue-800">Model Management</h4>
+            <p className="mt-2 text-gray-700">Easily manage, deploy, and monitor AI models for governance applications.</p>
+          </div>
+          <div className="bg-white p-6 shadow-md rounded-lg text-center">
+            <h4 className="text-xl font-bold text-blue-800">Real-Time Alerts</h4>
+            <p className="mt-2 text-gray-700">Receive instant notifications for system updates, security alerts, and critical actions.</p>
+          </div>
+          <div className="bg-white p-6 shadow-md rounded-lg text-center">
+            <h4 className="text-xl font-bold text-blue-800">User Role Management</h4>
+            <p className="mt-2 text-gray-700">Define and manage different user roles with varying levels of access.</p>
+          </div>
+          <div className="bg-white p-6 shadow-md rounded-lg text-center">
+            <h4 className="text-xl font-bold text-blue-800">Performance Analytics</h4>
+            <p className="mt-2 text-gray-700">Track system performance and AI model efficiency with analytical insights.</p>
+          </div>
+          <div className="bg-white p-6 shadow-md rounded-lg text-center">
+            <h4 className="text-xl font-bold text-blue-800">Audit & Compliance</h4>
+            <p className="mt-2 text-gray-700">Ensure adherence to government regulations with built-in compliance monitoring.</p>
+          </div>
         </div>
       </section>
       
