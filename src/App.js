@@ -8,6 +8,7 @@ import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
 import VerifyAccount from "./components/VerifyAccount";
 import ForgotOtpVerification from "./components/ForgotOtpVerification";
+import Dashboard from "./components/LandingPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="forgot-password" element={<ForgotPassword />} />
         <Route path="verify-otp" element={<ForgotOtpVerification />} />
         <Route path="reset-password" element={<ResetPassword />} />
+        <Route path="dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
   );
