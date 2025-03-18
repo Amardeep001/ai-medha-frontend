@@ -115,10 +115,10 @@ const Register = () => {
                 required
               >
                 <option value="">Select Organization Type</option>
-                <option value="government">Government</option>
-                <option value="private">Private</option>
-                <option value="academic">Academic Institution</option>
-                <option value="ngo">NGO</option>
+                <option value="government">Central Government</option>
+                <option value="private">State/UT Government</option>
+                <option value="academic">PSU</option>
+                <option value="ngo">Judiciary</option>
                 <option value="other">Other</option>
               </select>
             </div>
