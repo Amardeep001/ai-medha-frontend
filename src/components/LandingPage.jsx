@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { Line } from "react-chartjs-2";
 import "chart.js/auto";
+import Footer from "./Footer";
 
 const Dashboard = () => {
   const [activeSection, setActiveSection] = useState("analytics");
@@ -159,14 +160,7 @@ const Dashboard = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-blue-800 text-white text-center py-4 md:py-6 text-sm md:text-base">
-        <p>&copy; 2025 AI MEDHA. All Rights Reserved.</p>
-        <p>
-          <a href="#contact" className="underline">
-            Contact Us
-          </a>
-        </p>
-      </footer>
+      <Footer />
     </div>
   );
 };
