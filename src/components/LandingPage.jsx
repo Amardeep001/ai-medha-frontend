@@ -12,6 +12,7 @@ import {
 import { Line } from "react-chartjs-2";
 import "chart.js/auto";
 import Footer from "./Footer";
+import indianFlag from "../images/ind_flag.png";
 
 const Dashboard = () => {
   const [activeSection, setActiveSection] = useState("analytics");
@@ -89,8 +90,39 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 text-gray-900">
       {/* Header */}
-      <nav className="bg-blue-800 text-white py-4 shadow-lg">
-        <div className="max-w-screen-xl mx-auto flex justify-between items-center px-6">
+
+      <nav className="  w-full z-50 bg-white shadow-md text-[#003366]">
+        {/* Top Header */}
+        <div className="w-full bg-[#003366] text-white text-xs sm:text-sm py-2">
+          <div className="max-w-screen-xl mx-auto flex justify-between items-center px-4 sm:px-6 xl:px-20">
+            {/* Left Side - Government Text */}
+            <div className="flex items-center space-x-2">
+              <img
+                src={indianFlag || "/india-flag.png"}
+                alt="Indian Flag"
+                className="w-6 h-4 sm:h-6"
+              />
+              <span className="font-medium text-xs sm:text-sm hover:text-[#B35400]">
+                भारत सरकार | <span className="ml-1">Government of India</span>
+              </span>
+            </div>
+
+            {/* Right Side - Accessibility & Skip Link */}
+            <div className="flex items-center space-x-3 sm:space-x-4">
+              <a href="#main-content" className="hidden sm:block">
+                Skip to Content
+              </a>
+              <div className="flex items-center space-x-2">
+                <button className="text-sm font-semibold">A+</button>
+                <button className="text-sm font-semibold">A</button>
+                <button className="text-sm font-semibold">A-</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Navbar */}
+        <div className="max-w-screen-xl mx-auto flex justify-between items-center px-6 py-3">
           {/* Mobile Menu Button */}
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -115,6 +147,9 @@ const Dashboard = () => {
           </div>
         </div>
       </nav>
+      {/* <nav className="bg-blue-800 text-white py-4 shadow-lg">
+        
+      </nav> */}
 
       <div className="flex flex-grow">
         {/* Sidebar */}
