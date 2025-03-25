@@ -1,169 +1,312 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import {
-  FaBars,
   FaChartBar,
   FaUserShield,
-  FaRobot,
   FaCog,
-  FaSignOutAlt,
+  FaTools,
+  FaClipboardList,
+  FaRobot,
+  FaDatabase,
+  FaEye,
+  FaChartPie,
+  FaClipboardCheck,
   FaTimes,
 } from "react-icons/fa";
-import { Line } from "react-chartjs-2";
+import {
+  FaCheckCircle,
+  FaExclamationTriangle,
+  FaTimesCircle,
+} from "react-icons/fa";
+import { Line, Pie, Bar } from "react-chartjs-2";
 import "chart.js/auto";
 import Footer from "./Footer";
-import indianFlag from "../images/ind_flag.png";
+import Header from "./Header";
 
 const Dashboard = () => {
-  const [activeSection, setActiveSection] = useState("analytics");
+  const [activeSection, setActiveSection] = useState("overview");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  const services = [
+    {
+      id: "model_management",
+      name: "Model Management",
+      description: "Efficiently manage and deploy AI models with ease.",
+      usage: "Streamlines model lifecycle, from training to deployment.",
+      icon: <FaDatabase className="text-blue-700 text-4xl" />, // Service Icon
+      image: "https://picsum.photos/300/200?random=1", // Replace with actual image URL
+    },
+    {
+      id: "ai_chatbot",
+      name: "AI-Powered Chatbot",
+      description: "Intelligent chatbot for automated interactions.",
+      usage: "Enhances customer engagement and support.",
+      icon: <FaRobot className="text-blue-700 text-4xl" />,
+      image: "https://picsum.photos/300/200?random=2",
+    },
+    {
+      id: "digital_asset_catalogue",
+      name: "Digital Asset Catalogue",
+      description: "Centralized storage for AI-generated assets.",
+      usage: "Organizes and manages digital AI assets effectively.",
+      icon: <FaClipboardCheck className="text-blue-700 text-4xl" />,
+      image: "https://picsum.photos/300/200?random=3",
+    },
+    {
+      id: "model_performance_governance",
+      name: "Model Performance & Governance",
+      description: "Monitor, evaluate, and govern AI model performance.",
+      usage: "Ensures compliance, accuracy, and continuous improvements.",
+      icon: <FaEye className="text-blue-700 text-4xl" />,
+      image: "https://picsum.photos/300/200?random=4",
+    },
+    {
+      id: "ai_service_insights",
+      name: "AI Service Insights & Reports",
+      description: "Comprehensive insights into AI service usage.",
+      usage: "Provides analytics and reports for decision-making.",
+      icon: <FaChartPie className="text-blue-700 text-4xl" />,
+      image: "https://picsum.photos/300/200?random=5",
+    },
+  ];
+
+  const logs = [
+    {
+      type: "success",
+      message: "Model trained successfully!",
+      time: "10:32 AM",
+    },
+    {
+      type: "warning",
+      message: "Data inconsistency detected!",
+      time: "10:40 AM",
+    },
+    { type: "error", message: "API connection failed!", time: "10:45 AM" },
+    { type: "success", message: "Deployment completed!", time: "11:00 AM" },
+  ];
+
+  const getLogIcon = (type) => {
+    switch (type) {
+      case "success":
+        return <FaCheckCircle className="text-green-500 text-lg" />;
+      case "warning":
+        return <FaExclamationTriangle className="text-yellow-500 text-lg" />;
+      case "error":
+        return <FaTimesCircle className="text-red-500 text-lg" />;
+      default:
+        return null;
+    }
+  };
+
+  const pieData = {
+    labels: ["Model Management", "Chatbot", "Asset Catalogue", "Governance"],
+    datasets: [
+      {
+        data: [40, 25, 20, 15],
+        backgroundColor: ["#1E90FF", "#32CD32", "#FFD700", "#FF6347"],
+      },
+    ],
+  };
+
+  const barData = {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+    datasets: [
+      {
+        label: "Service Usage",
+        data: [10, 30, 20, 50, 40],
+        backgroundColor: "#4F46E5",
+      },
+    ],
+  };
+
+  const lineData = {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+    datasets: [
+      {
+        label: "Model Performance",
+        data: [85, 80, 82, 88, 90],
+        borderColor: "#FF4500",
+        backgroundColor: "rgba(255, 69, 0, 0.2)",
+        fill: true,
+        tension: 0.4,
+      },
+    ],
+  };
+
   const sections = {
+    overview: {
+      title: "AI Medha Overview",
+      content: (
+        <div className="bg-white p-6 rounded-lg shadow-lg">
+          {/* Pie Chart Section */}
+          <h3 className="text-2xl font-semibold text-blue-900 mt-6 border-b pb-2">
+            Service Distribution
+          </h3>
+          <div className="flex flex-col flex-wrap md:flex-row xl:flex-nowrap gap-6 mt-6">
+            {/* Pie Chart */}
+            <div className="w-full md:w-1/3 flex justify-center">
+              <div className="w-64 h-64">
+                <Pie data={pieData} options={{ maintainAspectRatio: false }} />
+              </div>
+            </div>
+
+            {/* Bar Chart */}
+            <div className="w-full md:w-1/3 flex justify-center">
+              <div className="w-72 h-64">
+                <Bar data={barData} options={{ maintainAspectRatio: false }} />
+              </div>
+            </div>
+
+            {/* Line Chart */}
+            <div className="w-full md:w-1/3 flex justify-center">
+              <div className="w-72 h-64">
+                <Line
+                  data={lineData}
+                  options={{ maintainAspectRatio: false }}
+                />
+              </div>
+            </div>
+          </div>
+
+          <h3 className="mt-6 text-2xl font-semibold text-blue-900 border-b pb-3">
+            Services & Insights
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4">
+            {services.map((service) => (
+              <div
+                key={service.id}
+                className="p-6 border rounded-lg shadow-md bg-gradient-to-r from-blue-50 to-blue-100 hover:shadow-lg transition hover:scale-105"
+              >
+                <div className="flex items-center space-x-4">
+                  {service.icon}
+                  <h4 className="text-lg font-semibold text-blue-900">
+                    {service.name}
+                  </h4>
+                </div>
+                <p className="text-gray-600 mt-2">{service.description}</p>
+                <p className="text-gray-700 mt-2 font-medium">
+                  Usage: {service.usage}
+                </p>
+                <img
+                  src={service.image}
+                  alt={service.name}
+                  className="mt-4 rounded-lg w-full h-32 object-cover"
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Logs Section */}
+          <h3 className="text-xl font-semibold text-blue-900 mt-6 border-b pb-2">
+            Recent Activity Logs
+          </h3>
+          <div className="bg-gray-300 p-4 rounded-lg shadow-md max-h-80 overflow-auto">
+            {logs.map((log, index) => (
+              <div
+                key={index}
+                className={`flex items-center gap-4 p-3 rounded-lg mb-2 ${
+                  index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                }`}
+              >
+                {getLogIcon(log.type)}
+                <div>
+                  <p className="text-gray-800 text-sm font-medium">
+                    {log.message}
+                  </p>
+                  <p className="text-gray-500 text-xs">{log.time}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ),
+    },
+
     analytics: {
       title: "Analytics Dashboard",
       content: (
-        <>
-          <p className="text-gray-700 mb-4">
-            Track key performance indicators with real-time analytics.
-          </p>
-          <Line
-            data={{
-              labels: ["Jan", "Feb", "Mar", "Apr", "May"],
-              datasets: [
-                {
-                  label: "User Growth",
-                  data: [10, 20, 30, 40, 50],
-                  borderColor: "blue",
-                  borderWidth: 2,
-                },
-              ],
-            }}
-          />
-        </>
+        <Line
+          data={{
+            labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+            datasets: [
+              {
+                label: "User Growth",
+                data: [10, 20, 30, 40, 50],
+                borderColor: "blue",
+                borderWidth: 2,
+              },
+            ],
+          }}
+        />
       ),
     },
     users: {
       title: "User Management",
       content: (
-        <>
-          <p className="text-gray-700 mb-4">
-            Manage roles, permissions, and user accounts.
-          </p>
-          <img
-            src="https://picsum.photos/400/200?random=1"
-            alt="User Management"
-            className="rounded-lg shadow-md "
-          />
-        </>
-      ),
-    },
-    chatbot: {
-      title: "AI Chatbot",
-      content: (
-        <>
-          <p className="text-gray-700 mb-4">
-            AI-powered chatbot for instant responses and support.
-          </p>
-          <img
-            src="https://picsum.photos/400/200?random=2"
-            alt="Chatbot"
-            className="rounded-lg shadow-md"
-          />
-        </>
+        <p className="text-gray-700">Manage user roles and permissions.</p>
       ),
     },
     settings: {
       title: "System Settings",
+      content: <p className="text-gray-700">Configure system preferences.</p>,
+    },
+    services: {
+      title: "Service Selection Portal",
       content: (
-        <>
-          <p className="text-gray-700 mb-4">Configure system preferences.</p>
-          <img
-            src="https://picsum.photos/400/200?random=3"
-            alt="Settings"
-            className="rounded-lg shadow-md"
-          />
-        </>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {services.map((service) => (
+            <div
+              key={service.id}
+              className="p-6 border rounded-lg shadow-md bg-gradient-to-r from-blue-50 to-blue-100 hover:shadow-lg transition hover:scale-105"
+            >
+              <div className="flex items-center space-x-4">
+                {service.icon}
+                <h4 className="text-lg font-semibold text-blue-900">
+                  {service.name}
+                </h4>
+              </div>
+              <p className="text-gray-600 mt-2">{service.description}</p>
+              <p className="text-gray-700 mt-2 font-medium">
+                Usage: {service.usage}
+              </p>
+              <img
+                src={service.image}
+                alt={service.name}
+                className="mt-4 rounded-lg w-full h-32 object-cover"
+              />
+            </div>
+          ))}
+        </div>
       ),
     },
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100 text-gray-900">
-      {/* Header */}
+    <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-gray-100 text-gray-900">
+      {/* Header with Sidebar Toggle */}
+      <Header toggleSidebar={() => setSidebarOpen(true)} />
 
-      <nav className="  w-full z-50 bg-white shadow-md text-[#003366]">
-        {/* Top Header */}
-        <div className="w-full bg-[#003366] text-white text-xs sm:text-sm py-2">
-          <div className="max-w-screen-xl mx-auto flex justify-between items-center px-4 sm:px-6 xl:px-20">
-            {/* Left Side - Government Text */}
-            <div className="flex items-center space-x-2">
-              <img
-                src={indianFlag || "/india-flag.png"}
-                alt="Indian Flag"
-                className="w-6 h-4 sm:h-6"
-              />
-              <span className="font-medium text-xs sm:text-sm hover:text-[#B35400]">
-                भारत सरकार | <span className="ml-1">Government of India</span>
-              </span>
-            </div>
-
-            {/* Right Side - Accessibility & Skip Link */}
-            <div className="flex items-center space-x-3 sm:space-x-4">
-              <a href="#main-content" className="hidden sm:block">
-                Skip to Content
-              </a>
-              <div className="flex items-center space-x-2">
-                <button className="text-sm font-semibold">A+</button>
-                <button className="text-sm font-semibold">A</button>
-                <button className="text-sm font-semibold">A-</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Navbar */}
-        <div className="max-w-screen-xl mx-auto flex justify-between items-center px-6 py-3">
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="md:hidden text-2xl"
-          >
-            {sidebarOpen ? <FaTimes /> : <FaBars />}
-          </button>
-          <h1 className="text-xl md:text-2xl font-bold">AI MEDHA</h1>
-          <div className="hidden md:flex items-center space-x-6">
-            <Link to="/profile" className="hover:text-yellow-400">
-              Profile
-            </Link>
-            <Link to="/settings" className="hover:text-yellow-400">
-              Settings
-            </Link>
-            <Link
-              to="/logout"
-              className="hover:text-yellow-400 flex items-center"
-            >
-              <FaSignOutAlt className="mr-2" /> Logout
-            </Link>
-          </div>
-        </div>
-      </nav>
-      {/* <nav className="bg-blue-800 text-white py-4 shadow-lg">
-        
-      </nav> */}
-
-      <div className="flex flex-grow">
+      <div className="overflow-auto flex flex-grow">
         {/* Sidebar */}
         <aside
-          className={`${
-            sidebarOpen ? "block" : "hidden"
-          } md:block md:w-64 fixed md:relative bg-blue-900 text-white p-6 space-y-4 top-0 left-0 h-full md:h-auto z-50 md:z-auto`}
+          className={`fixed md:relative bg-[#E8F0FE] text-gray-900 p-6 space-y-4 top-0 left-0 h-full md:h-auto z-40 shadow-md transition-transform transform ${
+            sidebarOpen ? "translate-x-0 mt-20" : "-translate-x-full"
+          } md:translate-x-0 w-64`}
         >
+          {/* Close Button for Mobile */}
           <h1 className="text-xl md:text-2xl font-bold">Dashboard</h1>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="md:hidden absolute top-3 right-4 text-gray-700"
+          >
+            <FaTimes className="text-2xl" />
+          </button>
+
           <nav className="flex flex-col space-y-4">
             {[
+              { icon: <FaClipboardList />, title: "Overview", key: "overview" },
               { icon: <FaChartBar />, title: "Analytics", key: "analytics" },
+              { icon: <FaTools />, title: "Services", key: "services" },
               { icon: <FaUserShield />, title: "Users", key: "users" },
-              { icon: <FaRobot />, title: "Chatbot", key: "chatbot" },
               { icon: <FaCog />, title: "Settings", key: "settings" },
             ].map((item) => (
               <button
@@ -172,10 +315,10 @@ const Dashboard = () => {
                   setActiveSection(item.key);
                   setSidebarOpen(false);
                 }}
-                className={`flex items-center space-x-2 px-4 py-3 rounded-lg text-left ${
+                className={`flex items-center space-x-2 px-4 py-3 rounded-lg ${
                   activeSection === item.key
-                    ? "bg-blue-700"
-                    : "hover:bg-blue-600 transition"
+                    ? "bg-blue-600 text-white"
+                    : "hover:bg-blue-100 transition"
                 }`}
               >
                 <span className="text-xl">{item.icon}</span>
@@ -185,6 +328,14 @@ const Dashboard = () => {
           </nav>
         </aside>
 
+        {/* Sidebar Backdrop on Mobile */}
+        {sidebarOpen && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+            onClick={() => setSidebarOpen(false)}
+          ></div>
+        )}
+
         {/* Main Content */}
         <main className="flex-1 p-6 md:p-8">
           <h2 className="text-2xl md:text-3xl font-bold text-blue-900">
@@ -193,8 +344,6 @@ const Dashboard = () => {
           <div className="mt-6">{sections[activeSection].content}</div>
         </main>
       </div>
-
-      {/* Footer */}
       <Footer />
     </div>
   );

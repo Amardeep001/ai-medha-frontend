@@ -12,7 +12,7 @@ const OtpVerification = () => {
   const handleOTPSubmit = (e) => {
     e.preventDefault();
     console.log("Entered OTP:", otp);
-    navigate("/");
+    navigate("/dashboard");
   };
 
   const handleResendOTP = () => {
