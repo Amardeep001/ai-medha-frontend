@@ -98,7 +98,7 @@ const Settings = () => {
             </div>
 
             {/* Data Collection */}
-            <div className="flex items-center justify-between">
+            {/* <div className="flex items-center justify-between">
               <span className="text-gray-800">Allow Data Collection</span>
               <button
                 onClick={() => setDataCollection(!dataCollection)}
@@ -112,14 +112,14 @@ const Settings = () => {
                   }`}
                 ></div>
               </button>
-            </div>
+            </div> */}
 
             {/* Download Data */}
-            <div className="mt-4 text-center">
+            {/* <div className="mt-4 text-center">
               <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded transition">
                 Download Your Data
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
 
