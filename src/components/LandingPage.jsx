@@ -7,13 +7,15 @@ import {
   FaClipboardList,
   FaTimes,
 } from "react-icons/fa";
-import { Line } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
+import { FaUsers, FaRobot, FaChartLine } from "react-icons/fa";
 import "chart.js/auto";
 import Footer from "./Footer";
 import Header from "./Header";
 import Overview from "./Overview";
 import ServicesList from "./ServicesList";
 import Settings from "./Settings";
+import AnalyticsDashboard from "./Analytics";
 
 const Dashboard = () => {
   const [activeSection, setActiveSection] = useState("overview");
@@ -21,37 +23,16 @@ const Dashboard = () => {
 
   const sections = {
     overview: <Overview />,
-    analytics: (
-      <>
-        <h2 className="text-2xl md:text-3xl font-bold text-blue-900">
-          Analytics Dashboard
-        </h2>
-        <div className="mt-6">
-          <Line
-            data={{
-              labels: ["Jan", "Feb", "Mar", "Apr", "May"],
-              datasets: [
-                {
-                  label: "User Growth",
-                  data: [10, 20, 30, 40, 50],
-                  borderColor: "blue",
-                  borderWidth: 2,
-                },
-              ],
-            }}
-          />
-        </div>
-      </>
-    ),
+    analytics: <AnalyticsDashboard />,
     users: (
-      <>
+      <div className="p-4">
         <h2 className="text-2xl md:text-3xl font-bold text-blue-900">
           User Management
         </h2>
         <div className="mt-6">
           <p className="text-gray-700">Manage user roles and permissions.</p>
         </div>
-      </>
+      </div>
     ),
     settings: <Settings />,
     services: <ServicesList />,

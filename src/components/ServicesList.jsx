@@ -50,7 +50,7 @@ const ServicesList = () => {
     },
   ];
   return (
-    <>
+    <div className="p-4">
       <h2 className="text-2xl md:text-3xl font-bold text-blue-900">
         Service Selection Portal
       </h2>
@@ -80,7 +80,7 @@ const ServicesList = () => {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -5,10 +5,9 @@ const Settings = () => {
   const [notifications, setNotifications] = useState(true);
   const [language, setLanguage] = useState("en");
   const [twoFactorAuth, setTwoFactorAuth] = useState(false);
-  const [dataCollection, setDataCollection] = useState(false);
 
   return (
-    <div className="px-2 sm:px-6 ">
+    <div className="p-4">
       {/* System Settings Heading */}
       <h2 className="text-2xl md:text-3xl font-bold text-blue-900">
         System Settings
@@ -96,30 +95,6 @@ const Settings = () => {
                 ></div>
               </button>
             </div>
-
-            {/* Data Collection */}
-            {/* <div className="flex items-center justify-between">
-              <span className="text-gray-800">Allow Data Collection</span>
-              <button
-                onClick={() => setDataCollection(!dataCollection)}
-                className={`w-14 h-7 flex items-center bg-gray-300 rounded-full p-1 transition ${
-                  dataCollection ? "bg-blue-600" : "bg-gray-300"
-                }`}
-              >
-                <div
-                  className={`w-6 h-6 bg-white rounded-full shadow-md transform transition ${
-                    dataCollection ? "translate-x-7" : ""
-                  }`}
-                ></div>
-              </button>
-            </div> */}
-
-            {/* Download Data */}
-            {/* <div className="mt-4 text-center">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded transition">
-                Download Your Data
-              </button>
-            </div> */}
           </div>
         </div>
 

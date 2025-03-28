@@ -120,96 +120,91 @@ const Overview = () => {
   };
 
   return (
-    <>
+    <div className="p-4">
       <h2 className="text-2xl md:text-3xl font-bold text-blue-900">
         AI Services Overview
       </h2>
-      <div className="mt-6">
-        <div className="bg-white p-6 rounded-lg shadow-lg">
-          {/* Pie Chart Section */}
-          <h3 className="text-2xl font-semibold text-blue-900 mt-6 border-b pb-2">
-            Service Distribution
-          </h3>
-          <div className="flex flex-col flex-wrap md:flex-row xl:flex-nowrap gap-6 mt-6">
-            {/* Pie Chart */}
-            <div className="w-full md:w-1/3 flex justify-center">
-              <div className="w-64 h-64">
-                <Pie data={pieData} options={{ maintainAspectRatio: false }} />
-              </div>
-            </div>
-
-            {/* Bar Chart */}
-            <div className="w-full md:w-1/3 flex justify-center">
-              <div className="w-72 h-64">
-                <Bar data={barData} options={{ maintainAspectRatio: false }} />
-              </div>
-            </div>
-
-            {/* Line Chart */}
-            <div className="w-full md:w-1/3 flex justify-center">
-              <div className="w-72 h-64">
-                <Line
-                  data={lineData}
-                  options={{ maintainAspectRatio: false }}
-                />
-              </div>
+      <div className="mt-6 bg-white p-6 rounded-lg shadow-lg">
+        {/* Pie Chart Section */}
+        <h3 className="text-2xl font-semibold text-blue-900 mt-6 border-b pb-2">
+          Service Distribution
+        </h3>
+        <div className="flex flex-col flex-wrap md:flex-row xl:flex-nowrap gap-6 mt-6">
+          {/* Pie Chart */}
+          <div className="w-full md:w-1/3 flex justify-center">
+            <div className="w-full md:w-64 h-64">
+              <Pie data={pieData} options={{ maintainAspectRatio: false }} />
             </div>
           </div>
 
-          {/* Services Section */}
-          <h3 className="mt-6 text-2xl font-semibold text-blue-900 border-b pb-3">
-            Services & Insights
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4">
-            {services.map((service) => (
-              <div
-                key={service.id}
-                className="p-6 border rounded-lg shadow-md bg-gradient-to-r from-blue-50 to-blue-100 hover:shadow-lg transition hover:scale-105"
-              >
-                <div className="flex items-center space-x-4">
-                  {service.icon}
-                  <h4 className="text-lg font-semibold text-blue-900">
-                    {service.name}
-                  </h4>
-                </div>
-                <p className="text-gray-600 mt-2">{service.description}</p>
-                <p className="text-gray-700 mt-2 font-medium">
-                  Usage: {service.usage}
-                </p>
-                <img
-                  src={service.image}
-                  alt={service.name}
-                  className="mt-4 rounded-lg w-full h-32 object-cover"
-                />
-              </div>
-            ))}
+          {/* Bar Chart */}
+          <div className="w-full md:w-1/3 flex justify-center">
+            <div className="w-full md:w-72 h-64">
+              <Bar data={barData} options={{ maintainAspectRatio: false }} />
+            </div>
           </div>
 
-          {/* Logs Section */}
-          <h3 className="text-xl font-semibold text-blue-900 mt-6 border-b pb-2">
-            Recent Activity Logs
-          </h3>
-          <div className="bg-gray-300 p-4 rounded-lg shadow-md max-h-80 overflow-auto">
-            {logs.map((log, index) => (
-              <div
-                key={index}
-                className={`flex items-center gap-4 p-3 rounded-lg mb-2 ${
-                  index % 2 === 0 ? "bg-gray-100" : "bg-white"
-                }`}
-              >
-                {getLogIcon(log.type)}
-                <div>
-                  <p className="text-gray-800 text-sm font-medium">
-                    {log.message}
-                  </p>
-                  <p className="text-gray-500 text-xs">{log.time}</p>
-                </div>
-              </div>
-            ))}
+          {/* Line Chart */}
+          <div className="w-full md:w-1/3 flex justify-center">
+            <div className="w-full md:w-72 h-64">
+              <Line data={lineData} options={{ maintainAspectRatio: false }} />
+            </div>
           </div>
         </div>
+
+        {/* Services Section */}
+        <h3 className="mt-6 text-2xl font-semibold text-blue-900 border-b pb-3">
+          Services & Insights
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4">
+          {services.map((service) => (
+            <div
+              key={service.id}
+              className="p-6 border rounded-lg shadow-md bg-gradient-to-r from-blue-50 to-blue-100 hover:shadow-lg transition hover:scale-105"
+            >
+              <div className="flex items-center space-x-4">
+                {service.icon}
+                <h4 className="text-lg font-semibold text-blue-900">
+                  {service.name}
+                </h4>
+              </div>
+              <p className="text-gray-600 mt-2">{service.description}</p>
+              <p className="text-gray-700 mt-2 font-medium">
+                Usage: {service.usage}
+              </p>
+              <img
+                src={service.image}
+                alt={service.name}
+                className="mt-4 rounded-lg w-full h-32 object-cover"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Logs Section */}
+        <h3 className="text-xl font-semibold text-blue-900 mt-6 border-b pb-2">
+          Recent Activity Logs
+        </h3>
+        <div className="bg-gray-300 p-4 rounded-lg shadow-md max-h-80 overflow-auto">
+          {logs.map((log, index) => (
+            <div
+              key={index}
+              className={`flex items-center gap-4 p-3 rounded-lg mb-2 ${
+                index % 2 === 0 ? "bg-gray-100" : "bg-white"
+              }`}
+            >
+              {getLogIcon(log.type)}
+              <div>
+                <p className="text-gray-800 text-sm font-medium">
+                  {log.message}
+                </p>
+                <p className="text-gray-500 text-xs">{log.time}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
