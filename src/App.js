@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import OtpVerification from "./components/OtpVerification";
-import ForgotPassword from "./components/ForgotPassword";
-import ResetPassword from "./components/ResetPassword";
-import VerifyAccount from "./components/VerifyAccount";
-import ForgotOtpVerification from "./components/ForgotOtpVerification";
-import Dashboard from "./components/LandingPage";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import OtpVerification from "./pages/OtpVerification";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import VerifyAccount from "./pages/VerifyAccount";
+import ForgotOtpVerification from "./pages/ForgotOtpVerification";
+import Dashboard from "./pages/LandingPage";
 
 function App() {
   return (

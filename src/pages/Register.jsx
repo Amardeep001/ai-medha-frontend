@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 import indianFlag from "../images/ind_flag.png";
 import bgImg from "../images/inibg.svg";
 

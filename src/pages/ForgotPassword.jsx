@@ -1,25 +1,24 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Footer from "./Footer";
+import Footer from "../components/Footer";
 import indianFlag from "../images/ind_flag.png";
 import bgImg from "../images/inibg.svg";
 
-const Login = () => {
-  const [loginWithEmail, setLoginWithEmail] = useState(true);
+const ForgotPassword = () => {
+  const [useEmail, setUseEmail] = useState(true);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can add API call for authentication here
-    navigate("/otp-verification"); // Redirect to OTP verification page
-  };
-
-  const handleParichayLogin = () => {
-    // navigate("/parichay-login");
+    // API call for sending OTP or email verification code goes here
+    navigate("/verify-otp"); // Redirect to OTP Verification page
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between">
+    <div
+      className="min-h-screen bg-cover bg-center flex flex-col justify-between"
+      style={{ backgroundImage: "url('/gov-bg.jpg')" }}
+    >
       {/* Navbar */}
       {/* <nav className="bg-blue-900 text-white py-4 shadow-lg">
         <div className="max-w-screen-xl mx-auto flex justify-between items-center px-6 xl:px-20">
@@ -31,8 +30,8 @@ const Login = () => {
               </Link>
             </li>
             <li>
-              <Link to="/register" className="hover:text-yellow-400">
-                Register
+              <Link to="/login" className="hover:text-yellow-400">
+                Login
               </Link>
             </li>
           </ul>
@@ -45,7 +44,7 @@ const Login = () => {
           <div className="max-w-screen-xl mx-auto flex justify-between items-center px-6 xl:px-20">
             <div className="flex items-center space-x-2">
               <img
-                src={indianFlag || "/india-flag.png"}
+                src={indianFlag}
                 alt="Indian Flag"
                 className="w-6 h-4 sm:h-6"
               />
@@ -76,86 +75,63 @@ const Login = () => {
               </Link>
             </li>
             <li>
-              <Link to="/register" className="hover:text-[#FF9933] transition">
-                Register
+              <Link to="/login" className="hover:text-[#FF9933] transition">
+                Login
               </Link>
             </li>
           </ul>
         </div>
       </nav>
 
-      {/* Login Form */}
+      {/* Forgot Password Form */}
       <div
-        className="flex-grow flex items-center justify-center bg-cover"
+        className="flex-grow flex items-center justify-center bg-cover "
         style={{ backgroundImage: `url(${bgImg})` }}
       >
         <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-md border-t-4 border-yellow-500">
           <h2 className="text-3xl font-bold text-center text-blue-900">
-            Login to AI MEDHA
+            Forgot Password?
           </h2>
-          <p className="text-center text-gray-600 mt-2">Government AI Portal</p>
+          <p className="text-center text-gray-600 mt-2">
+            Enter your {useEmail ? "email" : "mobile number"} to receive a
+            verification code.
+          </p>
 
           <form className="mt-6" onSubmit={handleSubmit}>
             <div>
               <label className="block text-gray-700 font-semibold">
-                {loginWithEmail ? "Email" : "Mobile Number"}
+                {useEmail ? "Email" : "Mobile Number"}
               </label>
               <input
-                type={loginWithEmail ? "email" : "tel"}
+                type={useEmail ? "email" : "tel"}
                 placeholder={
-                  loginWithEmail
-                    ? "Enter your email"
-                    : "Enter your mobile number"
+                  useEmail ? "Enter your email" : "Enter your mobile number"
                 }
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300"
                 required
               />
             </div>
-            <div className="mt-4">
-              <label className="block text-gray-700 font-semibold">
-                Password
-              </label>
-              <input
-                type="password"
-                placeholder="Enter your password"
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300"
-                required
-              />
-            </div>
-            <p className="mt-2 text-right text-blue-900 font-semibold cursor-pointer hover:underline">
-              <Link to="/forgot-password">Forgot Password?</Link>
-            </p>
 
-            {/* Normal Login Button */}
             <button
               type="submit"
-              className="w-full bg-[#FF9933] text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-800 transition"
+              className="w-full bg-blue-900 text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-800 transition"
             >
-              Login
-            </button>
-
-            {/* Parichay Login Button */}
-            <button
-              type="button"
-              onClick={handleParichayLogin}
-              className="w-full bg-green-500 text-white px-4 py-2 mt-4 rounded-md hover:bg-green-700 transition"
-            >
-              Login with Parichay
+              Send Code
             </button>
           </form>
 
-          <p className="mt-4 text-center text-gray-700">
-            Don't have an account?{" "}
-            <Link to="/register" className="text-blue-900 font-semibold">
-              Register here
-            </Link>
-          </p>
-
           <p
             className="mt-4 text-center text-gray-700 cursor-pointer hover:underline"
-            onClick={() => setLoginWithEmail(!loginWithEmail)}
+            onClick={() => setUseEmail(!useEmail)}
           >
-            {loginWithEmail ? "Login with Mobile Number" : "Login with Email"}
+            {useEmail ? "Use Mobile Number Instead" : "Use Email Instead"}
+          </p>
+
+          <p className="mt-4 text-center text-gray-700">
+            Remembered your password?{" "}
+            <Link to="/login" className="text-blue-900 font-semibold">
+              Login
+            </Link>
           </p>
         </div>
       </div>
@@ -166,4 +142,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;
