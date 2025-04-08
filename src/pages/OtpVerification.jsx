@@ -26,13 +26,6 @@ const OtpVerification = () => {
       className="min-h-screen bg-cover bg-center flex flex-col justify-between"
       style={{ backgroundImage: "url('/gov-bg.jpg')" }}
     >
-      {/* Navbar */}
-      {/* <nav className="bg-blue-900 text-white py-4 shadow-lg">
-        <div className="max-w-screen-xl mx-auto flex justify-between items-center px-6 xl:px-20">
-          <h1 className="text-2xl font-bold">AI MEDHA</h1>
-        </div>
-      </nav> */}
-
       <nav className=" w-full z-50 bg-white shadow-md text-[#003366]">
         {/* Top Header */}
         <div className="w-full bg-[#003366] text-white text-sm py-2">

@@ -1,5 +1,21 @@
 import { Pie, Bar, Line } from "react-chartjs-2";
 import {
+  Chart as ChartJS,
+  ArcElement,
+  BarElement,
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineController,
+  BarController,
+  PieController,
+  Tooltip,
+  Legend,
+  Filler,
+} from "chart.js";
+
+import {
   FaRobot,
   FaDatabase,
   FaEye,
@@ -12,6 +28,21 @@ import {
   FaTimesCircle,
 } from "react-icons/fa";
 
+ChartJS.register(
+  ArcElement,
+  BarElement,
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineController,
+  BarController,
+  PieController,
+  Tooltip,
+  Legend,
+  Filler
+);
+
 const Overview = () => {
   const services = [
     {
@@ -20,7 +51,7 @@ const Overview = () => {
       description: "Efficiently manage and deploy AI models with ease.",
       usage: "Streamlines model lifecycle, from training to deployment.",
       icon: <FaDatabase className="text-blue-700 text-4xl" />, // Service Icon
-      image: "https://picsum.photos/300/200?random=1", // Replace with actual image URL
+      image: "https://picsum.photos/400/300?random=1", // Replace with actual image URL
     },
     {
       id: "ai_chatbot",
@@ -28,7 +59,7 @@ const Overview = () => {
       description: "Intelligent chatbot for automated interactions.",
       usage: "Enhances customer engagement and support.",
       icon: <FaRobot className="text-blue-700 text-4xl" />,
-      image: "https://picsum.photos/300/200?random=2",
+      image: "https://picsum.photos/400/300?random=2",
     },
     {
       id: "digital_asset_catalogue",
@@ -36,7 +67,7 @@ const Overview = () => {
       description: "Centralized storage for AI-generated assets.",
       usage: "Organizes and manages digital AI assets effectively.",
       icon: <FaClipboardCheck className="text-blue-700 text-4xl" />,
-      image: "https://picsum.photos/300/200?random=3",
+      image: "https://picsum.photos/400/300?random=3",
     },
     {
       id: "model_performance_governance",
@@ -44,7 +75,7 @@ const Overview = () => {
       description: "Monitor, evaluate, and govern AI model performance.",
       usage: "Ensures compliance, accuracy, and continuous improvements.",
       icon: <FaEye className="text-blue-700 text-4xl" />,
-      image: "https://picsum.photos/300/200?random=4",
+      image: "https://picsum.photos/400/300?random=4",
     },
     {
       id: "ai_service_insights",
@@ -52,7 +83,7 @@ const Overview = () => {
       description: "Comprehensive insights into AI service usage.",
       usage: "Provides analytics and reports for decision-making.",
       icon: <FaChartPie className="text-blue-700 text-4xl" />,
-      image: "https://picsum.photos/300/200?random=5",
+      image: "https://picsum.photos/400/300?random=5",
     },
   ];
 
@@ -175,7 +206,7 @@ const Overview = () => {
               <img
                 src={service.image}
                 alt={service.name}
-                className="mt-4 rounded-lg w-full h-32 object-cover"
+                className="mt-4 rounded-lg w-full h-40 object-cover"
               />
             </div>
           ))}
