@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -15,8 +15,9 @@ import {
   CartesianGrid,
   Legend,
 } from "recharts";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
+// Mock model data
 const mockModels = [
   {
     id: "m1",
@@ -62,10 +63,18 @@ const mockModels = [
 
 const COLORS = ["#4f46e5", "#10b981", "#f59e0b", "#ef4444"];
 
+// Metrics for Bar Chart
 const insightData = [
   { name: "Accuracy", Sales: 92, Fraud: 97 },
   { name: "F1 Score", Sales: 89, Fraud: 91 },
   { name: "Latency (ms)", Sales: 250, Fraud: 300 },
+];
+
+// Sector pie chart data
+const chartData = [
+  { name: "Retail", value: 1 },
+  { name: "E-commerce", value: 1 },
+  { name: "Banking", value: 1 },
 ];
 
 const ServiceDetailPage = () => {
@@ -73,18 +82,13 @@ const ServiceDetailPage = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
-  const chartData = [
-    { name: "Retail", value: 1 },
-    { name: "E-commerce", value: 1 },
-    { name: "Banking", value: 1 },
-  ];
-
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-gray-50 text-gray-900">
       <Header toggleSidebar={() => setSidebarOpen(true)} />
 
       <div className="overflow-auto flex flex-grow">
         <div className="p-6 w-full max-w-7xl mx-auto">
+          {/* Header and Overview */}
           <h2 className="text-3xl font-bold text-blue-900 mb-4">
             Model Repository - {id.replaceAll("_", " ").toUpperCase()}
           </h2>
@@ -94,58 +98,67 @@ const ServiceDetailPage = () => {
             leverages historical or real-time data to generate valuable
             predictions and insights.
           </p>
+
+          {/* Back Button */}
           <button
             onClick={() => navigate(-1)}
             className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
           >
             ← Back
           </button>
+
+          {/* Model Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
             {mockModels.map((model) => (
-              <div
-                key={model.id}
-                className="bg-white rounded-lg shadow-md border hover:shadow-xl transition-all"
-              >
-                <img
-                  src={model.image}
-                  alt={model.name}
-                  className="rounded-t-lg w-full h-40 object-cover"
-                />
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold text-blue-800 mb-1">
-                    {model.name}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-1">
-                    <strong>Category:</strong> {model.category}
-                  </p>
-                  <p className="text-sm text-gray-600 mb-1">
-                    <strong>Sector:</strong> {model.sector}
-                  </p>
-                  <p className="text-gray-700 text-sm mb-2">
-                    {model.description}
-                  </p>
-                  <div className="text-sm text-gray-700 space-y-1">
-                    <p>
-                      <strong>Accuracy:</strong>{" "}
-                      {model.metrics.accuracy || "N/A"}
+              <Link to={`/services/model/${model.id}`} key={model.id}>
+                <div
+                  key={model.id}
+                  className="bg-white rounded-lg shadow-md border hover:shadow-xl transition-all"
+                >
+                  <img
+                    src={model.image}
+                    alt={model.name}
+                    className="rounded-t-lg w-full h-40 object-cover"
+                  />
+                  <div className="p-4">
+                    <h3 className="text-xl font-semibold text-blue-800 mb-1">
+                      {model.name}
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-1">
+                      <strong>Category:</strong> {model.category}
                     </p>
-                    <p>
-                      <strong>Latency:</strong> {model.metrics.latency || "N/A"}
+                    <p className="text-sm text-gray-600 mb-1">
+                      <strong>Sector:</strong> {model.sector}
                     </p>
-                    <p>
-                      <strong>F1 Score:</strong>{" "}
-                      {model.metrics.f1Score || "N/A"}
+                    <p className="text-gray-700 text-sm mb-2">
+                      {model.description}
+                    </p>
+                    <div className="text-sm text-gray-700 space-y-1">
+                      <p>
+                        <strong>Accuracy:</strong>{" "}
+                        {model.metrics.accuracy || "N/A"}
+                      </p>
+                      <p>
+                        <strong>Latency:</strong>{" "}
+                        {model.metrics.latency || "N/A"}
+                      </p>
+                      <p>
+                        <strong>F1 Score:</strong>{" "}
+                        {model.metrics.f1Score || "N/A"}
+                      </p>
+                    </div>
+                    <p className="text-sm text-blue-600 font-medium mt-2">
+                      Version: {model.version}
                     </p>
                   </div>
-                  <p className="text-sm text-blue-600 font-medium mt-2">
-                    Version: {model.version}
-                  </p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
+          {/* Charts: Sector Distribution + Metrics */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Sector-wise Distribution Chart */}
             <div className="bg-white rounded-lg shadow-md p-6">
               <h3 className="text-xl font-semibold text-blue-800 mb-2">
                 Sector-wise Model Distribution
@@ -179,6 +192,7 @@ const ServiceDetailPage = () => {
               </div>
             </div>
 
+            {/* Model Performance Insights Chart */}
             <div className="bg-white rounded-lg shadow-md p-6">
               <h3 className="text-xl font-semibold text-blue-800 mb-2">
                 Model Insights (Key Metrics)
@@ -204,6 +218,8 @@ const ServiceDetailPage = () => {
               </div>
             </div>
           </div>
+
+          {/* Summary & Recommendation Section */}
           <div className="mt-12 bg-white rounded-lg shadow-md p-6">
             <h3 className="text-xl font-semibold text-blue-800 mb-2">
               Summary & Insights

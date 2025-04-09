@@ -12,11 +12,11 @@ import Footer from "../components/Footer";
 import { Link, useLocation, Outlet } from "react-router-dom"; // 👈 Import Outlet
 
 const menuItems = [
-  { icon: <FaClipboardList />, title: "Overview", path: "/dashboard/overview" },
-  { icon: <FaChartBar />, title: "Analytics", path: "/dashboard/analytics" },
-  { icon: <FaTools />, title: "Services", path: "/dashboard/services" },
-  { icon: <FaUserShield />, title: "Users", path: "/dashboard/users" },
-  { icon: <FaCog />, title: "Settings", path: "/dashboard/settings" },
+  { icon: <FaClipboardList />, title: "Overview", path: "/dashboard" },
+  { icon: <FaChartBar />, title: "Analytics", path: "/analytics" },
+  { icon: <FaTools />, title: "Services", path: "/services" },
+  { icon: <FaUserShield />, title: "Users", path: "/users" },
+  { icon: <FaCog />, title: "Settings", path: "/settings" },
 ];
 
 const DashboardLayout = () => {
@@ -49,7 +49,7 @@ const DashboardLayout = () => {
                 to={item.path}
                 onClick={() => setSidebarOpen(false)}
                 className={`flex items-center space-x-2 px-4 py-3 rounded-lg ${
-                  location.pathname === item.path
+                  location.pathname.startsWith(item.path)
                     ? "bg-blue-600 text-white"
                     : "hover:bg-blue-100 transition"
                 }`}

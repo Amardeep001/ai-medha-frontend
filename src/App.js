@@ -15,6 +15,7 @@ import AnalyticsPage from "./pages/AnalyticsPage";
 import ServicesPage from "./pages/ServicesPage";
 import UsersPage from "./pages/UsersPage";
 import SettingsPage from "./pages/SettingsPage";
+import ModelDetailPage from "./pages/ModelDetailPage";
 
 function App() {
   return (
@@ -28,15 +29,15 @@ function App() {
         <Route path="forgot-password" element={<ForgotPassword />} />
         <Route path="verify-otp" element={<ForgotOtpVerification />} />
         <Route path="reset-password" element={<ResetPassword />} />
-        <Route path="dashboard" element={<DashboardLayout />}>
-          <Route path="overview" element={<OverviewPage />} />
+        <Route path="/" element={<DashboardLayout />}>
+          <Route path="dashboard" element={<OverviewPage />} />
           <Route path="analytics" element={<AnalyticsPage />} />
           <Route path="services" element={<ServicesPage />} />
           <Route path="users" element={<UsersPage />} />
           <Route path="settings" element={<SettingsPage />} />
-          <Route index element={<OverviewPage />} />
         </Route>
-        <Route path="/dashboard/services/:id" element={<ServiceDetailPage />} />
+        <Route path="/services/:id" element={<ServiceDetailPage />} />
+        <Route path="services/model/:modelId" element={<ModelDetailPage />} />
       </Routes>
     </Router>
   );

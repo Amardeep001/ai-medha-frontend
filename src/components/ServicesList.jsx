@@ -107,7 +107,7 @@ const ServiceCatalogue = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {filteredServices.map((service) => (
-          <Link to={`/dashboard/services/${service.id}`} key={service.id}>
+          <Link to={`/services/${service.id}`} key={service.id}>
             <div className="p-5 bg-white border rounded-lg shadow-md hover:shadow-lg transition hover:scale-[1.02]">
               <div className="flex items-center gap-4 mb-2">
                 {service.icon}
