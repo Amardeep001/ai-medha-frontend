@@ -76,12 +76,18 @@ const Home = () => {
               </a>
             </li>
             <li>
-              <Link to="/login" className="hover:text-[#FF9933] transition">
+              <Link
+                to="/auth/login"
+                className="hover:text-[#FF9933] transition"
+              >
                 Login
               </Link>
             </li>
             <li>
-              <Link to="/register" className="hover:text-[#FF9933] transition">
+              <Link
+                to="/auth/register"
+                className="hover:text-[#FF9933] transition"
+              >
                 Register
               </Link>
             </li>

@@ -1,20 +1,26 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
-import indianFlag from "../images/ind_flag.png";
-import bgImg from "../images/inibg.svg";
+import Footer from "../../components/Footer";
+import indianFlag from "../../images/ind_flag.png";
+import bgImg from "../../images/inibg.svg";
 
-const Login = () => {
-  const [loginWithEmail, setLoginWithEmail] = useState(true);
+const ResetPassword = () => {
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/otp-verification");
-  };
 
-  const handleParichayLogin = () => {
-    // navigate("/parichay-login");
+    if (password !== confirmPassword) {
+      setError("Passwords do not match!");
+      return;
+    }
+
+    // API call to update the password goes here
+    alert("Password reset successfully!");
+    navigate("/auth/login"); // Redirect to login page after reset
   };
 
   return (
@@ -26,7 +32,7 @@ const Login = () => {
           <div className="max-w-screen-xl mx-auto flex justify-between items-center px-6 xl:px-20">
             <div className="flex items-center space-x-2">
               <img
-                src={indianFlag || "/india-flag.png"}
+                src={indianFlag}
                 alt="Indian Flag"
                 className="w-6 h-4 sm:h-6"
               />
@@ -57,86 +63,73 @@ const Login = () => {
               </Link>
             </li>
             <li>
-              <Link to="/register" className="hover:text-[#FF9933] transition">
-                Register
+              <Link
+                to="/auth/login"
+                className="hover:text-[#FF9933] transition"
+              >
+                Login
               </Link>
             </li>
           </ul>
         </div>
       </nav>
 
-      {/* Login Form */}
+      {/* Reset Password Form */}
       <div
-        className="flex-grow flex items-center justify-center bg-cover"
+        className="flex-grow flex items-center justify-center bg-cover "
         style={{ backgroundImage: `url(${bgImg})` }}
       >
         <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-md border-t-4 border-yellow-500">
           <h2 className="text-3xl font-bold text-center text-blue-900">
-            Login to AI MEDHA
+            Reset Password
           </h2>
-          <p className="text-center text-gray-600 mt-2">Government AI Portal</p>
+          <p className="text-center text-gray-600 mt-2">
+            Enter a new password for your account.
+          </p>
 
           <form className="mt-6" onSubmit={handleSubmit}>
             <div>
               <label className="block text-gray-700 font-semibold">
-                {loginWithEmail ? "Email" : "Mobile Number"}
+                New Password
               </label>
               <input
-                type={loginWithEmail ? "email" : "tel"}
-                placeholder={
-                  loginWithEmail
-                    ? "Enter your email"
-                    : "Enter your mobile number"
-                }
+                type="password"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300"
+                placeholder="Enter new password"
                 required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className="mt-4">
               <label className="block text-gray-700 font-semibold">
-                Password
+                Confirm Password
               </label>
               <input
                 type="password"
-                placeholder="Enter your password"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300"
+                placeholder="Confirm new password"
                 required
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
-            <p className="mt-2 text-right text-blue-900 font-semibold cursor-pointer hover:underline">
-              <Link to="/forgot-password">Forgot Password?</Link>
-            </p>
 
-            {/* Normal Login Button */}
+            {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
+
             <button
               type="submit"
-              className="w-full bg-[#FF9933] text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-800 transition"
+              className="w-full bg-blue-900 text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-800 transition"
             >
-              Login
-            </button>
-
-            {/* Parichay Login Button */}
-            <button
-              type="button"
-              onClick={handleParichayLogin}
-              className="w-full bg-green-500 text-white px-4 py-2 mt-4 rounded-md hover:bg-green-700 transition"
-            >
-              Login with Parichay
+              Reset Password
             </button>
           </form>
 
           <p className="mt-4 text-center text-gray-700">
-            Don't have an account?{" "}
-            <Link to="/register" className="text-blue-900 font-semibold">
-              Register here
+            Remembered your password?{" "}
+            <Link to="/auth/login" className="text-blue-900 font-semibold">
+              Login
             </Link>
-          </p>
-
-          <p
-            className="mt-4 text-center text-gray-700 cursor-pointer hover:underline"
-            onClick={() => setLoginWithEmail(!loginWithEmail)}
-          >
-            {loginWithEmail ? "Login with Mobile Number" : "Login with Email"}
           </p>
         </div>
       </div>
@@ -147,4 +140,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ResetPassword;

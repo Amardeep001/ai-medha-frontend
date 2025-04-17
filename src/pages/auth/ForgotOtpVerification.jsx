@@ -1,31 +1,31 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
-import indianFlag from "../images/ind_flag.png";
-import bgImg from "../images/inibg.svg";
+import Footer from "../../components/Footer";
+import indianFlag from "../../images/ind_flag.png";
+import bgImg from "../../images/inibg.svg";
 
-const ResetPassword = () => {
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
+const ForgotOtpVerification = () => {
   const navigate = useNavigate();
+  const [otp, setOtp] = useState("");
+  const [resendDisabled, setResendDisabled] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleOTPSubmit = (e) => {
     e.preventDefault();
+    console.log("Entered OTP:", otp);
+    navigate("/auth/reset-password");
+  };
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match!");
-      return;
-    }
-
-    // API call to update the password goes here
-    alert("Password reset successfully!");
-    navigate("/login"); // Redirect to login page after reset
+  const handleResendOTP = () => {
+    setResendDisabled(true);
+    setTimeout(() => setResendDisabled(false), 60000); // Enable after 60 seconds
+    console.log("OTP Resent");
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between">
-      {/* Navbar */}
+    <div
+      className="min-h-screen bg-cover bg-center flex flex-col justify-between"
+      style={{ backgroundImage: "url('/gov-bg.jpg')" }}
+    >
       <nav className=" w-full z-50 bg-white shadow-md text-[#003366]">
         {/* Top Header */}
         <div className="w-full bg-[#003366] text-white text-sm py-2">
@@ -63,7 +63,10 @@ const ResetPassword = () => {
               </Link>
             </li>
             <li>
-              <Link to="/login" className="hover:text-[#FF9933] transition">
+              <Link
+                to="/auth/login"
+                className="hover:text-[#FF9933] transition"
+              >
                 Login
               </Link>
             </li>
@@ -71,62 +74,52 @@ const ResetPassword = () => {
         </div>
       </nav>
 
-      {/* Reset Password Form */}
+      {/* OTP Verification Form */}
       <div
         className="flex-grow flex items-center justify-center bg-cover "
         style={{ backgroundImage: `url(${bgImg})` }}
       >
         <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-md border-t-4 border-yellow-500">
           <h2 className="text-3xl font-bold text-center text-blue-900">
-            Reset Password
+            Verify Your Account
           </h2>
           <p className="text-center text-gray-600 mt-2">
-            Enter a new password for your account.
+            Enter the OTP sent to your email or mobile
           </p>
 
-          <form className="mt-6" onSubmit={handleSubmit}>
+          <form className="mt-6" onSubmit={handleOTPSubmit}>
             <div>
               <label className="block text-gray-700 font-semibold">
-                New Password
+                Enter OTP
               </label>
               <input
-                type="password"
+                type="text"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                placeholder="Enter your OTP"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300"
-                placeholder="Enter new password"
                 required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <div className="mt-4">
-              <label className="block text-gray-700 font-semibold">
-                Confirm Password
-              </label>
-              <input
-                type="password"
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300"
-                placeholder="Confirm new password"
-                required
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </div>
-
-            {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
-
             <button
               type="submit"
-              className="w-full bg-blue-900 text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-800 transition"
+              className="w-full bg-blue-900 text-white px-4 py-2 mt-6 rounded-md hover:bg-blue-800 transition"
             >
-              Reset Password
+              Verify OTP
             </button>
           </form>
 
           <p className="mt-4 text-center text-gray-700">
-            Remembered your password?{" "}
-            <Link to="/login" className="text-blue-900 font-semibold">
-              Login
-            </Link>
+            Didn't receive an OTP?{" "}
+            <button
+              onClick={handleResendOTP}
+              className={`text-blue-900 font-semibold ${
+                resendDisabled ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              disabled={resendDisabled}
+            >
+              Resend OTP
+            </button>
           </p>
         </div>
       </div>
@@ -137,4 +130,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default ForgotOtpVerification;

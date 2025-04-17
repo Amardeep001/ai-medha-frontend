@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -15,106 +15,83 @@ import {
   CartesianGrid,
   Legend,
 } from "recharts";
-import { Link } from "react-router-dom";
 
-// Mock model data
 const mockModels = [
   {
     id: "m1",
-    name: "Sales Forecasting Model",
-    category: "Forecasting",
-    sector: "Retail",
-    description: "Predicts future sales using historical data.",
+    name: "PAN & Aadhaar Masking Model",
+    category: "PII Detection",
+    sector: "Data Privacy",
+    description:
+      "Uses YOLOv5 to identify and mask Aadhaar, PAN, and fingerprint regions.",
     metrics: {
-      accuracy: "92%",
-      latency: "250ms",
-      f1Score: "0.89",
+      accuracy: "98%",
+      latency: "20s (for 30–40 page docs)",
+      f1Score: "N/A",
     },
-    version: "v1.2.3",
-    image: "https://picsum.photos/400/200?random=11",
+    version: "v1.0.0",
+    image: "https://picsum.photos/400/200?random=31",
   },
   {
     id: "m2",
-    name: "Customer Segmentation",
-    category: "Clustering",
-    sector: "E-commerce",
-    description: "Groups customers based on buying behavior.",
+    name: "OCR + Redaction Engine",
+    category: "Text Extraction",
+    sector: "Data Privacy",
+    description:
+      "Utilizes Tesseract OCR for extracting sensitive text regions for redaction.",
     metrics: {
-      silhouetteScore: "0.74",
-      latency: "300ms",
+      accuracy: "Image quality dependent",
+      latency: "Varies by page size",
+      f1Score: "N/A",
     },
-    version: "v2.0.0",
-    image: "https://picsum.photos/400/200?random=12",
-  },
-  {
-    id: "m3",
-    name: "Fraud Detection",
-    category: "Classification",
-    sector: "Banking",
-    description: "Detects fraudulent transactions in real-time.",
-    metrics: {
-      accuracy: "97%",
-      f1Score: "0.91",
-    },
-    version: "v3.1.0",
-    image: "https://picsum.photos/400/200?random=13",
+    version: "v1.1.0",
+    image: "https://picsum.photos/400/200?random=32",
   },
 ];
 
 const COLORS = ["#4f46e5", "#10b981", "#f59e0b", "#ef4444"];
 
-// Metrics for Bar Chart
-const insightData = [
-  { name: "Accuracy", Sales: 92, Fraud: 97 },
-  { name: "F1 Score", Sales: 89, Fraud: 91 },
-  { name: "Latency (ms)", Sales: 250, Fraud: 300 },
-];
+const sectorChartData = [{ name: "Data Privacy", value: 2 }];
 
-// Sector pie chart data
-const chartData = [
-  { name: "Retail", value: 1 },
-  { name: "E-commerce", value: 1 },
-  { name: "Banking", value: 1 },
+const modelInsightData = [
+  { name: "PAN Model", Accuracy: 98, Latency: 20 },
+  { name: "Aadhaar Model", Accuracy: 98, Latency: 20 },
+  { name: "Fingerprint Model", Accuracy: 97, Latency: 20 },
+  { name: "QR Model", Accuracy: 98, Latency: 20 },
 ];
 
 const ServiceDetailPage = () => {
-  const { id } = useParams();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { id } = useParams(); // ai_nibhrit
   const navigate = useNavigate();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-gray-50 text-gray-900">
       <Header toggleSidebar={() => setSidebarOpen(true)} />
-
       <div className="overflow-auto flex flex-grow">
         <div className="p-6 w-full max-w-7xl mx-auto">
-          {/* Header and Overview */}
-          <h2 className="text-3xl font-bold text-blue-900 mb-4">
-            Model Repository - {id.replaceAll("_", " ").toUpperCase()}
+          <h2 className="text-3xl font-bold text-blue-900 mb-2">
+            AI Service: {id.replaceAll("_", " ").toUpperCase()}
           </h2>
-          <p className="text-gray-700 text-base mb-8">
-            Discover intelligent machine learning models built to serve diverse
-            sectors such as Retail, E-commerce, and Banking. Each model
-            leverages historical or real-time data to generate valuable
-            predictions and insights.
+          <p className="text-gray-700 mb-6 text-base leading-relaxed">
+            AI Nibhrit ensures end-to-end privacy by redacting Aadhaar numbers,
+            PAN details, fingerprints, and QR codes using AI technologies like
+            YOLOv5 and OCR (Tesseract). The system returns either masked
+            documents or coordinates for masking in JSON format.
           </p>
 
-          {/* Back Button */}
           <button
             onClick={() => navigate(-1)}
             className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
           >
-            ← Back
+            ← Back to Services
           </button>
 
-          {/* Model Cards Grid */}
+          {/* Model Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
             {mockModels.map((model) => (
               <Link to={`/services/model/${model.id}`} key={model.id}>
-                <div
-                  key={model.id}
-                  className="bg-white rounded-lg shadow-md border hover:shadow-xl transition-all"
-                >
+                <div className="bg-white rounded-lg shadow-md border hover:shadow-xl transition-all">
                   <img
                     src={model.image}
                     alt={model.name}
@@ -135,16 +112,13 @@ const ServiceDetailPage = () => {
                     </p>
                     <div className="text-sm text-gray-700 space-y-1">
                       <p>
-                        <strong>Accuracy:</strong>{" "}
-                        {model.metrics.accuracy || "N/A"}
+                        <strong>Accuracy:</strong> {model.metrics.accuracy}
                       </p>
                       <p>
-                        <strong>Latency:</strong>{" "}
-                        {model.metrics.latency || "N/A"}
+                        <strong>Latency:</strong> {model.metrics.latency}
                       </p>
                       <p>
-                        <strong>F1 Score:</strong>{" "}
-                        {model.metrics.f1Score || "N/A"}
+                        <strong>F1 Score:</strong> {model.metrics.f1Score}
                       </p>
                     </div>
                     <p className="text-sm text-blue-600 font-medium mt-2">
@@ -156,30 +130,156 @@ const ServiceDetailPage = () => {
             ))}
           </div>
 
-          {/* Charts: Sector Distribution + Metrics */}
+          {/* Enhanced Intelligence Overview */}
+          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3">
+              Model Intelligence & Architecture Overview
+            </h3>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              The <strong>AI Nibhrit</strong> platform is built to ensure
+              privacy and compliance in digital documentation by leveraging a
+              suite of state-of-the-art AI models. These models are primarily
+              trained to detect and mask{" "}
+              <strong>personally identifiable information (PII)</strong> such as
+              Aadhaar numbers, PAN cards, fingerprints, and QR codes.
+            </p>
+
+            <ul className="list-disc pl-5 mt-4 text-sm text-gray-700 space-y-2">
+              <li>
+                <strong>YOLOv5 Object Detection:</strong> Used to detect
+                Aadhaar, PAN, fingerprints, and QR regions with high accuracy.
+              </li>
+              <li>
+                <strong>Tesseract OCR:</strong> Recognizes printed and scanned
+                text for redaction tasks.
+              </li>
+              <li>
+                <strong>OpenCV & TensorFlow:</strong> Applied for image
+                analysis, pre-processing and deep-learning model integration.
+              </li>
+              <li>
+                <strong>Secure Cloud & GPU Architecture:</strong> Kubernetes and
+                NVIDIA BCM ensure scalability and GPU-powered inference across
+                workloads.
+              </li>
+            </ul>
+
+            <div className="mt-6">
+              <h4 className="text-md font-semibold text-blue-700 mb-2">
+                Service Capabilities & Key Metrics
+              </h4>
+              <ul className="text-sm text-gray-700 space-y-2">
+                <li>
+                  📄 <strong>Supported file formats:</strong> PDF, PNG, JPG,
+                  JPEG, JFIF
+                </li>
+                <li>
+                  🌐 <strong>Language support:</strong> Separate AI models for
+                  regional languages like Gujarati, Bengali (state-specific)
+                </li>
+                <li>
+                  ⚡ <strong>Processing speed:</strong> Avg. 20 sec per
+                  30–40-page document (varies by CPU)
+                </li>
+                <li>
+                  📊 <strong>Accuracy scores:</strong> PAN, Aadhaar, QR: 98%;
+                  Fingerprint: 97%
+                </li>
+                <li>
+                  🧠 <strong>AI Workflow:</strong> Document upload →
+                  Preprocessing → Detection & OCR → Coordinate generation or
+                  direct masking → Final output
+                </li>
+              </ul>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-md font-semibold text-blue-700 mb-2">
+                Government Usage & Deployment
+              </h4>
+              <p className="text-gray-700 text-sm">
+                AI Nibhrit is currently in use by several state registration
+                departments including West Bengal, Telangana, Maharashtra,
+                Tripura, Puducherry, Andhra Pradesh, and UP. These deployments
+                demonstrate real-world applicability across varied regional
+                formats and infrastructures.
+              </p>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-md font-semibold text-blue-700 mb-2">
+                Disclaimers & Limitations
+              </h4>
+              <p className="text-sm text-gray-700">
+                While highly accurate, model performance may vary with poor scan
+                quality or unfamiliar document layouts. OCR confidence can be
+                lower on distorted, noisy images, and masking may misfire in
+                extreme cases. Continuous model training and feedback from state
+                deployments help address such limitations.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3">
+              Model Summary Table
+            </h3>
+            <table className="w-full text-sm text-left border-collapse">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="p-2 border">Model</th>
+                  <th className="p-2 border">Use Case</th>
+                  <th className="p-2 border">Accuracy</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="p-2 border">Aadhaar Detection</td>
+                  <td className="p-2 border">Number & Pattern Masking</td>
+                  <td className="p-2 border">98%</td>
+                </tr>
+                <tr>
+                  <td className="p-2 border">PAN Detection</td>
+                  <td className="p-2 border">Alphanumeric Redaction</td>
+                  <td className="p-2 border">98%</td>
+                </tr>
+                <tr>
+                  <td className="p-2 border">Fingerprint Region Masker</td>
+                  <td className="p-2 border">Image region blackout</td>
+                  <td className="p-2 border">97%</td>
+                </tr>
+                <tr>
+                  <td className="p-2 border">QR Code Blurring</td>
+                  <td className="p-2 border">QR scan blocking</td>
+                  <td className="p-2 border">98%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          {/* Visual Charts */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Sector-wise Distribution Chart */}
             <div className="bg-white rounded-lg shadow-md p-6">
               <h3 className="text-xl font-semibold text-blue-800 mb-2">
                 Sector-wise Model Distribution
               </h3>
               <p className="text-sm text-gray-600 mb-4">
-                This pie chart represents how models are distributed across
-                different sectors such as Retail, E-commerce, and Banking. Each
-                slice shows the number of models tailored to a specific domain.
+                Most models are aligned to Data Privacy domain and are being
+                adopted by government departments for secure digital document
+                handling.
               </p>
               <div className="h-72">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
                       dataKey="value"
-                      data={chartData}
+                      data={sectorChartData}
                       cx="50%"
                       cy="50%"
                       outerRadius={80}
                       label
                     >
-                      {chartData.map((entry, index) => (
+                      {sectorChartData.map((entry, index) => (
                         <Cell
                           key={`cell-${index}`}
                           fill={COLORS[index % COLORS.length]}
@@ -192,50 +292,47 @@ const ServiceDetailPage = () => {
               </div>
             </div>
 
-            {/* Model Performance Insights Chart */}
             <div className="bg-white rounded-lg shadow-md p-6">
               <h3 className="text-xl font-semibold text-blue-800 mb-2">
-                Model Insights (Key Metrics)
+                Redaction Model Insights
               </h3>
               <p className="text-sm text-gray-600 mb-4">
-                This bar chart highlights the performance of selected models
-                across important metrics like accuracy, F1 score, and latency.
-                Use it to compare and assess the effectiveness of each model in
-                real-time scenarios.
+                Model accuracy and latency across multiple types of sensitive
+                data detection (Aadhaar, PAN, fingerprint, and QR code).
               </p>
               <div className="h-72">
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={insightData}>
+                  <BarChart data={modelInsightData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="Sales" fill="#4f46e5" />
-                    <Bar dataKey="Fraud" fill="#10b981" />
+                    <Bar dataKey="Accuracy" fill="#4f46e5" />
+                    <Bar dataKey="Latency" fill="#10b981" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
             </div>
           </div>
 
-          {/* Summary & Recommendation Section */}
+          {/* Summary Section */}
           <div className="mt-12 bg-white rounded-lg shadow-md p-6">
             <h3 className="text-xl font-semibold text-blue-800 mb-2">
-              Summary & Insights
+              Summary & Notes
             </h3>
             <p className="text-base text-gray-700">
-              The repository showcases a diverse set of machine learning models
-              spanning multiple industries. While Retail and Banking models show
-              high accuracy and relatively low latency, E-commerce clustering
-              models provide deep customer segmentation. The insights presented
-              help stakeholders choose the most appropriate model based on their
-              performance metrics and domain relevance.
+              AI Nibhrit is currently integrated and live with several
+              government departments across Indian states. It uses
+              state-specific models for multilingual document handling and
+              adapts to varying formats. While highly accurate, challenges
+              remain in processing low-quality scans or unstructured formats.
+              Future improvements could include benchmarking dashboards and
+              visual evaluation reports.
             </p>
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );

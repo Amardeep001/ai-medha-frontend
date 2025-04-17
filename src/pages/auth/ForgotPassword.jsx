@@ -1,24 +1,17 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
-import indianFlag from "../images/ind_flag.png";
-import bgImg from "../images/inibg.svg";
+import Footer from "../../components/Footer";
+import indianFlag from "../../images/ind_flag.png";
+import bgImg from "../../images/inibg.svg";
 
-const OtpVerification = () => {
+const ForgotPassword = () => {
+  const [useEmail, setUseEmail] = useState(true);
   const navigate = useNavigate();
-  const [otp, setOtp] = useState("");
-  const [resendDisabled, setResendDisabled] = useState(false);
 
-  const handleOTPSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Entered OTP:", otp);
-    navigate("/dashboard");
-  };
-
-  const handleResendOTP = () => {
-    setResendDisabled(true);
-    setTimeout(() => setResendDisabled(false), 60000); // Enable after 60 seconds
-    console.log("OTP Resent");
+    // API call for sending OTP or email verification code goes here
+    navigate("/auth/verify-otp"); // Redirect to OTP Verification page
   };
 
   return (
@@ -63,7 +56,10 @@ const OtpVerification = () => {
               </Link>
             </li>
             <li>
-              <Link to="/login" className="hover:text-[#FF9933] transition">
+              <Link
+                to="/auth/login"
+                className="hover:text-[#FF9933] transition"
+              >
                 Login
               </Link>
             </li>
@@ -71,52 +67,55 @@ const OtpVerification = () => {
         </div>
       </nav>
 
-      {/* OTP Verification Form */}
+      {/* Forgot Password Form */}
       <div
         className="flex-grow flex items-center justify-center bg-cover "
         style={{ backgroundImage: `url(${bgImg})` }}
       >
         <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-md border-t-4 border-yellow-500">
           <h2 className="text-3xl font-bold text-center text-blue-900">
-            Verify Your Account
+            Forgot Password?
           </h2>
           <p className="text-center text-gray-600 mt-2">
-            Enter the OTP sent to your email or mobile
+            Enter your {useEmail ? "email" : "mobile number"} to receive a
+            verification code.
           </p>
 
-          <form className="mt-6" onSubmit={handleOTPSubmit}>
+          <form className="mt-6" onSubmit={handleSubmit}>
             <div>
               <label className="block text-gray-700 font-semibold">
-                Enter OTP
+                {useEmail ? "Email" : "Mobile Number"}
               </label>
               <input
-                type="text"
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
-                placeholder="Enter your OTP"
+                type={useEmail ? "email" : "tel"}
+                placeholder={
+                  useEmail ? "Enter your email" : "Enter your mobile number"
+                }
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300"
                 required
               />
             </div>
+
             <button
               type="submit"
-              className="w-full bg-blue-900 text-white px-4 py-2 mt-6 rounded-md hover:bg-blue-800 transition"
+              className="w-full bg-blue-900 text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-800 transition"
             >
-              Verify OTP
+              Send Code
             </button>
           </form>
 
+          <p
+            className="mt-4 text-center text-gray-700 cursor-pointer hover:underline"
+            onClick={() => setUseEmail(!useEmail)}
+          >
+            {useEmail ? "Use Mobile Number Instead" : "Use Email Instead"}
+          </p>
+
           <p className="mt-4 text-center text-gray-700">
-            Didn't receive an OTP?{" "}
-            <button
-              onClick={handleResendOTP}
-              className={`text-blue-900 font-semibold ${
-                resendDisabled ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-              disabled={resendDisabled}
-            >
-              Resend OTP
-            </button>
+            Remembered your password?{" "}
+            <Link to="/auth/login" className="text-blue-900 font-semibold">
+              Login
+            </Link>
           </p>
         </div>
       </div>
@@ -127,4 +126,4 @@ const OtpVerification = () => {
   );
 };
 
-export default OtpVerification;
+export default ForgotPassword;

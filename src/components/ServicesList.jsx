@@ -6,9 +6,21 @@ import {
   FaEye,
   FaChartPie,
   FaClipboardCheck,
+  FaEyeSlash,
 } from "react-icons/fa";
 
 const serviceData = [
+  {
+    id: "ai_nibhrit",
+    name: "AI Nibhrit - PII Masking Solution",
+    type: "Data Privacy",
+    available: true,
+    description:
+      "Smart AI for masking Aadhaar, PAN, fingerprints, and QR codes in digital documents.",
+    usage: "Securely share documents with reusable PII-masked outputs.",
+    icon: <FaEyeSlash className="text-blue-700 text-4xl" />,
+    image: "https://picsum.photos/400/200?random=14",
+  },
   {
     id: "model_management",
     name: "Model Management",

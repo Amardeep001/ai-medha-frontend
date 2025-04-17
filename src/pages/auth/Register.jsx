@@ -1,15 +1,15 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
-import indianFlag from "../images/ind_flag.png";
-import bgImg from "../images/inibg.svg";
+import Footer from "../../components/Footer";
+import indianFlag from "../../images/ind_flag.png";
+import bgImg from "../../images/inibg.svg";
 
 const Register = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/verify-account");
+    navigate("/auth/verify-account");
   };
 
   return (
@@ -52,7 +52,10 @@ const Register = () => {
               </Link>
             </li>
             <li>
-              <Link to="/login" className="hover:text-[#FF9933] transition">
+              <Link
+                to="/auth/login"
+                className="hover:text-[#FF9933] transition"
+              >
                 Login
               </Link>
             </li>
@@ -162,7 +165,7 @@ const Register = () => {
 
           <p className="mt-4 text-center text-gray-700">
             Already have an account?{" "}
-            <Link to="/login" className="text-blue-900 font-semibold">
+            <Link to="/auth/login" className="text-blue-900 font-semibold">
               Login here
             </Link>
           </p>

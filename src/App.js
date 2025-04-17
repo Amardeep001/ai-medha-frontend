@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import OtpVerification from "./pages/OtpVerification";
-import ForgotPassword from "./pages/ForgotPassword";
-import ResetPassword from "./pages/ResetPassword";
-import VerifyAccount from "./pages/VerifyAccount";
-import ForgotOtpVerification from "./pages/ForgotOtpVerification";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+import OtpVerification from "./pages/auth/OtpVerification";
+import ForgotPassword from "./pages/auth/ForgotPassword";
+import ResetPassword from "./pages/auth/ResetPassword";
+import VerifyAccount from "./pages/auth/VerifyAccount";
+import ForgotOtpVerification from "./pages/auth/ForgotOtpVerification";
 import DashboardLayout from "./layout/DashboardLayout";
 import OverviewPage from "./pages/OverviewPage";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
@@ -22,13 +22,13 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/verify-account" element={<VerifyAccount />} />
-        <Route path="/otp-verification" element={<OtpVerification />} />
-        <Route path="forgot-password" element={<ForgotPassword />} />
-        <Route path="verify-otp" element={<ForgotOtpVerification />} />
-        <Route path="reset-password" element={<ResetPassword />} />
+        <Route path="auth/login" element={<Login />} />
+        <Route path="auth/register" element={<Register />} />
+        <Route path="auth/verify-account" element={<VerifyAccount />} />
+        <Route path="auth/otp-verification" element={<OtpVerification />} />
+        <Route path="auth/forgot-password" element={<ForgotPassword />} />
+        <Route path="auth/verify-otp" element={<ForgotOtpVerification />} />
+        <Route path="auth/reset-password" element={<ResetPassword />} />
         <Route path="/" element={<DashboardLayout />}>
           <Route path="dashboard" element={<OverviewPage />} />
           <Route path="analytics" element={<AnalyticsPage />} />

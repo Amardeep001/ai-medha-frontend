@@ -19,9 +19,9 @@ const mockModels = [
       "Budget planning",
     ],
     metrics: {
-      accuracy: "92%",
-      latency: "250ms",
-      f1Score: "0.89",
+      Accuracy: "92%",
+      Latency: "250ms",
+      "F1 Score": "0.89",
     },
     version: "v1.2.3",
     image: "https://picsum.photos/600/300?random=101",
@@ -41,8 +41,8 @@ const mockModels = [
       "Product recommendations",
     ],
     metrics: {
-      silhouetteScore: "0.74",
-      latency: "300ms",
+      "Silhouette Score": "0.74",
+      Latency: "300ms",
     },
     version: "v2.0.0",
     image: "https://picsum.photos/600/300?random=102",
@@ -62,9 +62,9 @@ const mockModels = [
       "Prevent unauthorized fund transfers",
     ],
     metrics: {
-      accuracy: "97%",
-      latency: "220ms",
-      f1Score: "0.91",
+      Accuracy: "97%",
+      Latency: "220ms",
+      "F1 Score": "0.91",
     },
     version: "v3.1.0",
     image: "https://picsum.photos/600/300?random=103",
@@ -74,12 +74,13 @@ const mockModels = [
 const ModelDetailPage = () => {
   const { modelId } = useParams();
   const navigate = useNavigate();
+
   const model = mockModels.find((m) => m.id === modelId);
 
   if (!model) {
     return (
       <div className="p-6">
-        <p className="text-red-500">Model not found</p>
+        <p className="text-red-500 font-medium">Model not found.</p>
       </div>
     );
   }
@@ -87,16 +88,17 @@ const ModelDetailPage = () => {
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-gray-50 text-gray-900">
       <Header />
+
       <div className="overflow-auto flex-grow p-6 max-w-5xl mx-auto">
         {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
           className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
         >
-          ← Back to Repository
+          ← Back to Model Repository
         </button>
 
-        {/* Image and Title */}
+        {/* Image and Overview */}
         <div className="mb-6">
           <img
             src={model.image}
@@ -106,10 +108,10 @@ const ModelDetailPage = () => {
           <h2 className="text-3xl font-bold text-blue-900 mb-2">
             {model.name}
           </h2>
-          <p className="text-gray-600">{model.description}</p>
+          <p className="text-gray-600 text-base">{model.description}</p>
         </div>
 
-        {/* Details Section */}
+        {/* Model Overview */}
         <div className="bg-white p-6 rounded-lg shadow-md mb-6">
           <h3 className="text-xl font-semibold text-blue-800 mb-3">
             Model Overview
@@ -123,15 +125,15 @@ const ModelDetailPage = () => {
           <p className="text-gray-700 text-sm">{model.details}</p>
         </div>
 
-        {/* Metrics Section */}
+        {/* Performance Metrics */}
         <div className="bg-white p-6 rounded-lg shadow-md mb-6">
           <h3 className="text-xl font-semibold text-blue-800 mb-3">
             Performance Metrics
           </h3>
-          <ul className="text-gray-700 space-y-1 text-sm">
-            {Object.entries(model.metrics).map(([key, val]) => (
-              <li key={key}>
-                <strong>{key.replace(/([A-Z])/g, " $1")}:</strong> {val}
+          <ul className="text-gray-700 space-y-2 text-sm">
+            {Object.entries(model.metrics).map(([metric, value]) => (
+              <li key={metric}>
+                <strong>{metric}:</strong> {value}
               </li>
             ))}
             <li>
@@ -146,12 +148,13 @@ const ModelDetailPage = () => {
             Use Cases
           </h3>
           <ul className="list-disc list-inside text-gray-700 text-sm">
-            {model.useCases.map((use, index) => (
-              <li key={index}>{use}</li>
+            {model.useCases.map((useCase, index) => (
+              <li key={index}>{useCase}</li>
             ))}
           </ul>
         </div>
       </div>
+
       <Footer />
     </div>
   );

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
-import indianFlag from "../images/ind_flag.png";
-import bgImg from "../images/inibg.svg";
+import Footer from "../../components/Footer";
+import indianFlag from "../../images/ind_flag.png";
+import bgImg from "../../images/inibg.svg";
 
-const ForgotOtpVerification = () => {
+const OtpVerification = () => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState("");
   const [resendDisabled, setResendDisabled] = useState(false);
@@ -12,7 +12,7 @@ const ForgotOtpVerification = () => {
   const handleOTPSubmit = (e) => {
     e.preventDefault();
     console.log("Entered OTP:", otp);
-    navigate("/reset-password");
+    navigate("/dashboard");
   };
 
   const handleResendOTP = () => {
@@ -63,7 +63,10 @@ const ForgotOtpVerification = () => {
               </Link>
             </li>
             <li>
-              <Link to="/login" className="hover:text-[#FF9933] transition">
+              <Link
+                to="/auth/login"
+                className="hover:text-[#FF9933] transition"
+              >
                 Login
               </Link>
             </li>
@@ -127,4 +130,4 @@ const ForgotOtpVerification = () => {
   );
 };
 
-export default ForgotOtpVerification;
+export default OtpVerification;
