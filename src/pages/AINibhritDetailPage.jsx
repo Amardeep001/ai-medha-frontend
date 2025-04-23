@@ -49,18 +49,28 @@ const mockModels = [
   },
 ];
 
-const COLORS = ["#4f46e5", "#10b981", "#f59e0b", "#ef4444"];
-
-const sectorChartData = [{ name: "Data Privacy", value: 2 }];
-
-const modelInsightData = [
-  { name: "PAN Model", Accuracy: 98, Latency: 20 },
-  { name: "Aadhaar Model", Accuracy: 98, Latency: 20 },
-  { name: "Fingerprint Model", Accuracy: 97, Latency: 20 },
-  { name: "QR Model", Accuracy: 98, Latency: 20 },
+const departmentChartData = [
+  { name: "Registration and Stamps Department, Telangana", value: 919515 },
+  { name: "NGDRS", value: 296635 },
+  { name: "Registration Department, Puducherry", value: 68437 },
+  { name: "Revenue Department, Gujarat", value: 5813 },
+  { name: "Registration and Stamps Department, Andhra Pradesh", value: 455 },
 ];
 
-const ServiceDetailPage = () => {
+const COLORS = ["#4f46e5", "#10b981", "#f59e0b", "#ef4444", "#6366f1"];
+
+const docHitsData = [
+  {
+    name: "Directorate of Registration\nWest Bengal",
+    count: 73479,
+  },
+  {
+    name: "NGDRS",
+    count: 37,
+  },
+];
+
+const AiNibhritDetailPage = () => {
   const { id } = useParams(); // ai_nibhrit
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -70,9 +80,7 @@ const ServiceDetailPage = () => {
       <Header toggleSidebar={() => setSidebarOpen(true)} />
       <div className="overflow-auto flex flex-grow">
         <div className="p-6 w-full max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-blue-900 mb-2">
-            AI Service: {id.replaceAll("_", " ").toUpperCase()}
-          </h2>
+          <h2 className="text-3xl font-bold text-blue-900 mb-2">AI NIBHRIT</h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
             AI Nibhrit ensures end-to-end privacy by redacting Aadhaar numbers,
             PAN details, fingerprints, and QR codes using AI technologies like
@@ -259,27 +267,29 @@ const ServiceDetailPage = () => {
 
           {/* Visual Charts */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="bg-white rounded-lg shadow-md p-6">
+            {/* Pie Chart: Department-wise Service Count */}
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
               <h3 className="text-xl font-semibold text-blue-800 mb-2">
-                Sector-wise Model Distribution
+                Department-wise Service Count
               </h3>
               <p className="text-sm text-gray-600 mb-4">
-                Most models are aligned to Data Privacy domain and are being
-                adopted by government departments for secure digital document
-                handling.
+                Reflects API usage in September across different state
+                departments utilizing AI Nibhrit for PII masking.
               </p>
-              <div className="h-72">
+              <div className="h-72 overflow-x-auto">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
                       dataKey="value"
-                      data={sectorChartData}
+                      data={departmentChartData}
                       cx="50%"
                       cy="50%"
                       outerRadius={80}
-                      label
+                      label={({ name, percent }) =>
+                        `${name.split(",")[0]} - ${(percent * 100).toFixed(1)}%`
+                      }
                     >
-                      {sectorChartData.map((entry, index) => (
+                      {departmentChartData.map((entry, index) => (
                         <Cell
                           key={`cell-${index}`}
                           fill={COLORS[index % COLORS.length]}
@@ -292,28 +302,77 @@ const ServiceDetailPage = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-md p-6">
+            {/* Bar Chart: Document-wise Service Count */}
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
               <h3 className="text-xl font-semibold text-blue-800 mb-2">
-                Redaction Model Insights
+                Document-wise Service Count
               </h3>
               <p className="text-sm text-gray-600 mb-4">
-                Model accuracy and latency across multiple types of sensitive
-                data detection (Aadhaar, PAN, fingerprint, and QR code).
+                Shows how many documents were processed by each department using
+                AI Nibhrit services.
               </p>
-              <div className="h-72">
+              <div className="h-72 overflow-x-auto">
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={modelInsightData}>
+                  <BarChart
+                    data={docHitsData}
+                    margin={{ top: 10, right: 30, left: 0, bottom: 40 }}
+                  >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
+                    <XAxis
+                      dataKey="name"
+                      angle={-10}
+                      textAnchor="end"
+                      interval={0}
+                    />
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="Accuracy" fill="#4f46e5" />
-                    <Bar dataKey="Latency" fill="#10b981" />
+                    <Bar dataKey="count" fill="#4f46e5" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
             </div>
+          </div>
+
+          {/* Steps to Use AI Nibhrit Service */}
+          <div className="mt-12 bg-white rounded-lg shadow-md p-6">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3">
+              How to Use AI Nibhrit Service
+            </h3>
+            <ol className="list-decimal list-inside text-gray-700 text-sm space-y-2">
+              <li>
+                <strong>Onboarding & Authorization:</strong> Submit an
+                onboarding form signed by a Director-level officer from the user
+                department.
+              </li>
+              <li>
+                <strong>Middleware Setup:</strong> Install the middleware
+                provided by the Nibhrit team on your local server or machine.
+              </li>
+              <li>
+                <strong>NAPIx Integration:</strong> The middleware connects to
+                AI Nibhrit services securely through the NAPIx platform.
+              </li>
+              <li>
+                <strong>Local Preprocessing:</strong> Initial CPU-based
+                preprocessing (file conversion, formatting) is handled locally
+                before API interaction.
+              </li>
+              <li>
+                <strong>PII Detection & Masking:</strong> The document is
+                processed using AI models (YOLOv5, OCR) to detect and mask
+                sensitive elements.
+              </li>
+              <li>
+                <strong>Output Delivery:</strong> The response includes either a
+                fully masked document or a JSON containing coordinates for
+                masking.
+              </li>
+              <li>
+                <strong>Reuse of Output:</strong> Previously masked documents
+                can be reused locally, reducing the need for repeat API calls.
+              </li>
+            </ol>
           </div>
 
           {/* Summary Section */}
@@ -338,4 +397,4 @@ const ServiceDetailPage = () => {
   );
 };
 
-export default ServiceDetailPage;
+export default AiNibhritDetailPage;

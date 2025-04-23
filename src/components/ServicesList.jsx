@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FaRobot,
-  FaDatabase,
+  FaLanguage,
   FaEye,
   FaChartPie,
   FaClipboardCheck,
@@ -22,14 +22,16 @@ const serviceData = [
     image: "https://picsum.photos/400/200?random=14",
   },
   {
-    id: "model_management",
-    name: "Model Management",
-    type: "Infrastructure",
+    id: "ai_panini",
+    name: "AI Panini - Language Translation Service",
+    type: "Language AI",
     available: true,
-    description: "Efficiently manage and deploy AI models with ease.",
-    usage: "Streamlines model lifecycle, from training to deployment.",
-    icon: <FaDatabase className="text-blue-700 text-4xl" />,
-    image: "https://picsum.photos/400/300?random=1",
+    description:
+      "Translate between Indian languages and English using neural machine translation.",
+    usage:
+      "Provides automated translation for 11 Indian languages to enhance multilingual communication.",
+    icon: <FaLanguage className="text-blue-700 text-4xl" />, // You can choose another icon if preferred
+    image: "https://picsum.photos/400/300?random=33", // Replace with real image when available
   },
   {
     id: "ai_chatbot",
