@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import indianFlag from "../images/ind_flag.png";
 import bgImg from "../images/inibg.svg";
+import NicLogo from "../images/nic_logo.png";
+import NicLogo2 from "../images/nic_logo2.png";
 
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -19,7 +21,7 @@ const Home = () => {
       <nav className="fixed w-full z-50 bg-white shadow-md text-[#003366]">
         {/* Top Header */}
         <div className="w-full bg-[#003366] text-white text-xs sm:text-sm py-2">
-          <div className="max-w-screen-xl mx-auto flex justify-between items-center px-4 sm:px-6 xl:px-20">
+          <div className="max-w-screen-2xl mx-auto flex justify-between items-center px-4 sm:px-6 xl:px-20">
             {/* Left Side - Government Text */}
             <div className="flex items-center space-x-2">
               <img
@@ -47,8 +49,21 @@ const Home = () => {
         </div>
 
         {/* Main Navbar */}
-        <div className="max-w-screen-xl mx-auto flex justify-between items-center px-4 sm:px-6 xl:px-20 py-3 relative">
-          <h1 className="text-lg sm:text-2xl font-bold">AI MEDHA</h1>
+        <div className="max-w-screen-2xl mx-auto flex justify-between items-center px-4 sm:px-6 xl:px-20 py-8 relative">
+          {/* Logo and Heading */}
+          <div className="flex items-center space-x-6">
+            <img
+              src={NicLogo}
+              alt="Logo"
+              className="w-[200px] object-contain" // increased to h-32 w-32
+            />
+            <div className="flex flex-col">
+              <h1 className="text-xl sm:text-4xl font-bold">AI MEDHA</h1>
+              <p className="text-lg sm:text-base text-gray-600">
+                AI Modelling Empowered Digital Hub for Applications
+              </p>
+            </div>
+          </div>
 
           {/* Hamburger Menu for Mobile */}
           <button
@@ -59,39 +74,48 @@ const Home = () => {
           </button>
 
           {/* Desktop Menu */}
-          <ul className="hidden sm:flex space-x-4 md:space-x-6 text-sm md:text-base">
-            <li>
-              <a href="#about" className="hover:text-[#FF9933] transition">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#features" className="hover:text-[#FF9933] transition">
-                Features
-              </a>
-            </li>
-            <li>
-              <a href="#contact" className="hover:text-[#FF9933] transition">
-                Contact
-              </a>
-            </li>
-            <li>
-              <Link
-                to="/auth/login"
-                className="hover:text-[#FF9933] transition"
-              >
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/auth/register"
-                className="hover:text-[#FF9933] transition"
-              >
-                Register
-              </Link>
-            </li>
-          </ul>
+          <div className="hidden sm:flex items-center space-x-6 md:space-x-6 text-sm md:text-base">
+            <ul className="flex space-x-4 md:space-x-6">
+              <li>
+                <a href="#about" className="hover:text-[#FF9933] transition">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#features" className="hover:text-[#FF9933] transition">
+                  Features
+                </a>
+              </li>
+              <li>
+                <a href="#contact" className="hover:text-[#FF9933] transition">
+                  Contact
+                </a>
+              </li>
+              <li>
+                <Link
+                  to="/auth/login"
+                  className="hover:text-[#FF9933] transition"
+                >
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/auth/register"
+                  className="hover:text-[#FF9933] transition"
+                >
+                  Register
+                </Link>
+              </li>
+            </ul>
+
+            {/* Image on the Right Side */}
+            <img
+              src={NicLogo2}
+              alt="Right Logo"
+              className="w-[160px] object-contain"
+            />
+          </div>
 
           {/* Mobile Menu */}
           {menuOpen && (
@@ -141,7 +165,7 @@ const Home = () => {
       <header
         id="main-content"
         // bg-[#F8F9FA]
-        className="text-center py-24 lg:pt-40 text-[#003366] "
+        className="text-center py-24 lg:pt-[220px] text-[#003366] "
       >
         <Zoom>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">

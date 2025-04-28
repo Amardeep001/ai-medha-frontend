@@ -8,6 +8,12 @@ import {
   FaClipboardCheck,
   FaEyeSlash,
 } from "react-icons/fa";
+import AiNibhritImage from "../images/ai_nibhrit_image.png";
+import AiPaniniImage from "../images/ai_panini_image.png";
+import AiChatbotImage from "../images/ai_chatbot_image.jpg";
+import DigitalAssetImage from "../images/digital_asset_image.jpg";
+import ModelPerformanceImage from "../images/model_performance_image.jpg";
+import ServiceInsightsImage from "../images/service_insights_image.jpg";
 
 const serviceData = [
   {
@@ -19,7 +25,7 @@ const serviceData = [
       "Smart AI for masking Aadhaar, PAN, fingerprints, and QR codes in digital documents.",
     usage: "Securely share documents with reusable PII-masked outputs.",
     icon: <FaEyeSlash className="text-blue-700 text-4xl" />,
-    image: "https://picsum.photos/400/200?random=14",
+    image: AiNibhritImage,
   },
   {
     id: "ai_panini",
@@ -28,20 +34,20 @@ const serviceData = [
     available: true,
     description:
       "Translate between Indian languages and English using neural machine translation.",
-    usage:
-      "Provides automated translation for 11 Indian languages to enhance multilingual communication.",
+    usage: "Enables translation across 11 Indian languages.",
     icon: <FaLanguage className="text-blue-700 text-4xl" />, // You can choose another icon if preferred
-    image: "https://picsum.photos/400/300?random=33", // Replace with real image when available
+    image: AiPaniniImage, // Replace with real image when available
   },
   {
     id: "ai_chatbot",
     name: "AI-Powered Chatbot",
     type: "Interaction",
     available: true,
-    description: "Intelligent chatbot for automated interactions.",
+    description:
+      "Intelligent chatbot designed to automate interactions by understanding and responding to user queries in real-time",
     usage: "Enhances customer engagement and support.",
     icon: <FaRobot className="text-blue-700 text-4xl" />,
-    image: "https://picsum.photos/400/300?random=2",
+    image: AiChatbotImage,
   },
   {
     id: "digital_asset_catalogue",
@@ -51,7 +57,7 @@ const serviceData = [
     description: "Centralized storage for AI-generated assets.",
     usage: "Organizes and manages digital AI assets effectively.",
     icon: <FaClipboardCheck className="text-blue-700 text-4xl" />,
-    image: "https://picsum.photos/400/300?random=3",
+    image: DigitalAssetImage,
   },
   {
     id: "model_performance_governance",
@@ -61,7 +67,7 @@ const serviceData = [
     description: "Monitor, evaluate, and govern AI model performance.",
     usage: "Ensures compliance, accuracy, and continuous improvements.",
     icon: <FaEye className="text-blue-700 text-4xl" />,
-    image: "https://picsum.photos/400/300?random=4",
+    image: ModelPerformanceImage,
   },
   {
     id: "ai_service_insights",
@@ -71,7 +77,7 @@ const serviceData = [
     description: "Comprehensive insights into AI service usage.",
     usage: "Provides analytics and reports for decision-making.",
     icon: <FaChartPie className="text-blue-700 text-4xl" />,
-    image: "https://picsum.photos/400/300?random=5",
+    image: ServiceInsightsImage,
   },
 ];
 

@@ -15,6 +15,7 @@ import {
   CartesianGrid,
   Legend,
 } from "recharts";
+import TranslationImage from "../images/translation_image.jpg";
 
 const mockModels = [
   {
@@ -30,7 +31,7 @@ const mockModels = [
       f1Score: "N/A",
     },
     version: "v1.0.0",
-    image: "https://picsum.photos/400/200?random=42",
+    image: TranslationImage,
   },
 ];
 

@@ -14,7 +14,10 @@ import {
   YAxis,
   CartesianGrid,
   Legend,
+  LabelList,
 } from "recharts";
+import YoloImage from "../images/yolo_image.jpg";
+import OcrImage from "../images/ocr_image.jpg";
 
 const mockModels = [
   {
@@ -27,10 +30,10 @@ const mockModels = [
     metrics: {
       accuracy: "98%",
       latency: "20s (for 30–40 page docs)",
-      f1Score: "N/A",
+      // f1Score: "N/A",
     },
     version: "v1.0.0",
-    image: "https://picsum.photos/400/200?random=31",
+    image: YoloImage,
   },
   {
     id: "m2",
@@ -42,10 +45,10 @@ const mockModels = [
     metrics: {
       accuracy: "Image quality dependent",
       latency: "Varies by page size",
-      f1Score: "N/A",
+      // f1Score: "N/A",
     },
     version: "v1.1.0",
-    image: "https://picsum.photos/400/200?random=32",
+    image: OcrImage,
   },
 ];
 
@@ -57,7 +60,16 @@ const departmentChartData = [
   { name: "Registration and Stamps Department, Andhra Pradesh", value: 455 },
 ];
 
-const COLORS = ["#4f46e5", "#10b981", "#f59e0b", "#ef4444", "#6366f1"];
+// Calculate total for percentage computation
+const total = departmentChartData.reduce((sum, item) => sum + item.value, 0);
+
+// Add percentage to each item's name
+const dataWithPercentage = departmentChartData.map((item) => ({
+  ...item,
+  nameWithPercent: `${item.name} (${((item.value / total) * 100).toFixed(1)}%)`,
+}));
+
+const COLORS = ["#4f46e5", "#10b981", "#f59e0b", "#ef4444", "#5d6471"];
 
 const docHitsData = [
   {
@@ -125,9 +137,9 @@ const AiNibhritDetailPage = () => {
                       <p>
                         <strong>Latency:</strong> {model.metrics.latency}
                       </p>
-                      <p>
+                      {/* <p>
                         <strong>F1 Score:</strong> {model.metrics.f1Score}
-                      </p>
+                      </p> */}
                     </div>
                     <p className="text-sm text-blue-600 font-medium mt-2">
                       Version: {model.version}
@@ -165,11 +177,11 @@ const AiNibhritDetailPage = () => {
                 <strong>OpenCV & TensorFlow:</strong> Applied for image
                 analysis, pre-processing and deep-learning model integration.
               </li>
-              <li>
+              {/* <li>
                 <strong>Secure Cloud & GPU Architecture:</strong> Kubernetes and
                 NVIDIA BCM ensure scalability and GPU-powered inference across
                 workloads.
-              </li>
+              </li> */}
             </ul>
 
             <div className="mt-6">
@@ -194,9 +206,9 @@ const AiNibhritDetailPage = () => {
                   Fingerprint: 97%
                 </li>
                 <li>
-                  🧠 <strong>AI Workflow:</strong> Document upload →
-                  Preprocessing → Detection & OCR → Coordinate generation or
-                  direct masking → Final output
+                  🧠 <strong>Workflow:</strong> Document upload → Preprocessing
+                  → Detection & OCR → Coordinate generation or direct masking →
+                  Final output
                 </li>
               </ul>
             </div>
@@ -281,22 +293,38 @@ const AiNibhritDetailPage = () => {
                   <PieChart>
                     <Pie
                       dataKey="value"
-                      data={departmentChartData}
+                      data={dataWithPercentage}
                       cx="50%"
                       cy="50%"
                       outerRadius={80}
-                      label={({ name, percent }) =>
-                        `${name.split(",")[0]} - ${(percent * 100).toFixed(1)}%`
-                      }
+                      label={false} // Removed labels from chart
                     >
-                      {departmentChartData.map((entry, index) => (
+                      {dataWithPercentage.map((entry, index) => (
                         <Cell
                           key={`cell-${index}`}
                           fill={COLORS[index % COLORS.length]}
                         />
                       ))}
                     </Pie>
-                    <Tooltip />
+                    <Tooltip
+                      formatter={(value) =>
+                        new Intl.NumberFormat().format(value)
+                      }
+                    />
+                    <Legend
+                      layout="vertical"
+                      align="right"
+                      verticalAlign="middle"
+                      formatter={(value, entry, index) =>
+                        dataWithPercentage[index].nameWithPercent
+                      }
+                      wrapperStyle={{
+                        fontSize: "12px",
+                        paddingLeft: "10px",
+                        width: "200px",
+                        overflowWrap: "break-word",
+                      }}
+                    />
                   </PieChart>
                 </ResponsiveContainer>
               </div>
@@ -327,7 +355,15 @@ const AiNibhritDetailPage = () => {
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="count" fill="#4f46e5" />
+                    <Bar dataKey="count" fill="#4f46e5">
+                      {/* 🎯 Label on top of bar */}
+                      <LabelList
+                        dataKey="count"
+                        position="top"
+                        formatter={(value) => `${value}`} // you can also show only value
+                        fontSize={12}
+                      />
+                    </Bar>
                   </BarChart>
                 </ResponsiveContainer>
               </div>
