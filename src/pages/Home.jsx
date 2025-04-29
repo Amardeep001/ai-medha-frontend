@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import indianFlag from "../images/ind_flag.png";
 import bgImg from "../images/inibg.svg";
-import NicLogo from "../images/nic_logo.png";
+import NicLogo from "../images/nic_logo3.svg";
 import NicLogo2 from "../images/nic_logo2.png";
 
 const Home = () => {
@@ -13,8 +13,8 @@ const Home = () => {
 
   return (
     <div
-      className="min-h-screen bg-cover "
-      style={{ backgroundImage: `url(${bgImg})` }}
+      className="min-h-screen bg-cover bg-[#f0dfce] "
+      // style={{ backgroundImage: `url(${bgImg})` }}
     >
       {/* bg-[#F8F9FA] */}
       {/* Navbar with Top Header */}
@@ -49,19 +49,19 @@ const Home = () => {
         </div>
 
         {/* Main Navbar */}
-        <div className="max-w-screen-2xl mx-auto flex justify-between items-center px-4 sm:px-6 xl:px-20 py-8 relative">
+        <div className="max-w-screen-2xl mx-auto flex justify-between items-center px-4 sm:px-6 xl:px-20 py-7 relative">
           {/* Logo and Heading */}
           <div className="flex items-center space-x-6">
             <img
               src={NicLogo}
               alt="Logo"
-              className="w-[200px] object-contain" // increased to h-32 w-32
+              className="w-[220px] object-contain" // increased to h-32 w-32
             />
             <div className="flex flex-col">
               <h1 className="text-xl sm:text-4xl font-bold">AI MEDHA</h1>
-              <p className="text-lg sm:text-base text-gray-600">
+              {/* <p className="text-xl sm:text-base text-gray-600">
                 AI Modelling Empowered Digital Hub for Applications
-              </p>
+              </p> */}
             </div>
           </div>
 
@@ -165,11 +165,11 @@ const Home = () => {
       <header
         id="main-content"
         // bg-[#F8F9FA]
-        className="text-center py-24 lg:pt-[220px] text-[#003366] "
+        className="text-center pt-24 pb-12 lg:pt-[220px] text-[#003366] "
       >
         <Zoom>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
-            Empowering Governance with AI
+            AI Modelling Empowered Digital Hub for Applications
           </h2>
         </Zoom>
         <motion.div
@@ -177,9 +177,10 @@ const Home = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          <p className="mt-4 text-base sm:text-lg md:text-xl max-w-3xl mx-auto px-4">
-            AI MEDHA is an advanced AI-driven platform facilitating seamless
-            automation and insights for government services.
+          <p className="mt-4 text-gray-700 font-medium text-base sm:text-lg md:text-3xl max-w-3xl mx-auto px-4">
+            Empowering Governance with AI
+            {/* AI MEDHA is an advanced AI-driven platform facilitating seamless
+            automation and insights for government services. */}
           </p>
         </motion.div>
         <Zoom>
@@ -192,7 +193,7 @@ const Home = () => {
       {/* Features Section */}
       <section
         id="features"
-        className="max-w-screen-xl mx-auto px-4 sm:px-6 xl:px-20 py-12 sm:py-16 bg-white"
+        className="max-w-screen-xl mx-auto px-4 sm:px-6 xl:px-20 py-12 sm:py-16 bg-[#cabebe]"
       >
         <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center text-[#003366]">
           Key Features

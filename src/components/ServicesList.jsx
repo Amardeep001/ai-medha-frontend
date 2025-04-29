@@ -96,7 +96,7 @@ const ServiceCatalogue = () => {
   });
 
   return (
-    <div className="p-6">
+    <div className="p-5">
       <h2 className="text-3xl font-bold text-blue-900 mb-6">
         AI MEDHA Service Catalogue
       </h2>

@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import indianFlag from "../../images/ind_flag.png";
 import bgImg from "../../images/inibg.svg";
+import NicLogo from "../../images/nic_logo3.svg";
+import NicLogo2 from "../../images/nic_logo2.png";
 
 const Login = () => {
   const [loginWithEmail, setLoginWithEmail] = useState(true);
@@ -23,7 +25,7 @@ const Login = () => {
       <nav className=" w-full z-50 bg-white shadow-md text-[#003366]">
         {/* Top Header */}
         <div className="w-full bg-[#003366] text-white text-sm py-2">
-          <div className="max-w-screen-xl mx-auto flex justify-between items-center px-6 xl:px-20">
+          <div className="max-w-screen-2xl mx-auto flex justify-between items-center px-6 xl:px-20">
             <div className="flex items-center space-x-2">
               <img
                 src={indianFlag || "/india-flag.png"}
@@ -48,23 +50,38 @@ const Login = () => {
         </div>
 
         {/* Main Navbar */}
-        <div className="max-w-screen-xl mx-auto flex flex-wrap justify-between items-center px-6 xl:px-20 py-4">
-          <h1 className="text-2xl font-bold">AI MEDHA</h1>
-          <ul className="flex flex-wrap space-x-6">
-            <li>
-              <Link to="/" className="hover:text-[#FF9933] transition">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/auth/register"
-                className="hover:text-[#FF9933] transition"
-              >
-                Register
-              </Link>
-            </li>
-          </ul>
+        <div className="max-w-screen-2xl mx-auto flex flex-wrap justify-between items-center px-6 xl:px-20 py-4">
+          <div className="flex items-center space-x-6">
+            <img
+              src={NicLogo}
+              alt="Logo"
+              className="w-[200px] object-contain" // increased to h-32 w-32
+            />
+            <h1 className="text-2xl font-bold">AI MEDHA</h1>
+          </div>
+          <div className="flex items-center space-x-6">
+            <ul className="flex flex-wrap space-x-6">
+              <li>
+                <Link to="/" className="hover:text-[#FF9933] transition">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/auth/register"
+                  className="hover:text-[#FF9933] transition"
+                >
+                  Register
+                </Link>
+              </li>
+            </ul>
+            {/* Image on the Right Side */}
+            <img
+              src={NicLogo2}
+              alt="Right Logo"
+              className="w-[160px] object-contain"
+            />
+          </div>
         </div>
       </nav>
 
