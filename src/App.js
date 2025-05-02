@@ -10,7 +10,7 @@ import VerifyAccount from "./pages/auth/VerifyAccount";
 import ForgotOtpVerification from "./pages/auth/ForgotOtpVerification";
 import DashboardLayout from "./layout/DashboardLayout";
 import OverviewPage from "./pages/OverviewPage";
-import AiNibhritDetailPage from "./pages/AiNibhritDetailPage"
+import AiNibhritDetailPage from "./pages/AINibhritDetailPage";
 import AnalyticsPage from "./pages/AnalyticsPage";
 import ServicesPage from "./pages/ServicesPage";
 import UsersPage from "./pages/UsersPage";
