@@ -88,10 +88,10 @@ const AiNibhritDetailPage = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-gray-50 text-gray-900">
+    <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
       <Header toggleSidebar={() => setSidebarOpen(true)} />
       <div className="overflow-auto flex flex-grow">
-        <div className="p-6 w-full max-w-7xl mx-auto">
+        <div className="px-4 py-6 w-full max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-blue-900 mb-2">AI NIBHRIT</h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
             AI Nibhrit ensures end-to-end privacy by redacting Aadhaar numbers,

@@ -10,13 +10,14 @@ import VerifyAccount from "./pages/auth/VerifyAccount";
 import ForgotOtpVerification from "./pages/auth/ForgotOtpVerification";
 import DashboardLayout from "./layout/DashboardLayout";
 import OverviewPage from "./pages/OverviewPage";
-import AiNibhritDetailPage from "./pages/AINibhritDetailPage";
+import AiNibhritDetailPage from "./pages/AiNibhritDetailPage"
 import AnalyticsPage from "./pages/AnalyticsPage";
 import ServicesPage from "./pages/ServicesPage";
 import UsersPage from "./pages/UsersPage";
 import SettingsPage from "./pages/SettingsPage";
 import ModelDetailPage from "./pages/ModelDetailPage";
 import AiPaniniDetailPage from "./pages/AiPaniniDetailPage";
+import AiShrutiDetailPage from "./pages/AiShrutiDetailPage";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         </Route>
         <Route path="/services/ai_nibhrit" element={<AiNibhritDetailPage />} />
         <Route path="/services/ai_panini" element={<AiPaniniDetailPage />} />
+        <Route path="/services/ai_shruti" element={<AiShrutiDetailPage />} />
         <Route path="services/model/:modelId" element={<ModelDetailPage />} />
       </Routes>
     </Router>

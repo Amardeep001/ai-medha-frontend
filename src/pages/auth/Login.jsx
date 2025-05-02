@@ -22,7 +22,7 @@ const Login = () => {
   return (
     <div className="min-h-screen flex flex-col justify-between">
       {/* Navbar */}
-      <nav className=" w-full z-50 bg-white shadow-md text-[#003366]">
+      <nav className="fixed w-full z-50 bg-white shadow-md text-[#003366]">
         {/* Top Header */}
         <div className="w-full bg-[#003366] text-white text-sm py-2">
           <div className="max-w-screen-2xl mx-auto flex justify-between items-center px-6 xl:px-20">
@@ -87,7 +87,7 @@ const Login = () => {
 
       {/* Login Form */}
       <div
-        className="flex-grow flex items-center justify-center bg-cover"
+        className="flex-grow flex items-center justify-center bg-cover pt-48 pb-12 "
         style={{ backgroundImage: `url(${bgImg})` }}
       >
         <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-md border-t-4 border-yellow-500">

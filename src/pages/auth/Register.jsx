@@ -82,7 +82,7 @@ const Register = () => {
 
       {/* Registration Form */}
       <div
-        className="flex-grow flex items-center justify-center bg-cover pt-52 pb-20 "
+        className="flex-grow flex items-center justify-center bg-cover pt-48 pb-16 "
         style={{ backgroundImage: `url(${bgImg})` }}
       >
         <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-md border-t-4 border-yellow-500">

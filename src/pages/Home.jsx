@@ -7,6 +7,7 @@ import indianFlag from "../images/ind_flag.png";
 import bgImg from "../images/inibg.svg";
 import NicLogo from "../images/nic_logo3.svg";
 import NicLogo2 from "../images/nic_logo2.png";
+import Footer from "../components/Footer";
 
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -165,7 +166,7 @@ const Home = () => {
       <header
         id="main-content"
         // bg-[#F8F9FA]
-        className="text-center pt-24 pb-12 lg:pt-[220px] text-[#003366] "
+        className="text-center pt-20 pb-9 lg:pt-[200px] text-[#003366] "
       >
         <Zoom>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
@@ -193,12 +194,12 @@ const Home = () => {
       {/* Features Section */}
       <section
         id="features"
-        className="max-w-screen-xl mx-auto px-4 sm:px-6 xl:px-20 py-12 sm:py-16 bg-[#cabebe]"
+        className="max-w-screen-xl rounded-xl mb-12 mx-auto px-4 sm:px-6 xl:px-20 py-12 sm:pb-12 sm:pt-6 bg-[#cabebe]"
       >
         <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center text-[#003366]">
           Key Features
         </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-10 sm:mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-6 sm:mt-8">
           {[
             {
               title: "Multi-Language Support",
@@ -277,16 +278,7 @@ const Home = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-b from-[#003366] to-[#004080] text-white text-center py-6 mt-12">
-        <p className="text-sm sm:text-base">
-          &copy; 2025 AI MEDHA. All Rights Reserved.
-        </p>
-        <p>
-          <Link to="/contact" className="underline">
-            Contact Us
-          </Link>
-        </p>
-      </footer>
+      <Footer />
     </div>
   );
 };

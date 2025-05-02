@@ -69,11 +69,10 @@ const DashboardLayout = () => {
         )}
 
         {/* Main Content */}
-        <main className="flex-1 p-4 md:p-8">
+        <main className="flex-1 p-4 md:p-8 bg-[#eee5dc]">
           <Outlet /> {/* 👈 This is the key to render nested routes */}
         </main>
       </div>
-
       <Footer />
     </div>
   );

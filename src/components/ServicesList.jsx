@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 import {
   FaRobot,
   FaLanguage,
-  FaEye,
+  FaBalanceScale,
   FaChartPie,
-  FaClipboardCheck,
+  FaMicrophoneAlt,
   FaEyeSlash,
+  FaMapMarkedAlt,
 } from "react-icons/fa";
 import AiNibhritImage from "../images/ai_nibhrit_image.png";
 import AiPaniniImage from "../images/ai_panini_image.png";
 import AiChatbotImage from "../images/ai_chatbot_image.jpg";
 import DigitalAssetImage from "../images/digital_asset_image.jpg";
 import ModelPerformanceImage from "../images/model_performance_image.jpg";
-import ServiceInsightsImage from "../images/service_insights_image.jpg";
 
 const serviceData = [
   {
@@ -39,45 +39,62 @@ const serviceData = [
     image: AiPaniniImage, // Replace with real image when available
   },
   {
-    id: "ai_chatbot",
-    name: "AI-Powered Chatbot",
+    id: "ai_vani",
+    name: "AI VANI - Virtual Assistant Framework",
     type: "Interaction",
     available: true,
     description:
-      "Intelligent chatbot designed to automate interactions by understanding and responding to user queries in real-time",
-    usage: "Enhances customer engagement and support.",
+      "NIC’s virtual assistant framework used across multiple government portals for real-time query.",
+    usage:
+      "Deployed across portals like eAwas, eVigilance, Confonet, ikhedut, Sarathi RTO, and more to assist citizens 24/7.",
     icon: <FaRobot className="text-blue-700 text-4xl" />,
-    image: AiChatbotImage,
+    image: AiChatbotImage, // Replace with actual image import
   },
   {
-    id: "digital_asset_catalogue",
-    name: "Digital Asset Catalogue",
-    type: "Storage",
-    available: false,
-    description: "Centralized storage for AI-generated assets.",
-    usage: "Organizes and manages digital AI assets effectively.",
-    icon: <FaClipboardCheck className="text-blue-700 text-4xl" />,
-    image: DigitalAssetImage,
+    id: "ai_shruti",
+    name: "AI Shruti - Speech Recognition",
+    type: "Language AI",
+    available: true,
+    description: "Automatic speech-to-text transcription for Indian languages.",
+    usage:
+      "Converts spoken input into text to enable voice-based interactions.",
+    icon: <FaMicrophoneAlt className="text-blue-700 text-4xl" />,
+    image: DigitalAssetImage, // replace this with the actual imported image or URL
   },
   {
-    id: "model_performance_governance",
-    name: "Model Performance & Governance",
+    id: "ai_matra",
+    name: "AI Matra - Model Monitoring",
     type: "Monitoring",
     available: true,
-    description: "Monitor, evaluate, and govern AI model performance.",
-    usage: "Ensures compliance, accuracy, and continuous improvements.",
-    icon: <FaEye className="text-blue-700 text-4xl" />,
-    image: ModelPerformanceImage,
+    description: "Framework for evaluating and benchmarking AI models.",
+    usage:
+      "Monitors model performance for fairness, accuracy, and reliability.",
+    icon: <FaBalanceScale className="text-blue-700 text-4xl" />, // or FaChartLine for performance
+    image: ModelPerformanceImage, // replace this with the actual imported image or URL
   },
   {
-    id: "ai_service_insights",
-    name: "AI Service Insights & Reports",
+    id: "ai_parkhi",
+    name: "AI Parkhi - Image Quality Assessment",
     type: "Analytics",
-    available: false,
-    description: "Comprehensive insights into AI service usage.",
-    usage: "Provides analytics and reports for decision-making.",
+    available: true,
+    description:
+      "AI-based system to automatically classify uploaded images as good or bad quality.",
+    usage:
+      "Evaluates image/document clarity using deep learning to improve decision-making workflows.",
     icon: <FaChartPie className="text-blue-700 text-4xl" />,
-    image: ServiceInsightsImage,
+    image: "https://picsum.photos/400/300?random=44",
+  },
+  {
+    id: "ai_vihangam_drishti",
+    name: "AI VihangamDrishti",
+    type: "Geospatial Intelligence",
+    available: true,
+    description:
+      "AI service for rooftop and road detection using drone imagery of rural areas.",
+    usage:
+      "Generates geospatial annotations (rooftop types, road categories) from top-view drone images to aid solar planning, mapping, and infrastructure analysis.",
+    icon: <FaMapMarkedAlt className="text-blue-700 text-4xl" />,
+    image: "https://picsum.photos/400/300?random=22",
   },
 ];
 
@@ -96,7 +113,7 @@ const ServiceCatalogue = () => {
   });
 
   return (
-    <div className="p-5">
+    <div className="p-5 ">
       <h2 className="text-3xl font-bold text-blue-900 mb-6">
         AI MEDHA Service Catalogue
       </h2>
@@ -128,29 +145,36 @@ const ServiceCatalogue = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {filteredServices.map((service) => (
           <Link to={`/services/${service.id}`} key={service.id}>
-            <div className="p-5 bg-white border rounded-lg shadow-md hover:shadow-lg transition hover:scale-[1.02]">
+            <div className="flex flex-col h-full p-5 bg-[#faf9f8] border rounded-lg shadow-md hover:shadow-lg transition hover:scale-[1.02]">
               <div className="flex items-center gap-4 mb-2">
                 {service.icon}
                 <h4 className="text-xl font-semibold text-blue-900">
                   {service.name}
                 </h4>
               </div>
+
               <img
                 src={service.image}
                 alt={service.name}
                 className="w-full h-40 object-cover rounded-lg mt-6 mb-4"
               />
-              <p className="text-gray-700">{service.description}</p>
-              <p className="text-sm text-gray-500 mt-1">
-                <strong>Usage:</strong> {service.usage}
-              </p>
-              <p
-                className={`text-sm mt-2 font-medium ${
-                  service.available ? "text-green-600" : "text-red-500"
-                }`}
-              >
-                {service.available ? "Available" : "Unavailable"}
-              </p>
+
+              <div className="flex-1">
+                <p className="text-gray-700">{service.description}</p>
+              </div>
+
+              <div className="mt-4">
+                <p className="text-sm text-gray-500">
+                  <strong>Usage:</strong> {service.usage}
+                </p>
+                <p
+                  className={`text-sm mt-2 font-medium ${
+                    service.available ? "text-green-600" : "text-red-500"
+                  }`}
+                >
+                  {service.available ? "Available" : "Unavailable"}
+                </p>
+              </div>
             </div>
           </Link>
         ))}
