@@ -8,6 +8,7 @@ import {
   FaMicrophoneAlt,
   FaEyeSlash,
   FaMapMarkedAlt,
+  FaUserCheck,
 } from "react-icons/fa";
 import AiNibhritImage from "../images/ai_nibhrit_image.png";
 import AiPaniniImage from "../images/ai_panini_image.png";
@@ -63,7 +64,7 @@ const serviceData = [
   },
   {
     id: "ai_matra",
-    name: "AI Matra - Model Monitoring",
+    name: "AI Matra - Transliteration Service",
     type: "Monitoring",
     available: true,
     description: "Framework for evaluating and benchmarking AI models.",
@@ -95,6 +96,30 @@ const serviceData = [
       "Generates geospatial annotations (rooftop types, road categories) from top-view drone images to aid solar planning, mapping, and infrastructure analysis.",
     icon: <FaMapMarkedAlt className="text-blue-700 text-4xl" />,
     image: "https://picsum.photos/400/300?random=22",
+  },
+  {
+    id: "ai_satyapikaanan",
+    name: "AI Satyapikaanan",
+    type: "Vision",
+    available: true,
+    description:
+      "AI-driven Face Recognition as a Service (FRaaS) platform for identity verification and digital governance.",
+    usage:
+      "Provides contactless, non-invasive facial recognition via APIs for services like attendance, beneficiary verification, pension authentication, and visitor access across eGovernance sectors.",
+    icon: <FaUserCheck className="text-green-700 text-4xl" />,
+    image: "https://picsum.photos/400/300?random=23",
+  },
+  {
+    id: "ai_anveshika",
+    name: "AI Anveshika - Multilingual Q&A and Translation",
+    type: "Natural Language Processing",
+    available: true,
+    description:
+      "RAG-based AI system for contextual document question answering and translation across 22 Indian languages including Braille.",
+    usage:
+      "Used in eGovernance for judicial, financial, and transport domains to support tasks like multilingual Q&A, summarization, and accurate Indic-English translation.",
+    icon: <FaLanguage className="text-purple-700 text-4xl" />,
+    image: "https://picsum.photos/400/300?random=24",
   },
 ];
 

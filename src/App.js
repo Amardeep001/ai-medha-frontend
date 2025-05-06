@@ -18,6 +18,9 @@ import SettingsPage from "./pages/SettingsPage";
 import ModelDetailPage from "./pages/ModelDetailPage";
 import AiPaniniDetailPage from "./pages/AiPaniniDetailPage";
 import AiShrutiDetailPage from "./pages/AiShrutiDetailPage";
+import AiMatraDetailPage from "./pages/AiMatraDetailPage";
+import AIParkhi from "./pages/AiParkhiDetailPage";
+import AiVihangamDrishtiDetail from "./pages/AiVihangamDrishtiDetailPage";
 
 function App() {
   return (
@@ -41,6 +44,9 @@ function App() {
         <Route path="/services/ai_nibhrit" element={<AiNibhritDetailPage />} />
         <Route path="/services/ai_panini" element={<AiPaniniDetailPage />} />
         <Route path="/services/ai_shruti" element={<AiShrutiDetailPage />} />
+        <Route path="/services/ai_matra" element={<AiMatraDetailPage />} />
+        <Route path="/services/ai_parkhi" element={<AIParkhi />} />
+        <Route path="/services/ai_vihangam_drishti" element={<AiVihangamDrishtiDetail />} />
         <Route path="services/model/:modelId" element={<ModelDetailPage />} />
       </Routes>
     </Router>
