@@ -4,7 +4,7 @@ import Zoom from "react-reveal/Zoom";
 import { motion } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import indianFlag from "../images/ind_flag.png";
-import bgImg from "../images/inibg.svg";
+// import bgImg from "../images/inibg.svg";
 import NicLogo from "../images/nic_logo3.svg";
 import NicLogo2 from "../images/nic_logo2.png";
 import Footer from "../components/Footer";

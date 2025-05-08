@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header"; // Adjust based on your layout
+import Header from "../../components/Header"; // Adjust based on your layout
 import { Link } from "react-router-dom";
-import Footer from "../components/Footer";
+import Footer from "../../components/Footer";
 
 const mockModels = [
   {
@@ -38,6 +38,10 @@ const mockModels = [
 
 const AiParkhiDetail = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import { Link } from "react-router-dom";
 
 const mockModels = [
@@ -37,6 +37,10 @@ const mockModels = [
 
 const AiVihangamDrishtiDetail = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#f3f1ef] text-gray-900">

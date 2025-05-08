@@ -1,7 +1,7 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
-import React, { useState } from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import React, { useState, useEffect } from "react";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import {
   PieChart,
   Pie,
@@ -15,7 +15,7 @@ import {
   CartesianGrid,
   Legend,
 } from "recharts";
-import TranslationImage from "../images/translation_image.jpg";
+import TranslationImage from "../../images/translation_image.jpg";
 
 const mockModels = [
   {
@@ -58,6 +58,10 @@ const AiPaniniDetailPage = () => {
   const { id } = useParams(); // ai_panini
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-gray-50 text-gray-900">

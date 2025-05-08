@@ -1,7 +1,7 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
-import React, { useState } from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import React, { useState, useEffect } from "react";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import {
   PieChart,
   Pie,
@@ -16,8 +16,8 @@ import {
   Legend,
   LabelList,
 } from "recharts";
-import YoloImage from "../images/yolo_image.jpg";
-import OcrImage from "../images/ocr_image.jpg";
+import YoloImage from "../../images/yolo_image.jpg";
+import OcrImage from "../../images/ocr_image.jpg";
 
 const mockModels = [
   {
@@ -86,6 +86,10 @@ const AiNibhritDetailPage = () => {
   const { id } = useParams(); // ai_nibhrit
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">

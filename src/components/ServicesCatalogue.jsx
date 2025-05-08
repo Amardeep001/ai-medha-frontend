@@ -9,12 +9,18 @@ import {
   FaEyeSlash,
   FaMapMarkedAlt,
   FaUserCheck,
+  FaFileAlt,
 } from "react-icons/fa";
-import AiNibhritImage from "../images/ai_nibhrit_image.png";
-import AiPaniniImage from "../images/ai_panini_image.png";
-import AiChatbotImage from "../images/ai_chatbot_image.jpg";
-import DigitalAssetImage from "../images/digital_asset_image.jpg";
-import ModelPerformanceImage from "../images/model_performance_image.jpg";
+import AiNibhritImage from "../images/serviceCatalogueImages/ai_nibhrit_image.png";
+import AiPaniniImage from "../images/serviceCatalogueImages/ai_panini.png";
+import AiChatbotImage from "../images/serviceCatalogueImages/ai_chatbot_image.jpg";
+import AiShrutiImage from "../images/serviceCatalogueImages/ai_shruti.jpg";
+import AiMatraImage from "../images/serviceCatalogueImages/ai_matra.jpg";
+import AiParkhiImage from "../images/serviceCatalogueImages/ai_parkhi.webp";
+import AiVihangamImage from "../images/serviceCatalogueImages/ai_vihangam.jpg";
+import AiSatyapikananImage from "../images/serviceCatalogueImages/ai_satyapikanan.webp";
+import AiAnveshika from "../images/serviceCatalogueImages/ai_anveshika.jpg";
+import AiSaransh from "../images/serviceCatalogueImages/ai_saransh.jpg";
 
 const serviceData = [
   {
@@ -60,7 +66,7 @@ const serviceData = [
     usage:
       "Converts spoken input into text to enable voice-based interactions.",
     icon: <FaMicrophoneAlt className="text-blue-700 text-4xl" />,
-    image: DigitalAssetImage, // replace this with the actual imported image or URL
+    image: AiShrutiImage, // replace this with the actual imported image or URL
   },
   {
     id: "ai_matra",
@@ -71,7 +77,7 @@ const serviceData = [
     usage:
       "Monitors model performance for fairness, accuracy, and reliability.",
     icon: <FaBalanceScale className="text-blue-700 text-4xl" />, // or FaChartLine for performance
-    image: ModelPerformanceImage, // replace this with the actual imported image or URL
+    image: AiMatraImage, // replace this with the actual imported image or URL
   },
   {
     id: "ai_parkhi",
@@ -83,7 +89,7 @@ const serviceData = [
     usage:
       "Evaluates image/document clarity using deep learning to improve decision-making workflows.",
     icon: <FaChartPie className="text-blue-700 text-4xl" />,
-    image: "https://picsum.photos/400/300?random=44",
+    image: AiParkhiImage,
   },
   {
     id: "ai_vihangam_drishti",
@@ -95,7 +101,7 @@ const serviceData = [
     usage:
       "Generates geospatial annotations (rooftop types, road categories) from top-view drone images to aid solar planning, mapping, and infrastructure analysis.",
     icon: <FaMapMarkedAlt className="text-blue-700 text-4xl" />,
-    image: "https://picsum.photos/400/300?random=22",
+    image: AiVihangamImage,
   },
   {
     id: "ai_satyapikaanan",
@@ -107,7 +113,7 @@ const serviceData = [
     usage:
       "Provides contactless, non-invasive facial recognition via APIs for services like attendance, beneficiary verification, pension authentication, and visitor access across eGovernance sectors.",
     icon: <FaUserCheck className="text-green-700 text-4xl" />,
-    image: "https://picsum.photos/400/300?random=23",
+    image: AiSatyapikananImage,
   },
   {
     id: "ai_anveshika",
@@ -119,7 +125,19 @@ const serviceData = [
     usage:
       "Used in eGovernance for judicial, financial, and transport domains to support tasks like multilingual Q&A, summarization, and accurate Indic-English translation.",
     icon: <FaLanguage className="text-purple-700 text-4xl" />,
-    image: "https://picsum.photos/400/300?random=24",
+    image: AiAnveshika,
+  },
+  {
+    id: "ai_saransh",
+    name: "AI Saransh - Document Summarization Engine",
+    type: "Natural Language Processing",
+    available: true,
+    description:
+      "AI-powered abstractive summarization service that condenses lengthy government documents into concise, readable summaries in English and Indian languages.",
+    usage:
+      "Used across eGovernance platforms to auto-generate summaries for minutes of meetings, reports, legal texts, and administrative orders, enabling faster content review and decision-making.",
+    icon: <FaFileAlt className="text-indigo-700 text-4xl" />,
+    image: AiSaransh,
   },
 ];
 
@@ -147,7 +165,7 @@ const ServiceCatalogue = () => {
       <div className="flex flex-col sm:flex-row gap-4 mb-6">
         <select
           onChange={(e) => setFilterType(e.target.value)}
-          className="p-2 border rounded"
+          className="p-2 border rounded-lg "
         >
           <option value="all">All Types</option>
           <option value="infrastructure">Infrastructure</option>
@@ -159,7 +177,7 @@ const ServiceCatalogue = () => {
 
         <select
           onChange={(e) => setFilterAvailability(e.target.value)}
-          className="p-2 border rounded"
+          className="p-2 border rounded-lg "
         >
           <option value="all">All Availability</option>
           <option value="available">Available</option>

@@ -11,7 +11,7 @@ import "chart.js/auto";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Overview from "../components/Overview";
-import ServicesList from "../components/ServicesList";
+import ServicesList from "../components/ServicesCatalogue";
 import Settings from "../components/Settings";
 import AnalyticsDashboard from "../components/Analytics";
 import UserManagement from "../components/UserManagement";
