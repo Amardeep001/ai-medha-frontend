@@ -18,6 +18,7 @@ import {
 } from "recharts";
 import YoloImage from "../../images/yolo_image.jpg";
 import OcrImage from "../../images/ocr_image.jpg";
+import FlowChart from "../../images/serviceCatalogueImages/ai_nibhrit_flowchart.jpg";
 
 const mockModels = [
   {
@@ -181,12 +182,23 @@ const AiNibhritDetailPage = () => {
                 <strong>OpenCV & TensorFlow:</strong> Applied for image
                 analysis, pre-processing and deep-learning model integration.
               </li>
-              {/* <li>
-                <strong>Secure Cloud & GPU Architecture:</strong> Kubernetes and
-                NVIDIA BCM ensure scalability and GPU-powered inference across
-                workloads.
-              </li> */}
             </ul>
+
+            <div className="mt-4 text-sm text-gray-700 space-y-1">
+              <p>
+                <strong>Last Security Audit Date:</strong> 06-12-2023 (Applied
+                for renewal)
+              </p>
+              <p>
+                <strong>Copyright:</strong> 31/01/2024
+              </p>
+              <p>
+                <strong>Awards Won:</strong> Not Applicable
+              </p>
+              <p>
+                <strong>Published Articles:</strong> Not Applicable
+              </p>
+            </div>
 
             <div className="mt-6">
               <h4 className="text-md font-semibold text-blue-700 mb-2">
@@ -219,20 +231,32 @@ const AiNibhritDetailPage = () => {
 
             <div className="mt-6">
               <h4 className="text-md font-semibold text-blue-700 mb-2">
-                Government Usage & Deployment
+                Ideal Use Cases
               </h4>
-              <p className="text-gray-700 text-sm">
-                AI Nibhrit is currently in use by several state registration
-                departments including West Bengal, Telangana, Maharashtra,
-                Tripura, Puducherry, Andhra Pradesh, and UP. These deployments
-                demonstrate real-world applicability across varied regional
-                formats and infrastructures.
-              </p>
+              <ol className="list-disc list-inside text-gray-700 text-sm space-y-2">
+                <li>
+                  <strong>Land & Property Document Handling:</strong> Used by
+                  Stamps & Registration Departments to redact sensitive data in
+                  sale deeds, registration papers, and encumbrance certificates.
+                  Minimizes exposure risk during public access or record
+                  retrieval.
+                </li>
+                <li>
+                  <strong>Real Estate Regulatory Authorities (RERA):</strong>{" "}
+                  Masks PII from property listings, builder submissions etc.
+                  e-Governance Platforms: Ensure Aadhaar/PAN masking is in
+                  digitally uploaded forms.
+                </li>
+                <li>
+                  <strong>e-Governance Platforms</strong> Ensure Aadhaar/PAN
+                  masking is in digitally uploaded forms.
+                </li>
+              </ol>
             </div>
 
             <div className="mt-6">
               <h4 className="text-md font-semibold text-blue-700 mb-2">
-                Disclaimers & Limitations
+                Limitations
               </h4>
               <p className="text-sm text-gray-700">
                 While highly accurate, model performance may vary with poor scan
@@ -374,6 +398,71 @@ const AiNibhritDetailPage = () => {
             </div>
           </div>
 
+          {/* End-to-End Flow Section */}
+          <div className="mt-12 bg-white rounded-lg shadow-md p-6 mb-10">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3">
+              End-to-End Flow
+            </h3>
+
+            <p className="text-sm text-gray-700 mb-4">
+              Below is the step-by-step flow from receiving the input document
+              to delivering the masked output:
+            </p>
+
+            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
+              <li>
+                <strong>Input:</strong> PDF or image files containing text and
+                images with sensitive Personally Identifiable Information (PII).
+              </li>
+              <li>
+                <strong>Input Document Acquisition:</strong> Accepts a scanned
+                or digital document (PDF/image) possibly containing Aadhaar,
+                PAN, fingerprints, and QR codes.
+              </li>
+              <li>
+                <strong>Text Extraction via Tesseract OCR:</strong> Extracts
+                machine-readable text from the document for further processing.
+              </li>
+              <li>
+                <strong>PII Extraction from Text:</strong> NLP-based pattern
+                matchers identify Aadhaar/PAN numbers from the extracted text.
+              </li>
+              <li>
+                <strong>Image-based PII Detection:</strong> YOLO or other object
+                detection models identify and locate image-based PII
+                (fingerprints, QR).
+              </li>
+              <li>
+                <strong>Masking of PII Regions:</strong> Applies masking
+                (blackout or blur) on detected PII regions both from text and
+                image segments.
+              </li>
+              <li>
+                <strong>Document Reconstruction:</strong> Rebuilds the processed
+                document and adds metadata on masked areas.
+              </li>
+              <li>
+                <strong>Output Delivery:</strong> Returns the masked PDF or a
+                JSON file specifying the coordinates of redacted regions.
+              </li>
+            </ul>
+
+            {/* Optional Diagram Placeholder */}
+            <div className="mt-6">
+              <h4 className="text-md font-semibold text-blue-700 mb-2">
+                Data Flow Diagram (Visual)
+              </h4>
+              <img
+                src={FlowChart} // Replace with actual diagram when available
+                alt="Data Flow Diagram"
+                className="rounded shadow-md "
+              />
+              <p className="text-xs text-gray-500 mt-2">
+                * Illustrative diagram showing full processing pipeline.
+              </p>
+            </div>
+          </div>
+
           {/* Steps to Use AI Nibhrit Service */}
           <div className="mt-12 bg-white rounded-lg shadow-md p-6">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
@@ -413,6 +502,33 @@ const AiNibhritDetailPage = () => {
                 can be reused locally, reducing the need for repeat API calls.
               </li>
             </ol>
+          </div>
+
+          {/* Network Availability Section */}
+          <div className="mt-12 bg-white rounded-lg shadow-md p-6 ">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3">
+              Network Availability
+            </h3>
+            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
+              <li>
+                <strong>Network Access:</strong> Available on NICNET and also
+                accessible externally via <strong>NAPIX</strong>.
+              </li>
+              <li>
+                <strong>Ports to be Opened:</strong>{" "}
+                <code className="bg-gray-100 px-1 py-0.5 rounded">5012</code> if
+                using NICNET.
+              </li>
+              <li>
+                <strong>Firewall Configuration:</strong> Ensure required ports
+                are open and NIC's standard firewall rules are applied.
+              </li>
+              <li>
+                <strong>Access Control:</strong> Enforced via{" "}
+                <strong>IP Whitelisting</strong> and{" "}
+                <strong>NAPIX Authentication</strong>.
+              </li>
+            </ul>
           </div>
 
           {/* Summary Section */}

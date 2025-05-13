@@ -24,6 +24,7 @@ import AiVihangamDrishtiDetail from "./pages/serviceDetailPages/AiVihangamDrisht
 import AiAnveshikaDetail from "./pages/serviceDetailPages/AiAnveshikaPage";
 import AiSatyapikaananDetailPage from "./pages/serviceDetailPages/AiSatyapikaananDetailPage";
 import AiVaniDetailPage from "./pages/serviceDetailPages/AiVaniDetailPage";
+import AiSaranshDetailPage from "./pages/serviceDetailPages/AiSaranshDetailPage";
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
         <Route path="/services/ai_vihangam_drishti" element={<AiVihangamDrishtiDetail />} />
         <Route path="/services/ai_satyapikaanan" element={<AiSatyapikaananDetailPage />} />
         <Route path="/services/ai_anveshika" element={<AiAnveshikaDetail />} />
+        <Route path="/services/ai_saransh" element={<AiSaranshDetailPage />} />
         <Route path="services/model/:modelId" element={<ModelDetailPage />} />
       </Routes>
     </Router>
