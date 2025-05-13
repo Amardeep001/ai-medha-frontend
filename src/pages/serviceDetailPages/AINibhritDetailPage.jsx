@@ -231,9 +231,24 @@ const AiNibhritDetailPage = () => {
 
             <div className="mt-6">
               <h4 className="text-md font-semibold text-blue-700 mb-2">
+                AI Nibhrit Rollout
+              </h4>
+              <p className="text-sm text-gray-700">
+                AI Nibhrit is actively being used by several state registration
+                departments, including those in West Bengal, Telangana,
+                Maharashtra, Tripura, Puducherry, Andhra Pradesh, and Uttar
+                Pradesh. These implementations highlight its practical
+                effectiveness across diverse regional formats and
+                infrastructures.
+              </p>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-md font-semibold text-blue-700 mb-2">
                 Ideal Use Cases
               </h4>
-              <ol className="list-disc list-inside text-gray-700 text-sm space-y-2">
+
+              <ul className="list-disc list-inside text-gray-700 text-sm space-y-2">
                 <li>
                   <strong>Land & Property Document Handling:</strong> Used by
                   Stamps & Registration Departments to redact sensitive data in
@@ -251,7 +266,7 @@ const AiNibhritDetailPage = () => {
                   <strong>e-Governance Platforms</strong> Ensure Aadhaar/PAN
                   masking is in digitally uploaded forms.
                 </li>
-              </ol>
+              </ul>
             </div>
 
             <div className="mt-6">
