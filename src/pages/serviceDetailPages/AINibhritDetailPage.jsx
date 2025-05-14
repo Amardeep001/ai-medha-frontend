@@ -83,6 +83,11 @@ const docHitsData = [
     shortName: "NGDRS",
     count: 37,
   },
+  {
+    name: "Registration and Stamps Department, Andhra Pradesh",
+    shortName: "RASD AP",
+    count: 46,
+  },
 ];
 
 const AiNibhritDetailPage = () => {
@@ -232,7 +237,7 @@ const AiNibhritDetailPage = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-black">•</span>
-                  <strong>e-Governance Platforms</strong> Ensure Aadhaar/PAN
+                  <strong>e-Governance Platforms:</strong> Ensure Aadhaar/PAN
                   masking is in digitally uploaded forms.
                 </li>
               </ul>
@@ -398,7 +403,7 @@ const AiNibhritDetailPage = () => {
                 AI Nibhrit services.
               </p>
               <div className="h-72 overflow-x-auto">
-                <ResponsiveContainer width="80%" height="100%">
+                <ResponsiveContainer width="100%" height="100%">
                   <BarChart
                     data={docHitsData}
                     margin={{ top: 10, right: 30, left: 0, bottom: 40 }}
