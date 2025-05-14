@@ -113,43 +113,41 @@ const AiNibhritDetailPage = () => {
           {/* Model Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
             {mockModels.map((model) => (
-              <Link to={`/services/model/${model.id}`} key={model.id}>
-                <div className="bg-white rounded-lg shadow-md border hover:shadow-xl transition-all">
-                  <img
-                    src={model.image}
-                    alt={model.name}
-                    className="rounded-t-lg w-full h-40 object-cover"
-                  />
-                  <div className="p-4">
-                    <h3 className="text-xl font-semibold text-blue-800 mb-1">
-                      {model.name}
-                    </h3>
-                    <p className="text-sm text-gray-600 mb-1">
-                      <strong>Category:</strong> {model.category}
+              <div className="bg-white rounded-lg shadow-md border hover:shadow-xl transition-all">
+                <img
+                  src={model.image}
+                  alt={model.name}
+                  className="rounded-t-lg w-full h-40 object-cover"
+                />
+                <div className="p-4">
+                  <h3 className="text-xl font-semibold text-blue-800 mb-1">
+                    {model.name}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-1">
+                    <strong>Category:</strong> {model.category}
+                  </p>
+                  <p className="text-sm text-gray-600 mb-1">
+                    <strong>Sector:</strong> {model.sector}
+                  </p>
+                  <p className="text-gray-700 text-sm mb-2">
+                    {model.description}
+                  </p>
+                  <div className="text-sm text-gray-700 space-y-1">
+                    <p>
+                      <strong>Accuracy:</strong> {model.metrics.accuracy}
                     </p>
-                    <p className="text-sm text-gray-600 mb-1">
-                      <strong>Sector:</strong> {model.sector}
+                    <p>
+                      <strong>Latency:</strong> {model.metrics.latency}
                     </p>
-                    <p className="text-gray-700 text-sm mb-2">
-                      {model.description}
-                    </p>
-                    <div className="text-sm text-gray-700 space-y-1">
-                      <p>
-                        <strong>Accuracy:</strong> {model.metrics.accuracy}
-                      </p>
-                      <p>
-                        <strong>Latency:</strong> {model.metrics.latency}
-                      </p>
-                      {/* <p>
+                    {/* <p>
                         <strong>F1 Score:</strong> {model.metrics.f1Score}
                       </p> */}
-                    </div>
-                    <p className="text-sm text-blue-600 font-medium mt-2">
-                      Version: {model.version}
-                    </p>
                   </div>
+                  <p className="text-sm text-blue-600 font-medium mt-2">
+                    Version: {model.version}
+                  </p>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
 
@@ -192,7 +190,7 @@ const AiNibhritDetailPage = () => {
                 for renewal)
               </p>
               <p>
-                <strong>Copyright:</strong> 31/01/2024
+                <strong>Copyright:</strong> 31-01-2024
               </p>
               <p>
                 <strong>Awards & Recognition:</strong> None
@@ -208,24 +206,24 @@ const AiNibhritDetailPage = () => {
               </h4>
               <ul className="text-sm text-gray-700 space-y-2">
                 <li>
-                  📄 <strong>Supported file formats:</strong> PDF, PNG, JPG,
-                  JPEG, JFIF
+                  <strong>Supported file formats:</strong> PDF, PNG, JPG, JPEG,
+                  JFIF
                 </li>
                 <li>
-                  🌐 <strong>Language support:</strong> Separate AI models for
+                  <strong>Language support:</strong> Separate AI models for
                   regional languages like Gujarati, Bengali (state-specific)
                 </li>
                 <li>
-                  ⚡ <strong>Processing speed:</strong> Avg. 20 sec per
-                  30–40-page document (varies by CPU)
+                  <strong>Processing speed:</strong> Avg. 20 sec per 30–40-page
+                  document (varies by CPU)
                 </li>
                 <li>
-                  📊 <strong>Accuracy scores:</strong> PAN, Aadhaar, QR: 98%;
+                  <strong>Accuracy scores:</strong> PAN, Aadhaar, QR: 98%;
                   Fingerprint: 97%
                 </li>
                 <li>
-                  🧠 <strong>Workflow:</strong> Document upload → Preprocessing
-                  → Detection & OCR → Coordinate generation or direct masking →
+                  <strong>Workflow:</strong> Document upload → Preprocessing →
+                  Detection & OCR → Coordinate generation or direct masking →
                   Final output
                 </li>
               </ul>
