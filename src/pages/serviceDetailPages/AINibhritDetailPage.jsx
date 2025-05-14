@@ -1,4 +1,4 @@
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -84,7 +84,6 @@ const docHitsData = [
 ];
 
 const AiNibhritDetailPage = () => {
-  const { id } = useParams(); // ai_nibhrit
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -97,6 +96,12 @@ const AiNibhritDetailPage = () => {
       <Header toggleSidebar={() => setSidebarOpen(true)} />
       <div className="overflow-auto flex flex-grow">
         <div className="px-4 py-6 w-full max-w-7xl mx-auto">
+          <button
+            onClick={() => navigate(-1)}
+            className="mb-6 mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
+          >
+            ← Back to Services
+          </button>
           <h2 className="text-3xl font-bold text-blue-900 mb-2">AI NIBHRIT</h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
             AI Nibhrit ensures end-to-end privacy by redacting Aadhaar numbers,
@@ -104,13 +109,6 @@ const AiNibhritDetailPage = () => {
             YOLOv5 and OCR (Tesseract). The system returns either masked
             documents or coordinates for masking in JSON format.
           </p>
-
-          <button
-            onClick={() => navigate(-1)}
-            className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
-          >
-            ← Back to Services
-          </button>
 
           {/* Model Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
@@ -158,15 +156,19 @@ const AiNibhritDetailPage = () => {
           {/* Enhanced Intelligence Overview */}
           <div className="bg-white rounded-lg shadow-md p-6 mb-10">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Model Intelligence & Architecture Overview
+              About AI Nibhrit
+              {/* Model Intelligence & Architecture Overview */}
             </h3>
             <p className="text-gray-700 text-sm leading-relaxed">
-              The <strong>AI Nibhrit</strong> platform is built to ensure
-              privacy and compliance in digital documentation by leveraging a
-              suite of state-of-the-art AI models. These models are primarily
-              trained to detect and mask{" "}
-              <strong>personally identifiable information (PII)</strong> such as
-              Aadhaar numbers, PAN cards, fingerprints, and QR codes.
+              <strong>AI-Nibhrit</strong> is an AI-driven data privacy solution
+              that automatically detects and masks{" "}
+              <strong>personally identifiable information (PII)</strong> like
+              Aadhaar numbers, PAN details, fingerprints, and QR codes in
+              digital and scanned documents. Built for high adaptability, it
+              ensures state-level compliance and supports both centralized and
+              decentralized government operations across India. Its core aim is
+              to protect citizen data from exposure, unauthorized access, and
+              identity fraud in digital workflows.
             </p>
 
             <ul className="list-disc pl-5 mt-4 text-sm text-gray-700 space-y-2">
@@ -193,10 +195,10 @@ const AiNibhritDetailPage = () => {
                 <strong>Copyright:</strong> 31/01/2024
               </p>
               <p>
-                <strong>Awards Won:</strong> Not Applicable
+                <strong>Awards & Recognition:</strong> None
               </p>
               <p>
-                <strong>Published Articles:</strong> Not Applicable
+                <strong>Published Articles:</strong> None
               </p>
             </div>
 
@@ -237,9 +239,10 @@ const AiNibhritDetailPage = () => {
                 AI Nibhrit is actively being used by several state registration
                 departments, including those in West Bengal, Telangana,
                 Maharashtra, Tripura, Puducherry, Andhra Pradesh, and Uttar
-                Pradesh. These implementations highlight its practical
-                effectiveness across diverse regional formats and
-                infrastructures.
+                Pradesh. Over 12 million documents were processed to identify
+                Aadhaar numbers, PAN, QR codes, and fingerprints in the year
+                2024. This reduced manual effort and improved compliance with
+                privacy norms.
               </p>
             </div>
 
@@ -248,21 +251,28 @@ const AiNibhritDetailPage = () => {
                 Ideal Use Cases
               </h4>
 
-              <ul className="list-disc list-inside text-gray-700 text-sm space-y-2">
-                <li>
-                  <strong>Land & Property Document Handling:</strong> Used by
-                  Stamps & Registration Departments to redact sensitive data in
-                  sale deeds, registration papers, and encumbrance certificates.
-                  Minimizes exposure risk during public access or record
-                  retrieval.
+              <ul className="text-gray-700 text-sm space-y-2 ">
+                <li className="flex items-start gap-2">
+                  <span className="font-black">•</span>
+                  <span>
+                    <strong>Land & Property Document Handling:</strong> Used by
+                    Stamps & Registration Departments to redact sensitive data
+                    in sale deeds, registration papers, and encumbrance
+                    certificates. Minimizes exposure risk during public access
+                    or record retrieval.
+                  </span>
                 </li>
-                <li>
-                  <strong>Real Estate Regulatory Authorities (RERA):</strong>{" "}
+                <li className="flex items-start gap-2">
+                  <span className="font-black">•</span>
+                  <strong>
+                    Real Estate Regulatory Authorities (RERA):
+                  </strong>{" "}
                   Masks PII from property listings, builder submissions etc.
                   e-Governance Platforms: Ensure Aadhaar/PAN masking is in
                   digitally uploaded forms.
                 </li>
-                <li>
+                <li className="flex items-start gap-2">
+                  <span className="font-black">•</span>
                   <strong>e-Governance Platforms</strong> Ensure Aadhaar/PAN
                   masking is in digitally uploaded forms.
                 </li>
@@ -520,9 +530,9 @@ const AiNibhritDetailPage = () => {
           </div>
 
           {/* Network Availability Section */}
-          <div className="mt-12 bg-white rounded-lg shadow-md p-6 ">
+          <div className="mt-12 mb-6 bg-white rounded-lg shadow-md p-6 ">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Network Availability
+              Network Access Details
             </h3>
             <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
               <li>
@@ -547,7 +557,7 @@ const AiNibhritDetailPage = () => {
           </div>
 
           {/* Summary Section */}
-          <div className="mt-12 bg-white rounded-lg shadow-md p-6">
+          {/* <div className="mt-12 bg-white rounded-lg shadow-md p-6">
             <h3 className="text-xl font-semibold text-blue-800 mb-2">
               Summary & Notes
             </h3>
@@ -560,7 +570,7 @@ const AiNibhritDetailPage = () => {
               Future improvements could include benchmarking dashboards and
               visual evaluation reports.
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
       <Footer />
