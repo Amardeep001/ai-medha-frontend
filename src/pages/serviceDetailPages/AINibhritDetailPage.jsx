@@ -54,23 +54,38 @@ const mockModels = [
 ];
 
 const departmentChartData = [
-  { name: "Registration and Stamps Department, Telangana", value: 919515 },
-  { name: "NGDRS", value: 296635 },
-  { name: "Registration Department, Puducherry", value: 68437 },
-  { name: "Revenue Department, Gujarat", value: 5813 },
-  { name: "Registration and Stamps Department, Andhra Pradesh", value: 455 },
+  { name: "Registration and Stamps Department, Telangana", value: 9108616 },
+  { name: "NGDRS", value: 1409607 },
+  { name: "Registration Department, Puducherry", value: 598760 },
+  { name: "Registration and Stamps Department, Andhra Pradesh", value: 196846 },
+  { name: "Revenue Department, Gujarat", value: 18126 },
+  { name: "Real Estate Regulatory Authority, Himachal Pradesh", value: 11957 },
+  { name: "Registration Department, Kerala", value: 330 },
+  { name: "Stamps and Registration Department, Uttar Pradesh", value: 203 },
+  { name: "Revenue Department, Jammu & Kashmir", value: 65 },
+  { name: "Revenue and Disaster Management Department, Haryana", value: 61 },
 ];
 
-// Calculate total for percentage computation
 const total = departmentChartData.reduce((sum, item) => sum + item.value, 0);
 
-// Add percentage to each item's name
 const dataWithPercentage = departmentChartData.map((item) => ({
   ...item,
   nameWithPercent: `${item.name} (${((item.value / total) * 100).toFixed(1)}%)`,
 }));
 
-const COLORS = ["#4f46e5", "#10b981", "#f59e0b", "#ef4444", "#5d6471"];
+// 🎨 10 Distinct Colors
+const COLORS = [
+  "#4f46e5", // Indigo
+  "#10b981", // Emerald
+  "#f59e0b", // Amber
+  "#ef4444", // Red
+  "#5d6471", // Gray-Blue
+  "#6366f1", // Violet
+  "#e11d48", // Rose
+  "#0ea5e9", // Sky
+  "#84cc16", // Lime
+  "#a855f7", // Purple
+];
 
 const docHitsData = [
   {
@@ -357,10 +372,10 @@ const AiNibhritDetailPage = () => {
                     <Pie
                       dataKey="value"
                       data={dataWithPercentage}
-                      cx="50%"
+                      cx="38%" // shift pie left to give more space for legend
                       cy="50%"
-                      outerRadius={80}
-                      label={false} // Removed labels from chart
+                      outerRadius={100}
+                      label={false}
                     >
                       {dataWithPercentage.map((entry, index) => (
                         <Cell
@@ -369,11 +384,13 @@ const AiNibhritDetailPage = () => {
                         />
                       ))}
                     </Pie>
+
                     <Tooltip
                       formatter={(value) =>
                         new Intl.NumberFormat().format(value)
                       }
                     />
+
                     <Legend
                       layout="vertical"
                       align="right"
@@ -383,9 +400,11 @@ const AiNibhritDetailPage = () => {
                       }
                       wrapperStyle={{
                         fontSize: "12px",
-                        paddingLeft: "10px",
-                        width: "200px",
-                        overflowWrap: "break-word",
+                        paddingLeft: "4px", // reduce space between pie and legend
+                        width: "300px",
+                        textAlign: "left", // 👈 align text to left
+                        whiteSpace: "normal", // 👈 allow full label to show
+                        wordBreak: "break-word", // 👈 break if very long word
                       }}
                     />
                   </PieChart>
