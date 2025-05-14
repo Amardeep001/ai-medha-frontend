@@ -76,12 +76,12 @@ const docHitsData = [
   {
     name: "Directorate of Registration\nWest Bengal",
     shortName: "DoR WB",
-    count: 73479,
+    count: 656884,
   },
   {
     name: "NGDRS",
     shortName: "NGDRS",
-    count: 37,
+    count: 455,
   },
   {
     name: "Registration and Stamps Department, Andhra Pradesh",
