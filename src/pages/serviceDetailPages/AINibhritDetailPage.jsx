@@ -75,10 +75,12 @@ const COLORS = ["#4f46e5", "#10b981", "#f59e0b", "#ef4444", "#5d6471"];
 const docHitsData = [
   {
     name: "Directorate of Registration\nWest Bengal",
+    shortName: "DoR WB",
     count: 73479,
   },
   {
     name: "NGDRS",
+    shortName: "NGDRS",
     count: 37,
   },
 ];
@@ -95,7 +97,7 @@ const AiNibhritDetailPage = () => {
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
       <Header toggleSidebar={() => setSidebarOpen(true)} />
       <div className="overflow-auto flex flex-grow">
-        <div className="px-4 py-6 w-full max-w-7xl mx-auto">
+        <div className="px-20 py-6 w-full max-w-screen-2xl mx-auto">
           <button
             onClick={() => navigate(-1)}
             className="mb-6 mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
@@ -110,49 +112,8 @@ const AiNibhritDetailPage = () => {
             documents or coordinates for masking in JSON format.
           </p>
 
-          {/* Model Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
-            {mockModels.map((model) => (
-              <div className="bg-white rounded-lg shadow-md border hover:shadow-xl transition-all">
-                <img
-                  src={model.image}
-                  alt={model.name}
-                  className="rounded-t-lg w-full h-40 object-cover"
-                />
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold text-blue-800 mb-1">
-                    {model.name}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-1">
-                    <strong>Category:</strong> {model.category}
-                  </p>
-                  <p className="text-sm text-gray-600 mb-1">
-                    <strong>Sector:</strong> {model.sector}
-                  </p>
-                  <p className="text-gray-700 text-sm mb-2">
-                    {model.description}
-                  </p>
-                  <div className="text-sm text-gray-700 space-y-1">
-                    <p>
-                      <strong>Accuracy:</strong> {model.metrics.accuracy}
-                    </p>
-                    <p>
-                      <strong>Latency:</strong> {model.metrics.latency}
-                    </p>
-                    {/* <p>
-                        <strong>F1 Score:</strong> {model.metrics.f1Score}
-                      </p> */}
-                  </div>
-                  <p className="text-sm text-blue-600 font-medium mt-2">
-                    Version: {model.version}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
           {/* Enhanced Intelligence Overview */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
+          <div className="bg-white rounded-lg shadow-md p-8 mb-10">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               About AI Nibhrit
               {/* Model Intelligence & Architecture Overview */}
@@ -291,7 +252,53 @@ const AiNibhritDetailPage = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
+          <div className="bg-white rounded-lg shadow-md p-8 mb-10">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3">
+              Data Privacy Solutions Overview
+            </h3>
+            {/* Model Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-5 ">
+              {mockModels.map((model) => (
+                <div className="bg-white rounded-lg shadow-md border hover:shadow-xl transition-all">
+                  <img
+                    src={model.image}
+                    alt={model.name}
+                    className="rounded-t-lg w-full h-40 object-cover"
+                  />
+                  <div className="p-4">
+                    <h3 className="text-xl font-semibold text-blue-800 mb-1">
+                      {model.name}
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-1">
+                      <strong>Category:</strong> {model.category}
+                    </p>
+                    <p className="text-sm text-gray-600 mb-1">
+                      <strong>Sector:</strong> {model.sector}
+                    </p>
+                    <p className="text-gray-700 text-sm mb-2">
+                      {model.description}
+                    </p>
+                    <div className="text-sm text-gray-700 space-y-1">
+                      <p>
+                        <strong>Accuracy:</strong> {model.metrics.accuracy}
+                      </p>
+                      <p>
+                        <strong>Latency:</strong> {model.metrics.latency}
+                      </p>
+                      {/* <p>
+                        <strong>F1 Score:</strong> {model.metrics.f1Score}
+                      </p> */}
+                    </div>
+                    <p className="text-sm text-blue-600 font-medium mt-2">
+                      Version: {model.version}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-md p-8 mb-10">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Model Summary Table
             </h3>
@@ -331,7 +338,7 @@ const AiNibhritDetailPage = () => {
           {/* Visual Charts */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Pie Chart: Department-wise Service Count */}
-            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+            <div className="bg-white rounded-lg shadow-md p-8 sm:p-6">
               <h3 className="text-xl font-semibold text-blue-800 mb-2">
                 Department-wise Service Count
               </h3>
@@ -391,29 +398,37 @@ const AiNibhritDetailPage = () => {
                 AI Nibhrit services.
               </p>
               <div className="h-72 overflow-x-auto">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="80%" height="100%">
                   <BarChart
                     data={docHitsData}
                     margin={{ top: 10, right: 30, left: 0, bottom: 40 }}
                   >
                     <CartesianGrid strokeDasharray="3 3" />
+
+                    {/* Use shortName for XAxis label */}
                     <XAxis
-                      dataKey="name"
+                      dataKey="shortName"
                       angle={-10}
                       textAnchor="end"
                       interval={0}
                     />
+
                     <YAxis />
-                    <Tooltip />
+
+                    {/* Tooltip will show full name */}
+                    <Tooltip
+                      formatter={(value, name, props) => [value, "Hits"]}
+                      labelFormatter={(label, props) => {
+                        const fullName = docHitsData.find(
+                          (item) => item.shortName === label
+                        )?.name;
+                        return fullName || label;
+                      }}
+                    />
+
                     <Legend />
                     <Bar dataKey="count" fill="#4f46e5">
-                      {/* 🎯 Label on top of bar */}
-                      <LabelList
-                        dataKey="count"
-                        position="top"
-                        formatter={(value) => `${value}`} // you can also show only value
-                        fontSize={12}
-                      />
+                      <LabelList dataKey="count" position="top" fontSize={12} />
                     </Bar>
                   </BarChart>
                 </ResponsiveContainer>
@@ -422,7 +437,7 @@ const AiNibhritDetailPage = () => {
           </div>
 
           {/* End-to-End Flow Section */}
-          <div className="mt-12 bg-white rounded-lg shadow-md p-6 mb-10">
+          <div className="mt-12 bg-white rounded-lg shadow-md p-8 mb-10">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               End-to-End Flow
             </h3>
@@ -487,7 +502,7 @@ const AiNibhritDetailPage = () => {
           </div>
 
           {/* Steps to Use AI Nibhrit Service */}
-          <div className="mt-12 bg-white rounded-lg shadow-md p-6">
+          <div className="mt-12 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               How to Use AI Nibhrit Service
             </h3>
@@ -528,7 +543,7 @@ const AiNibhritDetailPage = () => {
           </div>
 
           {/* Network Availability Section */}
-          <div className="mt-12 mb-6 bg-white rounded-lg shadow-md p-6 ">
+          <div className="mt-12 mb-6 bg-white rounded-lg shadow-md p-8 ">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Network Access Details
             </h3>

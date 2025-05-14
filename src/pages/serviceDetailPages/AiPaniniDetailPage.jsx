@@ -64,10 +64,29 @@ const AiPaniniDetailPage = () => {
   }, []);
 
   return (
-    <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-gray-50 text-gray-900">
+    <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
       <Header toggleSidebar={() => setSidebarOpen(true)} />
       <div className="overflow-auto flex flex-grow">
         <div className="p-6 w-full max-w-7xl mx-auto">
+          <div className="mt-3 flex space-x-3">
+            <button
+              onClick={() => navigate(-1)}
+              className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
+            >
+              ← Back to Services
+            </button>
+            <div className="mb-6">
+              <a
+                href="https://demoai.nic.in/translation"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-4 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition"
+              >
+                🌐 Try Live Demo
+              </a>
+            </div>
+          </div>
+
           <h2 className="text-3xl font-bold text-blue-900 mb-2">AI PANINI</h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
             AI Panini is a neural machine translation service that supports
@@ -77,26 +96,8 @@ const AiPaniniDetailPage = () => {
             communication across digital platforms.
           </p>
 
-          <div className="mb-6">
-            <a
-              href="https://demoai.nic.in/translation"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-4 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition"
-            >
-              🌐 Try Live Demo
-            </a>
-          </div>
-
-          <button
-            onClick={() => navigate(-1)}
-            className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
-          >
-            ← Back to Services
-          </button>
-
           {/* Model Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
             {mockModels.map((model) => (
               <Link to={`/services/model/${model.id}`} key={model.id}>
                 <div className="bg-white rounded-lg shadow-md border hover:shadow-xl transition-all">
