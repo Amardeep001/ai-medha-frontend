@@ -47,7 +47,13 @@ const AiParkhiDetail = () => {
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
       <Header toggleSidebar={() => {}} />
       <div className="overflow-auto flex flex-grow">
-        <div className="px-4 py-6 w-full max-w-7xl mx-auto">
+        <div className="px-20 py-6 w-full max-w-screen-2xl mx-auto">
+          <button
+            onClick={() => navigate(-1)}
+            className="mt-3 mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
+          >
+            ← Back to Services
+          </button>
           <h2 className="text-3xl font-bold text-blue-900 mb-2">AI PARKHI</h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
             AI Parkhi is an intelligent video surveillance and incident
@@ -57,13 +63,6 @@ const AiParkhiDetail = () => {
             using real-time CCTV feeds. This system is tailored for government
             use in public safety and urban administration.
           </p>
-
-          <button
-            onClick={() => navigate(-1)}
-            className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
-          >
-            ← Back to Services
-          </button>
 
           {/* Model Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">

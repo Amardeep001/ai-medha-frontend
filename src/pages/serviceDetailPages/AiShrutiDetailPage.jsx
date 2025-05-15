@@ -19,13 +19,13 @@ const AiShrutiDetailPage = () => {
   }, []);
 
   return (
-    <div className="bg-[#f3f4f6] text-gray-900 min-h-screen grid grid-rows-[min-content_1fr]">
+    <div className="bg-[#eee5dc] text-gray-900 min-h-screen grid grid-rows-[min-content_1fr]">
       <Header toggleSidebar={() => setSidebarOpen(true)} />
 
-      <main className="max-w-7xl mx-auto px-4 py-8">
+      <main className="max-w-screen-2xl mx-auto px-20 py-6">
         <button
           onClick={() => navigate(-1)}
-          className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
+          className="mt-3 mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
         >
           ← Back to Services
         </button>

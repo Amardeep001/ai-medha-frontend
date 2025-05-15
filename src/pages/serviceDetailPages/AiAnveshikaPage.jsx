@@ -15,7 +15,13 @@ const AiAnveshikaDetail = () => {
       <Header toggleSidebar={() => {}} />
 
       <div className="overflow-auto flex flex-grow">
-        <div className="px-4 py-6 w-full max-w-7xl mx-auto">
+        <div className="px-20 py-6 w-full max-w-screen-2xl mx-auto">
+          <button
+            onClick={() => navigate(-1)}
+            className="mt-3 mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
+          >
+            ← Back to Services
+          </button>
           <h2 className="text-3xl font-bold text-blue-900 mb-2">
             AI ANVESHIKA
           </h2>
@@ -27,13 +33,6 @@ const AiAnveshikaDetail = () => {
             vector databases to deliver accurate responses and summaries from
             natural language queries.
           </p>
-
-          <button
-            onClick={() => navigate(-1)}
-            className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
-          >
-            ← Back to Services
-          </button>
 
           {/* Model Intelligence */}
           <div className="bg-white rounded-lg shadow-md p-6 mb-10">

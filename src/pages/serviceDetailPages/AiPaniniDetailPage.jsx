@@ -67,7 +67,7 @@ const AiPaniniDetailPage = () => {
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
       <Header toggleSidebar={() => setSidebarOpen(true)} />
       <div className="overflow-auto flex flex-grow">
-        <div className="p-6 w-full max-w-7xl mx-auto">
+        <div className="py-6 w-full max-w-screen-2xl px-20 mx-auto">
           <div className="mt-3 flex space-x-3">
             <button
               onClick={() => navigate(-1)}
@@ -89,11 +89,13 @@ const AiPaniniDetailPage = () => {
 
           <h2 className="text-3xl font-bold text-blue-900 mb-2">AI PANINI</h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
-            AI Panini is a neural machine translation service that supports
-            translation between English and 11 Indian languages including Hindi,
-            Bengali, Gujarati, Kannada, Malayalam, Marathi, Oriya, Punjabi,
-            Tamil, Telugu, and Assamese. Built to enable seamless multilingual
-            communication across digital platforms.
+            AI-Panini is a neural machine translation service that enables
+            reliable two-way translation between English and 22 Indian
+            languages, including Hindi, Bengali, Tamil, Telugu, Marathi,
+            Punjabi, Gujarati, Malayalam, Kannada, Assamese, and others, as well
+            as Braille. Built on advanced NMT architecture, it ensures accurate,
+            context-aware translations to support seamless multilingual
+            communication for departmental and government use.
           </p>
 
           {/* Model Cards */}
@@ -166,6 +168,70 @@ const AiPaniniDetailPage = () => {
               </li>
               <li>Accuracy improves with context-rich and clean inputs.</li>
             </ul>
+
+            <div className="mt-6">
+              <h4 className="text-blue-800 font-semibold text-sm mb-2">
+                Ideal Use Cases (Where AI Service Performs Best):
+              </h4>
+              <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
+                <li>
+                  Government document translation between Indian languages and
+                  English.
+                </li>
+                <li>
+                  Real-time translation in multilingual applications or portals.
+                </li>
+                <li>Language localization for citizen-facing services.</li>
+                <li>
+                  Translation of well-structured formal text like policies,
+                  reports, and notices.
+                </li>
+              </ul>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-blue-800 font-semibold text-sm mb-2">
+                Limitations / Where It May Not Be Applicable:
+              </h4>
+              <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
+                <li>
+                  May struggle with informal, slang-heavy, or regional dialect
+                  variations not present in training data.
+                </li>
+                <li>
+                  Context understanding may degrade with ambiguous or incomplete
+                  sentences.
+                </li>
+                <li>
+                  Low performance in translating noisy OCR-extracted text or
+                  scanned handwritten documents.
+                </li>
+                <li>
+                  Not suitable for legal, literary, or highly technical
+                  translations requiring domain expertise.
+                </li>
+                <li>
+                  Translation accuracy may drop with excessively long or
+                  unstructured input data.
+                </li>
+              </ul>
+            </div>
+
+            {/* Additional Info Section */}
+            <div className="border-t border-gray-200 mt-6 pt-4 text-sm text-gray-600 space-y-1">
+              <p>
+                <strong>Last Security Audit Date:</strong> None
+              </p>
+              <p>
+                <strong>Copyright:</strong> NIC
+              </p>
+              <p>
+                <strong>Awards Won:</strong> None
+              </p>
+              <p>
+                <strong>Published Articles:</strong> None
+              </p>
+            </div>
           </div>
 
           {/* Summary Table */}
@@ -290,16 +356,30 @@ const AiPaniniDetailPage = () => {
             </ol>
           </div>
 
-          <div className="mt-12 bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-semibold text-blue-800 mb-2">
-              Summary
+          {/* Network Availability Section */}
+          <div className="mt-12 mb-6 bg-white rounded-lg shadow-md p-8">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3">
+              Network Access Details
             </h3>
-            <p className="text-base text-gray-700">
-              AI Panini bridges the language gap across digital platforms,
-              enabling government and public interfaces to serve diverse
-              linguistic populations. With strong adoption across ministries and
-              customizable APIs, it is a key enabler of multilingual governance.
-            </p>
+            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
+              <li>
+                <strong>Network Access:</strong> Only via the{" "}
+                <strong>NIC (Network Interface Card)</strong> network (internal
+                network).
+              </li>
+              <li>
+                <strong>Ports to be Opened:</strong>{" "}
+                <code className="bg-gray-100 px-1 py-0.5 rounded">443</code>
+              </li>
+              <li>
+                <strong>Firewall Configuration:</strong> Only whitelisted IPs
+                can access the service.
+              </li>
+              <li>
+                <strong>Access Control:</strong> Enforced via{" "}
+                <strong>VPN</strong> and <strong>IP whitelisting</strong>.
+              </li>
+            </ul>
           </div>
         </div>
       </div>

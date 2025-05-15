@@ -12,10 +12,16 @@ const AiVaniDetailPage = () => {
   }, []);
 
   return (
-    <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#fdfdfd] text-gray-900">
+    <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
       <Header toggleSidebar={() => setSidebarOpen(true)} />
       <div className="overflow-auto flex flex-grow">
-        <div className="px-4 py-6 w-full max-w-7xl mx-auto">
+        <div className="px-20 py-6 w-full max-w-screen-2xl mx-auto">
+          <button
+            onClick={() => navigate(-1)}
+            className="mt-3 mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
+          >
+            ← Back to Services
+          </button>
           <h2 className="text-3xl font-bold text-blue-900 mb-2">AI VANI</h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
             AI VANI is a modular and multilingual conversational AI framework
@@ -23,13 +29,6 @@ const AiVaniDetailPage = () => {
             and voicebot interactions across 22 Indian languages, with powerful
             integration capabilities for government and citizen-facing services.
           </p>
-
-          <button
-            onClick={() => navigate(-1)}
-            className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
-          >
-            ← Back to Services
-          </button>
 
           {/* Image and Overview */}
           <div className="bg-white rounded-lg shadow-md overflow-hidden mb-10">
@@ -156,7 +155,7 @@ const AiVaniDetailPage = () => {
           </div>
 
           {/* Summary */}
-          <div className="mt-12 bg-white rounded-lg shadow-md p-6">
+          <div className="mt-12 mb-6 bg-white rounded-lg shadow-md p-6">
             <h3 className="text-xl font-semibold text-blue-800 mb-2">
               Summary
             </h3>

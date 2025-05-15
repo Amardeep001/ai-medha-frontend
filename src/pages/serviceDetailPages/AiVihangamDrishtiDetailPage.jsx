@@ -43,11 +43,17 @@ const AiVihangamDrishtiDetail = () => {
   }, []);
 
   return (
-    <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#f3f1ef] text-gray-900">
+    <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
       <Header toggleSidebar={() => {}} />
       <div className="overflow-auto flex flex-grow">
-        <div className="px-4 py-6 w-full max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-green-900 mb-2">
+        <div className="px-20 py-6 w-full max-w-screen-2xl mx-auto">
+          <button
+            onClick={() => navigate(-1)}
+            className="mt-3 mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-green-700 transition-all"
+          >
+            ← Back to Services
+          </button>
+          <h2 className="text-3xl font-bold text-blue-900 mb-2">
             AI VIHANGAM DRISHTI
           </h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
@@ -57,13 +63,6 @@ const AiVihangamDrishtiDetail = () => {
             responses. Designed for scalability and remote monitoring, it
             empowers governments with real-time insights from above.
           </p>
-
-          <button
-            onClick={() => navigate(-1)}
-            className="mb-6 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-all"
-          >
-            ← Back to Services
-          </button>
 
           {/* Model Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
@@ -76,7 +75,7 @@ const AiVihangamDrishtiDetail = () => {
                     className="rounded-t-lg w-full h-40 object-cover"
                   />
                   <div className="p-4">
-                    <h3 className="text-xl font-semibold text-green-800 mb-1">
+                    <h3 className="text-xl font-semibold text-blue-800 mb-1">
                       {model.name}
                     </h3>
                     <p className="text-sm text-gray-600 mb-1">
@@ -96,7 +95,7 @@ const AiVihangamDrishtiDetail = () => {
                         <strong>Latency:</strong> {model.metrics.latency}
                       </p>
                     </div>
-                    <p className="text-sm text-green-600 font-medium mt-2">
+                    <p className="text-sm text-blue-600 font-medium mt-2">
                       Version: {model.version}
                     </p>
                   </div>
@@ -107,7 +106,7 @@ const AiVihangamDrishtiDetail = () => {
 
           {/* Intelligence Overview */}
           <div className="bg-white rounded-lg shadow-md p-6 mb-10">
-            <h3 className="text-xl font-semibold text-green-800 mb-3">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Model Intelligence & Architecture Overview
             </h3>
             <p className="text-gray-700 text-sm leading-relaxed">
@@ -136,7 +135,7 @@ const AiVihangamDrishtiDetail = () => {
             </ul>
 
             <div className="mt-6">
-              <h4 className="text-md font-semibold text-green-700 mb-2">
+              <h4 className="text-md font-semibold text-blue-700 mb-2">
                 Service Capabilities & Key Metrics
               </h4>
               <ul className="text-sm text-gray-700 space-y-2">
@@ -164,7 +163,7 @@ const AiVihangamDrishtiDetail = () => {
             </div>
 
             <div className="mt-6">
-              <h4 className="text-md font-semibold text-green-700 mb-2">
+              <h4 className="text-md font-semibold text-blue-700 mb-2">
                 Government Usage & Deployment
               </h4>
               <p className="text-sm text-gray-700 leading-relaxed">

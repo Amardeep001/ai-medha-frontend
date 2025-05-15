@@ -120,15 +120,15 @@ const AiNibhritDetailPage = () => {
         <div className="px-20 py-6 w-full max-w-screen-2xl mx-auto">
           <button
             onClick={() => navigate(-1)}
-            className="mb-6 mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
+            className="mb-6 mt-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
           >
             ← Back to Services
           </button>
           <h2 className="text-3xl font-bold text-blue-900 mb-2">AI Nibhrit</h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
             AI Nibhrit ensures end-to-end privacy by redacting Aadhaar, PAN,
-            fingerprints, and QR codes using AI technologies like YOLOv5 and
-            OCR, returning masked documents or JSON coordinates.
+            fingerprints, and QR codes using AI technologies, returning masked
+            documents or JSON coordinates.
           </p>
 
           {/* Enhanced Intelligence Overview */}
@@ -170,7 +170,7 @@ const AiNibhritDetailPage = () => {
                 for renewal)
               </p>
               <p>
-                <strong>Copyright:</strong> 31-01-2024
+                <strong>Copyright:</strong> NIC
               </p>
               <p>
                 <strong>Awards & Recognition:</strong> None
@@ -229,32 +229,26 @@ const AiNibhritDetailPage = () => {
                 Ideal Use Cases
               </h4>
 
-              <ul className="text-gray-700 text-sm space-y-2 ">
-                <li className="flex items-start gap-2">
-                  <span className="font-black">•</span>
-                  <span>
-                    <strong>Land & Property Document Handling:</strong> Used by
-                    Stamps & Registration Departments to redact sensitive data
-                    in sale deeds, registration papers, and encumbrance
-                    certificates. Minimizes exposure risk during public access
-                    or record retrieval.
-                  </span>
+              <ol className="list-disc list-inside text-gray-700 text-sm space-y-2">
+                <li>
+                  <strong>Land & Property Document Handling:</strong> Used by
+                  Stamps & Registration Departments to redact sensitive data in
+                  sale deeds, registration papers, and encumbrance certificates.
+                  Minimizes exposure risk during public access or record
+                  retrieval.
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-black">•</span>
-                  <strong>
-                    Real Estate Regulatory Authorities (RERA):
-                  </strong>{" "}
+                <li>
+                  <strong>Real Estate Regulatory Authorities (RERA):</strong>{" "}
                   Masks PII from property listings, builder submissions etc.
                   e-Governance Platforms: Ensure Aadhaar/PAN masking is in
                   digitally uploaded forms.
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-black">•</span>
+                <li>
                   <strong>e-Governance Platforms:</strong> Ensure Aadhaar/PAN
                   masking is in digitally uploaded forms.
                 </li>
-              </ul>
+              </ol>
+              <ul className="list-disc text-gray-700 text-sm space-y-2 "></ul>
             </div>
 
             <div className="mt-6">
@@ -355,7 +349,7 @@ const AiNibhritDetailPage = () => {
           </div>
 
           {/* Visual Charts */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
             {/* Pie Chart: Department-wise Service Count */}
             <div className="bg-white rounded-lg shadow-md p-8 sm:p-6">
               <h3 className="text-xl font-semibold text-blue-800 mb-2">

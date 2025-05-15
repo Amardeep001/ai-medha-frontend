@@ -19,14 +19,14 @@ const AiMatraDetailPage = () => {
   }, []);
 
   return (
-    <div className="bg-gray-100 text-gray-900 min-h-screen flex flex-col">
+    <div className="bg-[#eee5dc] text-gray-900 min-h-screen flex flex-col">
       <Header toggleSidebar={() => setSidebarOpen(true)} />
 
-      <main className="flex-grow max-w-7xl mx-auto px-4 py-8">
+      <main className="flex-grow w-full max-w-screen-2xl mx-auto px-20 py-6">
         {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
-          className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+          className="mt-3 mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
         >
           ← Back to Services
         </button>

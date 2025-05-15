@@ -12,10 +12,28 @@ const AiSatyapikaananDetailPage = () => {
   }, []);
 
   return (
-    <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-gray-50 text-gray-900">
+    <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
       <Header toggleSidebar={() => setSidebarOpen(true)} />
       <div className="overflow-auto flex flex-grow">
-        <div className="p-6 w-full max-w-7xl mx-auto">
+        <div className="px-20 py-6 w-full max-w-screen-2xl mx-auto">
+          <div className="mt-3 flex space-x-4">
+            <button
+              onClick={() => navigate(-1)}
+              className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
+            >
+              ← Back to Services
+            </button>
+            <div className="mb-6">
+              <a
+                href="https://demoai.nic.in/fraas" // Replace with actual demo link
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-4 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition"
+              >
+                🌐 Try Live Demo
+              </a>
+            </div>
+          </div>
           <h2 className="text-3xl font-bold text-blue-900 mb-2">
             AI SATYAPIKAANAN
           </h2>
@@ -26,24 +44,6 @@ const AiSatyapikaananDetailPage = () => {
             citizen-centric services in sectors like education, agriculture,
             transport, and public administration.
           </p>
-
-          <div className="mb-6">
-            <a
-              href="https://demoai.nic.in/fraas" // Replace with actual demo link
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-4 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition"
-            >
-              🌐 Try Live Demo
-            </a>
-          </div>
-
-          <button
-            onClick={() => navigate(-1)}
-            className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
-          >
-            ← Back to Services
-          </button>
 
           <div className="bg-white rounded-lg shadow-md overflow-hidden mb-10">
             <img

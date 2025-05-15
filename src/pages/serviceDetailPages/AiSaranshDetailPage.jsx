@@ -16,7 +16,13 @@ const AiSaranshDetailPage = () => {
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
       <Header />
       <div className="overflow-auto flex flex-grow">
-        <div className="px-4 py-6 w-full max-w-7xl mx-auto">
+        <div className="px-20 py-6 w-full max-w-screen-2xl mx-auto">
+          <button
+            onClick={() => navigate(-1)}
+            className="mt-3 mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
+          >
+            ← Back to Services
+          </button>
           <h2 className="text-3xl font-bold text-blue-900 mb-2">AI SARANSH</h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
             AI Saransh is an automated text summarization system designed to
@@ -25,13 +31,6 @@ const AiSaranshDetailPage = () => {
             transformer-based NLP techniques. Integrated with NAPIX, it serves
             various ministries and judicial systems.
           </p>
-
-          <button
-            onClick={() => navigate(-1)}
-            className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
-          >
-            ← Back to Services
-          </button>
 
           {/* Illustrative Image */}
           <div className="mb-10">
