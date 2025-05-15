@@ -124,12 +124,11 @@ const AiNibhritDetailPage = () => {
           >
             ← Back to Services
           </button>
-          <h2 className="text-3xl font-bold text-blue-900 mb-2">AI NIBHRIT</h2>
+          <h2 className="text-3xl font-bold text-blue-900 mb-2">AI Nibhrit</h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
-            AI Nibhrit ensures end-to-end privacy by redacting Aadhaar numbers,
-            PAN details, fingerprints, and QR codes using AI technologies like
-            YOLOv5 and OCR (Tesseract). The system returns either masked
-            documents or coordinates for masking in JSON format.
+            AI Nibhrit ensures end-to-end privacy by redacting Aadhaar, PAN,
+            fingerprints, and QR codes using AI technologies like YOLOv5 and
+            OCR, returning masked documents or JSON coordinates.
           </p>
 
           {/* Enhanced Intelligence Overview */}
@@ -363,7 +362,7 @@ const AiNibhritDetailPage = () => {
                 Department-wise Service Count
               </h3>
               <p className="text-sm text-gray-600 mb-4">
-                Reflects API usage in September across different state
+                Reflects API usage in year 2024 across different state
                 departments utilizing AI Nibhrit for PII masking.
               </p>
               <div className="h-72 overflow-x-auto">
@@ -372,7 +371,7 @@ const AiNibhritDetailPage = () => {
                     <Pie
                       dataKey="value"
                       data={dataWithPercentage}
-                      cx="38%" // shift pie left to give more space for legend
+                      cx="40%" // Slightly more space for legend
                       cy="50%"
                       outerRadius={100}
                       label={false}
@@ -400,11 +399,11 @@ const AiNibhritDetailPage = () => {
                       }
                       wrapperStyle={{
                         fontSize: "12px",
-                        paddingLeft: "4px", // reduce space between pie and legend
-                        width: "300px",
-                        textAlign: "left", // 👈 align text to left
-                        whiteSpace: "normal", // 👈 allow full label to show
-                        wordBreak: "break-word", // 👈 break if very long word
+                        maxWidth: "20vw", // responsive max width
+                        textAlign: "left",
+                        whiteSpace: "normal", // allow line wrapping
+                        wordBreak: "break-word", // break long words
+                        lineHeight: "1.4em",
                       }}
                     />
                   </PieChart>
