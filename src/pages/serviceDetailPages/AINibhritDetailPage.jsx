@@ -23,14 +23,14 @@ import FlowChart from "../../images/serviceCatalogueImages/ai_nibhrit_flowchart.
 const mockModels = [
   {
     id: "m1",
-    name: "PAN & Aadhaar Masking Model",
-    category: "PII Detection",
+    name: "Visual Data Masking Model",
+    category: "PII Detection from scanned images and pdfs",
     sector: "Data Privacy",
     description:
-      "Uses YOLOv5 to identify and mask Aadhaar, PAN, and fingerprint regions.",
+      "A deep learning-based model designed to detect PII from scanned images and PDF documents.",
     metrics: {
       accuracy: "98%",
-      latency: "20s (for 30–40 page docs)",
+      latency: "~0.2 seconds on average",
       // f1Score: "N/A",
     },
     version: "v1.0.0",
@@ -38,14 +38,15 @@ const mockModels = [
   },
   {
     id: "m2",
-    name: "OCR + Redaction Engine",
-    category: "Text Extraction",
+    name: "Text Redaction Engine",
+    category: "PII Detection from Text",
     sector: "Data Privacy",
     description:
-      "Utilizes Tesseract OCR for extracting sensitive text regions for redaction.",
+      "Machine learning-based OCR engine for extracting sensitive text regions for redaction.",
     metrics: {
-      accuracy: "Image quality dependent",
-      latency: "Varies by page size",
+      accuracy:
+        "Depends heavily on several factors, including the quality of the input image, language, font, layout, etc.",
+      latency: "Varies by page size and hardware used.",
       // f1Score: "N/A",
     },
     version: "v1.1.0",
@@ -54,16 +55,16 @@ const mockModels = [
 ];
 
 const departmentChartData = [
-  { name: "Registration and Stamps Department, Telangana", value: 9108616 },
-  { name: "NGDRS", value: 1409607 },
-  { name: "Registration Department, Puducherry", value: 598760 },
-  { name: "Registration and Stamps Department, Andhra Pradesh", value: 196846 },
-  { name: "Revenue Department, Gujarat", value: 18126 },
-  { name: "Real Estate Regulatory Authority, Himachal Pradesh", value: 11957 },
-  { name: "Registration Department, Kerala", value: 330 },
+  { name: "Registration and Stamps Department, Telangana", value: 10800566 },
+  { name: "NGDRS", value: 1655443 },
+  { name: "Registration Department, Puducherry", value: 775608 },
+  { name: "Registration and Stamps Department, Andhra Pradesh", value: 197008 },
+  { name: "Revenue Department, Gujarat", value: 28076 },
+  { name: "Real Estate Regulatory Authority, Himachal Pradesh", value: 28934 },
+  { name: "Registration Department, Kerala", value: 132 },
   { name: "Stamps and Registration Department, Uttar Pradesh", value: 203 },
   { name: "Revenue Department, Jammu & Kashmir", value: 65 },
-  { name: "Revenue and Disaster Management Department, Haryana", value: 61 },
+  { name: "Registration Department Kerala", value: 132 },
 ];
 
 const total = departmentChartData.reduce((sum, item) => sum + item.value, 0);
@@ -91,17 +92,17 @@ const docHitsData = [
   {
     name: "Directorate of Registration\nWest Bengal",
     shortName: "DoR WB",
-    count: 656884,
+    count: 679738,
   },
   {
     name: "NGDRS",
     shortName: "NGDRS",
-    count: 455,
+    count: 729,
   },
   {
     name: "Registration and Stamps Department, Andhra Pradesh",
     shortName: "RASD AP",
-    count: 46,
+    count: 40,
   },
 ];
 
@@ -149,7 +150,7 @@ const AiNibhritDetailPage = () => {
               identity fraud in digital workflows.
             </p>
 
-            <ul className="list-disc pl-5 mt-4 text-sm text-gray-700 space-y-2">
+            {/* <ul className="list-disc pl-5 mt-4 text-sm text-gray-700 space-y-2">
               <li>
                 <strong>YOLOv5 Object Detection:</strong> Used to detect
                 Aadhaar, PAN, fingerprints, and QR regions with high accuracy.
@@ -162,7 +163,7 @@ const AiNibhritDetailPage = () => {
                 <strong>OpenCV & TensorFlow:</strong> Applied for image
                 analysis, pre-processing and deep-learning model integration.
               </li>
-            </ul>
+            </ul> */}
 
             <div className="mt-4 text-sm text-gray-700 space-y-1">
               <p>
@@ -171,12 +172,6 @@ const AiNibhritDetailPage = () => {
               </p>
               <p>
                 <strong>Copyright:</strong> NIC
-              </p>
-              <p>
-                <strong>Awards & Recognition:</strong> None
-              </p>
-              <p>
-                <strong>Published Articles:</strong> None
               </p>
             </div>
 
@@ -195,7 +190,7 @@ const AiNibhritDetailPage = () => {
                 </li>
                 <li>
                   <strong>Processing speed:</strong> Avg. 20 sec per 30–40-page
-                  document (varies by CPU)
+                  document (varies by CPU processing)
                 </li>
                 <li>
                   <strong>Accuracy scores:</strong> PAN, Aadhaar, QR: 98%;
@@ -215,12 +210,12 @@ const AiNibhritDetailPage = () => {
               </h4>
               <p className="text-sm text-gray-700">
                 AI Nibhrit is actively being used by several state registration
-                departments, including those in West Bengal, Telangana,
-                Maharashtra, Tripura, Puducherry, Andhra Pradesh, and Uttar
-                Pradesh. Over 12 million documents were processed to identify
-                Aadhaar numbers, PAN, QR codes, and fingerprints in the year
-                2024. This reduced manual effort and improved compliance with
-                privacy norms.
+                departments, including those in Andhra Pradesh, Maharashtra,
+                Puducherry, Telangana, Tripura, Uttar Pradesh, and West Bengal.
+                Over 12 million documents were processed to identify Aadhaar
+                numbers, PAN, QR codes, and fingerprints in the year 2024. This
+                reduced manual effort and improved compliance with privacy
+                norms.
               </p>
             </div>
 
@@ -232,20 +227,22 @@ const AiNibhritDetailPage = () => {
               <ol className="list-disc list-inside text-gray-700 text-sm space-y-2">
                 <li>
                   <strong>Land & Property Document Handling:</strong> Used by
-                  Stamps & Registration Departments to redact sensitive data in
-                  sale deeds, registration papers, and encumbrance certificates.
-                  Minimizes exposure risk during public access or record
-                  retrieval.
+                  Stamps & Registration Departments in Andhra Pradesh, Gujarat,
+                  Jammu & Kashmir, Kerala, Puducherry, Telangana, and Uttar
+                  Pradesh to redact sensitive data in sale deeds, registration
+                  papers, and encumbrance certificates, minimizing exposure risk
+                  during public access or record retrieval.
                 </li>
                 <li>
                   <strong>Real Estate Regulatory Authorities (RERA):</strong>{" "}
-                  Masks PII from property listings, builder submissions etc.
-                  e-Governance Platforms: Ensure Aadhaar/PAN masking is in
-                  digitally uploaded forms.
+                  Masks PII from property listings, builder submissions, etc.
+                  Used by Himachal Pradesh on e-Governance platforms to ensure
+                  Aadhaar/PAN masking in digitally uploaded forms.
                 </li>
                 <li>
                   <strong>e-Governance Platforms:</strong> Ensure Aadhaar/PAN
-                  masking is in digitally uploaded forms.
+                  masking in digitally uploaded forms. Used by National Generic
+                  Document Registration System (NGDRS).
                 </li>
               </ol>
               <ul className="list-disc text-gray-700 text-sm space-y-2 "></ul>
@@ -356,8 +353,9 @@ const AiNibhritDetailPage = () => {
                 Department-wise Service Count
               </h3>
               <p className="text-sm text-gray-600 mb-4">
-                Reflects API usage in year 2024 across different state
-                departments utilizing AI Nibhrit for PII masking.
+                Reflects API usage from April 2024 to March 2025 across
+                different state departments utilizing AI Nibhrit for PII
+                masking.
               </p>
               <div className="h-72 overflow-x-auto">
                 <ResponsiveContainer width="100%" height="100%">
@@ -475,17 +473,17 @@ const AiNibhritDetailPage = () => {
                 PAN, fingerprints, and QR codes.
               </li>
               <li>
-                <strong>Text Extraction via Tesseract OCR:</strong> Extracts
-                machine-readable text from the document for further processing.
+                <strong>Text Extraction:</strong> Extracts machine-readable text
+                from the document for further processing.
               </li>
               <li>
-                <strong>PII Extraction from Text:</strong> NLP-based pattern
-                matchers identify Aadhaar/PAN numbers from the extracted text.
+                <strong>PII Extraction from Text:</strong> Pattern matchers
+                identify Aadhaar/PAN numbers from the extracted text.
               </li>
               <li>
-                <strong>Image-based PII Detection:</strong> YOLO or other object
-                detection models identify and locate image-based PII
-                (fingerprints, QR).
+                <strong>Image-based PII Detection:</strong> A deep
+                learning-based model identify and locate image-based PII
+                (fingerprints, Aadhaar, PAN and QR).
               </li>
               <li>
                 <strong>Masking of PII Regions:</strong> Applies masking
@@ -503,7 +501,7 @@ const AiNibhritDetailPage = () => {
             </ul>
 
             {/* Optional Diagram Placeholder */}
-            <div className="mt-6">
+            {/* <div className="mt-6">
               <h4 className="text-md font-semibold text-blue-700 mb-2">
                 Data Flow Diagram (Visual)
               </h4>
@@ -515,7 +513,7 @@ const AiNibhritDetailPage = () => {
               <p className="text-xs text-gray-500 mt-2">
                 * Illustrative diagram showing full processing pipeline.
               </p>
-            </div>
+            </div> */}
           </div>
 
           {/* Steps to Use AI Nibhrit Service */}
@@ -544,8 +542,7 @@ const AiNibhritDetailPage = () => {
               </li>
               <li>
                 <strong>PII Detection & Masking:</strong> The document is
-                processed using AI models (YOLOv5, OCR) to detect and mask
-                sensitive elements.
+                processed using AI models to detect and mask sensitive elements.
               </li>
               <li>
                 <strong>Output Delivery:</strong> The response includes either a
@@ -569,11 +566,11 @@ const AiNibhritDetailPage = () => {
                 <strong>Network Access:</strong> Available on NICNET and also
                 accessible externally via <strong>NAPIX</strong>.
               </li>
-              <li>
+              {/* <li>
                 <strong>Ports to be Opened:</strong>{" "}
                 <code className="bg-gray-100 px-1 py-0.5 rounded">5012</code> if
                 using NICNET.
-              </li>
+              </li> */}
               <li>
                 <strong>Firewall Configuration:</strong> Ensure required ports
                 are open and NIC's standard firewall rules are applied.
