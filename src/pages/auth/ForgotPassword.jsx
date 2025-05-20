@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import indianFlag from "../../images/ind_flag.png";
 import bgImg from "../../images/inibg.svg";
 import NicLogo from "../../images/nic_logo3.svg";
@@ -8,12 +9,31 @@ import NicLogo2 from "../../images/nic_logo2.png";
 
 const ForgotPassword = () => {
   const [useEmail, setUseEmail] = useState(true);
+  const [inputValue, setInputValue] = useState("");
+  const [isValid, setIsValid] = useState(false);
   const navigate = useNavigate();
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setInputValue(value);
+
+    // Basic validation logic
+    if (useEmail) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      setIsValid(emailRegex.test(value));
+    } else {
+      const mobileRegex = /^[0-9]{10}$/;
+      setIsValid(mobileRegex.test(value));
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // API call for sending OTP or email verification code goes here
-    navigate("/auth/verify-otp"); // Redirect to OTP Verification page
+    if (isValid) {
+      // Call API or continue to next step
+      console.log("Send code to:", inputValue);
+      navigate("/auth/verify-otp");
+    }
   };
 
   return (
@@ -86,7 +106,7 @@ const ForgotPassword = () => {
 
       {/* Forgot Password Form */}
       <div
-        className="flex-grow flex items-center justify-center bg-cover "
+        className="flex-grow flex items-center justify-center bg-cover"
         style={{ backgroundImage: `url(${bgImg})` }}
       >
         <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-md border-t-4 border-yellow-500">
@@ -99,7 +119,7 @@ const ForgotPassword = () => {
           </p>
 
           <form className="mt-6" onSubmit={handleSubmit}>
-            <div>
+            <div className="relative">
               <label className="block text-gray-700 font-semibold">
                 {useEmail ? "Email" : "Mobile Number"}
               </label>
@@ -108,14 +128,42 @@ const ForgotPassword = () => {
                 placeholder={
                   useEmail ? "Enter your email" : "Enter your mobile number"
                 }
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300"
-                required
+                value={inputValue}
+                onChange={handleInputChange}
+                className={`w-full px-4 py-2 mt-2 border rounded-md focus:ring ${
+                  isValid
+                    ? "border-green-500"
+                    : inputValue
+                    ? "border-red-500"
+                    : ""
+                }`}
               />
+              {/* Icon */}
+              {inputValue &&
+                (isValid ? (
+                  <FaCheckCircle className="text-green-500 absolute top-10 right-3 text-xl" />
+                ) : (
+                  <FaTimesCircle className="text-red-500 absolute top-10 right-3 text-xl" />
+                ))}
+
+              {/* Error Message */}
+              {!isValid && inputValue && (
+                <p className="text-red-500 text-sm mt-1">
+                  {useEmail
+                    ? "Please enter a valid email address."
+                    : "Please enter a valid 10-digit mobile number."}
+                </p>
+              )}
             </div>
 
             <button
               type="submit"
-              className="w-full bg-blue-900 text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-800 transition"
+              disabled={!isValid}
+              className={`w-full px-4 py-2 mt-4 rounded-md transition ${
+                isValid
+                  ? "bg-blue-900 text-white hover:bg-blue-800"
+                  : "bg-gray-400 text-white cursor-not-allowed"
+              }`}
             >
               Send Code
             </button>
@@ -123,7 +171,11 @@ const ForgotPassword = () => {
 
           <p
             className="mt-4 text-center text-gray-700 cursor-pointer hover:underline"
-            onClick={() => setUseEmail(!useEmail)}
+            onClick={() => {
+              setUseEmail(!useEmail);
+              setInputValue("");
+              setIsValid(false);
+            }}
           >
             {useEmail ? "Use Mobile Number Instead" : "Use Email Instead"}
           </p>

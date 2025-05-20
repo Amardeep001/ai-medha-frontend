@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import indianFlag from "../../images/ind_flag.png";
 import bgImg from "../../images/inibg.svg";
 import NicLogo from "../../images/nic_logo3.svg";
@@ -9,6 +10,7 @@ import NicLogo2 from "../../images/nic_logo2.png";
 const ForgotOtpVerification = () => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState("");
+  const [isOtpValid, setIsOtpValid] = useState(false);
   const [resendDisabled, setResendDisabled] = useState(false);
 
   const handleOTPSubmit = (e) => {
@@ -93,7 +95,7 @@ const ForgotOtpVerification = () => {
 
       {/* OTP Verification Form */}
       <div
-        className="flex-grow flex items-center justify-center bg-cover "
+        className="flex-grow flex items-center justify-center bg-cover"
         style={{ backgroundImage: `url(${bgImg})` }}
       >
         <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-md border-t-4 border-yellow-500">
@@ -105,22 +107,45 @@ const ForgotOtpVerification = () => {
           </p>
 
           <form className="mt-6" onSubmit={handleOTPSubmit}>
-            <div>
+            <div className="relative">
               <label className="block text-gray-700 font-semibold">
                 Enter OTP
               </label>
               <input
                 type="text"
                 value={otp}
-                onChange={(e) => setOtp(e.target.value)}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setOtp(value);
+                  setIsOtpValid(/^\d{6}$/.test(value));
+                }}
                 placeholder="Enter your OTP"
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300"
-                required
+                className={`w-full px-4 py-2 mt-2 border rounded-md focus:ring ${
+                  isOtpValid ? "border-green-500" : otp ? "border-red-500" : ""
+                }`}
               />
+              {otp &&
+                (isOtpValid ? (
+                  <FaCheckCircle className="text-green-500 absolute top-10 right-3 text-xl" />
+                ) : (
+                  <FaTimesCircle className="text-red-500 absolute top-10 right-3 text-xl" />
+                ))}
+
+              {!isOtpValid && otp && (
+                <p className="text-red-500 text-sm mt-1">
+                  OTP must be a 6-digit number.
+                </p>
+              )}
             </div>
+
             <button
               type="submit"
-              className="w-full bg-blue-900 text-white px-4 py-2 mt-6 rounded-md hover:bg-blue-800 transition"
+              disabled={!isOtpValid}
+              className={`w-full px-4 py-2 mt-6 rounded-md transition ${
+                isOtpValid
+                  ? "bg-blue-900 text-white hover:bg-blue-800"
+                  : "bg-gray-400 text-white cursor-not-allowed"
+              }`}
             >
               Verify OTP
             </button>

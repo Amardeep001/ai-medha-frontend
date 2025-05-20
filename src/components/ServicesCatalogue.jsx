@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   FaRobot,
@@ -154,6 +154,10 @@ const ServiceCatalogue = () => {
       (filterAvailability === "unavailable" && !service.available);
     return matchType && matchAvailability;
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="p-5 ">

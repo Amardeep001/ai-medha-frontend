@@ -43,8 +43,8 @@ const Login = () => {
     if (field === "password") {
       if (!value) {
         newErrors.password = "Password is required";
-      } else if (value.length < 6) {
-        newErrors.password = "Password must be at least 6 characters";
+      } else if (value.length < 8) {
+        newErrors.password = "Password must be at least 8 characters";
       } else {
         delete newErrors.password;
       }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
+import { FaTimesCircle, FaCheckCircle } from "react-icons/fa";
 import indianFlag from "../../images/ind_flag.png";
 import bgImg from "../../images/inibg.svg";
 import NicLogo from "../../images/nic_logo3.svg";
@@ -9,18 +10,40 @@ import NicLogo2 from "../../images/nic_logo2.png";
 const OtpVerification = () => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState("");
+  const [touched, setTouched] = useState(false);
+  const [error, setError] = useState("");
   const [resendDisabled, setResendDisabled] = useState(false);
+
+  const validateOTP = (value) => {
+    if (!value) return "OTP is required.";
+    if (!/^\d{6}$/.test(value)) return "OTP must be a 6-digit number.";
+    return "";
+  };
+
+  const handleBlur = () => {
+    setTouched(true);
+    setError(validateOTP(otp));
+  };
 
   const handleOTPSubmit = (e) => {
     e.preventDefault();
-    console.log("Entered OTP:", otp);
-    navigate("/dashboard");
+    const validationError = validateOTP(otp);
+    setError(validationError);
+    setTouched(true);
+    if (!validationError) {
+      // Proceed with OTP submission
+      console.log("OTP Verified:", otp);
+      navigate("/dashboard");
+    }
   };
 
   const handleResendOTP = () => {
-    setResendDisabled(true);
-    setTimeout(() => setResendDisabled(false), 60000); // Enable after 60 seconds
-    console.log("OTP Resent");
+    if (!resendDisabled) {
+      console.log("Resending OTP...");
+      // Your resend logic here
+      setResendDisabled(true);
+      setTimeout(() => setResendDisabled(false), 30000); // Enable after 30s
+    }
   };
 
   return (
@@ -93,7 +116,7 @@ const OtpVerification = () => {
 
       {/* OTP Verification Form */}
       <div
-        className="flex-grow flex items-center justify-center bg-cover "
+        className="flex-grow flex items-center justify-center bg-cover"
         style={{ backgroundImage: `url(${bgImg})` }}
       >
         <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-md border-t-4 border-yellow-500">
@@ -105,19 +128,43 @@ const OtpVerification = () => {
           </p>
 
           <form className="mt-6" onSubmit={handleOTPSubmit}>
-            <div>
+            <div className="relative">
               <label className="block text-gray-700 font-semibold">
                 Enter OTP
               </label>
               <input
                 type="text"
                 value={otp}
-                onChange={(e) => setOtp(e.target.value)}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setOtp(value);
+                  if (touched) setError(validateOTP(value));
+                }}
+                onBlur={handleBlur}
                 placeholder="Enter your OTP"
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300"
-                required
+                className={`w-full px-4 py-2 mt-2 border rounded-md pr-10 focus:ring ${
+                  error
+                    ? "border-red-500 focus:ring-red-300"
+                    : touched && !error
+                    ? "border-green-500 focus:ring-green-300"
+                    : "focus:ring-blue-300"
+                }`}
               />
+
+              {/* Success Icon */}
+              {touched && !error && (
+                <FaCheckCircle className="absolute right-3 top-10 text-green-500" />
+              )}
+
+              {/* Error Message + Icon */}
+              {touched && error && (
+                <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                  <FaTimesCircle className="text-red-500" />
+                  {error}
+                </p>
+              )}
             </div>
+
             <button
               type="submit"
               className="w-full bg-blue-900 text-white px-4 py-2 mt-6 rounded-md hover:bg-blue-800 transition"

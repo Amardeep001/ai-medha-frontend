@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Zoom from "react-reveal/Zoom";
 import { motion } from "framer-motion";
@@ -11,6 +11,10 @@ import Footer from "../components/Footer";
 
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div

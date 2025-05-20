@@ -24,7 +24,7 @@ const mockModels = [
   {
     id: "m1",
     name: "Visual Data Masking Model",
-    category: "PII Detection from scanned images and pdfs",
+    category: "PII Detection from scanned images and PDFs",
     sector: "Data Privacy",
     description:
       "A deep learning-based model designed to detect PII from scanned images and PDF documents.",
@@ -71,8 +71,9 @@ const total = departmentChartData.reduce((sum, item) => sum + item.value, 0);
 
 const dataWithPercentage = departmentChartData.map((item) => ({
   ...item,
-  nameWithPercent: `${item.name} (${((item.value / total) * 100).toFixed(1)}%)`,
+  nameWithPercent: `${item.name}`,
 }));
+// (${((item.value / total) * 100).toFixed(1)}%)
 
 // 🎨 10 Distinct Colors
 const COLORS = [
@@ -127,7 +128,7 @@ const AiNibhritDetailPage = () => {
           </button>
           <h2 className="text-3xl font-bold text-blue-900 mb-2">AI Nibhrit</h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
-            AI Nibhrit ensures end-to-end privacy by redacting Aadhaar, PAN,
+            AI Nibhrit ensures end-to-end privacy by masking Aadhaar, PAN,
             fingerprints, and QR codes using AI technologies, returning masked
             documents or JSON coordinates.
           </p>
@@ -210,12 +211,13 @@ const AiNibhritDetailPage = () => {
               </h4>
               <p className="text-sm text-gray-700">
                 AI Nibhrit is actively being used by several state registration
-                departments, including those in Andhra Pradesh, Maharashtra,
-                Puducherry, Telangana, Tripura, Uttar Pradesh, and West Bengal.
-                Over 12 million documents were processed to identify Aadhaar
-                numbers, PAN, QR codes, and fingerprints in the year 2024. This
-                reduced manual effort and improved compliance with privacy
-                norms.
+                departments, including those in Andaman & Nicobar Islands,
+                Andhra Pradesh, Chhattisgarh, Gujarat, Himachal Pradesh, Jammu &
+                Kashmir, Kerala, Maharashtra, Manipur, Mizoram, Puducherry,
+                Telangana, Tripura, Uttar Pradesh, and West Bengal. Over 12
+                million documents were processed to identify Aadhaar numbers,
+                PAN, QR codes, and fingerprints in the year 2024. This reduced
+                manual effort and improved compliance with privacy norms.
               </p>
             </div>
 
@@ -224,14 +226,15 @@ const AiNibhritDetailPage = () => {
                 Ideal Use Cases
               </h4>
 
-              <ol className="list-disc list-inside text-gray-700 text-sm space-y-2">
+              <ol className=" text-gray-700 text-sm space-y-2">
                 <li>
                   <strong>Land & Property Document Handling:</strong> Used by
                   Stamps & Registration Departments in Andhra Pradesh, Gujarat,
-                  Jammu & Kashmir, Kerala, Puducherry, Telangana, and Uttar
-                  Pradesh to redact sensitive data in sale deeds, registration
-                  papers, and encumbrance certificates, minimizing exposure risk
-                  during public access or record retrieval.
+                  Jammu & Kashmir, Kerala, Maharashtra, Puducherry, Telangana,
+                  Uttar Pradesh, and West Bengal to redact sensitive data in
+                  sale deeds, registration papers, and encumbrance certificates,
+                  minimizing exposure risk during public access or record
+                  retrieval.
                 </li>
                 <li>
                   <strong>Real Estate Regulatory Authorities (RERA):</strong>{" "}
@@ -240,9 +243,11 @@ const AiNibhritDetailPage = () => {
                   Aadhaar/PAN masking in digitally uploaded forms.
                 </li>
                 <li>
-                  <strong>e-Governance Platforms:</strong> Ensure Aadhaar/PAN
-                  masking in digitally uploaded forms. Used by National Generic
-                  Document Registration System (NGDRS).
+                  <strong>E-Governance Platforms:</strong> Ensures Aadhaar and
+                  PAN masking in digitally uploaded forms; implemented through
+                  the National Generic Document Registration System (NGDRS),
+                  which is used by states and UTs including Andaman & Nicobar
+                  Islands, Chhattisgarh, Manipur, Mizoram, and Tripura.
                 </li>
               </ol>
               <ul className="list-disc text-gray-700 text-sm space-y-2 "></ul>
@@ -316,29 +321,29 @@ const AiNibhritDetailPage = () => {
               <thead className="bg-gray-100">
                 <tr>
                   <th className="p-2 border">Model</th>
-                  <th className="p-2 border">Use Case</th>
+                  {/* <th className="p-2 border">Use Case</th> */}
                   <th className="p-2 border">Accuracy</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td className="p-2 border">Aadhaar Detection</td>
-                  <td className="p-2 border">Number & Pattern Masking</td>
+                  {/* <td className="p-2 border">Number & Pattern Masking</td> */}
                   <td className="p-2 border">98%</td>
                 </tr>
                 <tr>
                   <td className="p-2 border">PAN Detection</td>
-                  <td className="p-2 border">Alphanumeric Redaction</td>
+                  {/* <td className="p-2 border">Alphanumeric Redaction</td> */}
                   <td className="p-2 border">98%</td>
                 </tr>
                 <tr>
                   <td className="p-2 border">Fingerprint Region Masker</td>
-                  <td className="p-2 border">Image region blackout</td>
+                  {/* <td className="p-2 border">Image region blackout</td> */}
                   <td className="p-2 border">97%</td>
                 </tr>
                 <tr>
                   <td className="p-2 border">QR Code Blurring</td>
-                  <td className="p-2 border">QR scan blocking</td>
+                  {/* <td className="p-2 border">QR scan blocking</td> */}
                   <td className="p-2 border">98%</td>
                 </tr>
               </tbody>
@@ -462,7 +467,7 @@ const AiNibhritDetailPage = () => {
               to delivering the masked output:
             </p>
 
-            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
+            <ul className="list-decimal pl-5 text-sm text-gray-700 space-y-2">
               <li>
                 <strong>Input:</strong> PDF or image files containing text and
                 images with sensitive Personally Identifiable Information (PII).
@@ -532,8 +537,8 @@ const AiNibhritDetailPage = () => {
                 provided by the Nibhrit team on your local server or machine.
               </li>
               <li>
-                <strong>NAPIx Integration:</strong> The middleware connects to
-                AI Nibhrit services securely through the NAPIx platform.
+                <strong>NAPIX Integration:</strong> The middleware connects to
+                AI Nibhrit services securely through the NAPIX platform.
               </li>
               <li>
                 <strong>Local Preprocessing:</strong> Initial CPU-based
