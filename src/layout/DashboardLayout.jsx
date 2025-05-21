@@ -6,10 +6,11 @@ import {
   FaTools,
   FaClipboardList,
   FaTimes,
+  FaSignOutAlt,
 } from "react-icons/fa";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Link, useLocation, Outlet } from "react-router-dom"; // 👈 Import Outlet
+import { Link, useLocation, useNavigate, Outlet } from "react-router-dom";
 
 const menuItems = [
   { icon: <FaClipboardList />, title: "Overview", path: "/dashboard" },
@@ -22,6 +23,12 @@ const menuItems = [
 const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.clear(); // if you're storing user/session info in localStorage
+    navigate("/"); // redirect to home page
+  };
 
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-gray-100 text-gray-900">
@@ -59,6 +66,15 @@ const DashboardLayout = () => {
               </Link>
             ))}
           </nav>
+
+          {/* Logout Button */}
+          <button
+            onClick={handleLogout}
+            className="flex items-center space-x-2 px-4 py-3 rounded-lg hover:bg-red-500 hover:text-white transition mt-auto w-full"
+          >
+            <FaSignOutAlt className="text-xl" />
+            <span>Logout</span>
+          </button>
         </aside>
 
         {sidebarOpen && (
@@ -70,7 +86,7 @@ const DashboardLayout = () => {
 
         {/* Main Content */}
         <main className="flex-1 p-4 md:p-8 bg-[#eee5dc]">
-          <Outlet /> {/* 👈 This is the key to render nested routes */}
+          <Outlet />
         </main>
       </div>
       <Footer />

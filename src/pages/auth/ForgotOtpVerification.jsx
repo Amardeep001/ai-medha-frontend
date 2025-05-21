@@ -59,14 +59,16 @@ const ForgotOtpVerification = () => {
 
         {/* Main Navbar */}
         <div className="max-w-screen-2xl mx-auto flex flex-wrap justify-between items-center px-6 xl:px-20 py-4">
-          <div className="flex items-center space-x-6">
-            <img
-              src={NicLogo}
-              alt="Logo"
-              className="w-[200px] object-contain" // increased to h-32 w-32
-            />
-            <h1 className="text-2xl font-bold">AI MEDHA</h1>
-          </div>
+          <Link to="/">
+            <div className="flex items-center space-x-6">
+              <img
+                src={NicLogo}
+                alt="Logo"
+                className="w-[200px] object-contain" // increased to h-32 w-32
+              />
+              <h1 className="text-2xl font-bold">AI MEDHA</h1>
+            </div>
+          </Link>
           <div className="flex items-center space-x-6">
             <ul className="flex flex-wrap space-x-6">
               <li>

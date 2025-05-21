@@ -504,21 +504,6 @@ const AiNibhritDetailPage = () => {
                 JSON file specifying the coordinates of redacted regions.
               </li>
             </ul>
-
-            {/* Optional Diagram Placeholder */}
-            {/* <div className="mt-6">
-              <h4 className="text-md font-semibold text-blue-700 mb-2">
-                Data Flow Diagram (Visual)
-              </h4>
-              <img
-                src={FlowChart} // Replace with actual diagram when available
-                alt="Data Flow Diagram"
-                className="rounded shadow-md "
-              />
-              <p className="text-xs text-gray-500 mt-2">
-                * Illustrative diagram showing full processing pipeline.
-              </p>
-            </div> */}
           </div>
 
           {/* Steps to Use AI Nibhrit Service */}

@@ -15,6 +15,9 @@ const Login = () => {
   const [touched, setTouched] = useState({});
   const navigate = useNavigate();
 
+  const strongPasswordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/;
+
   const validate = (field, value) => {
     const newErrors = { ...errors };
 
@@ -43,8 +46,9 @@ const Login = () => {
     if (field === "password") {
       if (!value) {
         newErrors.password = "Password is required";
-      } else if (value.length < 8) {
-        newErrors.password = "Password must be at least 8 characters";
+      } else if (!strongPasswordRegex.test(value)) {
+        newErrors.password =
+          "Password must be at least 8 characters and include uppercase, lowercase, number, and special character.";
       } else {
         delete newErrors.password;
       }
@@ -157,14 +161,16 @@ const Login = () => {
 
         {/* Main Navbar */}
         <div className="max-w-screen-2xl mx-auto flex flex-wrap justify-between items-center px-6 xl:px-20 py-4">
-          <div className="flex items-center space-x-6">
-            <img
-              src={NicLogo}
-              alt="Logo"
-              className="w-[200px] object-contain" // increased to h-32 w-32
-            />
-            <h1 className="text-2xl font-bold">AI MEDHA</h1>
-          </div>
+          <Link to="/">
+            <div className="flex items-center space-x-6">
+              <img
+                src={NicLogo}
+                alt="Logo"
+                className="w-[200px] object-contain" // increased to h-32 w-32
+              />
+              <h1 className="text-2xl font-bold">AI MEDHA</h1>
+            </div>
+          </Link>
           <div className="flex items-center space-x-6">
             <ul className="flex flex-wrap space-x-6">
               <li>
@@ -193,7 +199,7 @@ const Login = () => {
 
       {/* Login Form */}
       <div
-        className="flex-grow flex items-center justify-center bg-cover pt-48 pb-12"
+        className="flex-grow flex items-center justify-center bg-cover pt-48 pb-16"
         style={{ backgroundImage: `url(${bgImg})` }}
       >
         <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-md border-t-4 border-yellow-500">
@@ -232,8 +238,10 @@ const Login = () => {
                 <FaCheckCircle className="absolute right-3 top-10 text-green-500" />
               )}
               {touched.emailOrPhone && errors.emailOrPhone && (
+                <FaTimesCircle className="absolute right-3 top-10 text-red-500" />
+              )}
+              {touched.emailOrPhone && errors.emailOrPhone && (
                 <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-                  <FaTimesCircle className="text-red-500" />
                   {errors.emailOrPhone}
                 </p>
               )}
@@ -264,8 +272,10 @@ const Login = () => {
                 <FaCheckCircle className="absolute right-3 top-10 text-green-500" />
               )}
               {touched.password && errors.password && (
+                <FaTimesCircle className="absolute right-3 top-10 text-red-500" />
+              )}
+              {touched.password && errors.password && (
                 <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-                  <FaTimesCircle className="text-red-500" />
                   {errors.password}
                 </p>
               )}

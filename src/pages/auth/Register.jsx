@@ -24,6 +24,9 @@ const Register = () => {
   const [touched, setTouched] = useState({});
   const [errors, setErrors] = useState({});
 
+  const strongPasswordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
   const validate = (field, value) => {
     // eslint-disable-next-line default-case
     switch (field) {
@@ -38,7 +41,9 @@ const Register = () => {
         if (!/^\d{10}$/.test(value)) return "Enter a 10-digit mobile number.";
         break;
       case "password":
-        if (value.length < 6) return "Password must be at least 6 characters.";
+        if (!strongPasswordRegex.test(value)) {
+          return "Password must be at least 8 characters and include uppercase, lowercase, number, and special character.";
+        }
         break;
       case "orgType":
         if (!value) return "Select an organization type.";
@@ -120,14 +125,16 @@ const Register = () => {
 
         {/* Main Navbar */}
         <div className="max-w-screen-2xl mx-auto flex flex-wrap justify-between items-center px-6 xl:px-20 py-4 ">
-          <div className="flex items-center space-x-6">
-            <img
-              src={NicLogo}
-              alt="Logo"
-              className="w-[200px] object-contain" // increased to h-32 w-32
-            />
-            <h1 className="text-2xl font-bold">AI MEDHA</h1>
-          </div>
+          <Link to="/">
+            <div className="flex items-center space-x-6">
+              <img
+                src={NicLogo}
+                alt="Logo"
+                className="w-[200px] object-contain" // increased to h-32 w-32
+              />
+              <h1 className="text-2xl font-bold">AI MEDHA</h1>
+            </div>
+          </Link>
           <div className="flex items-center space-x-6">
             <ul className="flex flex-wrap space-x-6">
               <li>
