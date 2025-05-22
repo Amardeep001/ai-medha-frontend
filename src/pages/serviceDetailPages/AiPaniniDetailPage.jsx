@@ -36,16 +36,30 @@ const mockModels = [
 ];
 
 const departmentChartData = [
-  { name: "Ministry of Home Affairs", value: 45672 },
-  { name: "MeitY", value: 12345 },
-  { name: "NIC Cloud Users", value: 18888 },
+  { name: "AI Shruti", value: 32295 },
+  { name: "Agricultural Informatics Division", value: 77799 },
+  { name: "Allahabad High Court", value: 11 },
+  { name: "Collabfiles", value: 4539 },
+  { name: "Department of Social Justice and Empowerment", value: 710 },
+  { name: "Digital NIC", value: 126361 },
+  { name: "High Court of Jharkhand", value: 81 },
+  { name: "Karnataka High Court", value: 9916 },
+  { name: "Maharashtra State Center", value: 583 },
+  { name: "Ministry of Ayush", value: 33 },
+  { name: "NIC Tejas", value: 11042 },
+  { name: "Napix", value: 11 },
+  { name: "Patna High Court", value: 656 },
+  { name: "Pondicherry Center", value: 9 },
+  { name: "Supreme Court", value: 9849910 },
+  { name: "VANI", value: 86444 },
+  { name: "eCourt MMP", value: 216060 },
 ];
 
 // Add percentage label for legend
 const total = departmentChartData.reduce((sum, d) => sum + d.value, 0);
 const dataWithPercentage = departmentChartData.map((d) => ({
   ...d,
-  nameWithPercent: `${d.name} - ${((d.value / total) * 100).toFixed(1)}%`,
+  nameWithPercent: `${d.name}`,
 }));
 
 const docHitsData = [
@@ -59,7 +73,25 @@ const docHitsData = [
   },
 ];
 
-const COLORS = ["#4f46e5", "#10b981", "#f59e0b", "#ef4444", "#6366f1"];
+const COLORS = [
+  "#4f46e5",
+  "#10b981",
+  "#f59e0b",
+  "#ef4444",
+  "#6366f1",
+  "#14b8a6",
+  "#a855f7",
+  "#eab308",
+  "#f43f5e",
+  "#22d3ee",
+  "#8b5cf6",
+  "#84cc16",
+  "#ec4899",
+  "#0ea5e9",
+  "#f97316",
+  "#3b82f6",
+  "#6d28d9",
+];
 
 const AiPaniniDetailPage = () => {
   const navigate = useNavigate();
@@ -204,7 +236,7 @@ const AiPaniniDetailPage = () => {
                 Limitations
               </h4>
               <p className="text-sm text-gray-700">
-                AI Panini processes up to 10,124 tokens per request.
+                AI Panini processes up to 1024 tokens per request.
               </p>
             </div>
           </div>
@@ -289,7 +321,7 @@ const AiPaniniDetailPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="bg-white rounded-lg shadow-md p-6">
               <h3 className="text-xl font-semibold text-blue-800 mb-2">
-                Department Adoption Pie Chart
+                Department Adoption Chart
               </h3>
               <p className="text-sm text-gray-600 mb-4">
                 Departments using AI Panini translation APIs for language
