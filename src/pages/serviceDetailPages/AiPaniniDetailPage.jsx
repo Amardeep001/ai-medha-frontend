@@ -24,10 +24,10 @@ const mockModels = [
     category: "Neural Machine Translation",
     sector: "Language AI",
     description:
-      "Performs automatic translation between 22 Indian languages and English using NMT architecture.",
+      "Performs automatic translation between 22 indic languages and English using NMT architecture.",
     metrics: {
       accuracy: "90–95% (language-dependent)",
-      latency: "Fast (approx. real-time)",
+      latency: "aprrox. 3 sec",
       f1Score: "N/A",
     },
     version: "v1.0.0",
@@ -42,6 +42,7 @@ const departmentChartData = [
   { name: "Collabfiles", value: 4539 },
   { name: "Department of Social Justice and Empowerment", value: 710 },
   { name: "Digital NIC", value: 126361 },
+  { name: "eCourt MMP", value: 216060 },
   { name: "High Court of Jharkhand", value: 81 },
   { name: "Karnataka High Court", value: 9916 },
   { name: "Maharashtra State Center", value: 583 },
@@ -52,7 +53,6 @@ const departmentChartData = [
   { name: "Pondicherry Center", value: 9 },
   { name: "Supreme Court", value: 9849910 },
   { name: "VANI", value: 86444 },
-  { name: "eCourt MMP", value: 216060 },
 ];
 
 // Add percentage label for legend
@@ -93,6 +93,35 @@ const COLORS = [
   "#6d28d9",
 ];
 
+const supportedLanguages = [
+  "Assamese",
+  "Bengali",
+  "Bodo",
+  "Dogri",
+  "Konkani",
+  "Gujarati",
+  "Hindi",
+  "Kannada",
+  "Kashmiri (Arabic)",
+  "Kashmiri (Devanagari)",
+  "Maithili",
+  "Malayalam",
+  "Marathi",
+  "Manipuri (Bengali)",
+  "Manipuri (Meitei)",
+  "Nepali",
+  "Oriya",
+  "Punjabi",
+  "Sanskrit",
+  "Santali",
+  "Sindhi (Arabic)",
+  "Sindhi (Devanagari)",
+  "Tamil",
+  "Telugu",
+  "Urdu",
+  "Braille",
+];
+
 const AiPaniniDetailPage = () => {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -120,7 +149,7 @@ const AiPaniniDetailPage = () => {
                 rel="noopener noreferrer"
                 className="inline-block px-4 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition"
               >
-                🌐 Try Live Demo
+                🌐 Try AI Panini
               </a>
             </div>
           </div>
@@ -129,7 +158,7 @@ const AiPaniniDetailPage = () => {
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
             AI Panini is designed to provide a reliable translation service for
             Indian government departments, facilitating seamless translation
-            between English and 22 official Indian languages. It supports both
+            between English and 22 official indic languages. It supports both
             English-to-Indic and Indic-to-English translations, ensuring
             effective multilingual communication across departments.
           </p>
@@ -141,7 +170,7 @@ const AiPaniniDetailPage = () => {
             </h3>
             <p className="text-gray-700 text-sm leading-relaxed">
               AI-Panini is a neural machine translation service that enables
-              reliable two-way translation between English and 22 Indian
+              reliable two-way translation between English and 22 indic
               languages, including Assamese, Bengali, Bodo, Dogri, Konkani,
               Gujarati, Hindi, Kannada, Kashmiri (Arabic), Kashmiri
               (Devanagari), Maithili, Malayalam, Marathi, Manipuri (Bengali),
@@ -169,22 +198,31 @@ const AiPaniniDetailPage = () => {
                   and Docx-to-Docx translation
                 </li>
                 <li>
-                  <strong>Language coverage:</strong> 22 Indian languages
-                  including Hindi, Tamil, Telugu, Bengali, Gujarati, Marathi,
-                  and more
-                </li>
-                <li>
                   <strong>Deployment options:</strong> REST APIs, real-time and
                   batch translation
                 </li>
                 <li>
-                  <strong>Average translation response time:</strong> Less than
-                  3 seconds for standard-length text inputs
+                  <strong>Average translation response time:</strong> Approx. 3
+                  seconds for standard-length text inputs
                 </li>
                 <li>
                   <strong>Workflow:</strong> Input → Pre-processing →
-                  Intermediate Processing → Output → (Optional:
-                  Storage/Feedback)
+                  Intermediate Processing → Output
+                </li>
+                <li>
+                  <strong>Category:</strong> Neural Machine Translation
+                </li>
+                <li>
+                  <strong>Sector:</strong> Language AI
+                </li>
+                <li>
+                  <strong>Accuracy:</strong> 90–95% (language-dependent)
+                </li>
+                <li>
+                  <strong>Latency:</strong> Approx. 3 sec
+                </li>
+                <li>
+                  <strong>Version:</strong> v1.0.0
                 </li>
               </ul>
             </div>
@@ -196,19 +234,21 @@ const AiPaniniDetailPage = () => {
               <p className="text-sm text-gray-700">
                 AI Panini is being actively adopted across various government
                 ministries, state departments, and judicial institutions to
-                enable seamless multilingual translation services. The platform
-                is already in use by the Ministry of Ayush, Lok Sabha, Supreme
-                Court, Indian Judiciary, Department of Consumer Affairs, NIC,
-                NIC Tejas, Digital NIC, and multiple High Courts including those
-                of Allahabad, Uttarakhand, Guwahati, Sikkim, Patna, Karnataka,
-                Calcutta, and Jharkhand. It is also being utilized by the
-                Department of Social Justice and Endowments Informatics
-                Division, Agricultural Informatics Division, Maharashtra State
-                Centre, and the Pondicherry Centre. By facilitating translation
-                across 22 Indian languages and English, AI Panini plays a vital
-                role in enhancing accessibility, governance, and citizen
-                engagement across the nation.
+                enable seamless multilingual translation services. By supporting
+                translation across 22 indic languages and English, AI Panini
+                plays a vital role in enhancing accessibility, governance, and
+                citizen engagement across the nation.
               </p>
+              <p className="text-sm text-gray-700 mt-3">
+                <strong>Organizations using AI Panini include:</strong>
+              </p>
+              <ul className="list-disc list-inside ml-5 text-sm text-gray-700">
+                <li>Supreme Court</li>
+                <li>Agricultural Informatics Division</li>
+                <li>eCourt MMP</li>
+                <li>NIC Tejas</li>
+                <li>and many more.</li>
+              </ul>
             </div>
 
             <div className="mt-6">
@@ -217,8 +257,7 @@ const AiPaniniDetailPage = () => {
               </h4>
               <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
                 <li>
-                  Government document translation between Indian languages and
-                  English.
+                  Document translation between Indic languages and English.
                 </li>
                 <li>
                   Real-time translation in multilingual applications or portals.
@@ -230,22 +269,12 @@ const AiPaniniDetailPage = () => {
                 </li>
               </ul>
             </div>
-
-            <div className="mt-6">
-              <h4 className="text-blue-800 font-semibold text-md mb-2">
-                Limitations
-              </h4>
-              <p className="text-sm text-gray-700">
-                AI Panini processes up to 1024 tokens per request.
-              </p>
-            </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-8 mb-10">
+          {/* <div className="bg-white rounded-lg shadow-md p-8 mb-10">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Translation Solutions Overview
             </h3>
-            {/* Model Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-5 ">
               {mockModels.map((model) => (
                 <div className="bg-white rounded-lg shadow-md border hover:shadow-xl transition-all">
@@ -282,7 +311,7 @@ const AiPaniniDetailPage = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* Summary Table */}
           <div className="bg-white rounded-lg shadow-md p-6 mb-10">
@@ -294,25 +323,28 @@ const AiPaniniDetailPage = () => {
                 <tr>
                   <th className="p-2 border">Language</th>
                   <th className="p-2 border">Bidirectional Support</th>
-                  <th className="p-2 border">Accuracy (Approx.)</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="p-2 border">Hindi ↔ English</td>
-                  <td className="p-2 border">Yes</td>
-                  <td className="p-2 border">94%</td>
-                </tr>
-                <tr>
+                {supportedLanguages.map((item) => {
+                  return (
+                    <>
+                      <tr>
+                        <td className="p-2 border">{item}</td>
+                        <td className="p-2 border">Yes</td>
+                      </tr>
+                    </>
+                  );
+                })}
+
+                {/* <tr>
                   <td className="p-2 border">Bengali ↔ English</td>
                   <td className="p-2 border">Yes</td>
-                  <td className="p-2 border">91%</td>
                 </tr>
                 <tr>
                   <td className="p-2 border">Tamil ↔ English</td>
                   <td className="p-2 border">Yes</td>
-                  <td className="p-2 border">89%</td>
-                </tr>
+                </tr> */}
               </tbody>
             </table>
           </div>
@@ -375,34 +407,40 @@ const AiPaniniDetailPage = () => {
 
             <div className="bg-white rounded-lg shadow-md p-6">
               <h3 className="text-xl font-semibold text-blue-800 mb-2">
-                Translation API Document Usage
+                Department-wise Usage Data
               </h3>
               <p className="text-sm text-gray-600 mb-4">
-                Tracks usage of the translation API by NIC and other agencies.
+                Total Session hits in Annually year 2024:{" "}
+                <strong>1,04,25,825</strong>
               </p>
-              <div className="h-80">
-                {" "}
-                {/* Increased height slightly */}
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart
-                    data={docHitsData}
-                    margin={{ top: 10, right: 30, left: 20, bottom: 10 }} // More bottom space
-                  >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis
-                      dataKey="name"
-                      angle={-10}
-                      textAnchor="end"
-                      interval={0} // ensures all labels show
-                      height={60} // sets space for angled labels
-                    />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend verticalAlign="bottom" height={36} />{" "}
-                    {/* Moves legend up */}
-                    <Bar dataKey="count" fill="#4f46e5" />
-                  </BarChart>
-                </ResponsiveContainer>
+              <div className="max-h-72 overflow-y-auto rounded-lg border border-gray-200">
+                <table className="min-w-full divide-y divide-gray-200 text-sm text-left text-gray-700">
+                  <thead className="bg-gray-100 sticky top-0 z-10">
+                    <tr>
+                      <th scope="col" className="px-4 py-2 font-semibold">
+                        Department
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-4 py-2 font-semibold text-right"
+                      >
+                        Usage Count
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-100">
+                    {departmentChartData
+                      .sort((a, b) => b.value - a.value)
+                      .map((item, index) => (
+                        <tr key={index}>
+                          <td className="px-4 py-2">{item.name}</td>
+                          <td className="px-4 py-2 text-right">
+                            {item.value.toLocaleString()}
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -414,8 +452,8 @@ const AiPaniniDetailPage = () => {
             </h3>
             <ol className="list-decimal list-inside text-sm text-gray-700 space-y-2">
               <li>
-                Fill out the <strong>Translation Service Request Form</strong>{" "}
-                via NIC Cloud Portal.
+                Fill out the <strong>User Service Request Form</strong> via NIC
+                Cloud Portal.
               </li>
               <li>
                 Include project name, use case, and requested source-target
@@ -425,12 +463,45 @@ const AiPaniniDetailPage = () => {
                 Submit with a signed user request letter to initiate onboarding.
               </li>
               <li>
-                Access the NAPIX APIs to integrate AI Panini into your digital
-                systems.
+                Choose an integration method: <strong>NAPIX Integration</strong>{" "}
+                or <strong>Direct API Access</strong>.
               </li>
+
+              {/* NAPIX Integration Steps */}
               <li>
-                Translation services can then be used for websites, apps,
-                portals, or internal software.
+                <strong>NAPIX Integration:</strong>
+                <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
+                  <li>Register on the NAPIX platform.</li>
+                  <li>
+                    Apply for API access via the user service request form.
+                  </li>
+                  <li>
+                    After verification by a Director-level or higher authority,
+                    credentials will be issued.
+                  </li>
+                  <li>
+                    You will receive a <strong>Client ID</strong> and{" "}
+                    <strong>Secret ID</strong> for authentication.
+                  </li>
+                  <li>
+                    Use these credentials in each API request to access
+                    translation services.
+                  </li>
+                </ul>
+              </li>
+
+              {/* Direct API Access Steps */}
+              <li>
+                <strong>Direct API Access:</strong>
+                <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
+                  <li>
+                    Route requests through NICNET VM or VPN for secure access.
+                  </li>
+                  <li>
+                    Use the available API endpoints to directly access
+                    translation services.
+                  </li>
+                </ul>
               </li>
             </ol>
           </div>
@@ -442,8 +513,9 @@ const AiPaniniDetailPage = () => {
             </h3>
             <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
               <li>
-                <strong>Network Access:</strong> Only via the{" "}
-                <strong>NIC</strong> Network.
+                <strong>Network Access:</strong> internal only via the{" "}
+                <strong>NIC</strong> Network, and external via{" "}
+                <strong>NAPIX</strong>.
               </li>
               {/* <li>
                 <strong>Ports to be Opened:</strong>{" "}
