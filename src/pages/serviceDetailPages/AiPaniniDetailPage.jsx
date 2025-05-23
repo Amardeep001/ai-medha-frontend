@@ -8,11 +8,6 @@ import {
   Cell,
   Tooltip,
   ResponsiveContainer,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
   Legend,
 } from "recharts";
 import TranslationImage from "../../images/translation_image.jpg";
@@ -55,23 +50,10 @@ const departmentChartData = [
   { name: "VANI", value: 86444 },
 ];
 
-// Add percentage label for legend
-const total = departmentChartData.reduce((sum, d) => sum + d.value, 0);
 const dataWithPercentage = departmentChartData.map((d) => ({
   ...d,
   nameWithPercent: `${d.name}`,
 }));
-
-const docHitsData = [
-  {
-    name: "NIC Cloud Platform",
-    count: 15783,
-  },
-  {
-    name: "Language Corp Usage",
-    count: 6210,
-  },
-];
 
 const COLORS = [
   "#4f46e5",
@@ -164,7 +146,7 @@ const AiPaniniDetailPage = () => {
           </p>
 
           {/* Architecture Overview */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
+          <div className="bg-white rounded-lg shadow-md p-6">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               About AI Panini
             </h3>
@@ -314,7 +296,7 @@ const AiPaniniDetailPage = () => {
           </div> */}
 
           {/* Summary Table */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
+          <div className="mt-10 bg-white rounded-lg shadow-md p-6 ">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Language Coverage Table
             </h3>
@@ -336,21 +318,12 @@ const AiPaniniDetailPage = () => {
                     </>
                   );
                 })}
-
-                {/* <tr>
-                  <td className="p-2 border">Bengali ↔ English</td>
-                  <td className="p-2 border">Yes</td>
-                </tr>
-                <tr>
-                  <td className="p-2 border">Tamil ↔ English</td>
-                  <td className="p-2 border">Yes</td>
-                </tr> */}
               </tbody>
             </table>
           </div>
 
           {/* Charts */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="bg-white rounded-lg shadow-md p-6">
               <h3 className="text-xl font-semibold text-blue-800 mb-2">
                 Department Adoption Chart
@@ -446,7 +419,7 @@ const AiPaniniDetailPage = () => {
           </div>
 
           {/* Summary & Steps */}
-          <div className="mt-12 bg-white rounded-lg shadow-md p-6">
+          <div className="mt-10 bg-white rounded-lg shadow-md p-6">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               How to Use AI Panini Service
             </h3>
@@ -507,7 +480,7 @@ const AiPaniniDetailPage = () => {
           </div>
 
           {/* Network Availability Section */}
-          <div className="mt-12 mb-6 bg-white rounded-lg shadow-md p-8">
+          <div className="mt-10 mb-6 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Network Access Details
             </h3>

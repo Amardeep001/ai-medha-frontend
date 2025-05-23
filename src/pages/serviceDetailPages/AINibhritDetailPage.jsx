@@ -134,7 +134,7 @@ const AiNibhritDetailPage = () => {
           </p>
 
           {/* Enhanced Intelligence Overview */}
-          <div className="bg-white rounded-lg shadow-md p-8 mb-10">
+          <div className="bg-white rounded-lg shadow-md p-8 ">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               About AI Nibhrit
               {/* Model Intelligence & Architecture Overview */}
@@ -267,7 +267,7 @@ const AiNibhritDetailPage = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-8 mb-10">
+          <div className="mt-10 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Data Privacy Solutions Overview
             </h3>
@@ -313,7 +313,7 @@ const AiNibhritDetailPage = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-8 mb-10">
+          <div className="mt-10 bg-white rounded-lg shadow-md p-8 ">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Model Summary Table
             </h3>
@@ -351,7 +351,7 @@ const AiNibhritDetailPage = () => {
           </div>
 
           {/* Visual Charts */}
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+          <div className="mt-10 grid grid-cols-1 xl:grid-cols-2 gap-8">
             {/* Pie Chart: Department-wise Service Count */}
             <div className="bg-white rounded-lg shadow-md p-8 sm:p-6">
               <h3 className="text-xl font-semibold text-blue-800 mb-2">
@@ -457,7 +457,7 @@ const AiNibhritDetailPage = () => {
           </div>
 
           {/* End-to-End Flow Section */}
-          <div className="mt-12 bg-white rounded-lg shadow-md p-8 mb-10">
+          <div className="mt-10 bg-white rounded-lg shadow-md p-8 ">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               End-to-End Flow
             </h3>
@@ -507,7 +507,7 @@ const AiNibhritDetailPage = () => {
           </div>
 
           {/* Steps to Use AI Nibhrit Service */}
-          <div className="mt-12 bg-white rounded-lg shadow-md p-8">
+          <div className="mt-10 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               How to Use AI Nibhrit Service
             </h3>
@@ -547,7 +547,7 @@ const AiNibhritDetailPage = () => {
           </div>
 
           {/* Network Availability Section */}
-          <div className="mt-12 mb-6 bg-white rounded-lg shadow-md p-8 ">
+          <div className="mt-10 mb-6 bg-white rounded-lg shadow-md p-8 ">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Network Access Details
             </h3>
@@ -572,22 +572,6 @@ const AiNibhritDetailPage = () => {
               </li>
             </ul>
           </div>
-
-          {/* Summary Section */}
-          {/* <div className="mt-12 bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-semibold text-blue-800 mb-2">
-              Summary & Notes
-            </h3>
-            <p className="text-base text-gray-700">
-              AI Nibhrit is currently integrated and live with several
-              government departments across Indian states. It uses
-              state-specific models for multilingual document handling and
-              adapts to varying formats. While highly accurate, challenges
-              remain in processing low-quality scans or unstructured formats.
-              Future improvements could include benchmarking dashboards and
-              visual evaluation reports.
-            </p>
-          </div> */}
         </div>
       </div>
       <Footer />
