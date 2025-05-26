@@ -35,91 +35,217 @@ const AiAnveshikaDetail = () => {
           </p>
 
           {/* Model Intelligence */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
+          <div className="bg-white rounded-lg shadow-md p-8 mb-10">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Model Intelligence & Architecture Overview
+              About AI Anveshika
             </h3>
-            <p className="text-sm text-gray-700">
-              AI Anveshika employs a RAG architecture consisting of document
-              ingestion, chunking, embedding using transformer models, and
-              indexing in a vector database. During query time, relevant
-              documents are retrieved, and responses are generated using a
-              fine-tuned LLM model.
+            <p className="text-gray-700 text-sm leading-relaxed">
+              <strong>AI Anveshika</strong> is a Retrieval-Augmented Generation
+              (RAG) solution that enhances document-based question answering by
+              combining document retrieval with a large language model. It first
+              retrieves relevant text from PDFs using vector search and then
+              generates answers grounded in that content. AI Anveshika is
+              tailored for legal and policy-intensive domains where contextual
+              accuracy, traceability, and summarization are essential.
             </p>
-            <ul className="list-disc pl-5 mt-4 text-sm text-gray-700 space-y-2">
-              <li>
-                <strong>Document Parsing:</strong> Ingests PDF files, splits
-                into chunks
-              </li>
-              <li>
-                <strong>Embeddings:</strong> Uses transformer-based sentence
-                embeddings (e.g. BERT)
-              </li>
-              <li>
-                <strong>Vector DB:</strong> FAISS or similar DBs store document
-                vectors
-              </li>
-              <li>
-                <strong>LLM:</strong> Generates answers using embedded context +
-                query prompt
-              </li>
-            </ul>
+
+            <div className="mt-4 text-sm text-gray-700 space-y-1">
+              <p>
+                <strong>Copyright:</strong> NIC
+              </p>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-md font-semibold text-blue-700 mb-2">
+                Service Capabilities & Key Metrics
+              </h4>
+              <ul className="text-sm text-gray-700 space-y-2">
+                <li>
+                  <strong>Supported file formats:</strong> PDF
+                </li>
+                <li>
+                  <strong>Architecture:</strong> RAG-based pipeline with
+                  Transformer Retriever, Re-Ranker, OCR, and LLM
+                </li>
+                <li>
+                  <strong>Use Type:</strong> Document Q&A, summarization,
+                  semantic search
+                </li>
+                <li>
+                  <strong>APIs available:</strong> Upload PDF, Build Index, Ask
+                  Question, Fetch & Modify Metadata
+                </li>
+                <li>
+                  <strong>Deployment Mode:</strong> REST APIs via NIC cloud
+                  (secured via RBAC)
+                </li>
+              </ul>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-md font-semibold text-blue-700 mb-2">
+                AI Anveshika Rollout
+              </h4>
+              <p className="text-sm text-gray-700">
+                AI Anveshika is being used in pilot engagements with departments
+                such as e-Courts, Ministry of Finance, and Ministry of Transport
+                to extract structured insights from lengthy legal and regulatory
+                documents. It improves efficiency in policy interpretation and
+                supports decision-making by surfacing relevant legal arguments
+                or summaries from dense files.
+              </p>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-md font-semibold text-blue-700 mb-2">
+                Ideal Use Cases
+              </h4>
+              <ol className="text-gray-700 text-sm space-y-2">
+                <li>
+                  <strong>Legal Document Summarization:</strong> Used by
+                  e-Courts to extract key insights and rulings from large case
+                  PDFs.
+                </li>
+                <li>
+                  <strong>Policy Research & Question Answering:</strong> Helps
+                  departments like Finance and Transport interrogate long
+                  documents for targeted Q&A.
+                </li>
+                <li>
+                  <strong>Metadata-driven Retrieval:</strong> Tagging and
+                  accessing document sections through searchable metadata
+                  layers.
+                </li>
+              </ol>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-md font-semibold text-blue-700 mb-2">
+                Limitations
+              </h4>
+              <p className="text-sm text-gray-700">
+                Model performance is dependent on OCR quality and document
+                formatting. Poorly scanned files or handwritten annotations may
+                reduce retrieval accuracy. Additionally, the factual relevance
+                of generated answers is limited to the retrieved content, and
+                incorrect or outdated documents may yield misleading outputs.
+              </p>
+            </div>
           </div>
 
-          {/* Capabilities */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
+          <div className="mt-10 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Key Capabilities & Metrics
+              End-to-End Flow
             </h3>
-            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
-              <li>🔍 Contextual Q&A over custom PDF uploads</li>
-              <li>📄 Handles legal, policy, academic documents</li>
-              <li>🧠 Powered by multilingual transformers & RAG</li>
-              <li>🕒 Fast query time (2s in ideal setups)</li>
-              <li>📈 Scalable with batch ingestion and caching</li>
-            </ul>
-          </div>
 
-          {/* Usage */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Real-World Usage
-            </h3>
-            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
-              <li>eGovernance document summarization</li>
-              <li>Citizen FAQs from complex legal PDFs</li>
-              <li>Support for AI-enabled RTI document scanning</li>
-            </ul>
-          </div>
-
-          {/* Limitations */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Limitations
-            </h3>
-            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
-              <li>Response accuracy depends on chunking & embeddings</li>
-              <li>
-                Documents with complex formatting may yield suboptimal context
-              </li>
-              <li>
-                LLM hallucination possible if irrelevant context is retrieved
-              </li>
-            </ul>
-          </div>
-
-          {/* Summary */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Summary
-            </h3>
-            <p className="text-sm text-gray-700">
-              AI Anveshika empowers governance institutions with deep document
-              understanding and question-answering capabilities. Its modular RAG
-              pipeline enables scalable, secure, and explainable insights from
-              uploaded documents in Indian governance and administrative
-              contexts.
+            <p className="text-sm text-gray-700 mb-4">
+              Below is the step-by-step flow from uploading a document to
+              generating the answer using AI Anveshika:
             </p>
+
+            <ul className="list-decimal pl-5 text-sm text-gray-700 space-y-2">
+              <li>
+                <strong>Input:</strong> Upload one or more PDF documents
+                (text-based or scanned) containing domain-specific content like
+                court orders or circulars.
+              </li>
+              <li>
+                <strong>OCR & Text Extraction:</strong> If scanned, OCR is
+                applied to extract text. If text-based, it's extracted directly
+                from the PDF.
+              </li>
+              <li>
+                <strong>Preprocessing & Chunking:</strong> The extracted content
+                is split into logical, searchable chunks using metadata and
+                paragraph structures.
+              </li>
+              <li>
+                <strong>Vector Embedding:</strong> Each chunk is converted into
+                a dense vector using a sentence transformer for semantic search.
+              </li>
+              <li>
+                <strong>Question Input:</strong> The user submits a natural
+                language query related to the uploaded document.
+              </li>
+              <li>
+                <strong>Relevant Chunk Retrieval:</strong> AI Anveshika uses
+                semantic vector search to retrieve top-ranked passages relevant
+                to the question.
+              </li>
+              <li>
+                <strong>Answer Generation:</strong> A pre-trained LLM generates
+                an answer grounded in the retrieved content, ensuring
+                source-referenced context.
+              </li>
+              <li>
+                <strong>Output Delivery:</strong> The final output includes the
+                answer, referenced source chunks, and optional metadata about
+                matched paragraphs.
+              </li>
+            </ul>
+          </div>
+
+          <div className="mt-10 bg-white rounded-lg shadow-md p-8">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3">
+              How to Use AI Anveshika Service
+            </h3>
+            <ol className="list-decimal list-inside text-gray-700 text-sm space-y-2">
+              <li>
+                <strong>Onboarding & Authorization:</strong> Submit a request
+                form through the NIC Cloud Portal with department details and
+                intended use case.
+              </li>
+              <li>
+                <strong>Document Upload:</strong> Use the provided API to upload
+                one or more PDF files (scanned or text-based) to the AI
+                Anveshika platform.
+              </li>
+              <li>
+                <strong>Index Building:</strong> The system extracts text,
+                performs OCR if needed, and creates searchable vector embeddings
+                of the content.
+              </li>
+              <li>
+                <strong>Metadata Tagging:</strong> Optionally, the uploaded
+                documents can be tagged with metadata for structured retrieval
+                and filtering.
+              </li>
+              <li>
+                <strong>Query Submission:</strong> Use the API to send natural
+                language questions related to the uploaded content.
+              </li>
+              <li>
+                <strong>Answer Generation:</strong> The model retrieves relevant
+                content from the indexed documents and generates grounded
+                responses.
+              </li>
+              <li>
+                <strong>Output Delivery:</strong> The system returns a JSON with
+                the answer, source paragraphs, and confidence score, which can
+                be displayed or stored.
+              </li>
+            </ol>
+          </div>
+
+          <div className="mt-10 mb-6 bg-white rounded-lg shadow-md p-8">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3">
+              Network Access Details
+            </h3>
+            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
+              <li>
+                <strong>Network Access:</strong> Available over the NIC Cloud
+                Infrastructure and accessible through authenticated REST APIs.
+              </li>
+              <li>
+                <strong>Firewall Configuration:</strong> Access is permitted
+                only from whitelisted NICNET or government department IPs.
+              </li>
+              <li>
+                <strong>Access Control:</strong> Secured using{" "}
+                <strong>Role-Based Access Control (RBAC)</strong> and
+                authenticated API tokens issued to approved departments.
+              </li>
+            </ul>
           </div>
         </div>
       </div>

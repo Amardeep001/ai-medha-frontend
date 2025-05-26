@@ -3,6 +3,14 @@ import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { useNavigate } from "react-router-dom";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+} from "recharts";
 
 const AiShrutiDetailPage = () => {
   const navigate = useNavigate();
@@ -11,6 +19,56 @@ const AiShrutiDetailPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const departmentChartData = [
+    { name: "eCOURTS", value: 88644 },
+    { name: "Karnataka High Court", value: 24914 },
+    { name: "Puducherry UT", value: 814 },
+    { name: "Telangana High Court", value: 8159 },
+    { name: "VANI", value: 10705 },
+    { name: "Video Conferencing Division", value: 2751 },
+    { name: "Other", value: 31760 },
+  ];
+
+  const dataWithPercentage = departmentChartData.map((d) => ({
+    ...d,
+    nameWithPercent: `${d.name}`,
+  }));
+
+  const COLORS = [
+    "#4f46e5",
+    "#10b981",
+    "#f59e0b",
+    "#ef4444",
+    "#6366f1",
+    "#14b8a6",
+    "#a855f7",
+  ];
+
+  const durationChartData = [
+    { name: "eCOURTS", value: 224.515 },
+    { name: "Karnataka High Court", value: 87.58 },
+    { name: "Puducherry UT", value: 28.91 },
+    { name: "Telangana High Court", value: 103.42 },
+    { name: "VANI", value: 529.19 },
+    { name: "Video Conferencing Division", value: 334.354 },
+    { name: "Other", value: 480.31 },
+  ];
+
+  const durationWithPercentage = durationChartData.map((d) => ({
+    ...d,
+    nameWithPercent: `${d.name}`,
+  }));
+
+  const COLORS2 = [
+    "#a855f7", // purple
+    "#10b981", // green
+    "#f97316", // orange
+    "#4f46e5", // indigo
+    "#ef4444", // red
+    "#84cc16", // lime
+    "#22d3ee", // cyan
+  ];
 
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
@@ -209,6 +267,197 @@ const AiShrutiDetailPage = () => {
               </div>
             </div>
           </div> */}
+
+          {/* Charts */}
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <h3 className="text-xl font-semibold text-blue-800 mb-2">
+                Service Hit Count
+              </h3>
+              <p className="text-sm text-gray-600 mb-4">
+                Departments using AI Shruti APIs for speech to text translation.
+                services.
+              </p>
+              <div className="h-72">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      dataKey="value"
+                      data={dataWithPercentage}
+                      cx="50%" // Adjust to give space for right-side legend
+                      cy="50%"
+                      outerRadius={100}
+                      label={false}
+                    >
+                      {dataWithPercentage.map((entry, index) => (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={COLORS[index % COLORS.length]}
+                        />
+                      ))}
+                    </Pie>
+
+                    <Tooltip
+                      formatter={(value) =>
+                        new Intl.NumberFormat().format(value)
+                      }
+                    />
+
+                    <Legend
+                      layout="vertical"
+                      align="right"
+                      verticalAlign="middle"
+                      formatter={(value, entry, index) =>
+                        dataWithPercentage[index].nameWithPercent
+                      }
+                      wrapperStyle={{
+                        fontSize: "12px",
+                        maxWidth: "20vw",
+                        textAlign: "left",
+                        whiteSpace: "normal",
+                        wordBreak: "break-word",
+                        lineHeight: "1.4em",
+                      }}
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <h3 className="text-xl font-semibold text-blue-800 mb-2">
+                Department-wise Usage Data
+              </h3>
+              <p className="text-sm text-gray-600 mb-4">
+                Total session hits from April 1, 2024, to March 31, 2025 -
+                <strong>1,67,747</strong>
+              </p>
+              <div className="max-h-72 overflow-y-auto rounded-lg border border-gray-200">
+                <table className="min-w-full divide-y divide-gray-200 text-sm text-left text-gray-700">
+                  <thead className="bg-gray-100 sticky top-0 z-10">
+                    <tr>
+                      <th scope="col" className="px-4 py-2 font-semibold">
+                        Department
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-4 py-2 font-semibold text-right"
+                      >
+                        Hit Counts
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-100">
+                    {departmentChartData
+                      .sort((a, b) => b.value - a.value)
+                      .map((item, index) => (
+                        <tr key={index}>
+                          <td className="px-4 py-2">{item.name}</td>
+                          <td className="px-4 py-2 text-right">
+                            {item.value.toLocaleString()}
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <h3 className="text-xl font-semibold text-blue-800 mb-2">
+                Service Duration Count
+              </h3>
+              <p className="text-sm text-gray-600 mb-4">
+                Departments using AI Shruti APIs for speech to text translation
+                services.
+              </p>
+              <div className="h-72">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      dataKey="value"
+                      data={durationWithPercentage}
+                      cx="50%" // Adjust to give space for right-side legend
+                      cy="50%"
+                      outerRadius={100}
+                      label={false}
+                    >
+                      {durationWithPercentage.map((entry, index) => (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={COLORS2[index % COLORS2.length]}
+                        />
+                      ))}
+                    </Pie>
+
+                    <Tooltip
+                      formatter={(value) =>
+                        new Intl.NumberFormat().format(value)
+                      }
+                    />
+
+                    <Legend
+                      layout="vertical"
+                      align="right"
+                      verticalAlign="middle"
+                      formatter={(value, entry, index) =>
+                        durationWithPercentage[index].nameWithPercent
+                      }
+                      wrapperStyle={{
+                        fontSize: "12px",
+                        maxWidth: "20vw",
+                        textAlign: "left",
+                        whiteSpace: "normal",
+                        wordBreak: "break-word",
+                        lineHeight: "1.4em",
+                      }}
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <h3 className="text-xl font-semibold text-blue-800 mb-2">
+                Department-wise Usage Data
+              </h3>
+              <p className="text-sm text-gray-600 mb-4">
+                Total duration hits from April 1, 2024, to March 31, 2025 -
+                <strong>1788.279</strong>
+              </p>
+              <div className="max-h-72 overflow-y-auto rounded-lg border border-gray-200">
+                <table className="min-w-full divide-y divide-gray-200 text-sm text-left text-gray-700">
+                  <thead className="bg-gray-100 sticky top-0 z-10">
+                    <tr>
+                      <th scope="col" className="px-4 py-2 font-semibold">
+                        Department
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-4 py-2 font-semibold text-right"
+                      >
+                        Duration(Hr)
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-100">
+                    {departmentChartData
+                      .sort((a, b) => b.value - a.value)
+                      .map((item, index) => (
+                        <tr key={index}>
+                          <td className="px-4 py-2">{item.name}</td>
+                          <td className="px-4 py-2 text-right">
+                            {item.value.toLocaleString()}
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
 
           <div className="mt-10 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">

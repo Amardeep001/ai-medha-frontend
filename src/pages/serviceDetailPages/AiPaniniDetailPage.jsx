@@ -253,48 +253,6 @@ const AiPaniniDetailPage = () => {
             </div>
           </div>
 
-          {/* <div className="bg-white rounded-lg shadow-md p-8 mb-10">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Translation Solutions Overview
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-5 ">
-              {mockModels.map((model) => (
-                <div className="bg-white rounded-lg shadow-md border hover:shadow-xl transition-all">
-                  <img
-                    src={model.image}
-                    alt={model.name}
-                    className="rounded-t-lg w-full h-40 object-cover"
-                  />
-                  <div className="p-4">
-                    <h3 className="text-xl font-semibold text-blue-800 mb-1">
-                      {model.name}
-                    </h3>
-                    <p className="text-sm text-gray-600 mb-1">
-                      <strong>Category:</strong> {model.category}
-                    </p>
-                    <p className="text-sm text-gray-600 mb-1">
-                      <strong>Sector:</strong> {model.sector}
-                    </p>
-                    <p className="text-gray-700 text-sm mb-2">
-                      {model.description}
-                    </p>
-                    <div className="text-sm text-gray-700 space-y-1">
-                      <p>
-                        <strong>Accuracy:</strong> {model.metrics.accuracy}
-                      </p>
-                      <p>
-                        <strong>Latency:</strong> {model.metrics.latency}
-                      </p>
-                    </div>
-                    <p className="text-sm text-blue-600 font-medium mt-2">
-                      Version: {model.version}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div> */}
-
           {/* Summary Table */}
           <div className="mt-10 bg-white rounded-lg shadow-md p-6 ">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">

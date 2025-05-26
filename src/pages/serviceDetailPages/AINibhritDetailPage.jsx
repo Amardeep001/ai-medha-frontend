@@ -151,21 +151,6 @@ const AiNibhritDetailPage = () => {
               identity fraud in digital workflows.
             </p>
 
-            {/* <ul className="list-disc pl-5 mt-4 text-sm text-gray-700 space-y-2">
-              <li>
-                <strong>YOLOv5 Object Detection:</strong> Used to detect
-                Aadhaar, PAN, fingerprints, and QR regions with high accuracy.
-              </li>
-              <li>
-                <strong>Tesseract OCR:</strong> Recognizes printed and scanned
-                text for redaction tasks.
-              </li>
-              <li>
-                <strong>OpenCV & TensorFlow:</strong> Applied for image
-                analysis, pre-processing and deep-learning model integration.
-              </li>
-            </ul> */}
-
             <div className="mt-4 text-sm text-gray-700 space-y-1">
               <p>
                 <strong>Last Security Audit Date:</strong> 06-12-2023 (Applied
@@ -556,11 +541,6 @@ const AiNibhritDetailPage = () => {
                 <strong>Network Access:</strong> Available on NICNET and also
                 accessible externally via <strong>NAPIX</strong>.
               </li>
-              {/* <li>
-                <strong>Ports to be Opened:</strong>{" "}
-                <code className="bg-gray-100 px-1 py-0.5 rounded">5012</code> if
-                using NICNET.
-              </li> */}
               <li>
                 <strong>Firewall Configuration:</strong> Ensure required ports
                 are open and NIC's standard firewall rules are applied.

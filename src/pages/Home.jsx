@@ -7,6 +7,7 @@ import indianFlag from "../images/ind_flag.png";
 // import bgImg from "../images/inibg.svg";
 import NicLogo from "../images/nic_logo3.svg";
 import NicLogo2 from "../images/nic_logo2.png";
+import AiMedhaLogo from "../images/ai_medha_logo.jpeg";
 import Footer from "../components/Footer";
 
 const Home = () => {
@@ -57,16 +58,21 @@ const Home = () => {
         <div className="max-w-screen-2xl mx-auto flex justify-between items-center px-4 sm:px-6 xl:px-20 py-7 relative">
           {/* Logo and Heading */}
           <div className="flex items-center space-x-6">
+            {/* NIC Logo */}
             <img
               src={NicLogo}
-              alt="Logo"
-              className="w-[220px] object-contain" // increased to h-32 w-32
+              alt="NIC Logo"
+              className="w-[220px] object-contain"
             />
-            <div className="flex flex-col">
+
+            {/* AI Medha Title with logo */}
+            <div className="flex items-center space-x-3">
               <h1 className="text-xl sm:text-4xl font-bold">AI MEDHA</h1>
-              {/* <p className="text-xl sm:text-base text-gray-600">
-                AI Modelling Empowered Digital Hub for Applications
-              </p> */}
+              {/* <img
+                src={AiMedhaLogo}
+                alt="AI Medha Logo"
+                className="h-16 w-16 object-contain"
+              /> */}
             </div>
           </div>
 
@@ -89,6 +95,11 @@ const Home = () => {
               <li>
                 <a href="#features" className="hover:text-[#FF9933] transition">
                   Features
+                </a>
+              </li>
+              <li>
+                <a href="/services" className="hover:text-[#FF9933] transition">
+                  Services
                 </a>
               </li>
               <li>
