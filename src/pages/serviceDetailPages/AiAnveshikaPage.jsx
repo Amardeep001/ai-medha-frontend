@@ -23,19 +23,19 @@ const AiAnveshikaDetail = () => {
             ← Back to Services
           </button>
           <h2 className="text-3xl font-bold text-blue-900 mb-2">
-            AI ANVESHIKA
+            AI Anveshika
           </h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
             AI Anveshika is an intelligent document analysis and
-            question-answering platform designed to understand and summarize
-            content from uploaded documents like PDFs. It uses
-            Retrieval-Augmented Generation (RAG) with transformer models and
-            vector databases to deliver accurate responses and summaries from
-            natural language queries.
+            question-answering platform designed to understand and Q&A content
+            from uploaded documents like PDFs. It uses Retrieval-Augmented
+            Generation (RAG) with transformer models and vector databases to
+            deliver accurate responses and summaries from natural language
+            queries.
           </p>
 
           {/* Model Intelligence */}
-          <div className="bg-white rounded-lg shadow-md p-8 mb-10">
+          <div className="bg-white rounded-lg shadow-md p-8 ">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               About AI Anveshika
             </h3>
@@ -46,7 +46,7 @@ const AiAnveshikaDetail = () => {
               retrieves relevant text from PDFs using vector search and then
               generates answers grounded in that content. AI Anveshika is
               tailored for legal and policy-intensive domains where contextual
-              accuracy, traceability, and summarization are essential.
+              accuracy, traceability, and Q&A are essential.
             </p>
 
             <div className="mt-4 text-sm text-gray-700 space-y-1">
@@ -68,8 +68,12 @@ const AiAnveshikaDetail = () => {
                   Transformer Retriever, Re-Ranker, OCR, and LLM
                 </li>
                 <li>
-                  <strong>Use Type:</strong> Document Q&A, summarization,
-                  semantic search
+                  <strong>Workflow:</strong> PDF Upload → Text Extraction &
+                  Chunking → Vector Indexing → Question Input → Retrieval &
+                  Answer Generation
+                </li>
+                <li>
+                  <strong>Use Type:</strong> Document Q&A, semantic search
                 </li>
                 <li>
                   <strong>APIs available:</strong> Upload PDF, Build Index, Ask
@@ -133,7 +137,7 @@ const AiAnveshikaDetail = () => {
             </div>
           </div>
 
-          <div className="mt-10 bg-white rounded-lg shadow-md p-8">
+          <div className="mt-8 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               End-to-End Flow
             </h3>
@@ -185,7 +189,7 @@ const AiAnveshikaDetail = () => {
             </ul>
           </div>
 
-          <div className="mt-10 bg-white rounded-lg shadow-md p-8">
+          <div className="mt-8 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               How to Use AI Anveshika Service
             </h3>
@@ -227,14 +231,13 @@ const AiAnveshikaDetail = () => {
             </ol>
           </div>
 
-          <div className="mt-10 mb-6 bg-white rounded-lg shadow-md p-8">
+          <div className="mt-8 mb-6 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Network Access Details
             </h3>
             <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
               <li>
-                <strong>Network Access:</strong> Available over the NIC Cloud
-                Infrastructure and accessible through authenticated REST APIs.
+                <strong>Network Access:</strong> Available on NICNET.
               </li>
               <li>
                 <strong>Firewall Configuration:</strong> Access is permitted

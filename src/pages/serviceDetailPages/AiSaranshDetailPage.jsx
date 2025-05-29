@@ -23,7 +23,7 @@ const AiSaranshDetailPage = () => {
           >
             ← Back to Services
           </button>
-          <h2 className="text-3xl font-bold text-blue-900 mb-2">AI SARANSH</h2>
+          <h2 className="text-3xl font-bold text-blue-900 mb-2">AI Saransh</h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
             AI Saransh is an automated text summarization system designed to
             provide extractive summaries from long legal or official documents.
@@ -32,163 +32,274 @@ const AiSaranshDetailPage = () => {
             various ministries and judicial systems.
           </p>
 
-          {/* Illustrative Image */}
-          <div className="mb-10">
-            <img
-              src={"https://picsum.photos/1200/350?random=20"}
-              alt="AI Saransh example"
-              className="rounded shadow-lg w-full object-contain"
-            />
-          </div>
-
-          {/* Service Details */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
+          <div className="bg-white rounded-lg shadow-md p-6">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Service Details
+              About AI Saransh
             </h3>
-            <ul className="text-sm text-gray-700 space-y-2">
-              <li>
-                🔹 <strong>Service Name:</strong> AI Saransh
-              </li>
-              <li>
-                📄 <strong>Short Description:</strong> Automated Extractive
-                Summarization of legal and textual documents
-              </li>
-              <li>
-                🛡 <strong>Security Audit:</strong> Last audit ongoing (2024)
-              </li>
-              <li>
-                © <strong>Copyright:</strong> NIC
-              </li>
-              <li>
-                🏆 <strong>Awards:</strong> Under evaluation
-              </li>
-              <li>
-                📰 <strong>Articles:</strong> Internal API documentation v1.0
-              </li>
-            </ul>
-          </div>
-
-          {/* APIs */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">APIs</h3>
-            <ul className="text-sm text-gray-700 space-y-2">
-              <li>
-                🧩 <strong>Endpoints:</strong> <code>/Exsummary</code>
-              </li>
-              <li>
-                🔧 <strong>Method:</strong> POST
-              </li>
-              <li>
-                🧾 <strong>Request Body:</strong> JSON with keys{" "}
-                <code>text</code> (string), <code>sentences</code> (int)
-              </li>
-              <li>
-                🔐 <strong>Access:</strong> Via NAPIX (RBAC-protected)
-              </li>
-              <li>
-                📦 <strong>Output:</strong> Extractive summary text
-              </li>
-            </ul>
-          </div>
-
-          {/* Model Information */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Model Information
-            </h3>
-            <ul className="text-sm text-gray-700 space-y-2">
-              <li>
-                🔍 <strong>Model Type:</strong> Transformer-based
-              </li>
-              <li>
-                🧠 <strong>Category:</strong> Natural Language Processing
-              </li>
-              <li>
-                📊 <strong>Metrics:</strong> BLEU score (planned), sentence
-                overlap, compression ratio
-              </li>
-              <li>
-                ⚙️ <strong>Parameters:</strong> Sequence length, attention
-                layers, summary length
-              </li>
-            </ul>
-          </div>
-
-          {/* Evaluations */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Evaluations & Benchmarks
-            </h3>
-            <p className="text-sm text-gray-700 mb-3">
-              Summaries have been tested on government and legal documents.
+            <p className="text-sm text-gray-700 leading-relaxed">
+              AI Saransh is a comprehensive text summarization service that
+              transforms large documents into concise summaries using advanced
+              extractive and abstractive techniques. Available over NICNet and
+              the Napix portal, it helps users quickly grasp the essence of
+              lengthy documents by prioritizing important points and generating
+              coherent summaries in configurable lengths.
             </p>
+
+            <div className="pt-4 text-sm text-gray-600 space-y-1">
+              <p>
+                <strong>Last Security Audit Date:</strong> March 2025
+              </p>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-md font-semibold text-blue-700 mb-2">
+                Service Capabilities & Key Metrics
+              </h4>
+              <ul className="text-sm text-gray-700 space-y-2">
+                <li>
+                  <strong>Summarization types:</strong> Extractive (key sentence
+                  extraction) and Abstractive (rephrasing and condensing)
+                </li>
+                <li>
+                  <strong>Deployment options:</strong> REST APIs via /Exsummary
+                  and /Absummary endpoints
+                </li>
+                <li>
+                  <strong>Input constraints:</strong> Text length between
+                  100-5000 characters with punctuation support
+                </li>
+                <li>
+                  <strong>Summary length control:</strong> Configurable output
+                  between 5-50 sentences
+                </li>
+                <li>
+                  <strong>Category:</strong> Natural Language Processing (NLP)
+                </li>
+                <li>
+                  <strong>Model Type:</strong> Transformers-based architecture
+                </li>
+                <li>
+                  <strong>Language Support:</strong> Currently English
+                  (multilingual capability via Panini Service integration)
+                </li>
+                <li>
+                  <strong>Network Access:</strong> NIC network and public
+                  internet via Napix platform
+                </li>
+                <li>
+                  <strong>Port Configuration:</strong> Port 4001 with IP
+                  whitelisting
+                </li>
+                <li>
+                  <strong>Response Format:</strong> JSON with status, data, and
+                  message fields
+                </li>
+              </ul>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-md font-semibold text-blue-700 mb-2">
+                AI Saransh Rollout
+              </h4>
+              <p className="text-sm text-gray-700">
+                AI Saransh is being deployed across government departments and
+                judicial institutions to streamline document processing
+                workflows. By automatically generating summaries of lengthy
+                reports, legal documents, and administrative content, AI Saransh
+                enhances productivity and enables faster decision-making across
+                institutional operations.
+              </p>
+              <p className="text-sm text-gray-700 mt-3">
+                <strong>Primary applications include:</strong>
+              </p>
+              <ul className="list-disc list-inside ml-5 text-sm text-gray-700">
+                <li>Judicial case judgment summaries</li>
+                <li>Government report condensation</li>
+                <li>Legal document processing</li>
+                <li>Administrative workflow optimization</li>
+                <li>Digital document management systems</li>
+              </ul>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-md font-semibold text-blue-700 mb-2">
+                Ideal Use Cases
+              </h4>
+              <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
+                <li>
+                  Large document summarization for quick comprehension and gist
+                  extraction
+                </li>
+                <li>
+                  Judicial and legal document processing for multi-page case
+                  judgments
+                </li>
+                <li>
+                  Government report summarization for administrative workflows
+                </li>
+                <li>
+                  API-based integration into e-Governance applications via NAPIx
+                </li>
+                <li>
+                  Digital document management with configurable summary lengths
+                </li>
+              </ul>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-blue-800 font-semibold text-md mb-2">
+                Possible Users
+              </h4>
+              <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
+                <li>
+                  Central and State Government Ministries / Departments / PSUs
+                </li>
+                <li>Autonomous Institutions and Local Government bodies</li>
+                <li>Supreme Court, High Courts, and District Courts</li>
+                <li>Legal professionals and judicial administrative staff</li>
+                <li>Government officers requiring document analysis</li>
+                <li>
+                  Authorized users with RBAC access through AI Medha Service
+                  Catalogue
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-8 bg-white rounded-lg shadow-md p-8">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3">
+              End-to-End Flow
+            </h3>
+
+            <p className="text-sm text-gray-700 mb-4">
+              Below is the step-by-step flow from receiving the text input to
+              generating the summarized output:
+            </p>
+
+            <ul className="list-decimal pl-5 text-sm text-gray-700 space-y-2">
+              <li>
+                <strong>Input:</strong> Raw text documents (100-5000 characters)
+                from legal documents, government reports, or user-submitted
+                content via frontend or API calls through NAPIx.
+              </li>
+              <li>
+                <strong>Text Ingestion:</strong> Receives text input via POST
+                requests to /Exsummary or /Absummary endpoints with optional
+                sentence count parameter (5-50).
+              </li>
+              <li>
+                <strong>Validation:</strong> Validates input text type, length
+                constraints (100-5000 characters), and sentence parameter
+                (integer between 5-50).
+              </li>
+              <li>
+                <strong>Pre-processing:</strong> Performs tokenization of text
+                and removes irrelevant whitespaces or formatting characters to
+                prepare clean input.
+              </li>
+              <li>
+                <strong>Transformer Model Inference:</strong> Processes the
+                cleaned text using the Transformer-based summarization model to
+                identify key themes and compress redundant information.
+              </li>
+              <li>
+                <strong>Summary Generation:</strong> Generates coherent summary
+                based on the specified number of sentences using either
+                extractive (key sentence extraction) or abstractive (rephrasing
+                and condensing) techniques.
+              </li>
+              <li>
+                <strong>Post-processing:</strong> Formats the generated summary
+                and prepares JSON response with status, status_code, data, and
+                message fields.
+              </li>
+              <li>
+                <strong>Output Delivery:</strong> Returns JSON response
+                containing the summarized text for use in judicial summaries,
+                legal tech, and document management workflows.
+              </li>
+            </ul>
+          </div>
+
+          <div className="mt-8 bg-white rounded-lg shadow-md p-8">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3">
+              How to Use AI Saransh Service
+            </h3>
+            <ol className="list-decimal list-inside text-gray-700 text-sm space-y-2">
+              <li>
+                <strong>Onboarding & Authorization:</strong> Submit the AI
+                Saransh service request form along with a user request letter
+                from your department/ministry via NIC MeghRaj Cloud. Obtain RBAC
+                authorization through AI Medha Service Catalogue for API access.
+              </li>
+              <li>
+                <strong>Network Setup:</strong> Ensure your system has access to
+                NICNet or public internet via Napix platform. Configure firewall
+                to allow connections on port 4001 and complete IP whitelisting
+                requirements.
+              </li>
+              <li>
+                <strong>API Integration:</strong> Integrate with AI Saransh
+                using the provided REST API endpoints: /Exsummary for extractive
+                summarization or /Absummary for abstractive summarization.
+              </li>
+              <li>
+                <strong>Authentication Setup:</strong> Configure API keys or
+                tokens in request headers as required by your production
+                environment setup for secure access to the service.
+              </li>
+              <li>
+                <strong>Input Preparation:</strong> Prepare your text documents
+                ensuring they meet the constraints: minimum 100 characters,
+                maximum 5000 characters, with proper punctuation for optimal
+                results.
+              </li>
+              <li>
+                <strong>Summary Configuration:</strong> For extractive
+                summarization, specify the desired number of sentences (5-50) in
+                the request body. For abstractive summarization, the system
+                automatically determines optimal length.
+              </li>
+              <li>
+                <strong>API Request:</strong> Send POST requests with
+                Content-Type: application/json, including your text and optional
+                sentence parameters to receive JSON responses with summarized
+                content.
+              </li>
+              <li>
+                <strong>Result Processing:</strong> Receive summarized text in
+                JSON format with status, status_code, data, and message fields.
+                Integrate the summaries into your judicial, legal, or document
+                management workflows.
+              </li>
+            </ol>
+          </div>
+
+          <div className="mt-8 mb-6 bg-white rounded-lg shadow-md p-8 ">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3">
+              Network Access Details
+            </h3>
             <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
               <li>
-                Benchmarked against generic summarizers on legal case data
+                <strong>Network Access:</strong> Available on NICNet (Network
+                Informatics Centre network) and also accessible over public
+                internet via <strong>Napix platform</strong>.
               </li>
               <li>
-                Ideal for high-density legal text (judgments, petitions, etc.)
+                <strong>Firewall Configuration:</strong> No specific firewall
+                configuration required beyond standard security protocols.
               </li>
-              <li>Real-world deployment in eCourts and NIC Legal Portal</li>
-            </ul>
-
-            <img
-              src={"https://picsum.photos/1200/350?random=21"}
-              alt="Summary result"
-              className="rounded-lg mt-4 shadow w-full"
-            />
-          </div>
-
-          {/* End-to-End Flow */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              End-to-End Data Flow
-            </h3>
-            <ul className="list-decimal pl-5 text-sm text-gray-700 space-y-2">
-              <li>User submits document text via /Exsummary API</li>
-              <li>Validation and tokenization of text</li>
-              <li>Text passed through Transformer summarizer model</li>
               <li>
-                Output returned: summary in extractive format (user-defined
-                sentence length)
+                <strong>Access Control:</strong> Enforced via{" "}
+                <strong>IP Whitelisting</strong> to ensure only authorized
+                systems can access the service endpoints.
+              </li>
+              <li>
+                <strong>Authentication:</strong> API access controlled through{" "}
+                <strong>RBAC (Role-Based Access Control)</strong> integrated
+                with AI Medha Service Catalogue for authorized government users.
               </li>
             </ul>
-          </div>
-
-          {/* Network Availability */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Network Availability
-            </h3>
-            <ul className="text-sm text-gray-700 space-y-2">
-              <li>
-                🌐 <strong>Access:</strong> Available via NIC network and NAPIX
-              </li>
-              <li>
-                🔐 <strong>Security:</strong> RBAC-protected, Key-based auth
-              </li>
-              <li>
-                🔌 <strong>Ports:</strong> No public port required, accessible
-                via secured gateway
-              </li>
-              <li>
-                🧱 <strong>Firewall:</strong> Integrated with NIC infra security
-              </li>
-            </ul>
-          </div>
-
-          {/* Summary Section */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
-            <h3 className="text-xl font-semibold text-blue-800 mb-2">
-              Summary & Key Notes
-            </h3>
-            <p className="text-base text-gray-700">
-              AI Saransh enables NIC users and legal officers to extract concise
-              summaries from lengthy text. The model is domain-tuned for Indian
-              legal corpora and supports flexible summary lengths. It integrates
-              easily via NAPIX and ensures secure usage via RBAC.
-            </p>
           </div>
         </div>
       </div>

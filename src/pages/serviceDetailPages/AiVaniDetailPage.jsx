@@ -30,69 +30,117 @@ const AiVaniDetailPage = () => {
             integration capabilities for government and citizen-facing services.
           </p>
 
-          {/* Image and Overview */}
-          <div className="bg-white rounded-lg shadow-md overflow-hidden mb-10">
-            <img
-              src="https://picsum.photos/1200/600?random=22"
-              alt="AI VANI"
-              className="w-full h-64 object-cover"
-            />
-            <div className="p-6">
-              <h3 className="text-xl font-semibold text-blue-800 mb-3">
-                Core Features of AI VANI
-              </h3>
-              <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3">
+              About AI VANI
+            </h3>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              AI VANI is a modular, multilingual conversational AI framework
+              developed by NIC’s AI Cloud Services and Virtual Assistance
+              Division. It enables intelligent chatbot and voicebot services for
+              citizen-centric government applications across India. Supporting
+              22 Indic languages for chat and Indian English/Hindi for voice, it
+              ensures intuitive communication between citizens and services
+              through automated interactions, customizable dialogues, and
+              live-agent fallback mechanisms.
+            </p>
+
+            <div className="pt-4 text-sm text-gray-600 space-y-1">
+              <p>
+                <strong>Last Security Audit Date:</strong> 03-01-2025
+              </p>
+              <p>
+                <strong>Copyright:</strong> Registration No. SW-15265/2022
+              </p>
+              <p>
+                <strong>Awards Won:</strong> Gems of Digital India Award 2020;
+                Featured in the 'Compendium of Selected Papers 2021' at the 24th
+                National Conference on e-Governance
+              </p>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-md font-semibold text-blue-700 mb-2">
+                Service Capabilities & Key Metrics
+              </h4>
+              <ul className="text-sm text-gray-700 space-y-2">
                 <li>
-                  Supports 22 Indic languages (chatbot) and Hindi/Indian English
-                  (voicebot)
+                  <strong>Supported interaction modes:</strong> Text and voice
+                  (chatbot/voicebot)
                 </li>
-                <li>Offers hybrid mode with buttons + conversational flows</li>
-                <li>Customizable intents and dialogues for departments</li>
-                <li>Live agent fallback mechanism</li>
-                <li>Session management and request validation</li>
-                <li>Modular architecture for scalable deployments</li>
-                <li>Data logging with timestamp-based folders for audits</li>
+                <li>
+                  <strong>Languages:</strong> 22 Indic languages (chat), Hindi
+                  and Indian English (voice)
+                </li>
+                <li>
+                  <strong>Deployment:</strong> APIs and website integration;
+                  production scripts provided
+                </li>
+                <li>
+                  <strong>Architecture:</strong> Communication Layer (CL) +
+                  Business Logic Layer (BL) + AI modules (Panini, Matra, Shruti)
+                </li>
+                <li>
+                  <strong>Security:</strong> Session management, input
+                  validation, role-based access
+                </li>
+                <li>
+                  <strong>Scalability:</strong> Modular microservices for
+                  flexible deployments
+                </li>
               </ul>
-              <p className="text-sm text-gray-700 mt-4">
-                <strong>Security Audit Date:</strong> 3rd January 2025
-              </p>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-md font-semibold text-blue-700 mb-2">
+                AI VANI Rollout
+              </h4>
               <p className="text-sm text-gray-700">
-                <strong>Awards:</strong> Gems of Digital India 2020, National
-                Conference on e-Governance Paper Selection 2022
+                AI VANI is being widely deployed across ministries,
+                citizen-facing government portals, and public service platforms.
+                By enabling intelligent, real-time conversations in multiple
+                languages, it improves accessibility, automates common service
+                queries, and reduces workload on helpdesk teams.
               </p>
-              <p className="text-sm text-gray-700">
-                <strong>Copyright:</strong> SW-15265/2022
-              </p>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-md font-semibold text-blue-700 mb-2">
+                Ideal Use Cases
+              </h4>
+              <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
+                <li>
+                  24x7 citizen service chatbots for education, transport,
+                  health, and judiciary
+                </li>
+                <li>
+                  Voice-based IVR systems for departments with rural outreach
+                </li>
+                <li>
+                  Custom department bots to reduce load on helplines or support
+                  staff
+                </li>
+                <li>Hybrid bots with fallback to live agents</li>
+              </ul>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-blue-800 font-semibold text-md mb-2">
+                Possible Users
+              </h4>
+              <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
+                <li>Central and State Ministries / Departments</li>
+                <li>
+                  Public Service Portals (education, transport, e-governance)
+                </li>
+                <li>IVR-based citizen service helplines</li>
+                <li>NIC-integrated departmental websites</li>
+              </ul>
             </div>
           </div>
 
-          {/* Architecture */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Architecture Overview
-            </h3>
-            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
-              <li>
-                <strong>Communication Layer (CL):</strong> Manages user
-                interactions from web/IVRS clients and forwards valid requests.
-              </li>
-              <li>
-                <strong>Business Logic Layer (BL):</strong> Manages sessions,
-                dialogue handling, logging, and department-level customization.
-              </li>
-              <li>
-                <strong>AI Engines:</strong> Integrates with Shruti (ASR), Matra
-                (TTS), and Panini (NLP) for enhanced Indian language support.
-              </li>
-              <li>
-                Logs conversations using timestamp-based folders for audits and
-                analytics.
-              </li>
-            </ul>
-          </div>
-
           {/* Use Cases & Deployment */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
+          <div className="mt-8 bg-white rounded-lg shadow-md p-6 ">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Use Cases & Deployment Highlights
             </h3>
@@ -113,60 +161,120 @@ const AiVaniDetailPage = () => {
             </p>
           </div>
 
-          {/* API Information */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
+          <div className="mt-8 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              API Endpoint (for reference use only)
+              End-to-End Flow
             </h3>
-            <p className="text-sm text-gray-700">
-              <strong>POST:</strong>{" "}
-              <code className="bg-gray-100 px-2 py-1 rounded">
-                https://testvani-hyd.nic.in/ChatBotAPIP/CallAPI.ashx
-              </code>
+
+            <p className="text-sm text-gray-700 mb-4">
+              Below is the step-by-step flow of how AI VANI handles user
+              interactions from input to final response delivery:
             </p>
-            <p className="text-sm text-gray-700 mt-2">
-              <strong>Payload:</strong>
-            </p>
-            <pre className="text-xs bg-gray-100 p-3 rounded mt-1 overflow-x-auto">
-              {`{
-  ChatData: "{\"MSG\":\"\",\"Sid\":null,\"IName\":\"\",\"Count\":0,\"app_name\":\"BOTNAME\",\"Mode\":\"WebChatBot\",\"dflag\":\"\",\"lang\":\"eng\",\"srclang\":\"eng_Latn\",\"tarlang\":\"eng_Latn\",\"trnsflg\":\"0\"}"
-}`}
-            </pre>
-            <p className="text-xs text-gray-500 mt-2">
-              Note: CL API is the only exposed API. Production scripts are
-              shared only with authorized departments.
-            </p>
+
+            <ul className="list-decimal pl-5 text-sm text-gray-700 space-y-2">
+              <li>
+                <strong>User Input:</strong> User sends a query through a chat
+                interface or voice interface (web, mobile, or IVR).
+              </li>
+              <li>
+                <strong>Input Recognition:</strong> For voice input, AI Shruti
+                converts speech to text using ASR. The recognized text proceeds
+                to the next layer.
+              </li>
+              <li>
+                <strong>Intent Detection:</strong> AI VANI uses NLP models to
+                understand user intent and extract relevant entities from the
+                message.
+              </li>
+              <li>
+                <strong>Response Generation:</strong> Based on intent, the bot
+                retrieves appropriate responses using pre-trained logic or
+                external APIs.
+              </li>
+              <li>
+                <strong>Fallback Handling:</strong> If the bot cannot process
+                the request, it triggers a fallback to human agent (if enabled)
+                or default response.
+              </li>
+              <li>
+                <strong>Translation (If Enabled):</strong> AI Panini may be used
+                to translate responses into the user’s preferred language.
+              </li>
+              <li>
+                <strong>Response Delivery:</strong> The final response is sent
+                back to the user via chat or synthesized speech (TTS) for voice
+                interfaces.
+              </li>
+              <li>
+                <strong>Logging & Analytics:</strong> Each interaction is logged
+                for audit, analytics, and continuous improvement.
+              </li>
+            </ul>
           </div>
 
-          {/* Onboarding Steps */}
-          <div className="mt-12 bg-white rounded-lg shadow-md p-6">
+          <div className="mt-8 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Onboarding & Integration Steps
+              How to Use AI VANI Service
             </h3>
-            <ol className="list-decimal list-inside text-sm text-gray-700 space-y-2">
+            <ol className="list-decimal list-inside text-gray-700 text-sm space-y-2">
               <li>
-                Submit UAT for your department’s chatbot/voicebot workflow.
+                <strong>Onboarding & Authorization:</strong> Submit a service
+                request form signed by an authorized official from your
+                department/ministry. Specify the use case, user volume, and
+                language requirements.
               </li>
-              <li>Complete payment process if applicable.</li>
-              <li>NIC provides production script for integration.</li>
-              <li>Deploy bot using CL endpoint and set up session handling.</li>
-              <li>Monitor chat analytics via provided dashboard.</li>
+              <li>
+                <strong>Platform Integration:</strong> Decide the integration
+                method—web-based chat, mobile interface, or IVR system—and
+                configure accordingly using provided API endpoints.
+              </li>
+              <li>
+                <strong>Middleware Setup:</strong> If using voice-based
+                services, install the AI VANI middleware or connector package
+                (includes ASR/TTS modules) on your NICNET-hosted environment.
+              </li>
+              <li>
+                <strong>Intent & Dialogue Configuration:</strong> Define
+                intents, dialogue flow, FAQs, and custom rules using the VANI
+                admin console or JSON configuration.
+              </li>
+              <li>
+                <strong>Voice Channel Setup (Optional):</strong> For IVR or
+                call-center deployment, integrate with telecom lines and
+                configure speech-to-text and text-to-speech modules.
+              </li>
+              <li>
+                <strong>API Access & Testing:</strong> Access RESTful APIs for
+                real-time interaction. Test conversation flow using the
+                sandbox/testing environment provided.
+              </li>
+              <li>
+                <strong>Deployment & Monitoring:</strong> Go live and monitor
+                usage via dashboard analytics. Continuously update bot knowledge
+                based on logs and user queries.
+              </li>
             </ol>
           </div>
 
-          {/* Summary */}
-          <div className="mt-12 mb-6 bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-semibold text-blue-800 mb-2">
-              Summary
+          <div className="mt-8 bg-white rounded-lg shadow-md p-6 mb-6">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3">
+              Network Access Details
             </h3>
-            <p className="text-base text-gray-700">
-              AI VANI is an intelligent, multilingual, and secure virtual
-              assistant platform developed by NIC to bring scalable
-              conversational AI to citizen services. With integration across
-              multiple government domains, VANI supports both chatbot and
-              voicebot deployments, and ensures high availability,
-              customization, and data integrity across environments.
-            </p>
+            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
+              <li>
+                <strong>Network Access:</strong> Accessible only through the
+                NICNET infrastructure; external access is not supported.
+              </li>
+              <li>
+                <strong>Firewall Configuration:</strong> Ports are to be
+                configured as per NIC guidelines with strict IP controls.
+              </li>
+              <li>
+                <strong>Access Control:</strong> Enforced through IP
+                whitelisting and department-level authorization for deployment
+                and usage.
+              </li>
+            </ul>
           </div>
         </div>
       </div>

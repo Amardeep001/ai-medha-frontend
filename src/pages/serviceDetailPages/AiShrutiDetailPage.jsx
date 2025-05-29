@@ -216,58 +216,6 @@ const AiShrutiDetailPage = () => {
             </div>
           </div>
 
-          {/* <div className="bg-white rounded-lg shadow-md p-8 mb-10">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              API & Model Overview
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-5">
-              <div>
-                <h4 className="text-md font-semibold text-blue-700 mb-2">
-                  API Overview
-                </h4>
-                <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
-                  <li>
-                    <strong>ASR Streaming API:</strong> Real-time transcription
-                    via WebSocket (wss://10.197.112.27:8015)
-                  </li>
-                  <li>
-                    <strong>ASR + Translation API:</strong> Live speech-to-text
-                    and translation (hi-en, en-hi)
-                  </li>
-                  <li>
-                    <strong>ASR from File API:</strong> Batch transcription via
-                    POST endpoint (supports .wav files only)
-                  </li>
-                  <li>
-                    <strong>Languages Supported:</strong> English, Hindi,
-                    Bangla, Marathi, Tamil, Telugu, Kannada, Gujarati
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-md font-semibold text-blue-700 mb-2">
-                  Model Information
-                </h4>
-                <ul className="text-sm text-gray-700 space-y-1">
-                  <li>
-                    <strong>Model Type:</strong> Conformer
-                  </li>
-                  <li>
-                    <strong>Architecture:</strong> Non-autoregressive, CTC
-                    variant
-                  </li>
-                  <li>
-                    <strong>Performance Metric:</strong> WER (Word Error Rate)
-                  </li>
-                  <li>
-                    <strong>Parameters:</strong> learning rate, batch size,
-                    chunk size, tokenizer, language model, decoder size
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div> */}
-
           {/* Charts */}
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="bg-white rounded-lg shadow-md p-6">

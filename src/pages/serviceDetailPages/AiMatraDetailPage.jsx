@@ -2,13 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import {
-  FaGlobe,
-  FaFileAlt,
-  FaComments,
-  FaCogs,
-  FaNetworkWired,
-} from "react-icons/fa";
 
 const AiMatraDetailPage = () => {
   const navigate = useNavigate();
@@ -31,146 +24,230 @@ const AiMatraDetailPage = () => {
           ← Back to Services
         </button>
 
-        {/* Title and Description */}
-        <section className="mb-10">
-          <h1 className="text-4xl font-bold text-blue-900 mb-3">AI Matra</h1>
-          <p className="text-lg text-gray-700 mb-4 max-w-4xl">
-            AI Matra is a text translation service that supports translation
-            across multiple Indian languages. It enables real-time and offline
-            text-based communication and content localization through REST and
-            WebSocket APIs.
-          </p>
-          <img
-            src="https://picsum.photos/1200/350?random=23"
-            alt="AI Matra Visual"
-            className="w-full rounded-lg shadow-md"
-          />
-        </section>
-
-        {/* Features */}
-        <section className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {[
-            { icon: <FaFileAlt />, label: "Text-to-Text Translation" },
-            { icon: <FaGlobe />, label: "10+ Indian Languages Supported" },
-            { icon: <FaNetworkWired />, label: "REST & WebSocket APIs" },
-            { icon: <FaCogs />, label: "Transformer-based Architecture" },
-            { icon: <FaComments />, label: "Low Latency & Scalable" },
-          ].map((item, idx) => (
-            <div
-              key={idx}
-              className="bg-white border rounded-lg p-4 flex items-center gap-4 shadow-sm hover:shadow-md transition"
-            >
-              <div className="text-blue-700 text-2xl">{item.icon}</div>
-              <p className="text-gray-800 font-medium">{item.label}</p>
-            </div>
-          ))}
-        </section>
+        <h1 className="text-4xl font-bold text-blue-900 mb-3">AI Matra</h1>
+        <p className="text-gray-700 mb-6 text-base leading-relaxed">
+          AI Matra is a neural transliteration system designed to convert text
+          from one script to another across 22 Indic languages. It supports both
+          single and batch transliteration and is primarily used for converting
+          names and addresses for display in local languages. Unlike
+          translation, it focuses on phonetic consistency rather than semantic
+          meaning.
+        </p>
 
         {/* Overview & Use Cases */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Service Overview
-            </h3>
-            <ul className="list-disc text-sm text-gray-700 pl-5 space-y-2">
-              <li>Real-time and batch translation between Indian languages</li>
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <h3 className="text-xl font-semibold text-blue-800 mb-3">
+            About AI Matra
+          </h3>
+          <p className="text-sm text-gray-700 leading-relaxed">
+            AI Matra is a neural transliteration system designed to convert text
+            between scripts across 22 Indic languages. Unlike translation, it
+            focuses on phonetic representation, ensuring that names, addresses,
+            and short phrases are rendered accurately in regional scripts
+            without altering meaning. It plays a critical role in multilingual
+            content rendering for government and citizen-facing applications.
+          </p>
+
+          <div className="pt-4 text-sm text-gray-600 space-y-1">
+            <p>
+              <strong>Last Security Audit Date:</strong> NA
+            </p>
+          </div>
+
+          <div className="mt-6">
+            <h4 className="text-md font-semibold text-blue-700 mb-2">
+              Service Capabilities & Key Metrics
+            </h4>
+            <ul className="text-sm text-gray-700 space-y-2">
               <li>
-                Supports English, Hindi, Bengali, Marathi, Tamil, Telugu,
-                Kannada, Gujarati, etc.
+                <strong>Supported text input:</strong> Names, addresses, and
+                short phrases in Latin script
               </li>
               <li>
-                REST & WebSocket APIs for integration into apps and platforms
+                <strong>Deployment options:</strong> REST APIs for single and
+                batch transliteration
               </li>
               <li>
-                Used in content translation, communication, and governance
+                <strong>Average response time:</strong> Less than 2 seconds for
+                individual names
+              </li>
+              <li>
+                <strong>Workflow:</strong> Latin Input → Script Detection →
+                Phonetic Mapping → Indic Script Output
+              </li>
+              <li>
+                <strong>Category:</strong> Neural Transliteration
+              </li>
+              <li>
+                <strong>Sector:</strong> Language Technology / Localization
+              </li>
+              <li>
+                <strong>Supported Languages:</strong> 22 Indian languages
+                including Hindi, Bengali, Tamil, Telugu, Kannada, etc.
+              </li>
+              <li>
+                <strong>Use Style:</strong> Transliteration only (no semantic
+                translation)
               </li>
             </ul>
           </div>
 
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Real-World Applications
-            </h3>
-            <ul className="list-disc text-sm text-gray-700 pl-5 space-y-2">
-              <li>Real-time multilingual chat translation</li>
-              <li>Local language translation of government forms</li>
-              <li>Multilingual content localization and subtitling</li>
+          <div className="mt-6">
+            <h4 className="text-md font-semibold text-blue-700 mb-2">
+              AI Matra Rollout
+            </h4>
+            <p className="text-sm text-gray-700">
+              AI Matra is being used across government platforms that display
+              bilingual content. It enables the rendering of user-entered or
+              system-generated English names and terms into regional languages.
+              Integration pilots are active across state portals, digital forms,
+              and language-sensitive interfaces for citizen services.
+            </p>
+            <p className="text-sm text-gray-700 mt-3">
+              <strong>Organizations using AI Matra include:</strong>
+            </p>
+            <ul className="list-disc list-inside ml-5 text-sm text-gray-700">
+              <li>State e-Governance Portals</li>
+              <li>Digital India Initiatives</li>
+              <li>NIC Language Technology Division</li>
+            </ul>
+          </div>
+
+          <div className="mt-6">
+            <h4 className="text-md font-semibold text-blue-700 mb-2">
+              Ideal Use Cases
+            </h4>
+            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
+              <li>
+                Form autofill with native script names in public-facing
+                applications
+              </li>
+              <li>
+                Postal address transliteration for logistics and identity
+                verification
+              </li>
+              <li>Bilingual certificates and document generation</li>
+              <li>Integration in language localization workflows</li>
+            </ul>
+          </div>
+
+          <div className="mt-6">
+            <h4 className="text-blue-800 font-semibold text-md mb-2">
+              Possible Users
+            </h4>
+            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
+              <li>State and Central Government e-Services Platforms</li>
+              <li>Citizen Service Portals and Application Forms</li>
+              <li>
+                Departments handling identity, transport, or education records
+              </li>
+              <li>NIC and its Language Technology Projects</li>
             </ul>
           </div>
         </div>
 
-        {/* API Info */}
-        <section className="bg-white p-6 rounded-lg shadow-md mb-12">
-          <h3 className="text-xl font-semibold text-blue-800 mb-4">
-            API Integration
+        <div className="mt-8 bg-white rounded-lg shadow-md p-8">
+          <h3 className="text-xl font-semibold text-blue-800 mb-3">
+            End-to-End Flow
           </h3>
-          <div className="text-sm text-gray-700 space-y-3">
-            <p>
-              <strong>WebSocket Endpoint:</strong>{" "}
-              <code className="text-blue-600">wss://10.197.112.27:8025</code>
-            </p>
-            <p>
-              <strong>REST Endpoint:</strong>{" "}
-              <code className="text-blue-600">
-                https://10.197.112.27:8025/translatefile/
-              </code>
-            </p>
-            <p>
-              <strong>Events:</strong> <code>lang_pair</code>,{" "}
-              <code>starttranslation</code>, <code>text_in</code>
-            </p>
-            <p>
-              <strong>Languages:</strong> en, hi, bn, mr, ta, te, kn, gu, or,
-              ml, pa, ur
-            </p>
-          </div>
-        </section>
 
-        {/* Model Info */}
-        <section className="bg-white p-6 rounded-lg shadow-md mb-12">
-          <h3 className="text-xl font-semibold text-blue-800 mb-4">
-            Model Details
-          </h3>
-          <ul className="list-disc text-sm text-gray-700 pl-5 space-y-1">
+          <p className="text-sm text-gray-700 mb-4">
+            Below is the step-by-step flow from receiving the Roman script input
+            to generating the transliterated output in the target Indic script:
+          </p>
+
+          <ul className="list-decimal pl-5 text-sm text-gray-700 space-y-2">
             <li>
-              <strong>Model Type:</strong> Transformer
+              <strong>Input:</strong> User enters names, addresses, or phrases
+              in Latin (Roman) script.
             </li>
             <li>
-              <strong>Approach:</strong> Encoder-Decoder (Seq2Seq)
+              <strong>Language Detection:</strong> The system identifies the
+              target Indic language for output based on user selection or
+              context.
             </li>
             <li>
-              <strong>Evaluation Metric:</strong> BLEU Score
+              <strong>Pre-processing:</strong> The input string is normalized,
+              cleaned, and tokenized to handle abbreviations, spelling
+              variations, and phonetic nuances.
             </li>
             <li>
-              <strong>Key Parameters:</strong> Attention heads, layers,
-              vocabulary size, beam width
+              <strong>Transliteration Engine:</strong> AI Matra applies a neural
+              model to convert the Roman text into its phonetic equivalent in
+              the target script.
+            </li>
+            <li>
+              <strong>Script Rendering:</strong> The transliterated text is
+              reconstructed using Unicode-compliant fonts for accurate script
+              display.
+            </li>
+            <li>
+              <strong>Output Generation:</strong> The system returns the
+              transliterated string in the chosen Indic language script.
+            </li>
+            <li>
+              <strong>Delivery:</strong> Output is delivered via REST API or
+              rendered directly on the integrated front-end (web/app/form).
             </li>
           </ul>
-        </section>
+        </div>
 
-        {/* Workflow */}
-        <section className="bg-white p-6 rounded-lg shadow-md mb-12">
-          <h3 className="text-xl font-semibold text-blue-800 mb-4">
-            Workflow: Translation Flow
+        <div className="mt-8 bg-white rounded-lg shadow-md p-8">
+          <h3 className="text-xl font-semibold text-blue-800 mb-3">
+            How to Use AI Matra Service
           </h3>
-          <ol className="list-decimal text-sm text-gray-700 pl-5 space-y-2">
+          <ol className="list-decimal list-inside text-gray-700 text-sm space-y-2">
             <li>
-              <strong>Input:</strong> Text in source language via REST or
-              WebSocket
+              <strong>Onboarding & Access:</strong> Submit a service request via
+              NIC Cloud Portal with a signed letter from your department
+              indicating the target languages and use case for transliteration.
             </li>
             <li>
-              <strong>Language Pair:</strong> Selected by client (e.g., en-hi,
-              hi-en)
+              <strong>API Access Approval:</strong> After review, API
+              credentials (client ID and secret key) will be issued to your
+              department for secure usage.
             </li>
             <li>
-              <strong>Processing:</strong> Model performs neural machine
-              translation
+              <strong>Integration Setup:</strong> Integrate AI Matra REST APIs
+              into your frontend or backend using standard HTTP POST requests.
             </li>
             <li>
-              <strong>Output:</strong> Translated text returned via API
+              <strong>Input Configuration:</strong> Provide the input string in
+              Roman (Latin) script along with the desired target Indic language
+              (e.g., Hindi, Bengali, Tamil).
+            </li>
+            <li>
+              <strong>Transliteration Request:</strong> Submit the text via API
+              with required parameters. The backend engine processes the
+              phonetic conversion.
+            </li>
+            <li>
+              <strong>Response Handling:</strong> The API returns the
+              transliterated output in Unicode format, ready to be displayed on
+              UI or used in official documents.
+            </li>
+            <li>
+              <strong>Batch Support (Optional):</strong> Use bulk mode for
+              transliterating lists of names/addresses by uploading files or
+              JSON arrays to the batch endpoint.
             </li>
           </ol>
-        </section>
+        </div>
+        <div className="mt-8 bg-white rounded-lg shadow-md p-6 mb-6">
+          <h3 className="text-xl font-semibold text-blue-800 mb-3">
+            Network Access Details
+          </h3>
+          <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
+            <li>
+              <strong>Network Access:</strong> Available only through the NIC
+              Cloud infrastructure over secure government network connections.
+            </li>
+            <li>
+              <strong>Access Control:</strong> Enforced via IP whitelisting and
+              authenticated API credentials issued to approved departments.
+            </li>
+          </ul>
+        </div>
       </main>
 
       <Footer />
