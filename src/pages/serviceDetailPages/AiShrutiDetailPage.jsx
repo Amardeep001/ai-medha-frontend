@@ -217,7 +217,7 @@ const AiShrutiDetailPage = () => {
           </div>
 
           {/* Charts */}
-          <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="bg-white rounded-lg shadow-md p-6">
               <h3 className="text-xl font-semibold text-blue-800 mb-2">
                 Service Hit Count
@@ -312,7 +312,7 @@ const AiShrutiDetailPage = () => {
             </div>
           </div>
 
-          <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="bg-white rounded-lg shadow-md p-6">
               <h3 className="text-xl font-semibold text-blue-800 mb-2">
                 Service Duration Count
@@ -407,7 +407,7 @@ const AiShrutiDetailPage = () => {
             </div>
           </div>
 
-          <div className="mt-10 bg-white rounded-lg shadow-md p-8">
+          <div className="mt-8 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               End-to-End Flow
             </h3>
@@ -453,7 +453,7 @@ const AiShrutiDetailPage = () => {
             </ul>
           </div>
 
-          <div className="mt-10 bg-white rounded-lg shadow-md p-8">
+          <div className="mt-8 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               How to Use AI Shruti Service
             </h3>
@@ -498,7 +498,7 @@ const AiShrutiDetailPage = () => {
             </ol>
           </div>
 
-          <div className="mt-10 bg-white rounded-lg shadow-md p-6 mb-6">
+          <div className="mt-8 bg-white rounded-lg shadow-md p-6 mb-6">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Network Access Details
             </h3>

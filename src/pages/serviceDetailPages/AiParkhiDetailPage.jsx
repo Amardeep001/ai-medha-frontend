@@ -54,7 +54,7 @@ const AiParkhiDetail = () => {
           >
             ← Back to Services
           </button>
-          <h2 className="text-3xl font-bold text-blue-900 mb-2">AI PARKHI</h2>
+          <h2 className="text-3xl font-bold text-blue-900 mb-2">AI Parkhi</h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
             AI Parkhi is an intelligent video surveillance and incident
             detection system designed to enhance road and civic infrastructure
@@ -104,36 +104,24 @@ const AiParkhiDetail = () => {
             ))}
           </div>
 
-          {/* Intelligence Overview */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-10">
+          <div className="bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Model Intelligence & Architecture Overview
+              About AI Parkhi
             </h3>
-            <p className="text-gray-700 text-sm leading-relaxed">
-              The <strong>AI Parkhi</strong> platform is built for real-time
-              surveillance with an integrated AI engine for tracking vehicles,
-              identifying infractions like helmetless riding, and alerting for
-              emergencies. It uses a combination of:
+            <p className="text-sm text-gray-700 leading-relaxed">
+              <strong>AI Parkhi</strong> is an AI-powered image quality
+              assessment service that automatically classifies uploaded images
+              as good or bad based on visual clarity. It uses deep learning to
+              return a quality score and a binary label for each image, helping
+              government platforms improve efficiency, transparency, and
+              document readability.
             </p>
 
-            <ul className="list-disc pl-5 mt-4 text-sm text-gray-700 space-y-2">
-              <li>
-                <strong>YOLOv7 & SSD Models:</strong> Object detection for
-                vehicles, helmets, and persons.
-              </li>
-              <li>
-                <strong>Deep SORT & ByteTrack:</strong> For multi-object
-                tracking across frames and camera feeds.
-              </li>
-              <li>
-                <strong>Facial Recognition Embeddings:</strong> Detect known and
-                unknown faces with confidence scoring.
-              </li>
-              <li>
-                <strong>Integrated Alert System:</strong> Sends incident alerts
-                to dashboards in real-time.
-              </li>
-            </ul>
+            <div className="pt-4 text-sm text-gray-600 space-y-1">
+              <p>
+                <strong>Last Security Audit Date:</strong> NA
+              </p>
+            </div>
 
             <div className="mt-6">
               <h4 className="text-md font-semibold text-blue-700 mb-2">
@@ -141,50 +129,206 @@ const AiParkhiDetail = () => {
               </h4>
               <ul className="text-sm text-gray-700 space-y-2">
                 <li>
-                  📹 <strong>Live Feed Analysis:</strong> Processes HD CCTV
-                  feeds in real-time
+                  <strong>Supported formats:</strong> PNG, JPG
                 </li>
                 <li>
-                  🚨 <strong>Incident Detection:</strong> Identifies road
-                  accidents, crowd surge, and no-helmet scenarios
+                  <strong>Deployment options:</strong> REST API (POST method)
                 </li>
                 <li>
-                  👥 <strong>Facial Recognition:</strong> Accurate up to 95.5%
-                  with fallback alerts
+                  <strong>Average response time:</strong> Optimized for
+                  high-throughput, concurrent requests
                 </li>
                 <li>
-                  📈 <strong>Scalability:</strong> GPU-powered backend supports
-                  100+ feeds concurrently
+                  <strong>Workflow:</strong> Image Upload → Model Inference →
+                  Score Calculation → Quality Prediction (0/1)
                 </li>
                 <li>
-                  🧠 <strong>Edge/Cloud Deployment:</strong> Can run at traffic
-                  intersections or cloud clusters
+                  <strong>Category:</strong> Image Quality Assessment
+                </li>
+                <li>
+                  <strong>Sector:</strong> Digital Document Verification /
+                  Automation
+                </li>
+                <li>
+                  <strong>Threshold:</strong> Score ≤ 51 → Bad (Label 0), Score{" "}
+                  {">"} 51 → Good (Label 1)
+                </li>
+                <li>
+                  <strong>Performance Metric:</strong> 77.6% accuracy on
+                  KonIQ-10k dataset
+                </li>
+                <li>
+                  <strong>Model:</strong> Ensemble of VGG16, ResNet50,
+                  InceptionV3, InceptionResNetV2, DenseNet201
                 </li>
               </ul>
             </div>
 
             <div className="mt-6">
               <h4 className="text-md font-semibold text-blue-700 mb-2">
-                Government Usage & Deployment
+                AI Parkhi Rollout
               </h4>
-              <p className="text-gray-700 text-sm">
-                AI Parkhi is deployed in various civic bodies and Smart City
-                missions, including cities in Telangana, Maharashtra, and West
-                Bengal. It has helped reduce incident response time and improved
-                traffic enforcement significantly.
+              <p className="text-sm text-gray-700">
+                AI Parkhi is currently being integrated into government systems
+                such as PESO's Online Licensing Portal to ensure clarity and
+                legibility of uploaded documents. By streamlining the
+                verification of scanned documents and forms, the solution
+                reduces manual effort and improves transparency across digital
+                workflows.
               </p>
             </div>
 
             <div className="mt-6">
               <h4 className="text-md font-semibold text-blue-700 mb-2">
-                Disclaimers & Limitations
+                Ideal Use Cases
               </h4>
-              <p className="text-sm text-gray-700">
-                Accuracy may vary with poor lighting, occlusion, or outdated
-                camera quality. Models continuously improve with real-time
-                feedback and upgraded training datasets from deployed cities.
-              </p>
+              <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
+                <li>
+                  Quality control for scanned documents uploaded to e-Governance
+                  portals
+                </li>
+                <li>
+                  Automated validation of licenses, certificates, and identity
+                  proofs
+                </li>
+                <li>
+                  Screening blurry or unreadable images during citizen service
+                  registration
+                </li>
+                <li>
+                  Enhancing document verification during online application
+                  submissions
+                </li>
+              </ul>
             </div>
+
+            <div className="mt-6">
+              <h4 className="text-blue-800 font-semibold text-md mb-2">
+                Possible Users
+              </h4>
+              <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
+                <li>Central and State Government Departments</li>
+                <li>Regulatory Authorities and Licensing Bodies</li>
+                <li>e-Governance Portals and Public Service Platforms</li>
+                <li>Online Document Verification Systems</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-8 bg-white rounded-lg shadow-md p-8">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3">
+              End-to-End Flow
+            </h3>
+
+            <p className="text-sm text-gray-700 mb-4">
+              Below is the step-by-step flow from uploading the image to
+              receiving the quality classification result:
+            </p>
+
+            <ul className="list-decimal pl-5 text-sm text-gray-700 space-y-2">
+              <li>
+                <strong>Input:</strong> User uploads a PNG or JPG image to the
+                API for quality evaluation.
+              </li>
+              <li>
+                <strong>Image Reception:</strong> API accepts the image through
+                a POST request with content type JSON or Multipart.
+              </li>
+              <li>
+                <strong>Preprocessing:</strong> The image is preprocessed to
+                meet model input requirements.
+              </li>
+              <li>
+                <strong>Model Inference:</strong> The system uses a fusion of
+                five deep learning models (VGG16, ResNet50, InceptionV3,
+                InceptionResNetV2, DenseNet201) trained on the KonIQ-10k
+                dataset.
+              </li>
+              <li>
+                <strong>Score Calculation:</strong> The models compute a
+                perceptual image quality score.
+              </li>
+              <li>
+                <strong>Classification:</strong> Based on a threshold of 51, the
+                system classifies the image as:
+                <ul className="list-disc list-inside ml-4 mt-1">
+                  <li>
+                    <strong>Score ≤ 51:</strong> Label 0 - BAD Quality
+                  </li>
+                  <li>
+                    <strong>Score &gt; 51:</strong> Label 1 - GOOD Quality
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <strong>Output Delivery:</strong> API returns a JSON response
+                with the image quality score and prediction label.
+              </li>
+            </ul>
+          </div>
+
+          <div className="mt-8 bg-white rounded-lg shadow-md p-8">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3">
+              How to Use AI Parkhi Service
+            </h3>
+            <ol className="list-decimal list-inside text-gray-700 text-sm space-y-2">
+              <li>
+                <strong>Onboarding & Authorization:</strong> Submit an official
+                request via NIC channels with the use case for image quality
+                classification. Approval is required from the concerned
+                department or division.
+              </li>
+              <li>
+                <strong>API Access:</strong> Access is provided through a
+                secured endpoint hosted on NIC infrastructure. Credentials and
+                endpoint documentation are shared post-approval.
+              </li>
+              <li>
+                <strong>Image Submission:</strong> Submit image files in PNG or
+                JPG format via POST request. Use JSON or multipart content type
+                depending on the integration method.
+              </li>
+              <li>
+                <strong>Request Format:</strong> Ensure the payload includes the
+                image and adheres to the API specification (e.g., base64-encoded
+                string or multipart upload).
+              </li>
+              <li>
+                <strong>Model Inference:</strong> The API internally processes
+                the image using an ensemble of five deep learning models trained
+                on the KonIQ-10k dataset.
+              </li>
+              <li>
+                <strong>Output Reception:</strong> Receive a JSON response
+                containing the image quality score and its classification label
+                (0 for BAD, 1 for GOOD).
+              </li>
+              <li>
+                <strong>Result Utilization:</strong> Use the output for
+                filtering low-quality images in document processing, improving
+                OCR accuracy, or validating scanned uploads in workflows.
+              </li>
+            </ol>
+          </div>
+          <div className="mt-8 bg-white rounded-lg shadow-md p-8 mb-6">
+            <h3 className="text-xl font-semibold text-blue-800 mb-3">
+              Network Access Details
+            </h3>
+            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
+              <li>
+                <strong>Network Access:</strong> Available only within the NIC
+                network environment through secure internal endpoints.
+              </li>
+              <li>
+                <strong>Firewall Configuration:</strong> Access is restricted to
+                whitelisted IPs as per NIC guidelines to ensure data security.
+              </li>
+              <li>
+                <strong>Access Control:</strong> Enforced using{" "}
+                <strong>IP whitelisting</strong> and authenticated API
+                credentials issued post-approval.
+              </li>
+            </ul>
           </div>
         </div>
       </div>

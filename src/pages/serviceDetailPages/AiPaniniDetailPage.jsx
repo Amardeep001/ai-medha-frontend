@@ -254,7 +254,7 @@ const AiPaniniDetailPage = () => {
           </div>
 
           {/* Summary Table */}
-          <div className="mt-10 bg-white rounded-lg shadow-md p-6 ">
+          <div className="mt-8 bg-white rounded-lg shadow-md p-6 ">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Language Coverage Table
             </h3>
@@ -281,7 +281,7 @@ const AiPaniniDetailPage = () => {
           </div>
 
           {/* Charts */}
-          <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="bg-white rounded-lg shadow-md p-6">
               <h3 className="text-xl font-semibold text-blue-800 mb-2">
                 Department Adoption Chart
@@ -377,7 +377,7 @@ const AiPaniniDetailPage = () => {
           </div>
 
           {/* Summary & Steps */}
-          <div className="mt-10 bg-white rounded-lg shadow-md p-6">
+          <div className="mt-8 bg-white rounded-lg shadow-md p-6">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               How to Use AI Panini Service
             </h3>
@@ -438,7 +438,7 @@ const AiPaniniDetailPage = () => {
           </div>
 
           {/* Network Availability Section */}
-          <div className="mt-10 mb-6 bg-white rounded-lg shadow-md p-8">
+          <div className="mt-8 mb-6 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Network Access Details
             </h3>
@@ -448,10 +448,6 @@ const AiPaniniDetailPage = () => {
                 <strong>NIC</strong> Network, and external via{" "}
                 <strong>NAPIX</strong>.
               </li>
-              {/* <li>
-                <strong>Ports to be Opened:</strong>{" "}
-                <code className="bg-gray-100 px-1 py-0.5 rounded">443</code>
-              </li> */}
               <li>
                 <strong>Firewall Configuration:</strong> Only whitelisted IPs
                 can access the service.

@@ -22,9 +22,9 @@ const AiVaniDetailPage = () => {
           >
             ← Back to Services
           </button>
-          <h2 className="text-3xl font-bold text-blue-900 mb-2">AI VANI</h2>
+          <h2 className="text-3xl font-bold text-blue-900 mb-2">AI Vani</h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
-            AI VANI is a modular and multilingual conversational AI framework
+            AI Vani is a modular and multilingual conversational AI framework
             developed by NIC. It acts as a virtual assistant supporting chatbot
             and voicebot interactions across 22 Indian languages, with powerful
             integration capabilities for government and citizen-facing services.
@@ -32,10 +32,10 @@ const AiVaniDetailPage = () => {
 
           <div className="bg-white rounded-lg shadow-md p-6">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              About AI VANI
+              About AI Vani
             </h3>
             <p className="text-sm text-gray-700 leading-relaxed">
-              AI VANI is a modular, multilingual conversational AI framework
+              AI Vani is a modular, multilingual conversational AI framework
               developed by NIC’s AI Cloud Services and Virtual Assistance
               Division. It enables intelligent chatbot and voicebot services for
               citizen-centric government applications across India. Supporting
@@ -93,10 +93,10 @@ const AiVaniDetailPage = () => {
 
             <div className="mt-6">
               <h4 className="text-md font-semibold text-blue-700 mb-2">
-                AI VANI Rollout
+                AI Vani Rollout
               </h4>
               <p className="text-sm text-gray-700">
-                AI VANI is being widely deployed across ministries,
+                AI Vani is being widely deployed across ministries,
                 citizen-facing government portals, and public service platforms.
                 By enabling intelligent, real-time conversations in multiple
                 languages, it improves accessibility, automates common service
@@ -145,7 +145,7 @@ const AiVaniDetailPage = () => {
               Use Cases & Deployment Highlights
             </h3>
             <p className="text-sm text-gray-700">
-              AI VANI is already deployed in numerous government applications
+              AI Vani is already deployed in numerous government applications
               for areas like:
             </p>
             <ul className="list-disc pl-5 mt-2 text-sm text-gray-700 space-y-2">
@@ -167,7 +167,7 @@ const AiVaniDetailPage = () => {
             </h3>
 
             <p className="text-sm text-gray-700 mb-4">
-              Below is the step-by-step flow of how AI VANI handles user
+              Below is the step-by-step flow of how AI Vani handles user
               interactions from input to final response delivery:
             </p>
 
@@ -182,7 +182,7 @@ const AiVaniDetailPage = () => {
                 to the next layer.
               </li>
               <li>
-                <strong>Intent Detection:</strong> AI VANI uses NLP models to
+                <strong>Intent Detection:</strong> AI Vani uses NLP models to
                 understand user intent and extract relevant entities from the
                 message.
               </li>
@@ -214,7 +214,7 @@ const AiVaniDetailPage = () => {
 
           <div className="mt-8 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              How to Use AI VANI Service
+              How to Use AI Vani Service
             </h3>
             <ol className="list-decimal list-inside text-gray-700 text-sm space-y-2">
               <li>
@@ -230,12 +230,12 @@ const AiVaniDetailPage = () => {
               </li>
               <li>
                 <strong>Middleware Setup:</strong> If using voice-based
-                services, install the AI VANI middleware or connector package
+                services, install the AI Vani middleware or connector package
                 (includes ASR/TTS modules) on your NICNET-hosted environment.
               </li>
               <li>
                 <strong>Intent & Dialogue Configuration:</strong> Define
-                intents, dialogue flow, FAQs, and custom rules using the VANI
+                intents, dialogue flow, FAQs, and custom rules using the Vani
                 admin console or JSON configuration.
               </li>
               <li>

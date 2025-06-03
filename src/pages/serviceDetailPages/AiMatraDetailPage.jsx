@@ -50,7 +50,10 @@ const AiMatraDetailPage = () => {
 
           <div className="pt-4 text-sm text-gray-600 space-y-1">
             <p>
-              <strong>Last Security Audit Date:</strong> NA
+              <strong>Last Security Audit Date:</strong> March 2025
+            </p>
+            <p>
+              <strong>Copyright:</strong> NIC
             </p>
           </div>
 

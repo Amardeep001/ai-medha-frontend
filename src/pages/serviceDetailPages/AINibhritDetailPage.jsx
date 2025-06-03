@@ -252,7 +252,7 @@ const AiNibhritDetailPage = () => {
             </div>
           </div>
 
-          <div className="mt-10 bg-white rounded-lg shadow-md p-8">
+          <div className="mt-8 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Data Privacy Solutions Overview
             </h3>
@@ -298,7 +298,7 @@ const AiNibhritDetailPage = () => {
             </div>
           </div>
 
-          <div className="mt-10 bg-white rounded-lg shadow-md p-8 ">
+          <div className="mt-8 bg-white rounded-lg shadow-md p-8 ">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Model Summary Table
             </h3>
@@ -336,7 +336,7 @@ const AiNibhritDetailPage = () => {
           </div>
 
           {/* Visual Charts */}
-          <div className="mt-10 grid grid-cols-1 xl:grid-cols-2 gap-8">
+          <div className="mt-8 grid grid-cols-1 xl:grid-cols-2 gap-8">
             {/* Pie Chart: Department-wise Service Count */}
             <div className="bg-white rounded-lg shadow-md p-8 sm:p-6">
               <h3 className="text-xl font-semibold text-blue-800 mb-2">
@@ -442,7 +442,7 @@ const AiNibhritDetailPage = () => {
           </div>
 
           {/* End-to-End Flow Section */}
-          <div className="mt-10 bg-white rounded-lg shadow-md p-8 ">
+          <div className="mt-8 bg-white rounded-lg shadow-md p-8 ">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               End-to-End Flow
             </h3>
@@ -492,7 +492,7 @@ const AiNibhritDetailPage = () => {
           </div>
 
           {/* Steps to Use AI Nibhrit Service */}
-          <div className="mt-10 bg-white rounded-lg shadow-md p-8">
+          <div className="mt-8 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               How to Use AI Nibhrit Service
             </h3>
@@ -532,7 +532,7 @@ const AiNibhritDetailPage = () => {
           </div>
 
           {/* Network Availability Section */}
-          <div className="mt-10 mb-6 bg-white rounded-lg shadow-md p-8 ">
+          <div className="mt-8 mb-6 bg-white rounded-lg shadow-md p-8 ">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Network Access Details
             </h3>
