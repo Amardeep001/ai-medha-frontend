@@ -66,7 +66,7 @@ const AiSaranshDetailPage = () => {
                 </li>
                 <li>
                   <strong>Input constraints:</strong> Text length between
-                  100-5000 characters with punctuation support
+                  100-30000 words with punctuation support
                 </li>
                 <li>
                   <strong>Summary length control:</strong> Configurable output
@@ -85,10 +85,6 @@ const AiSaranshDetailPage = () => {
                 <li>
                   <strong>Network Access:</strong> NIC network and public
                   internet via Napix platform
-                </li>
-                <li>
-                  <strong>Port Configuration:</strong> Port 4001 with IP
-                  whitelisting
                 </li>
                 <li>
                   <strong>Response Format:</strong> JSON with status, data, and
@@ -113,9 +109,9 @@ const AiSaranshDetailPage = () => {
                 <strong>Primary applications include:</strong>
               </p>
               <ul className="list-disc list-inside ml-5 text-sm text-gray-700">
+                <li>Minutes of meeting summarization</li>
                 <li>Judicial case judgment summaries</li>
-                <li>Government report condensation</li>
-                <li>Legal document processing</li>
+                <li>Government report summarization</li>
                 <li>Administrative workflow optimization</li>
                 <li>Digital document management systems</li>
               </ul>
@@ -178,7 +174,7 @@ const AiSaranshDetailPage = () => {
 
             <ul className="list-decimal pl-5 text-sm text-gray-700 space-y-2">
               <li>
-                <strong>Input:</strong> Raw text documents (100-5000 characters)
+                <strong>Input:</strong> Raw text documents (100-30000 words)
                 from legal documents, government reports, or user-submitted
                 content via frontend or API calls through NAPIx.
               </li>
@@ -189,8 +185,8 @@ const AiSaranshDetailPage = () => {
               </li>
               <li>
                 <strong>Validation:</strong> Validates input text type, length
-                constraints (100-5000 characters), and sentence parameter
-                (integer between 5-50).
+                constraints (100-30000 words), and sentence parameter (integer
+                between 5-50).
               </li>
               <li>
                 <strong>Pre-processing:</strong> Performs tokenization of text
@@ -221,56 +217,67 @@ const AiSaranshDetailPage = () => {
             </ul>
           </div>
 
-          <div className="mt-8 bg-white rounded-lg shadow-md p-8">
+          <div className="mt-8 bg-white rounded-lg shadow-md p-6">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               How to Use AI Saransh Service
             </h3>
-            <ol className="list-decimal list-inside text-gray-700 text-sm space-y-2">
+            <ol className="list-decimal list-inside text-sm text-gray-700 space-y-2">
               <li>
-                <strong>Onboarding & Authorization:</strong> Submit the AI
-                Saransh service request form along with a user request letter
-                from your department/ministry via NIC MeghRaj Cloud. Obtain RBAC
-                authorization through AI Medha Service Catalogue for API access.
+                Fill out the <strong>User Service Request Form</strong> via NIC
+                MeghRaj Cloud portal.
               </li>
               <li>
-                <strong>Network Setup:</strong> Ensure your system has access to
-                NICNet or public internet via Napix platform. Configure firewall
-                to allow connections on port 4001 and complete IP whitelisting
-                requirements.
+                Include project use case, required summarization type
+                (Extractive/Abstractive), and authorization letter.
               </li>
               <li>
-                <strong>API Integration:</strong> Integrate with AI Saransh
-                using the provided REST API endpoints: /Exsummary for extractive
-                summarization or /Absummary for abstractive summarization.
+                Get <strong>RBAC authorization</strong> for API usage via AI
+                Medha Service Catalogue.
               </li>
               <li>
-                <strong>Authentication Setup:</strong> Configure API keys or
-                tokens in request headers as required by your production
-                environment setup for secure access to the service.
+                Choose an integration method: <strong>NAPIX Integration</strong>{" "}
+                or <strong>Direct API Access</strong>.
               </li>
+
+              {/* NAPIX Integration Steps */}
               <li>
-                <strong>Input Preparation:</strong> Prepare your text documents
-                ensuring they meet the constraints: minimum 100 characters,
-                maximum 5000 characters, with proper punctuation for optimal
-                results.
+                <strong>NAPIX Integration:</strong>
+                <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
+                  <li>
+                    Register on the NAPIX platform for external/public access.
+                  </li>
+                  <li>
+                    Apply for summarization API access and submit IPs for
+                    whitelisting.
+                  </li>
+                  <li>
+                    Upon approval, receive your <strong>Client ID</strong> and{" "}
+                    <strong>Secret Key</strong>.
+                  </li>
+                  <li>
+                    Use authorized headers for all POST requests to
+                    summarization endpoints.
+                  </li>
+                </ul>
               </li>
+
+              {/* Direct API Access Steps */}
               <li>
-                <strong>Summary Configuration:</strong> For extractive
-                summarization, specify the desired number of sentences (5-50) in
-                the request body. For abstractive summarization, the system
-                automatically determines optimal length.
-              </li>
-              <li>
-                <strong>API Request:</strong> Send POST requests with
-                Content-Type: application/json, including your text and optional
-                sentence parameters to receive JSON responses with summarized
-                content.
-              </li>
-              <li>
-                <strong>Result Processing:</strong> Receive summarized text in
-                JSON format with status, status_code, data, and message fields.
-                Integrate the summaries into your judicial, legal, or document
-                management workflows.
+                <strong>Direct API Access:</strong>
+                <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
+                  <li>
+                    Ensure network access via NICNet or VPN to secure internal
+                    endpoints.
+                  </li>
+                  <li>Use summarization APIs.</li>
+                  <li>
+                    Submit JSON requests with content (100–30000 words) and
+                    configuration like sentence count (for extractive).
+                  </li>
+                  <li>
+                    Receive summarized content in JSON format for further use.
+                  </li>
+                </ul>
               </li>
             </ol>
           </div>

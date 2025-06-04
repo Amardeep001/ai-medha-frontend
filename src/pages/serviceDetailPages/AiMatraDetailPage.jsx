@@ -7,6 +7,35 @@ const AiMatraDetailPage = () => {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  const supportedLanguages = [
+    "Assamese",
+    "Bengali",
+    "Bodo",
+    "Dogri",
+    "Konkani",
+    "Gujarati",
+    "Hindi",
+    "Kannada",
+    "Kashmiri (Arabic)",
+    "Kashmiri (Devanagari)",
+    "Maithili",
+    "Malayalam",
+    "Marathi",
+    "Manipuri (Bengali)",
+    "Manipuri (Meitei)",
+    "Nepali",
+    "Oriya",
+    "Punjabi",
+    "Sanskrit",
+    "Santali",
+    "Sindhi (Arabic)",
+    "Sindhi (Devanagari)",
+    "Tamil",
+    "Telugu",
+    "Urdu",
+    "Braille",
+  ];
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -52,9 +81,6 @@ const AiMatraDetailPage = () => {
             <p>
               <strong>Last Security Audit Date:</strong> March 2025
             </p>
-            <p>
-              <strong>Copyright:</strong> NIC
-            </p>
           </div>
 
           <div className="mt-6">
@@ -63,8 +89,8 @@ const AiMatraDetailPage = () => {
             </h4>
             <ul className="text-sm text-gray-700 space-y-2">
               <li>
-                <strong>Supported text input:</strong> Names, addresses, and
-                short phrases in Latin script
+                <strong>Supported text input:</strong> Like names, addresses,
+                and short phrases in Latin script
               </li>
               <li>
                 <strong>Deployment options:</strong> REST APIs for single and
@@ -79,7 +105,7 @@ const AiMatraDetailPage = () => {
                 Phonetic Mapping → Indic Script Output
               </li>
               <li>
-                <strong>Category:</strong> Neural Transliteration
+                <strong>Category:</strong> Natural Language Processing
               </li>
               <li>
                 <strong>Sector:</strong> Language Technology / Localization
@@ -110,9 +136,9 @@ const AiMatraDetailPage = () => {
               <strong>Organizations using AI Matra include:</strong>
             </p>
             <ul className="list-disc list-inside ml-5 text-sm text-gray-700">
+              <li>Health Project Division</li>
               <li>State e-Governance Portals</li>
               <li>Digital India Initiatives</li>
-              <li>NIC Language Technology Division</li>
             </ul>
           </div>
 
@@ -147,6 +173,32 @@ const AiMatraDetailPage = () => {
               <li>NIC and its Language Technology Projects</li>
             </ul>
           </div>
+        </div>
+
+        <div className="mt-8 bg-white rounded-lg shadow-md p-6 ">
+          <h3 className="text-xl font-semibold text-blue-800 mb-3">
+            Language Coverage Table
+          </h3>
+          <table className="w-full text-sm text-left border-collapse">
+            <thead className="bg-gray-100">
+              <tr>
+                <th className="p-2 border">Language</th>
+                <th className="p-2 border">Bidirectional Support</th>
+              </tr>
+            </thead>
+            <tbody>
+              {supportedLanguages.map((item) => {
+                return (
+                  <>
+                    <tr>
+                      <td className="p-2 border">{item}</td>
+                      <td className="p-2 border">Yes</td>
+                    </tr>
+                  </>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
 
         <div className="mt-8 bg-white rounded-lg shadow-md p-8">
@@ -195,59 +247,86 @@ const AiMatraDetailPage = () => {
           </ul>
         </div>
 
-        <div className="mt-8 bg-white rounded-lg shadow-md p-8">
+        <div className="mt-8 bg-white rounded-lg shadow-md p-6">
           <h3 className="text-xl font-semibold text-blue-800 mb-3">
             How to Use AI Matra Service
           </h3>
-          <ol className="list-decimal list-inside text-gray-700 text-sm space-y-2">
+          <ol className="list-decimal list-inside text-sm text-gray-700 space-y-2">
             <li>
-              <strong>Onboarding & Access:</strong> Submit a service request via
-              NIC Cloud Portal with a signed letter from your department
-              indicating the target languages and use case for transliteration.
+              Fill out the <strong>Service Request Form</strong> via NIC Cloud
+              Portal, including use case and target Indic languages for
+              transliteration.
             </li>
             <li>
-              <strong>API Access Approval:</strong> After review, API
-              credentials (client ID and secret key) will be issued to your
-              department for secure usage.
+              Submit the form along with a signed request letter from your
+              department for approval and onboarding.
             </li>
             <li>
-              <strong>Integration Setup:</strong> Integrate AI Matra REST APIs
-              into your frontend or backend using standard HTTP POST requests.
+              Choose integration method: <strong>NAPIX Integration</strong> or{" "}
+              <strong>Direct API Access</strong>.
             </li>
+
+            {/* NAPIX Integration Steps */}
             <li>
-              <strong>Input Configuration:</strong> Provide the input string in
-              Roman (Latin) script along with the desired target Indic language
-              (e.g., Hindi, Bengali, Tamil).
+              <strong>NAPIX Integration:</strong>
+              <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
+                <li>
+                  Register on the NAPIX platform using departmental credentials.
+                </li>
+                <li>
+                  Request transliteration API access via the NAPIX interface.
+                </li>
+                <li>
+                  Upon verification, receive a <strong>Client ID</strong> and{" "}
+                  <strong>Secret Key</strong>.
+                </li>
+                <li>
+                  Use these credentials in every API request for secure access.
+                </li>
+              </ul>
             </li>
+
+            {/* Direct API Access Steps */}
             <li>
-              <strong>Transliteration Request:</strong> Submit the text via API
-              with required parameters. The backend engine processes the
-              phonetic conversion.
-            </li>
-            <li>
-              <strong>Response Handling:</strong> The API returns the
-              transliterated output in Unicode format, ready to be displayed on
-              UI or used in official documents.
-            </li>
-            <li>
-              <strong>Batch Support (Optional):</strong> Use bulk mode for
-              transliterating lists of names/addresses by uploading files or
-              JSON arrays to the batch endpoint.
+              <strong>Direct API Access:</strong>
+              <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
+                <li>Connect via NICNET or VPN for secure access.</li>
+                <li>
+                  Use POST requests to submit Roman-script input text and target
+                  language (e.g., Hindi, Bengali, Tamil) for real-time
+                  transliteration.
+                </li>
+                <li>
+                  The API responds with{" "}
+                  <strong>Unicode transliterated output</strong> ready for
+                  display or official use.
+                </li>
+                <li>
+                  Optionally, use batch mode to upload bulk lists (JSON/files)
+                  for transliterating names and addresses.
+                </li>
+              </ul>
             </li>
           </ol>
         </div>
-        <div className="mt-8 bg-white rounded-lg shadow-md p-6 mb-6">
+
+        <div className="mt-8 mb-6 bg-white rounded-lg shadow-md p-8">
           <h3 className="text-xl font-semibold text-blue-800 mb-3">
             Network Access Details
           </h3>
           <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
             <li>
-              <strong>Network Access:</strong> Available only through the NIC
-              Cloud infrastructure over secure government network connections.
+              <strong>Network Access:</strong> internal only via the{" "}
+              <strong>NIC</strong> Network, and external via{" "}
+              <strong>NAPIX</strong>.
             </li>
             <li>
-              <strong>Access Control:</strong> Enforced via IP whitelisting and
-              authenticated API credentials issued to approved departments.
+              <strong>Firewall Configuration:</strong> Only whitelisted IPs can
+              access the service.
+            </li>
+            <li>
+              <strong>Access Control:</strong> Enforced via <strong>VPN</strong>{" "}
+              and <strong>IP whitelisting</strong>.
             </li>
           </ul>
         </div>
