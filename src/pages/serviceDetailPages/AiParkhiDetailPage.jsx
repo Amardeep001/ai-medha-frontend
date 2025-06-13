@@ -65,7 +65,7 @@ const AiParkhiDetail = () => {
           </p>
 
           {/* Model Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+          {/* <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
             {mockModels.map((model) => (
               <Link to={`/services/model/${model.id}`} key={model.id}>
                 <div className="bg-white rounded-lg shadow-md border hover:shadow-xl transition-all">
@@ -102,7 +102,7 @@ const AiParkhiDetail = () => {
                 </div>
               </Link>
             ))}
-          </div>
+          </div> */}
 
           <div className="bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">

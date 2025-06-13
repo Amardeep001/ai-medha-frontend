@@ -2,10 +2,50 @@ import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+} from "recharts";
 
 const AiSatyapikaananDetailPage = () => {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const satyapikaananData = [
+    { name: "Sarathi Parivahan", value: 246200000 },
+    { name: "Kanyashree", value: 287100000 },
+    { name: "Utkarsh Bangla", value: 331900000 },
+    { name: "AI Abhigyan", value: 6376800 },
+    { name: "Drone Image Segmentation", value: 5487300 },
+    { name: "CBSE", value: 4363300 },
+    { name: "ePrison", value: 1559600 },
+    { name: "Rupashree", value: 5886600 },
+    { name: "E-Counselling Project", value: 669500 },
+    { name: "PESO", value: 333900 },
+    { name: "Meghalaya Pensioner Life Certificate", value: 261670 },
+    { name: "MCD", value: 180560 },
+    { name: "Rajbhawan-Uttarakhand", value: 5813 },
+  ];
+
+  const COLORS = [
+    "#4f46e5",
+    "#10b981",
+    "#f59e0b",
+    "#ef4444",
+    "#6366f1",
+    "#14b8a6",
+    "#a855f7",
+    "#eab308",
+    "#f43f5e",
+    "#22d3ee",
+    "#8b5cf6",
+    "#84cc16",
+    "#ec4899",
+  ];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -102,9 +142,9 @@ const AiSatyapikaananDetailPage = () => {
                 AI Satyapikaanan is already deployed across multiple sectors
                 including: Attendance tracking (Technical Education, GoWB), crop
                 surveyor verification (Ministry of Agriculture), pensioner life
-                certificate verification (Manipur & Meghalaya), visitor
-                authentication (Raj Bhavan, Uttarakhand), and learner’s license
-                issuance (Ministry of Road Transport).
+                certificate verification (Meghalaya), visitor authentication
+                (Raj Bhavan, Uttarakhand), and learner’s license issuance
+                (Ministry of Road Transport).
               </p>
             </div>
 
@@ -136,53 +176,139 @@ const AiSatyapikaananDetailPage = () => {
             </div>
           </div>
 
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Pie Chart */}
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <h3 className="text-xl font-semibold text-blue-800 mb-2">
+                Department Adoption Chart
+              </h3>
+              <p className="text-sm text-gray-600 mb-4">
+                Departments leveraging AI Satyapikaanan for identity
+                verification and other services.
+              </p>
+              <div className="h-72">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      dataKey="value"
+                      data={satyapikaananData}
+                      cx="50%"
+                      cy="50%"
+                      outerRadius={100}
+                      // label
+                    >
+                      {satyapikaananData.map((entry, index) => (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={COLORS[index % COLORS.length]}
+                        />
+                      ))}
+                    </Pie>
+                    <Tooltip
+                      formatter={(value) =>
+                        new Intl.NumberFormat().format(value)
+                      }
+                    />
+                    <Legend
+                      layout="vertical"
+                      align="right"
+                      verticalAlign="middle"
+                      wrapperStyle={{
+                        fontSize: "12px",
+                        textAlign: "left",
+                        whiteSpace: "normal",
+                        wordBreak: "break-word",
+                        lineHeight: "1.4em",
+                      }}
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            {/* Usage Table */}
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <h3 className="text-xl font-semibold text-blue-800 mb-2">
+                Department-wise Usage Data
+              </h3>
+              <p className="text-sm text-gray-600 mb-4">
+                Total AI Requests Served in 2024: <strong>33.28 Crore+</strong>
+              </p>
+              <div className="max-h-72 overflow-y-auto rounded-lg border border-gray-200">
+                <table className="min-w-full divide-y divide-gray-200 text-sm text-left text-gray-700">
+                  <thead className="bg-gray-100 sticky top-0 z-10">
+                    <tr>
+                      <th className="px-4 py-2 font-semibold">Department</th>
+                      <th className="px-4 py-2 font-semibold text-right">
+                        Usage Count
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-100">
+                    {satyapikaananData.map((item, index) => (
+                      <tr key={index}>
+                        <td className="px-4 py-2">{item.name}</td>
+                        <td className="px-4 py-2 text-right">
+                          {item.value.toLocaleString()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
           <div className="mt-8 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               End-to-End Flow
             </h3>
 
             <p className="text-sm text-gray-700 mb-4">
-              Below is the step-by-step flow from capturing the user's face to
-              generating a verified identity match response:
+              Below is the step-by-step flow from capturing input data to
+              generating a verified identity match or decision response:
             </p>
 
             <ul className="list-decimal pl-5 text-sm text-gray-700 space-y-2">
               <li>
-                <strong>Input:</strong> Real-time facial image captured via
-                Android camera app or web-integrated webcam.
+                <strong>Input:</strong> Real-time or uploaded biometric or
+                visual data (such as image, gesture, or posture) via mobile app
+                or web interface.
               </li>
               <li>
-                <strong>Liveness Detection:</strong> Ensures the input is from a
-                live user, using AI-based spoof detection (e.g., head movement,
-                eye blink).
+                <strong>Liveness Detection:</strong> Validates that the input
+                comes from a genuine, live user through AI-driven spoof
+                detection techniques.
               </li>
               <li>
-                <strong>Face Feature Extraction:</strong> Converts the captured
-                image into numerical facial embeddings using CNN-based models.
+                <strong>Feature Extraction:</strong> Extracts unique features
+                from the input data using AI/ML models for identity or behavior
+                analysis.
               </li>
               <li>
-                <strong>Identity Matching:</strong> Compares facial embeddings
-                with the reference image from backend database or Aadhaar image
-                store.
+                <strong>Matching & Verification:</strong> Compares extracted
+                features with records in the reference database to assess
+                similarity or match.
               </li>
               <li>
-                <strong>Decision Scoring:</strong> Generates a similarity score
-                and match/no-match outcome based on threshold tuning.
+                <strong>Scoring & Evaluation:</strong> Calculates confidence
+                scores and makes a decision based on predefined threshold
+                criteria for the use case.
               </li>
               <li>
-                <strong>Output Response:</strong> Returns the result as a JSON
-                payload with match confidence, user ID, timestamp, and status
-                flag.
+                <strong>Result Generation:</strong> Produces a structured
+                response including result status, scores, metadata, and user
+                identifiers.
               </li>
               <li>
-                <strong>Delivery:</strong> The result is shared back to the
-                requesting application for attendance marking, service
-                eligibility, or access control.
+                <strong>Delivery:</strong> Sends the result back to the
+                requesting system to support workflows such as attendance,
+                access control, or service eligibility.
               </li>
             </ul>
           </div>
 
-          <div className="mt-8 bg-white rounded-lg shadow-md p-8">
+          <div className="mt-8 bg-white rounded-lg shadow-md p-6">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               How to Use AI Satyapikaanan Service
             </h3>
@@ -205,25 +331,27 @@ const AiSatyapikaananDetailPage = () => {
                 client with authorized credentials.
               </li>
               <li>
-                <strong>Capture & Input:</strong> Capture a live face image
-                using the front-facing camera, ensuring proper lighting and
-                angle.
+                <strong>Data Input:</strong> Capture relevant input (such as
+                face image, gesture, or other user parameters) as per your
+                configured use case. The service supports various forms of
+                biometric and image-based inputs.
               </li>
               <li>
-                <strong>Liveness Detection:</strong> The system validates the
-                image for authenticity using AI-driven liveness detection to
-                prevent spoofing.
+                <strong>Verification Processing:</strong> The system performs
+                liveliness checks and identity verification using AI models to
+                ensure authenticity and prevent spoofing.
               </li>
               <li>
-                <strong>Identity Matching:</strong> The face image is matched
-                against a reference image (such as Aadhaar photo or user
-                database) and a similarity score is generated.
+                <strong>Multi-Use Matching:</strong> AI Satyapikaanan compares
+                the input with a reference database and returns a similarity
+                score, confidence level, and decision output for identity
+                validation.
               </li>
               <li>
                 <strong>Result Handling:</strong> The final output includes a
-                match or mismatch result along with metadata such as timestamp
-                and confidence score, returned to your system for verification
-                or workflow processing.
+                match/mismatch decision with metadata such as timestamp and
+                result status, which can be integrated into your application
+                workflow.
               </li>
             </ol>
           </div>
@@ -235,7 +363,7 @@ const AiSatyapikaananDetailPage = () => {
             <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
               <li>
                 <strong>Network Access:</strong> Available through NICNET or via
-                the NAPIX API Gateway for external integrations.
+                the NAPIX API Gateway for internal or external integrations.
               </li>
               <li>
                 <strong>Access Control:</strong> Enforced through IP

@@ -139,28 +139,6 @@ const AiVaniDetailPage = () => {
             </div>
           </div>
 
-          {/* Use Cases & Deployment */}
-          <div className="mt-8 bg-white rounded-lg shadow-md p-6 ">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Use Cases & Deployment Highlights
-            </h3>
-            <p className="text-sm text-gray-700">
-              AI Vani is already deployed in numerous government applications
-              for areas like:
-            </p>
-            <ul className="list-disc pl-5 mt-2 text-sm text-gray-700 space-y-2">
-              <li>Education</li>
-              <li>Judiciary</li>
-              <li>Transportation</li>
-              <li>Healthcare</li>
-              <li>Citizen grievance redressal systems</li>
-            </ul>
-            <p className="text-sm text-gray-700 mt-2">
-              It reduces manpower burden by automating standard queries and
-              routing only complex ones to live agents.
-            </p>
-          </div>
-
           <div className="mt-8 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               End-to-End Flow

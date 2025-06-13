@@ -2,41 +2,41 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { Link } from "react-router-dom";
-
-const mockModels = [
-  {
-    id: "vihangam-traffic-monitor",
-    name: "Aerial Traffic Monitor",
-    category: "Surveillance",
-    sector: "Transport",
-    description:
-      "Monitors real-time traffic and congestion using drone footage and AI object tracking.",
-    image: "https://picsum.photos/400/300?random=10",
-    metrics: {
-      accuracy: "96.8%",
-      latency: "Low (<200ms)",
-    },
-    version: "v1.5",
-  },
-  {
-    id: "vihangam-disaster-response",
-    name: "Disaster Mapping AI",
-    category: "Emergency Response",
-    sector: "Disaster Management",
-    description:
-      "Generates heatmaps and identifies affected areas post-floods, earthquakes via drone imagery.",
-    image: "https://picsum.photos/400/300?random=11",
-    metrics: {
-      accuracy: "94.3%",
-      latency: "Medium",
-    },
-    version: "v1.2",
-  },
-];
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+} from "recharts";
 
 const AiVihangamDrishtiDetail = () => {
   const navigate = useNavigate();
+
+  const vihangamData = [
+    { name: "February", value: 10011 },
+    { name: "March", value: 244600 },
+    { name: "April", value: 1085300 },
+    { name: "May", value: 704300 },
+    { name: "June", value: 841300 },
+    { name: "July", value: 1255800 },
+    { name: "August", value: 772300 },
+    { name: "September", value: 266100 },
+    { name: "October", value: 307800 },
+  ];
+
+  const COLORS = [
+    "#4f46e5",
+    "#10b981",
+    "#f59e0b",
+    "#ef4444",
+    "#6366f1",
+    "#14b8a6",
+    "#a855f7",
+    "#eab308",
+    "#f43f5e",
+  ];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -57,52 +57,16 @@ const AiVihangamDrishtiDetail = () => {
             AI Vihangam Drishti
           </h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
-            AI Vihangam Drishti is an aerial surveillance and situational
-            awareness solution that uses drones and AI models to monitor
-            traffic, identify environmental changes, and assist in emergency
-            responses. Designed for scalability and remote monitoring, it
-            empowers governments with real-time insights from above.
+            AI Vihangam Drishti is an initiative to create a digital map of
+            different infrastructure assets such as roads and buildings. Mapping
+            Infrastructure explores the potential of GIS for better visualizing
+            and managing the built environment of rural/abadi areas in India.
+            This service has potential applications in transportation, renewable
+            energy resource management and expansion, rural area development,
+            and so on. For this service, Survey of India provides drone imagery
+            (ORI) of villages and Abadi areas to the Ministry of Panchayati Raj
+            for facilitation on the Svamitva portal.
           </p>
-
-          {/* Model Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
-            {mockModels.map((model) => (
-              <Link to={`/services/model/${model.id}`} key={model.id}>
-                <div className="bg-white rounded-lg shadow-md border hover:shadow-xl transition-all">
-                  <img
-                    src={model.image}
-                    alt={model.name}
-                    className="rounded-t-lg w-full h-40 object-cover"
-                  />
-                  <div className="p-4">
-                    <h3 className="text-xl font-semibold text-blue-800 mb-1">
-                      {model.name}
-                    </h3>
-                    <p className="text-sm text-gray-600 mb-1">
-                      <strong>Category:</strong> {model.category}
-                    </p>
-                    <p className="text-sm text-gray-600 mb-1">
-                      <strong>Sector:</strong> {model.sector}
-                    </p>
-                    <p className="text-gray-700 text-sm mb-2">
-                      {model.description}
-                    </p>
-                    <div className="text-sm text-gray-700 space-y-1">
-                      <p>
-                        <strong>Accuracy:</strong> {model.metrics.accuracy}
-                      </p>
-                      <p>
-                        <strong>Latency:</strong> {model.metrics.latency}
-                      </p>
-                    </div>
-                    <p className="text-sm text-blue-600 font-medium mt-2">
-                      Version: {model.version}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
 
           <div className="bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
@@ -124,9 +88,6 @@ const AiVihangamDrishtiDetail = () => {
             <div className="pt-4 text-sm text-gray-600 space-y-1">
               <p>
                 <strong>Last Security Audit Date:</strong> In process
-              </p>
-              <p>
-                <strong>Copyright:</strong> NA
               </p>
             </div>
 
@@ -213,6 +174,88 @@ const AiVihangamDrishtiDetail = () => {
               </ul>
             </div>
           </div>
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Pie Chart */}
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <h3 className="text-xl font-semibold text-blue-800 mb-2">
+                Monthly Usage Distribution
+              </h3>
+              <p className="text-sm text-gray-600 mb-4">
+                Visual representation of monthly API hits for AI
+                VihangamDrishti.
+              </p>
+              <div className="h-72">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      dataKey="value"
+                      data={vihangamData}
+                      cx="50%"
+                      cy="50%"
+                      outerRadius={100}
+                      label
+                    >
+                      {vihangamData.map((entry, index) => (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={COLORS[index % COLORS.length]}
+                        />
+                      ))}
+                    </Pie>
+                    <Tooltip
+                      formatter={(value) =>
+                        new Intl.NumberFormat().format(value)
+                      }
+                    />
+                    <Legend
+                      layout="vertical"
+                      align="right"
+                      verticalAlign="middle"
+                      wrapperStyle={{
+                        fontSize: "12px",
+                        textAlign: "left",
+                        whiteSpace: "normal",
+                        wordBreak: "break-word",
+                        lineHeight: "1.4em",
+                      }}
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            {/* Usage Table */}
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <h3 className="text-xl font-semibold text-blue-800 mb-2">
+                Month-wise Usage Data
+              </h3>
+              <p className="text-sm text-gray-600 mb-4">
+                Total AI Requests Served in 2024: <strong>54.87 Lakh+</strong>
+              </p>
+              <div className="max-h-72 overflow-y-auto rounded-lg border border-gray-200">
+                <table className="min-w-full divide-y divide-gray-200 text-sm text-left text-gray-700">
+                  <thead className="bg-gray-100 sticky top-0 z-10">
+                    <tr>
+                      <th className="px-4 py-2 font-semibold">Month</th>
+                      <th className="px-4 py-2 font-semibold text-right">
+                        Usage Count
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-100">
+                    {vihangamData.map((item, index) => (
+                      <tr key={index}>
+                        <td className="px-4 py-2">{item.name}</td>
+                        <td className="px-4 py-2 text-right">
+                          {item.value.toLocaleString()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
           <div className="mt-8 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               End-to-End Flow
@@ -264,44 +307,46 @@ const AiVihangamDrishtiDetail = () => {
             </h3>
             <ol className="list-decimal list-inside text-gray-700 text-sm space-y-2">
               <li>
-                <strong>Account Creation:</strong> Create an account on the{" "}
-                <strong>NAPIX</strong> platform to initiate secure communication
-                with the AIRD servers.
+                <strong>Account Creation:</strong> Register on the{" "}
+                <strong>NAPIX</strong> platform to gain authorized access to AI
+                VihangamDrishti services.
               </li>
               <li>
-                <strong>Credential Issuance:</strong> Once the account is
-                verified, credentials will be issued for accessing the service.
+                <strong>Credential Issuance:</strong> After approval, secure
+                credentials are issued for accessing the service via NIC
+                infrastructure.
               </li>
               <li>
-                <strong>Service Access:</strong> The API is accessible via both
-                the <strong>NIC Network</strong> and <strong>NAPIX</strong>{" "}
-                platform. No additional IP whitelisting or port configuration is
-                needed when accessed through NAPIX.
+                <strong>Network Access:</strong> The service can be accessed
+                through both the <strong>NIC Network</strong> and{" "}
+                <strong>NAPIX</strong> environment, offering flexibility in
+                deployment.
               </li>
               <li>
-                <strong>Input Preparation:</strong> Prepare drone imagery in
-                .tif/.tiff/.TIF format (file size should not exceed 30MB).
+                <strong>Input Preparation:</strong> Upload satellite or drone
+                imagery in supported formats such as .tif or .tiff, keeping in
+                mind the file size guidelines.
               </li>
               <li>
-                <strong>API Request:</strong> Submit a <strong>POST</strong>{" "}
-                request to the endpoint:{" "}
-                <code>https://10.197.112.27:8182/api/v1/annotation</code> along
-                with the image.
+                <strong>Service Invocation:</strong> Submit the imagery to the
+                AI model through a secure API request using standard
+                authentication and integration methods.
               </li>
               <li>
-                <strong>Output Handling:</strong> The API returns a{" "}
-                <strong>GeoJSON</strong> file containing predicted rooftop and
-                road classes with corresponding latitude and longitude
-                coordinates.
+                <strong>Result Handling:</strong> The system returns structured
+                geospatial outputs, typically in <strong>GeoJSON</strong>{" "}
+                format, highlighting features like rooftops, roads, or terrain
+                elements.
               </li>
               <li>
-                <strong>Use of Output:</strong> Use the annotation data for
-                infrastructure planning, digital mapping, rooftop solar
-                analysis, or rural development projects through platforms like
-                Grammanchitra.
+                <strong>Use of Output:</strong> Leverage the processed output
+                for applications such as infrastructure planning, digital
+                mapping, solar panel suitability analysis, or village-level
+                development initiatives.
               </li>
             </ol>
           </div>
+
           <div className="mt-8 bg-white rounded-lg shadow-md p-8 mb-6">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Network Access Details

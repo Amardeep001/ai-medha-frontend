@@ -12,24 +12,6 @@ import {
 } from "recharts";
 import TranslationImage from "../../images/translation_image.jpg";
 
-const mockModels = [
-  {
-    id: "m1",
-    name: "Multilingual Translation Engine Overview",
-    category: "Neural Machine Translation",
-    sector: "Language AI",
-    description:
-      "Performs automatic translation between 22 indic languages and English using NMT architecture.",
-    metrics: {
-      accuracy: "90–95% (language-dependent)",
-      latency: "aprrox. 3 sec",
-      f1Score: "N/A",
-    },
-    version: "v1.0.0",
-    image: TranslationImage,
-  },
-];
-
 const departmentChartData = [
   { name: "AI Shruti", value: 32295 },
   { name: "Agricultural Informatics Division", value: 77799 },
