@@ -120,16 +120,8 @@ const AiShrutiDetailPage = () => {
                   speech (WebSocket) and recorded audio (.wav files)
                 </li>
                 <li>
-                  <strong>Deployment options:</strong> REST APIs and WebSocket
-                  for real-time, POST request for recorded audio
-                </li>
-                <li>
                   <strong>Average transcription response time:</strong> Approx.
                   3 seconds per audio segment
-                </li>
-                <li>
-                  <strong>Workflow:</strong> Audio Input → Pre-processing → ASR
-                  Model Inference → Text Output (optional translation)
                 </li>
                 <li>
                   <strong>Category:</strong> Automatic Speech Recognition (ASR)
@@ -149,8 +141,8 @@ const AiShrutiDetailPage = () => {
                   <strong>Performance Metric:</strong> Word Error Rate (WER)
                 </li>
                 <li>
-                  <strong>Model:</strong> Conformer (non-autoregressive, CTC
-                  variant)
+                  <strong>Workflow:</strong> Audio Input → Pre-processing → ASR
+                  Model Inference → Text Output (optional translation)
                 </li>
               </ul>
             </div>

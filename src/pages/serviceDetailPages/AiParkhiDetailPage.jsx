@@ -1,40 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../../components/Header"; // Adjust based on your layout
-import { Link } from "react-router-dom";
+import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-
-const mockModels = [
-  {
-    id: "parkhi-cam-monitor",
-    name: "Camera Monitoring AI",
-    category: "Surveillance",
-    sector: "Transport",
-    description:
-      "Real-time object detection and activity tracking in public areas using CCTV feeds.",
-    image: "https://picsum.photos/400/300?random=1",
-    metrics: {
-      accuracy: "97%",
-      latency: "Low (<150ms)",
-    },
-    version: "v2.1",
-  },
-  {
-    id: "parkhi-face-id",
-    name: "Facial Recognition",
-    category: "Security",
-    sector: "Law Enforcement",
-    description:
-      "Detects and verifies identities from live or recorded feeds with facial embeddings.",
-    image: "https://picsum.photos/400/300?random=2",
-    metrics: {
-      accuracy: "95.5%",
-      latency: "Moderate",
-    },
-    version: "v1.9",
-  },
-  // Add more models if needed
-];
 
 const AiParkhiDetail = () => {
   const navigate = useNavigate();
@@ -56,53 +23,14 @@ const AiParkhiDetail = () => {
           </button>
           <h2 className="text-3xl font-bold text-blue-900 mb-2">AI Parkhi</h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
-            AI Parkhi is an intelligent video surveillance and incident
-            detection system designed to enhance road and civic infrastructure
-            monitoring. It leverages advanced AI models for recognizing
-            violations, object tracking, crowd analytics, and incident alerts
-            using real-time CCTV feeds. This system is tailored for government
-            use in public safety and urban administration.
+            AI Parkhi is an AI-based image quality assessment tool that
+            classifies uploaded images as good or bad based on visual clarity.
+            It utilizes deep learning models to generate a quality score and
+            binary classification label, enabling automated filtering of
+            low-quality images. The system is optimized for use in government
+            workflows involving document verification, e-Governance portals, and
+            public service submissions.
           </p>
-
-          {/* Model Cards */}
-          {/* <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
-            {mockModels.map((model) => (
-              <Link to={`/services/model/${model.id}`} key={model.id}>
-                <div className="bg-white rounded-lg shadow-md border hover:shadow-xl transition-all">
-                  <img
-                    src={model.image}
-                    alt={model.name}
-                    className="rounded-t-lg w-full h-40 object-cover"
-                  />
-                  <div className="p-4">
-                    <h3 className="text-xl font-semibold text-blue-800 mb-1">
-                      {model.name}
-                    </h3>
-                    <p className="text-sm text-gray-600 mb-1">
-                      <strong>Category:</strong> {model.category}
-                    </p>
-                    <p className="text-sm text-gray-600 mb-1">
-                      <strong>Sector:</strong> {model.sector}
-                    </p>
-                    <p className="text-gray-700 text-sm mb-2">
-                      {model.description}
-                    </p>
-                    <div className="text-sm text-gray-700 space-y-1">
-                      <p>
-                        <strong>Accuracy:</strong> {model.metrics.accuracy}
-                      </p>
-                      <p>
-                        <strong>Latency:</strong> {model.metrics.latency}
-                      </p>
-                    </div>
-                    <p className="text-sm text-blue-600 font-medium mt-2">
-                      Version: {model.version}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div> */}
 
           <div className="bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
@@ -132,15 +60,8 @@ const AiParkhiDetail = () => {
                   <strong>Supported formats:</strong> PNG, JPG
                 </li>
                 <li>
-                  <strong>Deployment options:</strong> REST API (POST method)
-                </li>
-                <li>
                   <strong>Average response time:</strong> Optimized for
                   high-throughput, concurrent requests
-                </li>
-                <li>
-                  <strong>Workflow:</strong> Image Upload → Model Inference →
-                  Score Calculation → Quality Prediction (0/1)
                 </li>
                 <li>
                   <strong>Category:</strong> Image Quality Assessment
@@ -158,8 +79,8 @@ const AiParkhiDetail = () => {
                   KonIQ-10k dataset
                 </li>
                 <li>
-                  <strong>Model:</strong> Ensemble of VGG16, ResNet50,
-                  InceptionV3, InceptionResNetV2, DenseNet201
+                  <strong>Workflow:</strong> Image Upload → Model Inference →
+                  Score Calculation → Quality Prediction (0/1)
                 </li>
               </ul>
             </div>
@@ -240,9 +161,7 @@ const AiParkhiDetail = () => {
               </li>
               <li>
                 <strong>Model Inference:</strong> The system uses a fusion of
-                five deep learning models (VGG16, ResNet50, InceptionV3,
-                InceptionResNetV2, DenseNet201) trained on the KonIQ-10k
-                dataset.
+                five deep learning models trained on the KonIQ-10k dataset.
               </li>
               <li>
                 <strong>Score Calculation:</strong> The models compute a
@@ -250,15 +169,7 @@ const AiParkhiDetail = () => {
               </li>
               <li>
                 <strong>Classification:</strong> Based on a threshold of 51, the
-                system classifies the image as:
-                <ul className="list-disc list-inside ml-4 mt-1">
-                  <li>
-                    <strong>Score ≤ 51:</strong> Label 0 - BAD Quality
-                  </li>
-                  <li>
-                    <strong>Score &gt; 51:</strong> Label 1 - GOOD Quality
-                  </li>
-                </ul>
+                system classifies the image as BAD or GOOD Quality.
               </li>
               <li>
                 <strong>Output Delivery:</strong> API returns a JSON response

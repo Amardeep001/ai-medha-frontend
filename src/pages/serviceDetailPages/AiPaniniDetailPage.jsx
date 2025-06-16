@@ -162,10 +162,6 @@ const AiPaniniDetailPage = () => {
                   and Docx-to-Docx translation
                 </li>
                 <li>
-                  <strong>Deployment options:</strong> REST APIs, real-time and
-                  batch translation
-                </li>
-                <li>
                   <strong>Average translation response time:</strong> Approx. 3
                   seconds for standard-length text inputs
                 </li>

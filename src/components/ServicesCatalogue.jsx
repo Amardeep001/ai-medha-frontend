@@ -20,7 +20,7 @@ import AiParkhiImage from "../images/serviceCatalogueImages/ai_parkhi.webp";
 import AiVihangamImage from "../images/serviceCatalogueImages/ai_vihangam.jpg";
 import AiSatyapikananImage from "../images/serviceCatalogueImages/ai_satyapikanan.webp";
 import AiAnveshika from "../images/serviceCatalogueImages/ai_anveshika.jpg";
-import AiSaransh from "../images/serviceCatalogueImages/ai_saransh.jpg";
+import AiSaransh from "../images/serviceCatalogueImages/saransh.png";
 
 const serviceData = [
   {

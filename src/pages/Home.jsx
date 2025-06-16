@@ -7,7 +7,7 @@ import indianFlag from "../images/ind_flag.png";
 // import bgImg from "../images/inibg.svg";
 import NicLogo from "../images/nic_logo3.svg";
 import NicLogo2 from "../images/nic_logo2.png";
-import AiMedhaLogo from "../images/ai_medha_logo.jpeg";
+// import AiMedhaLogo from "../images/ai_medha_logo.jpeg";
 import Footer from "../components/Footer";
 
 const Home = () => {
@@ -159,13 +159,16 @@ const Home = () => {
                   </a>
                 </li>
                 <li>
-                  <Link to="/login" className="hover:text-[#FF9933] transition">
+                  <Link
+                    to="/auth/login"
+                    className="hover:text-[#FF9933] transition"
+                  >
                     Login
                   </Link>
                 </li>
                 <li>
                   <Link
-                    to="/register"
+                    to="/auth/register"
                     className="hover:text-[#FF9933] transition"
                   >
                     Register
@@ -200,21 +203,23 @@ const Home = () => {
           </p>
         </motion.div>
         <Zoom>
-          <button className="mt-6 bg-[#FF9933] text-white px-6 sm:px-8 py-2 sm:py-3 text-lg md:text-xl rounded-lg font-semibold hover:bg-[#003366] transition">
-            Get Started
-          </button>
+          <Link to="/auth/login">
+            <button className="mt-6 bg-[#FF9933] text-white px-6 sm:px-8 py-2 sm:py-3 text-lg md:text-xl rounded-lg font-semibold hover:bg-[#003366] transition">
+              Get Started
+            </button>
+          </Link>
         </Zoom>
       </header>
 
       {/* Features Section */}
       <section
         id="features"
-        className="max-w-screen-xl rounded-xl mb-12 mx-auto px-4 sm:px-6 xl:px-20 py-12 sm:pb-12 sm:pt-6 bg-[#cabebe]"
+        className="max-w-screen-full flex flex-col justify-center items-center rounded-xl mb-12 mx-auto px-4 sm:px-6 xl:px-20 py-12 sm:pb-12 sm:pt-6 bg-[#cabebe]"
       >
         <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center text-[#003366]">
           Key Features
         </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-6 sm:mt-8">
+        <div className="max-w-screen-xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-6 sm:mt-8">
           {[
             {
               title: "Multi-Language Support",

@@ -61,10 +61,6 @@ const AiSaranshDetailPage = () => {
                   extraction) and Abstractive (rephrasing and condensing)
                 </li>
                 <li>
-                  <strong>Deployment options:</strong> REST APIs via /Exsummary
-                  and /Absummary endpoints
-                </li>
-                <li>
                   <strong>Input constraints:</strong> Text length between
                   100-30000 words with punctuation support
                 </li>
@@ -74,9 +70,6 @@ const AiSaranshDetailPage = () => {
                 </li>
                 <li>
                   <strong>Category:</strong> Natural Language Processing (NLP)
-                </li>
-                <li>
-                  <strong>Model Type:</strong> Transformers-based architecture
                 </li>
                 <li>
                   <strong>Language Support:</strong> Currently English
@@ -176,12 +169,12 @@ const AiSaranshDetailPage = () => {
               <li>
                 <strong>Input:</strong> Raw text documents (100-30000 words)
                 from legal documents, government reports, or user-submitted
-                content via frontend or API calls through NAPIx.
+                content via frontend or API calls through NAPIX.
               </li>
               <li>
                 <strong>Text Ingestion:</strong> Receives text input via POST
-                requests to /Exsummary or /Absummary endpoints with optional
-                sentence count parameter (5-50).
+                requests to api endpoints with optional sentence count parameter
+                (5-50).
               </li>
               <li>
                 <strong>Validation:</strong> Validates input text type, length

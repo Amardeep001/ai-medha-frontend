@@ -89,10 +89,10 @@ const AiSatyapikaananDetailPage = () => {
             </p>
 
             <div className="pt-4 text-sm text-gray-600 space-y-1">
-              <p>
+              {/* <p>
                 <strong>Last Security Audit Date:</strong> Expired, new audit in
                 progress
-              </p>
+              </p> */}
               <p>
                 <strong>Awards:</strong> Recognized under the Project Category
                 in the 20th CSI SIG eGovernance Awards 2022
@@ -109,10 +109,6 @@ const AiSatyapikaananDetailPage = () => {
                   via camera, Android background services, and web integration
                 </li>
                 <li>
-                  <strong>Deployment options:</strong> Cloud-based via NIC
-                  MeghRaj and offline via Android services
-                </li>
-                <li>
                   <strong>AI Features:</strong> Face matching, AI-based liveness
                   detection, gesture recognition plug-ins
                 </li>
@@ -122,10 +118,6 @@ const AiSatyapikaananDetailPage = () => {
                 </li>
                 <li>
                   <strong>Category:</strong> Vision AI
-                </li>
-                <li>
-                  <strong>Model Type:</strong> CNN (Convolutional Neural
-                  Network)
                 </li>
                 <li>
                   <strong>Security Measures:</strong> Liveness detection to
@@ -320,26 +312,25 @@ const AiSatyapikaananDetailPage = () => {
                 pensioner verification, etc.).
               </li>
               <li>
-                <strong>Client Setup:</strong> Choose your integration
-                path—either Android application setup (APK) or backend access
-                via NAPIX API Gateway.
+                <strong>Client Setup:</strong> Set up your integration using
+                authorized access through the NAPIX API Gateway or Andriod
+                backend service.
               </li>
               <li>
-                <strong>Middleware or App Installation:</strong> For Android
-                devices, install the NIC-provided facial recognition service app
-                that runs in the background. For web/API usage, configure your
-                client with authorized credentials.
+                <strong>Service Configuration:</strong> Configure your client
+                application or system to interact with the service using the
+                issued credentials and access policies.
               </li>
               <li>
                 <strong>Data Input:</strong> Capture relevant input (such as
-                face image, gesture, or other user parameters) as per your
-                configured use case. The service supports various forms of
-                biometric and image-based inputs.
+                image, gesture, or other user parameters) depending on your use
+                case. The system supports a variety of biometric and image-based
+                inputs.
               </li>
               <li>
                 <strong>Verification Processing:</strong> The system performs
-                liveliness checks and identity verification using AI models to
-                ensure authenticity and prevent spoofing.
+                liveliness detection and identity verification using AI models
+                to ensure authenticity and prevent spoofing.
               </li>
               <li>
                 <strong>Multi-Use Matching:</strong> AI Satyapikaanan compares

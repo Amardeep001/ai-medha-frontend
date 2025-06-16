@@ -373,14 +373,12 @@ const Register = () => {
                 />
                 <span className="text-sm text-gray-700">
                   I have read and agree to the{" "}
-                  <a
-                    href={TermsAndConditions || "/terms-of-service.pdf"}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    to={"/terms-of-service"}
                     className="text-blue-600 underline hover:text-blue-800"
                   >
                     Terms of Services
-                  </a>{" "}
+                  </Link>{" "}
                   and confirm my{" "}
                   <span className="relative group cursor-pointer text-blue-700 underline hover:text-blue-900">
                     Eligibility

@@ -133,16 +133,8 @@ const AiMatraDetailPage = () => {
                 and short phrases in Latin script
               </li>
               <li>
-                <strong>Deployment options:</strong> REST APIs for single and
-                batch transliteration
-              </li>
-              <li>
                 <strong>Average response time:</strong> Less than 2 seconds for
                 individual names
-              </li>
-              <li>
-                <strong>Workflow:</strong> Latin Input → Script Detection →
-                Phonetic Mapping → Indic Script Output
               </li>
               <li>
                 <strong>Category:</strong> Natural Language Processing
@@ -151,12 +143,16 @@ const AiMatraDetailPage = () => {
                 <strong>Sector:</strong> Language Technology / Localization
               </li>
               <li>
-                <strong>Supported Languages:</strong> 22 Indian languages
+                <strong>Supported Languages:</strong> 22 Indic languages
                 including Hindi, Bengali, Tamil, Telugu, Kannada, etc.
               </li>
               <li>
                 <strong>Use Style:</strong> Transliteration only (no semantic
                 translation)
+              </li>
+              <li>
+                <strong>Workflow:</strong> Latin Input → Script Detection →
+                Phonetic Mapping → Indic Script Output
               </li>
             </ul>
           </div>

@@ -73,14 +73,6 @@ const AiVaniDetailPage = () => {
                   and Indian English (voice)
                 </li>
                 <li>
-                  <strong>Deployment:</strong> APIs and website integration;
-                  production scripts provided
-                </li>
-                <li>
-                  <strong>Architecture:</strong> Communication Layer (CL) +
-                  Business Logic Layer (BL) + AI modules (Panini, Matra, Shruti)
-                </li>
-                <li>
                   <strong>Security:</strong> Session management, input
                   validation, role-based access
                 </li>

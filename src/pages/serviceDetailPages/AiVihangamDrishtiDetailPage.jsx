@@ -100,13 +100,6 @@ const AiVihangamDrishtiDetail = () => {
                   <strong>Supported formats:</strong> TIF, tiff (under 30MB)
                 </li>
                 <li>
-                  <strong>Deployment options:</strong> REST API (POST method)
-                </li>
-                <li>
-                  <strong>Workflow:</strong> Drone Image Upload → Segmentation
-                  Model → GeoJSON Output with Class & Coordinates
-                </li>
-                <li>
                   <strong>Category:</strong> Computer Vision
                 </li>
                 <li>
@@ -118,10 +111,11 @@ const AiVihangamDrishtiDetail = () => {
                   over Union)
                 </li>
                 <li>
-                  <strong>Model:</strong> Transformer-based segmentation model
+                  <strong>Parameters:</strong> Learning rate, batch size, epoch
                 </li>
                 <li>
-                  <strong>Parameters:</strong> Learning rate, batch size, epoch
+                  <strong>Workflow:</strong> Drone Image Upload → Segmentation
+                  Model → GeoJSON Output with Class & Coordinates
                 </li>
               </ul>
             </div>

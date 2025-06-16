@@ -64,15 +64,6 @@ const AiAnveshikaDetail = () => {
                   <strong>Supported file formats:</strong> PDF
                 </li>
                 <li>
-                  <strong>Architecture:</strong> RAG-based pipeline with
-                  Transformer Retriever, Re-Ranker, OCR, and LLM
-                </li>
-                <li>
-                  <strong>Workflow:</strong> PDF Upload → Text Extraction &
-                  Chunking → Vector Indexing → Question Input → Retrieval &
-                  Answer Generation
-                </li>
-                <li>
                   <strong>Use Type:</strong> Document Q&A, semantic search
                 </li>
                 <li>
@@ -80,8 +71,9 @@ const AiAnveshikaDetail = () => {
                   Question, Fetch & Modify Metadata
                 </li>
                 <li>
-                  <strong>Deployment Mode:</strong> REST APIs via NIC cloud
-                  (secured via RBAC)
+                  <strong>Workflow:</strong> PDF Upload → Text Extraction &
+                  Chunking → Vector Indexing → Question Input → Retrieval &
+                  Answer Generation
                 </li>
               </ul>
             </div>
