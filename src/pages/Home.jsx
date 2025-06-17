@@ -68,11 +68,6 @@ const Home = () => {
             {/* AI Medha Title with logo */}
             <div className="flex items-center space-x-3">
               <h1 className="text-xl sm:text-4xl font-bold">AI MEDHA</h1>
-              {/* <img
-                src={AiMedhaLogo}
-                alt="AI Medha Logo"
-                className="h-16 w-16 object-contain"
-              /> */}
             </div>
           </div>
 
@@ -184,7 +179,7 @@ const Home = () => {
       <header
         id="main-content"
         // bg-[#F8F9FA]
-        className="text-center pt-20 pb-9 lg:pt-[200px] text-[#003366] "
+        className="text-center pt-20 pb-10 lg:pt-[200px] text-[#003366] "
       >
         <Zoom>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
@@ -211,13 +206,44 @@ const Home = () => {
         </Zoom>
       </header>
 
+      {/* <div className="mt-20 flex flex-col justify-center items-center bg-[#c4b0b0] rounded-lg shadow-md py-10">
+        <h3 className="text-2xl font-semibold text-blue-800 mb-4">
+          About AI Medha
+        </h3>
+        <div className="max-w-screen-lg">
+          <p className="leading-relaxed text-center mb-4">
+            <strong>AI Medha</strong> is a unified platform designed to showcase
+            and deliver advanced AI solutions developed under the National
+            Informatics Centre (NIC). It acts as a central hub that brings
+            together state-of-the-art AI models, tools, and services tailored
+            for governance, public service delivery, and institutional
+            efficiency.
+          </p>
+          <p className="leading-relaxed text-center mb-4">
+            Built with a vision to democratize AI for all, AI Medha integrates
+            solutions ranging from speech recognition, translation,
+            summarization, face verification, document anonymization, and
+            satellite image analysis—all under one intelligent digital
+            ecosystem. The platform empowers departments and users to explore,
+            evaluate, and adopt these solutions with ease.
+          </p>
+          <p className="leading-relaxed text-center">
+            Through standardized APIs, real-time dashboards, and secure
+            integration frameworks like NAPIX, AI Medha accelerates AI adoption
+            within government workflows while ensuring data privacy,
+            scalability, and high performance. It aims to drive innovation and
+            responsible AI usage across India’s digital governance landscape.
+          </p>
+        </div>
+      </div> */}
+
       {/* Features Section */}
       <section
         id="features"
         className="max-w-screen-full flex flex-col justify-center items-center rounded-xl mb-12 mx-auto px-4 sm:px-6 xl:px-20 py-12 sm:pb-12 sm:pt-6 bg-[#cabebe]"
       >
         <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center text-[#003366]">
-          Key Features
+          Core Capabilities
         </h3>
         <div className="max-w-screen-xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-6 sm:mt-8">
           {[
@@ -284,7 +310,7 @@ const Home = () => {
           ].map((feature, index) => (
             <div
               key={index}
-              className="p-4 sm:p-6 bg-gradient-to-b from-[#c7ced4] to-[#ebedf0] hover:bg-[#f2ede7] shadow-md rounded-lg text-center"
+              className="p-4 sm:p-6 bg-gradient-to-b from-[#c7ced4] to-[#ebedf0] hover:bg-[#f2ede7] shadow-md rounded-lg text-center hover:shadow-lg transition hover:scale-[1.02]"
             >
               <h4 className="text-lg sm:text-xl font-semibold text-[#003366]">
                 {feature.title}

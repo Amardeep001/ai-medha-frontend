@@ -70,16 +70,16 @@ const AiVihangamDrishtiDetail = () => {
 
           <div className="bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              About AI VihangamDrishti
+              About AI Vihangam Drishti
             </h3>
             <p className="text-sm text-gray-700 leading-relaxed">
-              <strong>AI VihangamDrishti</strong> is a computer vision-based
+              <strong>AI Vihangam Drishti</strong> is a computer vision-based
               service that analyzes drone imagery of rural/abadi areas in India
               to create a digital map of infrastructure assets such as roads and
               rooftops. Leveraging a transformer-based segmentation model, it
-              classifies drone images into six different classes — RCC roof,
+              classifies drone images into six different classes - RCC roof,
               tiled roof, tin sheet roof, other buildups, metallic road, and
-              non-metallic road — and returns their latitude-longitude
+              non-metallic road - and returns their latitude-longitude
               coordinates in geoJSON format. The service is actively utilized by
               platforms like <code>grammanchitra.gov.in</code> to assess rooftop
               areas for solar panel installation and infrastructure planning.
@@ -122,10 +122,10 @@ const AiVihangamDrishtiDetail = () => {
 
             <div className="mt-6">
               <h4 className="text-md font-semibold text-blue-700 mb-2">
-                AI VihangamDrishti Rollout
+                AI Vihangam Drishti Rollout
               </h4>
               <p className="text-sm text-gray-700">
-                AI VihangamDrishti is currently being used by{" "}
+                AI Vihangam Drishti is currently being used by{" "}
                 <code>grammanchitra.gov.in</code> to provide detailed geospatial
                 maps of RCC rooftops to aid solar panel installation initiatives
                 and infrastructure visualization across Indian villages.
@@ -175,8 +175,8 @@ const AiVihangamDrishtiDetail = () => {
                 Monthly Usage Distribution
               </h3>
               <p className="text-sm text-gray-600 mb-4">
-                Visual representation of monthly API hits for AI
-                VihangamDrishti.
+                Visual representation of monthly API hits for AI Vihangam
+                Drishti.
               </p>
               <div className="h-72">
                 <ResponsiveContainer width="100%" height="100%">
@@ -187,7 +187,7 @@ const AiVihangamDrishtiDetail = () => {
                       cx="50%"
                       cy="50%"
                       outerRadius={100}
-                      label
+                      // label
                     >
                       {vihangamData.map((entry, index) => (
                         <Cell
@@ -297,13 +297,13 @@ const AiVihangamDrishtiDetail = () => {
           </div>
           <div className="mt-8 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              How to Use AI VihangamDrishti Service
+              How to Use AI Vihangam Drishti Service
             </h3>
             <ol className="list-decimal list-inside text-gray-700 text-sm space-y-2">
               <li>
                 <strong>Account Creation:</strong> Register on the{" "}
                 <strong>NAPIX</strong> platform to gain authorized access to AI
-                VihangamDrishti services.
+                Vihangam Drishti services.
               </li>
               <li>
                 <strong>Credential Issuance:</strong> After approval, secure
@@ -361,7 +361,7 @@ const AiVihangamDrishtiDetail = () => {
               <li>
                 <strong>Security Enforcement:</strong> Credential-based access
                 control is used to authenticate users and services, ensuring
-                secure interaction with the AI VihangamDrishti API.
+                secure interaction with the AI Vihangam Drishti API.
               </li>
             </ul>
           </div>
