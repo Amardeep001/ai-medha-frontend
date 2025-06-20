@@ -84,7 +84,7 @@ const AiMatraDetailPage = () => {
     <div className="bg-[#eee5dc] text-gray-900 min-h-screen flex flex-col">
       <Header toggleSidebar={() => setSidebarOpen(true)} />
 
-      <main className="flex-grow w-full max-w-screen-2xl mx-auto px-20 py-6">
+      <main className="flex-grow w-full max-w-screen-2xl mx-auto px-6 sm:px-20 py-6">
         {/* Back Button */}
         <button
           onClick={() => navigate(-1)}

@@ -10,40 +10,19 @@ import NicLogo2 from "../../images/nic_logo2.png";
 const OtpVerification = () => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState("");
-  const [touched, setTouched] = useState(false);
-  const [error, setError] = useState("");
+  const [isOtpValid, setIsOtpValid] = useState(false);
   const [resendDisabled, setResendDisabled] = useState(false);
-
-  const validateOTP = (value) => {
-    if (!value) return "OTP is required.";
-    if (!/^\d{6}$/.test(value)) return "OTP must be a 6-digit number.";
-    return "";
-  };
-
-  const handleBlur = () => {
-    setTouched(true);
-    setError(validateOTP(otp));
-  };
 
   const handleOTPSubmit = (e) => {
     e.preventDefault();
-    const validationError = validateOTP(otp);
-    setError(validationError);
-    setTouched(true);
-    if (!validationError) {
-      // Proceed with OTP submission
-      console.log("OTP Verified:", otp);
-      navigate("/dashboard");
-    }
+    console.log("Entered OTP:", otp);
+    navigate("/dashboard");
   };
 
   const handleResendOTP = () => {
-    if (!resendDisabled) {
-      console.log("Resending OTP...");
-      // Your resend logic here
-      setResendDisabled(true);
-      setTimeout(() => setResendDisabled(false), 30000); // Enable after 30s
-    }
+    setResendDisabled(true);
+    setTimeout(() => setResendDisabled(false), 60000); // Enable after 60 seconds
+    console.log("OTP Resent");
   };
 
   return (
@@ -140,36 +119,35 @@ const OtpVerification = () => {
                 onChange={(e) => {
                   const value = e.target.value;
                   setOtp(value);
-                  if (touched) setError(validateOTP(value));
+                  setIsOtpValid(/^\d{6}$/.test(value));
                 }}
-                onBlur={handleBlur}
                 placeholder="Enter your OTP"
-                className={`w-full px-4 py-2 mt-2 border rounded-md pr-10 focus:ring ${
-                  error
-                    ? "border-red-500 focus:ring-red-300"
-                    : touched && !error
-                    ? "border-green-500 focus:ring-green-300"
-                    : "focus:ring-blue-300"
+                className={`w-full px-4 py-2 mt-2 border rounded-md focus:ring ${
+                  isOtpValid ? "border-green-500" : otp ? "border-red-500" : ""
                 }`}
               />
+              {otp &&
+                (isOtpValid ? (
+                  <FaCheckCircle className="text-green-500 absolute top-10 right-3 text-xl" />
+                ) : (
+                  <FaTimesCircle className="text-red-500 absolute top-10 right-3 text-xl" />
+                ))}
 
-              {/* Success Icon */}
-              {touched && !error && (
-                <FaCheckCircle className="absolute right-3 top-10 text-green-500" />
-              )}
-
-              {/* Error Message + Icon */}
-              {touched && error && (
-                <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-                  <FaTimesCircle className="text-red-500" />
-                  {error}
+              {!isOtpValid && otp && (
+                <p className="text-red-500 text-sm mt-1">
+                  OTP must be a 6-digit number.
                 </p>
               )}
             </div>
 
             <button
               type="submit"
-              className="w-full bg-blue-900 text-white px-4 py-2 mt-6 rounded-md hover:bg-blue-800 transition"
+              disabled={!isOtpValid}
+              className={`w-full px-4 py-2 mt-6 rounded-md transition ${
+                isOtpValid
+                  ? "bg-blue-900 text-white hover:bg-blue-800"
+                  : "bg-gray-400 text-white cursor-not-allowed"
+              }`}
             >
               Verify OTP
             </button>

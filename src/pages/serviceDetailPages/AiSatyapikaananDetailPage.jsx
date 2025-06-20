@@ -55,7 +55,7 @@ const AiSatyapikaananDetailPage = () => {
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
       <Header toggleSidebar={() => setSidebarOpen(true)} />
       <div className="overflow-auto flex flex-grow">
-        <div className="px-20 py-6 w-full max-w-screen-2xl mx-auto">
+        <div className="px-6 sm:px-20 py-6 w-full max-w-screen-2xl mx-auto">
           <div className="mt-3 flex space-x-4">
             <button
               onClick={() => navigate(-1)}
@@ -80,22 +80,29 @@ const AiSatyapikaananDetailPage = () => {
               About AI Satyapikaanan
             </h3>
             <p className="text-sm text-gray-700 leading-relaxed">
-              AI Satyapikaanan is a Facial Recognition as a Service (FRaaS)
-              platform developed by NIC, offering secure, contactless, and
-              non-invasive facial identity verification. It supports identity
-              authentication across various citizen-centric e-Governance
-              services and institutional workflows. It can be accessed via NAPIX
-              API Gateway or deployed as an Android background service.
+              AI Satyapikaanan is an AI-driven{" "}
+              <strong>Face Analytics as a Service (FaaaS)</strong> platform
+              developed by the National Informatics Centre (NIC) to bolster
+              digital governance initiatives across India. It offers a secure,
+              contactless, and non-invasive solution for advanced face analytics
+              such as facial identity verification, face quality assessment etc,
+              addressing critical challenges and enabling efficient,
+              citizen-centric services.
             </p>
 
             <div className="pt-4 text-sm text-gray-600 space-y-1">
-              {/* <p>
-                <strong>Last Security Audit Date:</strong> Expired, new audit in
-                progress
-              </p> */}
               <p>
-                <strong>Awards:</strong> Recognized under the Project Category
-                in the 20th CSI SIG eGovernance Awards 2022
+                <strong>Last Security Audit Status:</strong> The last security
+                audit has expired, and a new audit is currently{" "}
+                <strong>in progress</strong> to ensure the continued integrity
+                and security of the platform.
+              </p>
+              <p>
+                <strong>Awards:</strong> AI Satyapikaanan was recognized under
+                the <strong>Project Category</strong> in the prestigious{" "}
+                <strong>20th CSI SIG eGovernance Awards 2022</strong>,
+                highlighting its significant contribution to digital
+                transformation.
               </p>
             </div>
 
@@ -113,8 +120,9 @@ const AiSatyapikaananDetailPage = () => {
                   detection, gesture recognition plug-ins
                 </li>
                 <li>
-                  <strong>Workflow:</strong> Face Image Capture → Liveness
-                  Detection → Feature Extraction → Identity Match → Response
+                  <strong>Workflow:</strong> The end-to-end process is
+                  streamlined for efficiency: Face Image Capture → Face
+                  Analytics → Results Generation
                 </li>
                 <li>
                   <strong>Category:</strong> Vision AI
@@ -131,13 +139,40 @@ const AiSatyapikaananDetailPage = () => {
                 AI Satyapikaanan Rollout
               </h4>
               <p className="text-sm text-gray-700">
-                AI Satyapikaanan is already deployed across multiple sectors
-                including: Attendance tracking (Technical Education, GoWB), crop
-                surveyor verification (Ministry of Agriculture), pensioner life
-                certificate verification (Meghalaya), visitor authentication
-                (Raj Bhavan, Uttarakhand), and learner’s license issuance
-                (Ministry of Road Transport).
+                AI Satyapikaanan is already making a significant impact across
+                diverse sectors, demonstrating its versatility and
+                effectiveness.
               </p>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="text-md font-semibold text-blue-700 mb-2">
+                Current Deployments:
+              </h4>
+              <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
+                <li>
+                  <strong>Attendance Management:</strong>Attendance Tracking:
+                  Successfully implemented in Technical Education, Government of
+                  West Bengal.
+                </li>
+                <li>
+                  <strong>Crop Surveyor Verification:</strong> Aiding the
+                  Ministry of Agriculture in authenticating crop surveyors.
+                </li>
+                <li>
+                  <strong>Pensioner Life Certificate Verification:</strong>{" "}
+                  Enabling seamless verification for pensioners in Meghalaya.
+                </li>
+                <li>
+                  <strong>Visitor Authentication:</strong> Enhancing security at
+                  Raj Bhavan, Uttarakhand.
+                </li>
+                <li>
+                  <strong>Learner's License Issuance:</strong> Streamlining the
+                  issuance of learner's licenses under the Ministry of Road
+                  Transport.
+                </li>
+              </ul>
             </div>
 
             <div className="mt-6">
@@ -145,10 +180,29 @@ const AiSatyapikaananDetailPage = () => {
                 Ideal Use Cases
               </h4>
               <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
-                <li>Attendance verification for employees and trainees</li>
-                <li>Touchless ID authentication for public service delivery</li>
-                <li>Identity deduplication in welfare schemes</li>
-                <li>Pensioner verification and license issuance</li>
+                <li>
+                  <strong>Attendance Management:</strong> Accurate and efficient
+                  attendance counting and verification for employees, students,
+                  and trainees.
+                </li>
+                <li>
+                  <strong>Touchless ID Authentication:</strong> Secure and
+                  convenient public service delivery requiring identity
+                  verification without physical contact.
+                </li>
+                <li>
+                  <strong>Identity Deduplication:</strong> Preventing duplicate
+                  registrations and ensuring fairness in welfare schemes.
+                </li>
+                <li>
+                  <strong>Verification Services:</strong> Streamlining pensioner
+                  verification, license issuance, and other critical
+                  authentication processes.
+                </li>
+                <li>
+                  <strong>Quality Assessment Services:</strong> evaluation of
+                  quality of uploaded facial images during registration.
+                </li>
               </ul>
             </div>
 
@@ -257,12 +311,26 @@ const AiSatyapikaananDetailPage = () => {
             </h3>
 
             <p className="text-sm text-gray-700 mb-4">
-              Below is the step-by-step flow from capturing input data to
-              generating a verified identity match or decision response:
+              The process of utilizing AI Satyapikaanan is designed to be
+              straightforward, from input capture to decision response.
             </p>
 
             <ul className="list-decimal pl-5 text-sm text-gray-700 space-y-2">
               <li>
+                <strong>Input:</strong> Real-time facial images or pre-uploaded
+                images are captured via a mobile application or web interface.
+              </li>
+              <li>
+                <strong>Processing:</strong> Based on the specific service opted
+                for, the captured image undergoes advanced facial analytics.
+              </li>
+              <li>
+                <strong>Result Generation:</strong> The platform generates a
+                structured response, including the result status (e.g.,
+                success/failure), a confidence score, and other relevant
+                metrics, which is then sent back to the requesting system.
+              </li>
+              {/* <li>
                 <strong>Input:</strong> Real-time or uploaded biometric or
                 visual data (such as image, gesture, or posture) via mobile app
                 or web interface.
@@ -296,7 +364,7 @@ const AiSatyapikaananDetailPage = () => {
                 <strong>Delivery:</strong> Sends the result back to the
                 requesting system to support workflows such as attendance,
                 access control, or service eligibility.
-              </li>
+              </li> */}
             </ul>
           </div>
 
@@ -304,8 +372,21 @@ const AiSatyapikaananDetailPage = () => {
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               How to Use AI Satyapikaanan Service
             </h3>
-            <ol className="list-decimal list-inside text-gray-700 text-sm space-y-2">
+            <ol className="list-decimal pl-5 text-gray-700 text-sm space-y-2">
               <li>
+                <strong>Onboarding & Authorization:</strong> Submit a request to
+                NIC for onboarding with a signed approval letter from your
+                department. Mention your intended use case (e.g., attendance,
+                pensioner verification, etc.).
+              </li>
+              <li>
+                <strong>Client Setup:</strong> Upon approval, NIC will provide
+                comprehensive <strong>Developer Documentation</strong>. Access
+                to the necessary <strong>client code/middleware</strong> will be
+                granted, enabling seamless integration with your existing
+                systems.
+              </li>
+              {/* <li>
                 <strong>Onboarding & Authorization:</strong> Submit a request to
                 NIC for onboarding with a signed approval letter from your
                 department. Mention your intended use case (e.g., attendance,
@@ -343,7 +424,7 @@ const AiSatyapikaananDetailPage = () => {
                 match/mismatch decision with metadata such as timestamp and
                 result status, which can be integrated into your application
                 workflow.
-              </li>
+              </li> */}
             </ol>
           </div>
 
@@ -358,7 +439,8 @@ const AiSatyapikaananDetailPage = () => {
               </li>
               <li>
                 <strong>Access Control:</strong> Enforced through IP
-                whitelisting and authorized API credentials for client systems.
+                whitelisting (NICNET) and authorized API credentials (NAPIX) for
+                client systems.
               </li>
             </ul>
           </div>

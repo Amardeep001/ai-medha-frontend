@@ -74,7 +74,7 @@ const AiShrutiDetailPage = () => {
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
       <Header toggleSidebar={() => setSidebarOpen(true)} />
       <div className="overflow-auto flex flex-grow">
-        <div className="py-6 w-full max-w-screen-2xl px-20 mx-auto">
+        <div className="px-6 sm:px-20 py-6 w-full max-w-screen-2xl mx-auto">
           <div className="mt-3 flex space-x-3">
             <button
               onClick={() => navigate(-1)}

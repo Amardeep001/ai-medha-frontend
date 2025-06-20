@@ -15,7 +15,7 @@ const AiAnveshikaDetail = () => {
       <Header toggleSidebar={() => {}} />
 
       <div className="overflow-auto flex flex-grow">
-        <div className="px-20 py-6 w-full max-w-screen-2xl mx-auto">
+        <div className="px-6 sm:px-20 py-6 w-full max-w-screen-2xl mx-auto">
           <button
             onClick={() => navigate(-1)}
             className="mt-3 mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"

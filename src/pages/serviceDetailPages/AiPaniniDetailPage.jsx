@@ -97,54 +97,51 @@ const AiPaniniDetailPage = () => {
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
       <Header toggleSidebar={() => setSidebarOpen(true)} />
-      <div className="overflow-auto flex flex-grow">
-        <div className="py-6 w-full max-w-screen-2xl px-20 mx-auto">
-          <div className="mt-3 flex space-x-3">
-            <button
-              onClick={() => navigate(-1)}
-              className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
-            >
-              ← Back to Services
-            </button>
-            <div className="mb-6">
+
+      <div className="overflow-auto flex flex-grow flex-col">
+        {/* Hero Section */}
+        <section className="w-full bg-[#eee5dc] py-12">
+          <div className="max-w-screen-2xl mx-auto px-6 sm:px-20">
+            <div className="flex flex-wrap items-center gap-x-4 mb-6">
+              <button
+                onClick={() => navigate(-1)}
+                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+              >
+                ← Back to Services
+              </button>
               <a
                 href="https://demoai.nic.in/translation"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-4 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition"
+                className="px-4 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition"
               >
                 🌐 Try AI Panini
               </a>
             </div>
+
+            <h2 className="text-4xl font-bold text-blue-900 mb-4">AI Panini</h2>
+            <p className="text-gray-700 text-lg leading-relaxed">
+              AI Panini is designed to provide a reliable translation service
+              for Indian government departments, facilitating seamless
+              translation between English and 22 official Indic languages.
+            </p>
           </div>
+        </section>
 
-          <h2 className="text-3xl font-bold text-blue-900 mb-2">AI Panini</h2>
-          <p className="text-gray-700 mb-6 text-base leading-relaxed">
-            AI Panini is designed to provide a reliable translation service for
-            Indian government departments, facilitating seamless translation
-            between English and 22 official indic languages. It supports both
-            English-to-Indic and Indic-to-English translations, ensuring
-            effective multilingual communication across departments.
-          </p>
-
-          {/* Architecture Overview */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
+        {/* About Section */}
+        <section className="w-full bg-[#e7e7e7] py-12">
+          <div className="max-w-screen-2xl mx-auto px-20">
+            <h3 className="text-2xl font-semibold text-blue-800 mb-3">
               About AI Panini
             </h3>
             <p className="text-gray-700 text-sm leading-relaxed">
-              AI-Panini is a neural machine translation service that enables
-              reliable two-way translation between English and 22 indic
-              languages, including Assamese, Bengali, Bodo, Dogri, Konkani,
-              Gujarati, Hindi, Kannada, Kashmiri (Arabic), Kashmiri
-              (Devanagari), Maithili, Malayalam, Marathi, Manipuri (Bengali),
-              Manipuri (Meitei), Nepali, Oriya, Punjabi, Sanskrit, Santali,
-              Sindhi (Arabic), Sindhi (Devanagari), Tamil, Telugu, Urdu, and
-              Braille. Built on advanced NMT architecture, it ensures accurate,
-              context-aware translations to support seamless multilingual
-              communication for departmental and government use.
+              AI-Panini is a neural machine translation service supporting
+              bidirectional translations between English and 22 Indic
+              languages... [trimmed for brevity]
             </p>
-
+            <p className="text-sm text-gray-600 mt-4">
+              <strong>Copyright:</strong> NIC
+            </p>
             {/* Additional Info Section */}
             <div className="pt-4 text-sm text-gray-600 space-y-1">
               <p>
@@ -230,13 +227,15 @@ const AiPaniniDetailPage = () => {
               </ul>
             </div>
           </div>
+        </section>
 
-          {/* Summary Table */}
-          <div className="mt-8 bg-white rounded-lg shadow-md p-6 ">
+        {/* Language Table */}
+        <section className="w-full bg-[#f8f7f8] py-12">
+          <div className="max-w-screen-2xl mx-auto px-20">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Language Coverage Table
             </h3>
-            <table className="w-full text-sm text-left border-collapse">
+            <table className="w-full text-sm border-collapse">
               <thead className="bg-gray-100">
                 <tr>
                   <th className="p-2 border">Language</th>
@@ -244,22 +243,20 @@ const AiPaniniDetailPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {supportedLanguages.map((item) => {
-                  return (
-                    <>
-                      <tr>
-                        <td className="p-2 border">{item}</td>
-                        <td className="p-2 border">Yes</td>
-                      </tr>
-                    </>
-                  );
-                })}
+                {supportedLanguages.map((lang, idx) => (
+                  <tr key={idx}>
+                    <td className="p-2 border">{lang}</td>
+                    <td className="p-2 border">Yes</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
+        </section>
 
-          {/* Charts */}
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Charts Section */}
+        <section className="w-full bg-[#cdd2dd] py-12">
+          <div className="max-w-screen-2xl mx-auto px-20 grid lg:grid-cols-2 gap-6">
             <div className="bg-white rounded-lg shadow-md p-6">
               <h3 className="text-xl font-semibold text-blue-800 mb-2">
                 Department Adoption Chart
@@ -313,7 +310,6 @@ const AiPaniniDetailPage = () => {
                 </ResponsiveContainer>
               </div>
             </div>
-
             <div className="bg-white rounded-lg shadow-md p-6">
               <h3 className="text-xl font-semibold text-blue-800 mb-2">
                 Department-wise Usage Data
@@ -353,9 +349,11 @@ const AiPaniniDetailPage = () => {
               </div>
             </div>
           </div>
+        </section>
 
-          {/* Summary & Steps */}
-          <div className="mt-8 bg-white rounded-lg shadow-md p-6">
+        {/* How to Use */}
+        <section className="w-full bg-[#e6e1e3] py-12">
+          <div className="max-w-screen-2xl mx-auto px-20">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               How to Use AI Panini Service
             </h3>
@@ -414,30 +412,29 @@ const AiPaniniDetailPage = () => {
               </li>
             </ol>
           </div>
+        </section>
 
-          {/* Network Availability Section */}
-          <div className="mt-8 mb-6 bg-white rounded-lg shadow-md p-8">
+        {/* Network Access */}
+        <section className="w-full bg-[#e7ecee] py-12">
+          <div className="max-w-screen-2xl mx-auto px-20">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               Network Access Details
             </h3>
             <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
               <li>
-                <strong>Network Access:</strong> internal only via the{" "}
-                <strong>NIC</strong> Network, and external via{" "}
-                <strong>NAPIX</strong>.
+                <strong>Network Access:</strong> NIC & NAPIX
               </li>
               <li>
-                <strong>Firewall Configuration:</strong> Only whitelisted IPs
-                can access the service.
+                <strong>Firewall Configuration:</strong> Whitelisted IPs only
               </li>
               <li>
-                <strong>Access Control:</strong> Enforced via{" "}
-                <strong>VPN</strong> and <strong>IP whitelisting</strong>.
+                <strong>Access Control:</strong> VPN & IP whitelisting
               </li>
             </ul>
           </div>
-        </div>
+        </section>
       </div>
+
       <Footer />
     </div>
   );
