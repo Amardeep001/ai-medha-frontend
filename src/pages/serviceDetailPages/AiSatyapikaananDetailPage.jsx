@@ -112,17 +112,21 @@ const AiSatyapikaananDetailPage = () => {
               </h4>
               <ul className="text-sm text-gray-700 space-y-2">
                 <li>
-                  <strong>Supported modes:</strong> Real-time face recognition
-                  via camera, Android background services, and web integration
+                  <strong>Supported modes: Real-time face analytics</strong> on
+                  Android devices and <strong>Web integration</strong> for
+                  broader accessibility.
                 </li>
                 <li>
-                  <strong>AI Features:</strong> Face matching, AI-based liveness
-                  detection, gesture recognition plug-ins
+                  <strong>AI Features:</strong> Face Detection, Face
+                  Recognition, Face Verification, Face Quality Assessment, Face
+                  Liveness Detection, Gesture Recognition
                 </li>
                 <li>
                   <strong>Workflow:</strong> The end-to-end process is
-                  streamlined for efficiency: Face Image Capture → Face
-                  Analytics → Results Generation
+                  streamlined for efficiency:{" "}
+                  <strong>
+                    Face Image Capture → Face Analytics → Results Generation
+                  </strong>
                 </li>
                 <li>
                   <strong>Category:</strong> Vision AI
