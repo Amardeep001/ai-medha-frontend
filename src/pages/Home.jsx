@@ -19,7 +19,7 @@ import parkhiLogo from "../images/serviceLogo/ai_parkhi_logo.jpg";
 import vihangamDhrishtiLogo from "../images/serviceLogo/ai_vihangam_dhrishti_logo.jpg";
 import satyapikaananLogo from "../images/serviceLogo/ai_satyapikaanan_logo.jpg";
 import anveshikaLogo from "../images/serviceLogo/ai_anveshika_logo.jpg";
-import aiMedhaPoster from "../images/serviceLogo/ai_medha.png";
+import aiMedhaPoster from "../images/ai_medha.png";
 import multiLanguageLogo from "../images/featureLogo/multi_language.png";
 import dataVisualizationLogo from "../images/featureLogo/data_visualization.png";
 import loginLogo from "../images/featureLogo/login_logo.png";
@@ -27,6 +27,14 @@ import chatbotLogo from "../images/featureLogo/chatbot_logo.png";
 import modelLogo from "../images/featureLogo/model_management.png";
 import realtimeAlertLogo from "../images/featureLogo/realtime_alert.png";
 import serviceSelectionIcon from "../images/featureLogo/service_selection.png";
+import dataConciergeIcon from "../images/featureLogo/data_concierge.png";
+import dataAssetIcon from "../images/featureLogo/data_asset.png";
+import modelPerformanceIcon from "../images/featureLogo/model_performance.png";
+import helpdeskIcon from "../images/featureLogo/helpdesk.png";
+import sandboxIcon from "../images/featureLogo/sandbox.png";
+import insightIcon from "../images/featureLogo/insight.png";
+import digitalAssetIcon from "../images/featureLogo/digital_asset.png";
+import modelRepositoryIcon from "../images/featureLogo/model_repository.png";
 import Footer from "../components/Footer";
 
 const services = [
@@ -339,7 +347,7 @@ const Home = () => {
             <img
               src={aiMedhaPoster}
               alt="AI MEDHA Illustration"
-              className="w-full object-cover"
+              className="w-full h-[550px] object-cover"
             />
           </div>
 
@@ -366,7 +374,7 @@ const Home = () => {
 
       <div
         ref={ref}
-        className="bg-gradient-to-b from-[#b0afb9] to-[#918888] py-14 px-4 flex justify-center"
+        className="bg-gradient-to-b from-[#c8c6d1] to-[#a09c9c] py-14 px-4 flex justify-center"
       >
         <div className="border rounded-2xl px-6 py-8 bg-[#e9ecf1] shadow-sm w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
           {stats.map((item, index) => (
@@ -397,7 +405,7 @@ const Home = () => {
         className="max-w-screen-full flex flex-col justify-center items-center mx-auto px-4 sm:px-6 xl:px-20 py-14 sm:pt-6 bg-[#cabebe]"
       >
         <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-[#003366]">
-          AI MEDHA Functional Capabilities
+          Functional Capabilities
         </h3>
         <div className="max-w-screen-xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-6 sm:mt-8">
           {[
@@ -439,42 +447,42 @@ const Home = () => {
             {
               title: "Data Concierge Capability",
               desc: "Facilitates seamless data access and management for AI-driven insights.",
-              image: multiLanguageLogo,
+              image: dataConciergeIcon,
             },
             {
               title: "Digital Asset Catalogue",
               desc: "Organized repository for managing and accessing digital resources efficiently.",
-              image: multiLanguageLogo,
+              image: dataAssetIcon,
             },
             {
               title: "Model Performance & Governance",
               desc: "Monitor, evaluate, and ensure compliance of AI models with governance policies.",
-              image: multiLanguageLogo,
+              image: modelPerformanceIcon,
             },
             {
               title: "Support & Helpdesk",
               desc: "Comprehensive support system for AI services and platform assistance.",
-              image: multiLanguageLogo,
+              image: helpdeskIcon,
             },
             {
               title: "Sandbox Environment",
               desc: "Safe testing and experimentation space for AI models and digital services.",
-              image: multiLanguageLogo,
+              image: sandboxIcon,
             },
             {
               title: "AI Service Insights & Reports",
               desc: "Advanced analytics and reports for evaluating AI service efficiency.",
-              image: multiLanguageLogo,
+              image: insightIcon,
             },
             {
               title: "Digital Asset Security & Compliance",
               desc: "Ensures secure access, encryption, and regulatory compliance for digital assets.",
-              image: multiLanguageLogo,
+              image: digitalAssetIcon,
             },
             {
               title: "Model Repository",
               desc: "A centralized hub to explore, upload, and manage AI models.",
-              image: multiLanguageLogo,
+              image: modelRepositoryIcon,
             },
           ].map((feature, index) => (
             <div

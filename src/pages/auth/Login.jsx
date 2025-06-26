@@ -104,6 +104,13 @@ const Login = () => {
         currentErrors.password = "Password must be at least 6 characters";
       }
 
+      if (!password) {
+        currentErrors.password = "Password is required";
+      } else if (!strongPasswordRegex.test(password)) {
+        currentErrors.password =
+          "Password must be at least 8 characters and include uppercase, lowercase, number, and special character.";
+      }
+
       setErrors(currentErrors);
 
       if (Object.keys(currentErrors).length === 0) {
