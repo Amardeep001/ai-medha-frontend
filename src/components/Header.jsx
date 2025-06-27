@@ -55,14 +55,21 @@ const Header = ({ toggleSidebar }) => {
       {/* Main Navbar */}
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 xl:px-20 py-4 flex justify-between items-center relative">
         {/* Logo + Title */}
-        <div className="flex items-center space-x-4">
-          <img src={NicLogo} alt="NIC Logo" className="w-[160px]" />
-          <h1 className="text-xl sm:text-3xl font-bold">AI MEDHA</h1>
-        </div>
+        <Link to="/dashboard">
+          <div className="flex items-center space-x-4">
+            <img src={NicLogo} alt="NIC Logo" className="w-[160px]" />
+            <h1 className="text-xl sm:text-3xl font-bold">AI MEDHA</h1>
+          </div>
+        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden sm:flex items-center space-x-6 text-sm md:text-base">
           <ul className="flex space-x-6">
+            <li>
+              <Link to="/dashboard" className="hover:text-[#FF9933] transition">
+                Home
+              </Link>
+            </li>
             <li>
               <a href="#about" className="hover:text-[#FF9933]">
                 About
@@ -74,9 +81,9 @@ const Header = ({ toggleSidebar }) => {
               </a>
             </li>
             <li>
-              <a href="/services" className="hover:text-[#FF9933]">
+              <Link to="/services" className="hover:text-[#FF9933]">
                 Services
-              </a>
+              </Link>
             </li>
             <li>
               <a href="#contact" className="hover:text-[#FF9933]">
@@ -131,6 +138,9 @@ const Header = ({ toggleSidebar }) => {
       {/* Mobile Slide-down Menu */}
       {mobileMenuOpen && (
         <div className="sm:hidden bg-white border-t border-gray-200 px-6 py-4 space-y-4 shadow-md">
+          <Link to="/dashboard" className="hover:text-[#FF9933] transition">
+            Home
+          </Link>
           <a href="#about" className="block text-sm text-gray-800">
             About
           </a>

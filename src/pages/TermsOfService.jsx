@@ -218,7 +218,26 @@ const TermsOfService = () => {
             </div>
             <div>
               <strong className="text-gray-700">
-                12. Contact Information:
+                12. Collection of Personal Information:
+              </strong>{" "}
+              <br></br>
+              If you are asked for any other personal information you will be
+              informed how it will be used if you choose to give it. If at any
+              time you believe the principles referred to in this privacy
+              statement have not been followed, or have any other comments on
+              these principles, please notify the Web Information Manager by
+              sending an email to contact{" "}
+              <a
+                href="mailto:support@aimedha.gov.in"
+                className="text-blue-600 underline"
+              >
+                support@aimedha.gov.in
+              </a>
+              .
+            </div>
+            <div>
+              <strong className="text-gray-700">
+                13. Contact Information:
               </strong>{" "}
               <br></br>
               If you have any questions or concerns about these terms and

@@ -188,6 +188,11 @@ const Home = () => {
           <div className="hidden sm:flex items-center space-x-6 md:space-x-6 text-sm md:text-base">
             <ul className="flex space-x-4 md:space-x-6">
               <li>
+                <Link to="/" className="hover:text-[#FF9933] transition">
+                  Home
+                </Link>
+              </li>
+              <li>
                 <a href="#about" className="hover:text-[#FF9933] transition">
                   About
                 </a>
@@ -509,9 +514,6 @@ const Home = () => {
 
       <div className="bg-gray-400 py-14 text-white overflow-hidden">
         <div className="text-center mb-6 px-4">
-          {/* <p className="text-sm uppercase tracking-wide text-gray-400">
-            TECHNICAL SERVICES OFFERINGS
-          </p> */}
           <h2 className="text-3xl sm:text-4xl font-bold text-[#003366]">
             AI-Powered Governance Services
           </h2>

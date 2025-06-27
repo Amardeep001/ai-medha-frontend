@@ -106,9 +106,6 @@ const AiVaniDetailPage = () => {
                   health, and judiciary
                 </li>
                 <li>
-                  Voice-based IVR systems for departments with rural outreach
-                </li>
-                <li>
                   Custom department bots to reduce load on helplines or support
                   staff
                 </li>
@@ -125,7 +122,6 @@ const AiVaniDetailPage = () => {
                 <li>
                   Public Service Portals (education, transport, e-governance)
                 </li>
-                <li>IVR-based citizen service helplines</li>
                 <li>NIC-integrated departmental websites</li>
               </ul>
             </div>
@@ -144,7 +140,7 @@ const AiVaniDetailPage = () => {
             <ul className="list-decimal pl-5 text-sm text-gray-700 space-y-2">
               <li>
                 <strong>User Input:</strong> User sends a query through a chat
-                interface or voice interface (web, mobile, or IVR).
+                interface or voice interface (web, mobile).
               </li>
               <li>
                 <strong>Input Recognition:</strong> For voice input, AI Shruti
@@ -195,8 +191,8 @@ const AiVaniDetailPage = () => {
               </li>
               <li>
                 <strong>Platform Integration:</strong> Decide the integration
-                method—web-based chat, mobile interface, or IVR system—and
-                configure accordingly using provided API endpoints.
+                method—web-based chat or mobile interface and configure
+                accordingly using provided API endpoints.
               </li>
               <li>
                 <strong>Middleware Setup:</strong> If using voice-based
@@ -207,11 +203,6 @@ const AiVaniDetailPage = () => {
                 <strong>Intent & Dialogue Configuration:</strong> Define
                 intents, dialogue flow, FAQs, and custom rules using the Vani
                 admin console or JSON configuration.
-              </li>
-              <li>
-                <strong>Voice Channel Setup (Optional):</strong> For IVR or
-                call-center deployment, integrate with telecom lines and
-                configure speech-to-text and text-to-speech modules.
               </li>
               <li>
                 <strong>API Access & Testing:</strong> Access RESTful APIs for

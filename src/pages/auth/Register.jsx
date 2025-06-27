@@ -375,6 +375,7 @@ const Register = () => {
                   I have read and agree to the{" "}
                   <Link
                     to={"/terms-of-service"}
+                    target="_blank"
                     className="text-blue-600 underline hover:text-blue-800"
                   >
                     Terms of Services
