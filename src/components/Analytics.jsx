@@ -29,7 +29,7 @@ const AnalyticsDashboard = () => {
   return (
     <div className="p-4">
       <h2 className="text-2xl md:text-3xl font-bold text-blue-900">
-        AI Medha Analytics Dashboard
+        AI MEDHA Analytics Dashboard
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
@@ -44,7 +44,7 @@ const AnalyticsDashboard = () => {
           <FaRobot className="text-green-600 text-3xl" />
           <div>
             <p className="text-lg font-semibold">Active AI Models</p>
-            <p className="text-xl font-bold">25</p>
+            <p className="text-xl font-bold">10</p>
           </div>
         </div>
         <div className="p-4 bg-white shadow-md rounded-lg flex items-center space-x-4">

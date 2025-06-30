@@ -17,16 +17,23 @@ import {
 
 import {
   FaRobot,
-  FaDatabase,
-  FaEye,
   FaChartPie,
-  FaClipboardCheck,
+  FaLanguage,
+  FaBalanceScale,
+  FaMicrophoneAlt,
+  FaEyeSlash,
 } from "react-icons/fa";
 import {
   FaCheckCircle,
   FaExclamationTriangle,
   FaTimesCircle,
 } from "react-icons/fa";
+import AiNibhritImage from "../images/serviceCatalogueImages/ai_nibhrit_image.png";
+import AiPaniniImage from "../images/serviceCatalogueImages/ai_panini.png";
+import AiChatbotImage from "../images/serviceCatalogueImages/ai_chatbot_image.jpg";
+import AiShrutiImage from "../images/serviceCatalogueImages/ai_shruti.jpg";
+import AiMatraImage from "../images/serviceCatalogueImages/ai_matra.jpg";
+import AiParkhiImage from "../images/serviceCatalogueImages/ai_parkhi.webp";
 
 ChartJS.register(
   ArcElement,
@@ -46,60 +53,93 @@ ChartJS.register(
 const Overview = () => {
   const services = [
     {
-      id: "model_management",
-      name: "Model Management",
-      description: "Efficiently manage and deploy AI models with ease.",
-      usage: "Streamlines model lifecycle, from training to deployment.",
-      icon: <FaDatabase className="text-blue-700 text-4xl" />, // Service Icon
-      image: "https://picsum.photos/400/300?random=1", // Replace with actual image URL
+      id: "ai_nibhrit",
+      name: "AI Nibhrit - PII Masking Solution",
+      type: "Data Privacy",
+      available: true,
+      description:
+        "Smart AI for masking Aadhaar, PAN, fingerprints, and QR codes in digital documents.",
+      usage: "Securely share documents with reusable PII-masked outputs.",
+      icon: <FaEyeSlash className="text-blue-700 text-4xl" />,
+      image: AiNibhritImage,
     },
     {
-      id: "ai_chatbot",
-      name: "AI-Powered Chatbot",
-      description: "Intelligent chatbot for automated interactions.",
-      usage: "Enhances customer engagement and support.",
+      id: "ai_panini",
+      name: "AI Panini - Language Translation Service",
+      type: "Language AI",
+      available: true,
+      description:
+        "Translate between Indian languages and English using neural machine translation.",
+      usage: "Enables translation across 11 Indian languages.",
+      icon: <FaLanguage className="text-blue-700 text-4xl" />, // You can choose another icon if preferred
+      image: AiPaniniImage, // Replace with real image when available
+    },
+    {
+      id: "ai_vani",
+      name: "AI VANI - Virtual Assistant Framework",
+      type: "Interaction",
+      available: true,
+      description:
+        "NIC’s virtual assistant framework used across multiple government portals for real-time query.",
+      usage:
+        "Deployed across portals like eAwas, eVigilance, Confonet, ikhedut, Sarathi RTO, and more to assist citizens 24/7.",
       icon: <FaRobot className="text-blue-700 text-4xl" />,
-      image: "https://picsum.photos/400/300?random=2",
+      image: AiChatbotImage, // Replace with actual image import
     },
     {
-      id: "digital_asset_catalogue",
-      name: "Digital Asset Catalogue",
-      description: "Centralized storage for AI-generated assets.",
-      usage: "Organizes and manages digital AI assets effectively.",
-      icon: <FaClipboardCheck className="text-blue-700 text-4xl" />,
-      image: "https://picsum.photos/400/300?random=3",
+      id: "ai_shruti",
+      name: "AI Shruti - Speech Recognition",
+      type: "Language AI",
+      available: true,
+      description:
+        "Automatic speech-to-text transcription for Indian languages.",
+      usage:
+        "Converts spoken input into text to enable voice-based interactions.",
+      icon: <FaMicrophoneAlt className="text-blue-700 text-4xl" />,
+      image: AiShrutiImage, // replace this with the actual imported image or URL
     },
     {
-      id: "model_performance_governance",
-      name: "Model Performance & Governance",
-      description: "Monitor, evaluate, and govern AI model performance.",
-      usage: "Ensures compliance, accuracy, and continuous improvements.",
-      icon: <FaEye className="text-blue-700 text-4xl" />,
-      image: "https://picsum.photos/400/300?random=4",
+      id: "ai_matra",
+      name: "AI Matra - Transliteration Service",
+      type: "Monitoring",
+      available: true,
+      description: "Framework for evaluating and benchmarking AI models.",
+      usage:
+        "Monitors model performance for fairness, accuracy, and reliability.",
+      icon: <FaBalanceScale className="text-blue-700 text-4xl" />, // or FaChartLine for performance
+      image: AiMatraImage, // replace this with the actual imported image or URL
     },
     {
-      id: "ai_service_insights",
-      name: "AI Service Insights & Reports",
-      description: "Comprehensive insights into AI service usage.",
-      usage: "Provides analytics and reports for decision-making.",
+      id: "ai_parkhi",
+      name: "AI Parkhi - Image Quality Assessment",
+      type: "Analytics",
+      available: true,
+      description:
+        "AI-based system to automatically classify uploaded images as good or bad quality.",
+      usage:
+        "Evaluates image/document clarity using deep learning to improve decision-making workflows.",
       icon: <FaChartPie className="text-blue-700 text-4xl" />,
-      image: "https://picsum.photos/400/300?random=5",
+      image: AiParkhiImage,
     },
   ];
 
   const logs = [
     {
       type: "success",
-      message: "Model trained successfully!",
-      time: "10:32 AM",
+      message: "AI Parkhi processed 8K images.",
+      time: "9:15 AM",
     },
     {
       type: "warning",
-      message: "Data inconsistency detected!",
-      time: "10:40 AM",
+      message: "Shruti audio delay detected.",
+      time: "9:50 AM",
     },
-    { type: "error", message: "API connection failed!", time: "10:45 AM" },
-    { type: "success", message: "Deployment completed!", time: "11:00 AM" },
+    { type: "error", message: "VANI response timeout.", time: "10:10 AM" },
+    {
+      type: "success",
+      message: "Panini translation improved.",
+      time: "11:00 AM",
+    },
   ];
 
   const getLogIcon = (type) => {
@@ -183,9 +223,103 @@ const Overview = () => {
           </div>
         </div>
 
+        <div className="mt-6 bg-gray-100 p-6 rounded-lg shadow-md">
+          <h3 className="text-xl font-semibold text-blue-900 mb-4">
+            Traffic & Usage Insights
+          </h3>
+          <p className="text-gray-700 text-base leading-relaxed">
+            AI Medha has witnessed a steady rise in adoption across central and
+            state government departments. With over{" "}
+            <strong>10 million+ API hits</strong> in the last year, services
+            like <strong>AI Panini</strong> and <strong>AI Nibhrit</strong>{" "}
+            account for nearly 60% of total usage. Peak traffic is observed
+            during working hours (10 AM–5 PM IST), primarily for language
+            translation, document anonymization, and virtual assistant
+            deployments. Real-time systems such as <strong>AI Shruti</strong>{" "}
+            and <strong>AI VANI</strong> show growing traction with increasing
+            demand for audio-based interaction models. The platform ensures{" "}
+            <strong>99.9% uptime</strong> and handles concurrent user requests
+            through a secure, scalable infrastructure powered by NAPIX.
+          </p>
+        </div>
+
+        {/* Service Onboarding Status */}
+        <div className="mt-8">
+          <h3 className="text-2xl font-semibold text-blue-900 mb-4 border-b pb-2">
+            Onboarding & Deployment Status
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+            <div className="bg-white shadow-md p-6 rounded-lg">
+              <p className="text-sm text-gray-500">Departments Onboarded</p>
+              <p className="text-3xl font-bold text-blue-900">10+</p>
+            </div>
+            <div className="bg-white shadow-md p-6 rounded-lg">
+              <p className="text-sm text-gray-500">Active Integrations</p>
+              <p className="text-3xl font-bold text-green-700">15+</p>
+            </div>
+            <div className="bg-white shadow-md p-6 rounded-lg">
+              <p className="text-sm text-gray-500">Services in Sandbox</p>
+              <p className="text-3xl font-bold text-yellow-600">12+</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Live System Health */}
+        <div className="mt-10">
+          <h3 className="text-2xl font-semibold text-blue-900 mb-4 border-b pb-2">
+            System Health & Uptime
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+            <div className="bg-white shadow-md p-6 rounded-lg">
+              <p className="text-sm text-gray-500">System Uptime</p>
+              <p className="text-3xl font-bold text-green-600">99.95%</p>
+            </div>
+            <div className="bg-white shadow-md p-6 rounded-lg">
+              <p className="text-sm text-gray-500">Last Downtime</p>
+              <p className="text-3xl font-bold text-red-600">12 Mar 2025</p>
+            </div>
+            <div className="bg-white shadow-md p-6 rounded-lg">
+              <p className="text-sm text-gray-500">Avg API Latency</p>
+              <p className="text-3xl font-bold text-blue-600">850ms</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Top Performing Services */}
+        <div className="mt-10">
+          <h3 className="text-2xl font-semibold text-blue-900 mb-4 border-b pb-2">
+            Top Performing Services
+          </h3>
+          <div className="bg-white shadow-md rounded-lg overflow-hidden">
+            <table className="min-w-full divide-y divide-gray-200 text-sm">
+              <thead className="bg-gray-100 text-gray-600 font-medium">
+                <tr>
+                  <th className="px-4 py-3 text-left">Service Name</th>
+                  <th className="px-4 py-3 text-right">Usage Count</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-100">
+                {[
+                  { name: "AI Panini", value: "4,523,458" },
+                  { name: "AI Nibhrit", value: "3,120,871" },
+                  { name: "AI Vani", value: "2,032,794" },
+                  { name: "AI Shruti", value: "1,657,320" },
+                ].map((service, i) => (
+                  <tr key={i}>
+                    <td className="px-4 py-2 text-gray-800">{service.name}</td>
+                    <td className="px-4 py-2 text-right font-medium text-blue-800">
+                      {service.value}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         {/* Services Section */}
         <h3 className="mt-6 text-2xl font-semibold text-blue-900 border-b pb-3">
-          Services & Insights
+          Available Services
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4">
           {services.map((service) => (
@@ -213,7 +347,7 @@ const Overview = () => {
         </div>
 
         {/* Logs Section */}
-        <h3 className="text-xl font-semibold text-blue-900 mt-6 border-b pb-2">
+        <h3 className="text-2xl font-semibold text-blue-900 mt-6 border-b pb-2">
           Recent Activity Logs
         </h3>
         <div className="bg-gray-300 p-4 rounded-lg shadow-md max-h-80 overflow-auto">

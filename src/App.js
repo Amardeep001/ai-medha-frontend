@@ -26,6 +26,7 @@ import AiSatyapikaananDetailPage from "./pages/serviceDetailPages/AiSatyapikaana
 import AiVaniDetailPage from "./pages/serviceDetailPages/AiVaniDetailPage";
 import AiSaranshDetailPage from "./pages/serviceDetailPages/AiSaranshDetailPage";
 import TermsOfService from "./pages/TermsOfService";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/about" element={<About />} />
         <Route path="auth/login" element={<Login />} />
         <Route path="auth/register" element={<Register />} />
         <Route path="auth/verify-account" element={<VerifyAccount />} />

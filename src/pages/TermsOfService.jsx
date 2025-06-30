@@ -58,13 +58,13 @@ const TermsOfService = () => {
           <div className="hidden sm:flex items-center space-x-6 text-base">
             <ul className="flex space-x-5">
               <li>
-                <a href="#about" className="hover:text-[#FF9933]">
-                  About
-                </a>
+                <Link to="/" className="hover:text-[#FF9933]">
+                  Home
+                </Link>
               </li>
               <li>
-                <a href="#features" className="hover:text-[#FF9933]">
-                  Features
+                <a href="#about" className="hover:text-[#FF9933]">
+                  About
                 </a>
               </li>
               <li>

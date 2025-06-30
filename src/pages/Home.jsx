@@ -193,9 +193,9 @@ const Home = () => {
                 </Link>
               </li>
               <li>
-                <a href="#about" className="hover:text-[#FF9933] transition">
+                <Link to="/about" className="hover:text-[#FF9933] transition">
                   About
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#features" className="hover:text-[#FF9933] transition">
@@ -243,9 +243,9 @@ const Home = () => {
             <div className="absolute top-12 left-0 w-full bg-white shadow-lg sm:hidden">
               <ul className="flex flex-col text-center py-4 space-y-4">
                 <li>
-                  <a href="#about" className="hover:text-[#FF9933] transition">
+                  <Link to="/about" className="hover:text-[#FF9933] transition">
                     About
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a
