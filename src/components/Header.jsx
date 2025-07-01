@@ -98,7 +98,7 @@ const Header = ({ toggleSidebar }) => {
               onClick={() => setIsOpen(!isOpen)}
               className="flex items-center space-x-1 hover:text-[#FF9933]"
             >
-              <FaUserCircle size={24} className="text-blue-900" />
+              <FaUserCircle size={32} className="text-blue-900" />
               <IoIosArrowDown />
             </button>
             {isOpen && (

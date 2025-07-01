@@ -162,7 +162,7 @@ const ServiceCatalogue = () => {
   return (
     <div className="p-5 ">
       <h2 className="text-3xl font-bold text-blue-900 mb-6">
-        AI MEDHA Service Catalogue
+        Service Catalogue
       </h2>
 
       {/* Filters */}

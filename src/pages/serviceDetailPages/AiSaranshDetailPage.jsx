@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-// import SaranshImage from "../../images/saransh_sample.png";
-// import SummaryImage from "../../images/saransh_summary_example.png";
 
 const AiSaranshDetailPage = () => {
   const navigate = useNavigate();

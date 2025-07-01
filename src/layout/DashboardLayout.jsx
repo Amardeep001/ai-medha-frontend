@@ -14,10 +14,10 @@ import { Link, useLocation, useNavigate, Outlet } from "react-router-dom";
 
 const menuItems = [
   { icon: <FaClipboardList />, title: "Overview", path: "/dashboard" },
-  { icon: <FaChartBar />, title: "Analytics", path: "/analytics" },
+  // { icon: <FaChartBar />, title: "Analytics", path: "/analytics" },
   { icon: <FaTools />, title: "Services", path: "/services" },
-  { icon: <FaUserShield />, title: "Users", path: "/users" },
-  { icon: <FaCog />, title: "Settings", path: "/settings" },
+  // { icon: <FaUserShield />, title: "Users", path: "/users" },
+  // { icon: <FaCog />, title: "Settings", path: "/settings" },
 ];
 
 const DashboardLayout = () => {
@@ -68,13 +68,13 @@ const DashboardLayout = () => {
           </nav>
 
           {/* Logout Button */}
-          <button
+          {/* <button
             onClick={handleLogout}
             className="flex items-center space-x-2 px-4 py-3 rounded-lg hover:bg-red-500 hover:text-white transition mt-auto w-full"
           >
             <FaSignOutAlt className="text-xl" />
             <span>Logout</span>
-          </button>
+          </button> */}
         </aside>
 
         {sidebarOpen && (

@@ -10,7 +10,6 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
-import TranslationImage from "../../images/translation_image.jpg";
 
 const departmentChartData = [
   { name: "AI Shruti", value: 32295 },

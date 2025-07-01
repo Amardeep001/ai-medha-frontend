@@ -28,6 +28,7 @@ import {
   FaExclamationTriangle,
   FaTimesCircle,
 } from "react-icons/fa";
+import { FaClipboardList, FaHourglassHalf } from "react-icons/fa";
 import AiNibhritImage from "../images/serviceCatalogueImages/ai_nibhrit_image.png";
 import AiPaniniImage from "../images/serviceCatalogueImages/ai_panini.png";
 import AiChatbotImage from "../images/serviceCatalogueImages/ai_chatbot_image.jpg";
@@ -49,6 +50,58 @@ ChartJS.register(
   Legend,
   Filler
 );
+
+const statusData = [
+  {
+    label: "Service Requests",
+    subtext: "Total Requests Submitted",
+    value: 0,
+    icon: <FaClipboardList className="text-yellow-600 text-2xl" />,
+    bg: "bg-yellow-100",
+  },
+  {
+    label: "Approved Services",
+    subtext: "Total Approved AI Services",
+    value: 0,
+    icon: <FaCheckCircle className="text-green-600 text-2xl" />,
+    bg: "bg-green-100",
+  },
+  {
+    label: "Pending Services",
+    subtext: "Under Review or In Progress",
+    value: 0,
+    icon: <FaHourglassHalf className="text-blue-600 text-2xl" />,
+    bg: "bg-blue-100",
+  },
+  {
+    label: "Rejected Services",
+    subtext: "Requests Not Approved",
+    value: 0,
+    icon: <FaTimesCircle className="text-red-600 text-2xl" />,
+    bg: "bg-red-100",
+  },
+];
+
+// Data for chart
+const topServices = [
+  { name: "AI Panini", value: 4523458 },
+  { name: "AI Nibhrit", value: 3120871 },
+  { name: "AI Vani", value: 2032794 },
+  { name: "AI Shruti", value: 1657320 },
+];
+
+const pieServiceData = {
+  labels: topServices.map((s) => s.name),
+  datasets: [
+    {
+      label: "Usage",
+      data: topServices.map((s) => s.value),
+      backgroundColor: ["#3B82F6", "#10B981", "#F59E0B", "#EF4444"],
+      borderColor: "#fff",
+      borderWidth: 2,
+    },
+  ],
+};
 
 const Overview = () => {
   const services = [
@@ -196,34 +249,109 @@ const Overview = () => {
         AI Services Overview
       </h2>
       <div className="mt-6 bg-white p-6 rounded-lg shadow-lg">
-        {/* Pie Chart Section */}
-        <h3 className="text-2xl font-semibold text-blue-900 mt-6 border-b pb-2">
-          Service Distribution
-        </h3>
-        <div className="flex flex-col flex-wrap md:flex-row xl:flex-nowrap gap-6 mt-6">
-          {/* Pie Chart */}
-          <div className="w-full md:w-1/3 flex justify-center">
-            <div className="w-full md:w-64 h-64">
-              <Pie data={pieData} options={{ maintainAspectRatio: false }} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4 py-6">
+          {statusData.map((item, index) => (
+            <div
+              key={index}
+              className="flex justify-between items-center p-5 bg-gray-50 shadow rounded-xl"
+            >
+              <div>
+                <h4 className="font-semibold text-gray-900">{item.label}</h4>
+                <p className="text-sm text-gray-500">{item.subtext}</p>
+                <p className="mt-2 text-2xl font-bold text-blue-900">
+                  {item.value}
+                </p>
+              </div>
+              <div
+                className={`ml-4 p-3 rounded-full ${item.bg} flex justify-center items-center`}
+              >
+                {item.icon}
+              </div>
             </div>
-          </div>
+          ))}
+        </div>
 
-          {/* Bar Chart */}
-          <div className="w-full md:w-1/3 flex justify-center">
-            <div className="w-full md:w-72 h-64">
-              <Bar data={barData} options={{ maintainAspectRatio: false }} />
+        {/* Top Performing Services */}
+        <div className="mt-10">
+          <h3 className="text-2xl font-semibold text-blue-900 mb-4 border-b pb-2">
+            Top Performing Services
+          </h3>
+
+          <div className="flex flex-col lg:flex-row gap-6">
+            {/* Pie Chart */}
+            <div className="w-full lg:w-1/2 bg-white shadow-md rounded-lg p-4 flex justify-center items-center">
+              <div className="w-64 h-64">
+                <Pie
+                  data={pieServiceData}
+                  options={{ maintainAspectRatio: false }}
+                />
+              </div>
             </div>
-          </div>
 
-          {/* Line Chart */}
-          <div className="w-full md:w-1/3 flex justify-center">
-            <div className="w-full md:w-72 h-64">
-              <Line data={lineData} options={{ maintainAspectRatio: false }} />
+            {/* Table */}
+            <div className="w-full lg:w-1/2 bg-white shadow-md rounded-lg overflow-hidden">
+              <table className="min-w-full divide-y divide-gray-200 text-sm">
+                <thead className="bg-gray-100 text-gray-600 font-medium">
+                  <tr>
+                    <th className="px-4 py-3 text-left">Service Name</th>
+                    <th className="px-4 py-3 text-right">Usage Count</th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-100">
+                  {topServices.map((service, i) => (
+                    <tr key={i}>
+                      <td className="px-4 py-2 text-gray-800">
+                        {service.name}
+                      </td>
+                      <td className="px-4 py-2 text-right font-medium text-blue-800">
+                        {service.value.toLocaleString()}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
 
         <div className="mt-6 bg-gray-100 p-6 rounded-lg shadow-md">
+          <h3 className="text-xl font-semibold text-blue-900 mb-4">
+            Traffic & Usage Insights
+          </h3>
+          <p className="text-gray-700 text-base leading-relaxed">
+            AI Medha has received over <strong>10M+ API hits</strong>, with{" "}
+            <strong>AI Panini</strong> and <strong>AI Nibhrit</strong> making up
+            60% of usage. Peak activity occurs during{" "}
+            <strong>10 AM–5 PM IST</strong>, especially for translation and PII
+            masking. Services like <strong>AI Shruti</strong> and{" "}
+            <strong>AI VANI</strong> are gaining momentum. The platform ensures{" "}
+            <strong>99.9% uptime</strong> for reliable performance.
+          </p>
+        </div>
+
+        {/* Pie Chart Section */}
+        {/* <h3 className="text-2xl font-semibold text-blue-900 mt-6 border-b pb-2">
+          Service Distribution
+        </h3>
+        <div className="flex flex-col flex-wrap md:flex-row xl:flex-nowrap gap-6 mt-6">
+          <div className="w-full md:w-1/3 flex justify-center">
+            <div className="w-full md:w-64 h-64">
+              <Pie data={pieData} options={{ maintainAspectRatio: false }} />
+            </div>
+          </div>
+          <div className="w-full md:w-1/3 flex justify-center">
+            <div className="w-full md:w-72 h-64">
+              <Bar data={barData} options={{ maintainAspectRatio: false }} />
+            </div>
+          </div>
+          <div className="w-full md:w-1/3 flex justify-center">
+            <div className="w-full md:w-72 h-64">
+              <Line data={lineData} options={{ maintainAspectRatio: false }} />
+            </div>
+          </div>
+        </div> */}
+
+        {/* <div className="mt-6 bg-gray-100 p-6 rounded-lg shadow-md">
           <h3 className="text-xl font-semibold text-blue-900 mb-4">
             Traffic & Usage Insights
           </h3>
@@ -241,28 +369,7 @@ const Overview = () => {
             <strong>99.9% uptime</strong> and handles concurrent user requests
             through a secure, scalable infrastructure powered by NAPIX.
           </p>
-        </div>
-
-        {/* Service Onboarding Status */}
-        <div className="mt-8">
-          <h3 className="text-2xl font-semibold text-blue-900 mb-4 border-b pb-2">
-            Onboarding & Deployment Status
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-            <div className="bg-white shadow-md p-6 rounded-lg">
-              <p className="text-sm text-gray-500">Departments Onboarded</p>
-              <p className="text-3xl font-bold text-blue-900">10+</p>
-            </div>
-            <div className="bg-white shadow-md p-6 rounded-lg">
-              <p className="text-sm text-gray-500">Active Integrations</p>
-              <p className="text-3xl font-bold text-green-700">15+</p>
-            </div>
-            <div className="bg-white shadow-md p-6 rounded-lg">
-              <p className="text-sm text-gray-500">Services in Sandbox</p>
-              <p className="text-3xl font-bold text-yellow-600">12+</p>
-            </div>
-          </div>
-        </div>
+        </div> */}
 
         {/* Live System Health */}
         <div className="mt-10">
@@ -274,10 +381,10 @@ const Overview = () => {
               <p className="text-sm text-gray-500">System Uptime</p>
               <p className="text-3xl font-bold text-green-600">99.95%</p>
             </div>
-            <div className="bg-white shadow-md p-6 rounded-lg">
+            {/* <div className="bg-white shadow-md p-6 rounded-lg">
               <p className="text-sm text-gray-500">Last Downtime</p>
               <p className="text-3xl font-bold text-red-600">12 Mar 2025</p>
-            </div>
+            </div> */}
             <div className="bg-white shadow-md p-6 rounded-lg">
               <p className="text-sm text-gray-500">Avg API Latency</p>
               <p className="text-3xl font-bold text-blue-600">850ms</p>
@@ -285,40 +392,8 @@ const Overview = () => {
           </div>
         </div>
 
-        {/* Top Performing Services */}
-        <div className="mt-10">
-          <h3 className="text-2xl font-semibold text-blue-900 mb-4 border-b pb-2">
-            Top Performing Services
-          </h3>
-          <div className="bg-white shadow-md rounded-lg overflow-hidden">
-            <table className="min-w-full divide-y divide-gray-200 text-sm">
-              <thead className="bg-gray-100 text-gray-600 font-medium">
-                <tr>
-                  <th className="px-4 py-3 text-left">Service Name</th>
-                  <th className="px-4 py-3 text-right">Usage Count</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-100">
-                {[
-                  { name: "AI Panini", value: "4,523,458" },
-                  { name: "AI Nibhrit", value: "3,120,871" },
-                  { name: "AI Vani", value: "2,032,794" },
-                  { name: "AI Shruti", value: "1,657,320" },
-                ].map((service, i) => (
-                  <tr key={i}>
-                    <td className="px-4 py-2 text-gray-800">{service.name}</td>
-                    <td className="px-4 py-2 text-right font-medium text-blue-800">
-                      {service.value}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
         {/* Services Section */}
-        <h3 className="mt-6 text-2xl font-semibold text-blue-900 border-b pb-3">
+        {/* <h3 className="mt-6 text-2xl font-semibold text-blue-900 border-b pb-3">
           Available Services
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4">
@@ -344,10 +419,10 @@ const Overview = () => {
               />
             </div>
           ))}
-        </div>
+        </div> */}
 
         {/* Logs Section */}
-        <h3 className="text-2xl font-semibold text-blue-900 mt-6 border-b pb-2">
+        {/* <h3 className="text-2xl font-semibold text-blue-900 mt-6 border-b pb-2">
           Recent Activity Logs
         </h3>
         <div className="bg-gray-300 p-4 rounded-lg shadow-md max-h-80 overflow-auto">
@@ -367,7 +442,7 @@ const Overview = () => {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );
