@@ -76,11 +76,6 @@ const Header = ({ toggleSidebar }) => {
               </Link>
             </li>
             <li>
-              <a href="#features" className="hover:text-[#FF9933]">
-                Features
-              </a>
-            </li>
-            <li>
               <Link to="/services" className="hover:text-[#FF9933]">
                 Services
               </Link>
@@ -144,9 +139,6 @@ const Header = ({ toggleSidebar }) => {
           <Link to="/about" className="block text-sm text-gray-800">
             About
           </Link>
-          <a href="#features" className="block text-sm text-gray-800">
-            Features
-          </a>
           <a href="/services" className="block text-sm text-gray-800">
             Services
           </a>

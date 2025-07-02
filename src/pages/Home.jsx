@@ -198,14 +198,12 @@ const Home = () => {
                 </Link>
               </li>
               <li>
-                <a href="#features" className="hover:text-[#FF9933] transition">
-                  Features
-                </a>
-              </li>
-              <li>
-                <a href="/services" className="hover:text-[#FF9933] transition">
+                <Link
+                  to="/explore-services"
+                  className="hover:text-[#FF9933] transition"
+                >
                   Services
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#contact" className="hover:text-[#FF9933] transition">
@@ -248,12 +246,12 @@ const Home = () => {
                   </Link>
                 </li>
                 <li>
-                  <a
-                    href="#features"
+                  <Link
+                    to="/explore-services"
                     className="hover:text-[#FF9933] transition"
                   >
-                    Features
-                  </a>
+                    Services
+                  </Link>
                 </li>
                 <li>
                   <a
@@ -313,37 +311,6 @@ const Home = () => {
           </Link>
         </Zoom>
       </header>
-
-      {/* <div className="flex flex-col justify-center items-center bg-gradient-to-b from-[#e6d6c5] to-[#d1d0d8] shadow-md py-10">
-        <h3 className="text-2xl font-sans font-semibold text-[#003366] mb-4">
-          About AI Medha
-        </h3>
-        <div className="max-w-screen-lg text-gray-800 text-[18px] ">
-          <p className="leading-relaxed text-center mb-4">
-            <strong>AI Medha</strong> is a unified platform designed to showcase
-            and deliver advanced AI solutions developed under the National
-            Informatics Centre (NIC). It acts as a central hub that brings
-            together state-of-the-art AI models, tools, and services tailored
-            for governance, public service delivery, and institutional
-            efficiency.
-          </p>
-          <p className="leading-relaxed text-center mb-4">
-            Built with a vision to democratize AI for all, AI Medha integrates
-            solutions ranging from speech recognition, translation,
-            summarization, face verification, document anonymization, and
-            satellite image analysis—all under one intelligent digital
-            ecosystem. The platform empowers departments and users to explore,
-            evaluate, and adopt these solutions with ease.
-          </p>
-          <p className="leading-relaxed text-center">
-            Through standardized APIs, real-time dashboards, and secure
-            integration frameworks like NAPIX, AI Medha accelerates AI adoption
-            within government workflows while ensuring data privacy,
-            scalability, and high performance. It aims to drive innovation and
-            responsible AI usage across India’s digital governance landscape.
-          </p>
-        </div>
-      </div> */}
 
       <section className="bg-gradient-to-b from-[#ebdbca] to-[#d1d0d8] py-16 px-4 sm:px-8 lg:px-20">
         <div className="max-w-screen-xl mx-auto grid lg:grid-cols-2 gap-12 items-center">

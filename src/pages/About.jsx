@@ -68,7 +68,7 @@ const About = () => {
                 </Link>
               </li>
               <li>
-                <a href="/services" className="hover:text-[#FF9933]">
+                <a href="/explore-services" className="hover:text-[#FF9933]">
                   Services
                 </a>
               </li>

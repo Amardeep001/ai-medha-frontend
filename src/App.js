@@ -27,6 +27,8 @@ import AiVaniDetailPage from "./pages/serviceDetailPages/AiVaniDetailPage";
 import AiSaranshDetailPage from "./pages/serviceDetailPages/AiSaranshDetailPage";
 import TermsOfService from "./pages/TermsOfService";
 import About from "./pages/About";
+import ExploreServices from "./pages/ExploreServices";
+import FirstTimeProfileForm from "./pages/OnBoardingForm";
 
 function App() {
   return (
@@ -35,6 +37,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/about" element={<About />} />
+        <Route path="/explore-services" element={<ExploreServices />} />
         <Route path="auth/login" element={<Login />} />
         <Route path="auth/register" element={<Register />} />
         <Route path="auth/verify-account" element={<VerifyAccount />} />
@@ -42,6 +45,7 @@ function App() {
         <Route path="auth/forgot-password" element={<ForgotPassword />} />
         <Route path="auth/verify-otp" element={<ForgotOtpVerification />} />
         <Route path="auth/reset-password" element={<ResetPassword />} />
+        <Route path="/onboarding" element={<FirstTimeProfileForm />} />
         <Route path="/" element={<DashboardLayout />}>
           <Route path="dashboard" element={<OverviewPage />} />
           <Route path="analytics" element={<AnalyticsPage />} />
