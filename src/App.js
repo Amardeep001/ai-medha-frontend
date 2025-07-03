@@ -11,11 +11,10 @@ import ForgotOtpVerification from "./pages/auth/ForgotOtpVerification";
 import DashboardLayout from "./layout/DashboardLayout";
 import OverviewPage from "./pages/OverviewPage";
 import AiNibhritDetailPage from "./pages/serviceDetailPages/AINibhritDetailPage";
-import AnalyticsPage from "./pages/AnalyticsPage";
+import AnalyticsDashboard from "./pages/AnalyticsPage";
 import ServicesPage from "./pages/ServicesPage";
-import UsersPage from "./pages/UsersPage";
+import UserManagement from "./pages/UsersPage";
 import SettingsPage from "./pages/SettingsPage";
-import ModelDetailPage from "./pages/ModelDetailPage";
 import AiPaniniDetailPage from "./pages/serviceDetailPages/AiPaniniDetailPage";
 import AiShrutiDetailPage from "./pages/serviceDetailPages/AiShrutiDetailPage";
 import AiMatraDetailPage from "./pages/serviceDetailPages/AiMatraDetailPage";
@@ -48,9 +47,9 @@ function App() {
         <Route path="/onboarding" element={<FirstTimeProfileForm />} />
         <Route path="/" element={<DashboardLayout />}>
           <Route path="dashboard" element={<OverviewPage />} />
-          <Route path="analytics" element={<AnalyticsPage />} />
+          <Route path="analytics" element={<AnalyticsDashboard />} />
           <Route path="services" element={<ServicesPage />} />
-          <Route path="users" element={<UsersPage />} />
+          <Route path="users" element={<UserManagement />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>
         <Route path="/services/ai_nibhrit" element={<AiNibhritDetailPage />} />
@@ -63,7 +62,6 @@ function App() {
         <Route path="/services/ai_satyapikaanan" element={<AiSatyapikaananDetailPage />} />
         <Route path="/services/ai_anveshika" element={<AiAnveshikaDetail />} />
         <Route path="/services/ai_saransh" element={<AiSaranshDetailPage />} />
-        <Route path="services/model/:modelId" element={<ModelDetailPage />} />
       </Routes>
     </Router>
   );

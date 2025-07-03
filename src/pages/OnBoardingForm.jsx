@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import indianFlag from "../images/ind_flag.png";
 import NicLogo from "../images/nic_logo3.svg";
 import NicLogo2 from "../images/nic_logo2.png";
 import Footer from "../components/Footer";
 
 const OnboardingForm = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [personalDetails, setPersonalDetails] = useState({
     gender: "",
@@ -36,6 +37,7 @@ const OnboardingForm = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [orgErrors, setOrgErrors] = useState({});
 
   const handleInputChange = (field, value) => {
     setPersonalDetails((prev) => ({
@@ -46,6 +48,20 @@ const OnboardingForm = () => {
     // Clear error for this specific field
     if (errors[field]) {
       setErrors((prev) => ({
+        ...prev,
+        [field]: "",
+      }));
+    }
+  };
+
+  const handleOrgInputChange = (field, value) => {
+    setOrganizationDetails((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+
+    if (orgErrors[field]) {
+      setOrgErrors((prev) => ({
         ...prev,
         [field]: "",
       }));
@@ -95,7 +111,51 @@ const OnboardingForm = () => {
 
   const handleOrganizationSubmit = (e) => {
     e.preventDefault();
-    console.log({ personalDetails, organizationDetails });
+    const errors = {};
+
+    if (!organizationDetails.orgType)
+      errors.orgType = "Organization type is required";
+    if (!organizationDetails.ministry)
+      errors.ministry = "Ministry name is required";
+    if (!organizationDetails.department)
+      errors.department = "Department name is required";
+    if (!organizationDetails.orgName)
+      errors.orgName = "Organization name is required";
+    if (!organizationDetails.website)
+      errors.website = "Official website is required";
+    if (!organizationDetails.address) errors.address = "Address is required";
+    if (
+      !organizationDetails.pincode ||
+      !/^\d{6}$/.test(organizationDetails.pincode)
+    )
+      errors.pincode = "Valid 6-digit pincode is required";
+    if (!organizationDetails.city) errors.city = "City is required";
+    if (!organizationDetails.state) errors.state = "State is required";
+
+    if (!organizationDetails.hodFirstName)
+      errors.hodFirstName = "First name is required";
+    if (!organizationDetails.hodLastName)
+      errors.hodLastName = "Last name is required";
+    if (
+      !organizationDetails.hodEmail ||
+      !/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(organizationDetails.hodEmail)
+    )
+      errors.hodEmail = "Valid official email is required";
+    if (
+      !organizationDetails.hodPhone ||
+      !/^\d{10}$/.test(organizationDetails.hodPhone)
+    )
+      errors.hodPhone = "Valid 10-digit phone number is required";
+    if (!organizationDetails.hodDesignation)
+      errors.hodDesignation = "Designation is required";
+
+    setOrgErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
+      // Proceed with submit
+      console.log("Form submitted:", organizationDetails);
+      navigate("/dashboard");
+    }
   };
 
   return (
@@ -187,7 +247,7 @@ const OnboardingForm = () => {
 
       {/* Main Content */}
       <main id="main-content" className="w-full pt-36 ">
-        <div className="min-h-screen bg-[#f9f9f9] p-8">
+        <div className="min-h-screen bg-[#ebe7e7] p-8">
           <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-8">
             <h2 className="text-2xl font-bold text-blue-900 mb-8 ">
               User Onboarding
@@ -413,13 +473,15 @@ const OnboardingForm = () => {
                     type="text"
                     value={organizationDetails.orgType}
                     onChange={(e) =>
-                      setOrganizationDetails({
-                        ...organizationDetails,
-                        orgType: e.target.value,
-                      })
+                      handleOrgInputChange("orgType", e.target.value)
                     }
                     className="mt-1 w-full border rounded p-2"
                   />
+                  {orgErrors.orgType && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {orgErrors.orgType}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -430,13 +492,15 @@ const OnboardingForm = () => {
                     type="text"
                     value={organizationDetails.ministry}
                     onChange={(e) =>
-                      setOrganizationDetails({
-                        ...organizationDetails,
-                        ministry: e.target.value,
-                      })
+                      handleOrgInputChange("ministry", e.target.value)
                     }
                     className="mt-1 w-full border rounded p-2"
                   />
+                  {orgErrors.ministry && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {orgErrors.ministry}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -447,13 +511,15 @@ const OnboardingForm = () => {
                     type="text"
                     value={organizationDetails.department}
                     onChange={(e) =>
-                      setOrganizationDetails({
-                        ...organizationDetails,
-                        department: e.target.value,
-                      })
+                      handleOrgInputChange("department", e.target.value)
                     }
                     className="mt-1 w-full border rounded p-2"
                   />
+                  {orgErrors.department && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {orgErrors.department}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -464,13 +530,15 @@ const OnboardingForm = () => {
                     type="text"
                     value={organizationDetails.orgName}
                     onChange={(e) =>
-                      setOrganizationDetails({
-                        ...organizationDetails,
-                        orgName: e.target.value,
-                      })
+                      handleOrgInputChange("orgName", e.target.value)
                     }
                     className="mt-1 w-full border rounded p-2"
                   />
+                  {orgErrors.orgName && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {orgErrors.orgName}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -481,13 +549,15 @@ const OnboardingForm = () => {
                     type="text"
                     value={organizationDetails.website}
                     onChange={(e) =>
-                      setOrganizationDetails({
-                        ...organizationDetails,
-                        website: e.target.value,
-                      })
+                      handleOrgInputChange("website", e.target.value)
                     }
                     className="mt-1 w-full border rounded p-2"
                   />
+                  {orgErrors.website && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {orgErrors.website}
+                    </p>
+                  )}
                 </div>
 
                 <div className="col-span-2">
@@ -498,13 +568,15 @@ const OnboardingForm = () => {
                     type="text"
                     value={organizationDetails.address}
                     onChange={(e) =>
-                      setOrganizationDetails({
-                        ...organizationDetails,
-                        address: e.target.value,
-                      })
+                      handleOrgInputChange("address", e.target.value)
                     }
                     className="mt-1 w-full border rounded p-2"
                   />
+                  {orgErrors.address && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {orgErrors.address}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -515,13 +587,15 @@ const OnboardingForm = () => {
                     type="text"
                     value={organizationDetails.pincode}
                     onChange={(e) =>
-                      setOrganizationDetails({
-                        ...organizationDetails,
-                        pincode: e.target.value,
-                      })
+                      handleOrgInputChange("pincode", e.target.value)
                     }
                     className="mt-1 w-full border rounded p-2"
                   />
+                  {orgErrors.pincode && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {orgErrors.pincode}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label className="block font-medium text-gray-700">
@@ -531,13 +605,15 @@ const OnboardingForm = () => {
                     type="text"
                     value={organizationDetails.city}
                     onChange={(e) =>
-                      setOrganizationDetails({
-                        ...organizationDetails,
-                        city: e.target.value,
-                      })
+                      handleOrgInputChange("city", e.target.value)
                     }
                     className="mt-1 w-full border rounded p-2"
                   />
+                  {orgErrors.city && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {orgErrors.city}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label className="block font-medium text-gray-700">
@@ -547,13 +623,15 @@ const OnboardingForm = () => {
                     type="text"
                     value={organizationDetails.state}
                     onChange={(e) =>
-                      setOrganizationDetails({
-                        ...organizationDetails,
-                        state: e.target.value,
-                      })
+                      handleOrgInputChange("state", e.target.value)
                     }
                     className="mt-1 w-full border rounded p-2"
                   />
+                  {orgErrors.state && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {orgErrors.state}
+                    </p>
+                  )}
                 </div>
 
                 <div className="col-span-2 mt-6 p-4 bg-orange-50 rounded">
@@ -561,66 +639,86 @@ const OnboardingForm = () => {
                     Details of your Supervisor/Head of Department
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input
-                      type="text"
-                      placeholder="First Name"
-                      value={organizationDetails.hodFirstName}
-                      onChange={(e) =>
-                        setOrganizationDetails({
-                          ...organizationDetails,
-                          hodFirstName: e.target.value,
-                        })
-                      }
-                      className="border rounded p-2"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Last Name"
-                      value={organizationDetails.hodLastName}
-                      onChange={(e) =>
-                        setOrganizationDetails({
-                          ...organizationDetails,
-                          hodLastName: e.target.value,
-                        })
-                      }
-                      className="border rounded p-2"
-                    />
-                    <input
-                      type="email"
-                      placeholder="Official Email ID"
-                      value={organizationDetails.hodEmail}
-                      onChange={(e) =>
-                        setOrganizationDetails({
-                          ...organizationDetails,
-                          hodEmail: e.target.value,
-                        })
-                      }
-                      className="border rounded p-2"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Phone Number"
-                      value={organizationDetails.hodPhone}
-                      onChange={(e) =>
-                        setOrganizationDetails({
-                          ...organizationDetails,
-                          hodPhone: e.target.value,
-                        })
-                      }
-                      className="border rounded p-2"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Designation"
-                      value={organizationDetails.hodDesignation}
-                      onChange={(e) =>
-                        setOrganizationDetails({
-                          ...organizationDetails,
-                          hodDesignation: e.target.value,
-                        })
-                      }
-                      className="border rounded p-2"
-                    />
+                    <div>
+                      <input
+                        type="text"
+                        placeholder="First Name"
+                        value={organizationDetails.hodFirstName}
+                        onChange={(e) =>
+                          handleOrgInputChange("hodFirstName", e.target.value)
+                        }
+                        className="border rounded p-2"
+                      />
+                      {orgErrors.hodFirstName && (
+                        <p className="text-red-600 text-sm mt-1">
+                          {orgErrors.hodFirstName}
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      <input
+                        type="text"
+                        placeholder="Last Name"
+                        value={organizationDetails.hodLastName}
+                        onChange={(e) =>
+                          handleOrgInputChange("hodLastName", e.target.value)
+                        }
+                        className="border rounded p-2"
+                      />
+                      {orgErrors.hodLastName && (
+                        <p className="text-red-600 text-sm mt-1">
+                          {orgErrors.hodLastName}
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      <input
+                        type="email"
+                        placeholder="Official Email ID"
+                        value={organizationDetails.hodEmail}
+                        onChange={(e) =>
+                          handleOrgInputChange("hodEmail", e.target.value)
+                        }
+                        className="border rounded p-2"
+                      />
+                      {orgErrors.hodEmail && (
+                        <p className="text-red-600 text-sm mt-1">
+                          {orgErrors.hodEmail}
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      <input
+                        type="text"
+                        placeholder="Phone Number"
+                        value={organizationDetails.hodPhone}
+                        onChange={(e) =>
+                          handleOrgInputChange("hodPhone", e.target.value)
+                        }
+                        className="border rounded p-2"
+                      />
+                      {orgErrors.hodPhone && (
+                        <p className="text-red-600 text-sm mt-1">
+                          {orgErrors.hodPhone}
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      <input
+                        type="text"
+                        placeholder="Designation"
+                        value={organizationDetails.hodDesignation}
+                        onChange={(e) =>
+                          handleOrgInputChange("hodDesignation", e.target.value)
+                        }
+                        className="border rounded p-2"
+                      />
+                      {orgErrors.hodDesignation && (
+                        <p className="text-red-600 text-sm mt-1">
+                          {orgErrors.hodDesignation}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
 
