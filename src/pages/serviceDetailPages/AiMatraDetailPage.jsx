@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -13,7 +13,6 @@ import {
 
 const AiMatraDetailPage = () => {
   const navigate = useNavigate();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const departmentChartData = [
     { name: "Health Department", value: 94538719 },
@@ -82,7 +81,7 @@ const AiMatraDetailPage = () => {
 
   return (
     <div className="bg-[#eee5dc] text-gray-900 min-h-screen flex flex-col">
-      <Header toggleSidebar={() => setSidebarOpen(true)} />
+      <Header />
 
       <main className="flex-grow w-full max-w-screen-2xl mx-auto px-6 sm:px-20 py-6">
         {/* Back Button */}

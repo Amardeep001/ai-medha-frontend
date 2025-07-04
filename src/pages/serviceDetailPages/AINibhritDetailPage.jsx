@@ -1,5 +1,5 @@
-import { useNavigate, Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import {
@@ -66,13 +66,10 @@ const departmentChartData = [
   { name: "Registration Department Kerala", value: 132 },
 ];
 
-const total = departmentChartData.reduce((sum, item) => sum + item.value, 0);
-
 const dataWithPercentage = departmentChartData.map((item) => ({
   ...item,
   nameWithPercent: `${item.name}`,
 }));
-// (${((item.value / total) * 100).toFixed(1)}%)
 
 // 🎨 10 Distinct Colors
 const COLORS = [
@@ -108,7 +105,6 @@ const docHitsData = [
 
 const AiNibhritDetailPage = () => {
   const navigate = useNavigate();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -116,15 +112,27 @@ const AiNibhritDetailPage = () => {
 
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
-      <Header toggleSidebar={() => setSidebarOpen(true)} />
+      <Header />
       <div className="overflow-auto flex flex-grow">
         <div className="px-6 sm:px-20 py-6 w-full max-w-screen-2xl mx-auto">
-          <button
-            onClick={() => navigate(-1)}
-            className="mb-6 mt-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
-          >
-            ← Back to Services
-          </button>
+          <div className="mt-3 flex space-x-3">
+            <button
+              onClick={() => navigate(-1)}
+              className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
+            >
+              ← Back to Services
+            </button>
+            <div className="mb-6">
+              <a
+                href="/services/ai_nibhrit/demo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-4 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition"
+              >
+                🌐 Try AI Nibhrit
+              </a>
+            </div>
+          </div>
           <h2 className="text-3xl font-bold text-blue-900 mb-2">AI Nibhrit</h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
             AI Nibhrit ensures end-to-end privacy by masking Aadhaar, PAN,
@@ -259,11 +267,11 @@ const AiNibhritDetailPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-5 ">
               {mockModels.map((model) => (
                 <div className="bg-white rounded-lg shadow-md border hover:shadow-xl transition-all">
-                  <img
+                  {/* <img
                     src={model.image}
                     alt={model.name}
                     className="rounded-t-lg w-full h-40 object-cover"
-                  />
+                  /> */}
                   <div className="p-4">
                     <h3 className="text-xl font-semibold text-blue-800 mb-1">
                       {model.name}
@@ -284,9 +292,6 @@ const AiNibhritDetailPage = () => {
                       <p>
                         <strong>Latency:</strong> {model.metrics.latency}
                       </p>
-                      {/* <p>
-                        <strong>F1 Score:</strong> {model.metrics.f1Score}
-                      </p> */}
                     </div>
                     <p className="text-sm text-blue-600 font-medium mt-2">
                       Version: {model.version}

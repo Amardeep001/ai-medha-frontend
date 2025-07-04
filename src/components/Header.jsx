@@ -6,7 +6,7 @@ import indianFlag from "../images/ind_flag.png";
 import NicLogo from "../images/nic_logo3.svg";
 import NicLogo2 from "../images/nic_logo2.png";
 
-const Header = ({ toggleSidebar }) => {
+const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef();
@@ -132,16 +132,16 @@ const Header = ({ toggleSidebar }) => {
 
       {/* Mobile Slide-down Menu */}
       {mobileMenuOpen && (
-        <div className="sm:hidden bg-white border-t border-gray-200 px-6 py-4 space-y-4 shadow-md">
-          <Link to="/dashboard" className="hover:text-[#FF9933] transition">
+        <div className="fixed top-[100px] left-0 right-0 z-40 sm:hidden bg-white border-t border-gray-200 px-6 py-6 space-y-4 shadow-md">
+          <Link to="/dashboard" className="block text-sm hover:text-[#FF9933]">
             Home
           </Link>
           <Link to="/about" className="block text-sm text-gray-800">
             About
           </Link>
-          <a href="/services" className="block text-sm text-gray-800">
+          <Link to="/services" className="block text-sm text-gray-800">
             Services
-          </a>
+          </Link>
           <a href="#contact" className="block text-sm text-gray-800">
             Contact
           </a>

@@ -1,3 +1,4 @@
+import react, { useEffect } from "react";
 import { Pie, Bar, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -243,11 +244,19 @@ const Overview = () => {
     ],
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="p-4">
-      <h2 className="text-2xl md:text-3xl font-bold text-blue-900">
-        AI Services Overview
-      </h2>
+      <div className="mb-6">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-900">
+          Welcome, Amar
+        </h2>
+        <p className="text-base text-gray-600">User</p>
+      </div>
+
       <div className="mt-6 bg-white p-6 rounded-lg shadow-lg">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4 py-6">
           {statusData.map((item, index) => (

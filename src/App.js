@@ -28,6 +28,7 @@ import TermsOfService from "./pages/TermsOfService";
 import About from "./pages/About";
 import ExploreServices from "./pages/ExploreServices";
 import FirstTimeProfileForm from "./pages/OnBoardingForm";
+import AiNibhritDemo from "./pages/serviceDemoPages/AiNibhritDemo";
 
 function App() {
   return (
@@ -62,6 +63,7 @@ function App() {
         <Route path="/services/ai_satyapikaanan" element={<AiSatyapikaananDetailPage />} />
         <Route path="/services/ai_anveshika" element={<AiAnveshikaDetail />} />
         <Route path="/services/ai_saransh" element={<AiSaranshDetailPage />} />
+        <Route path="/services/ai_nibhrit/demo" element={<AiNibhritDemo />} />
       </Routes>
     </Router>
   );

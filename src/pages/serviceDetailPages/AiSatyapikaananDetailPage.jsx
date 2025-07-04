@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import {
@@ -13,7 +13,6 @@ import {
 
 const AiSatyapikaananDetailPage = () => {
   const navigate = useNavigate();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const satyapikaananData = [
     { name: "Sarathi Parivahan", value: 246200000 },
@@ -53,7 +52,7 @@ const AiSatyapikaananDetailPage = () => {
 
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
-      <Header toggleSidebar={() => setSidebarOpen(true)} />
+      <Header />
       <div className="overflow-auto flex flex-grow">
         <div className="px-6 sm:px-20 py-6 w-full max-w-screen-2xl mx-auto">
           <div className="mt-3 flex space-x-4">

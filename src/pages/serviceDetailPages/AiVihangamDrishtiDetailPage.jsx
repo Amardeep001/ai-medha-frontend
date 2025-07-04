@@ -44,7 +44,7 @@ const AiVihangamDrishtiDetail = () => {
 
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
-      <Header toggleSidebar={() => {}} />
+      <Header />
       <div className="overflow-auto flex flex-grow">
         <div className="px-6 sm:px-20 py-6 w-full max-w-screen-2xl mx-auto">
           <button

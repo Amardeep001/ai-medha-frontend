@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -87,7 +87,6 @@ const supportedLanguages = [
 
 const AiPaniniDetailPage = () => {
   const navigate = useNavigate();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -95,7 +94,7 @@ const AiPaniniDetailPage = () => {
 
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
-      <Header toggleSidebar={() => setSidebarOpen(true)} />
+      <Header />
       <div className="overflow-auto flex flex-grow">
         <div className="py-6 w-full max-w-screen-2xl px-20 mx-auto">
           <div className="mt-3 flex space-x-3">

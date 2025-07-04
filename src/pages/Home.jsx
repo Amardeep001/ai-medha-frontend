@@ -5,8 +5,6 @@ import { motion } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
-import indianFlag from "../images/ind_flag.png";
-// import bgImg from "../images/inibg.svg";
 import NicLogo from "../images/nic_logo3.svg";
 import NicLogo2 from "../images/nic_logo2.png";
 import matraLogo from "../images/serviceLogo/AImatra.png";
@@ -36,6 +34,7 @@ import insightIcon from "../images/featureLogo/insight.png";
 import digitalAssetIcon from "../images/featureLogo/digital_asset.png";
 import modelRepositoryIcon from "../images/featureLogo/model_repository.png";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 const services = [
   {
@@ -131,33 +130,7 @@ const Home = () => {
       {/* Navbar with Top Header */}
       <nav className="fixed w-full z-50 bg-white shadow-md text-[#003366]">
         {/* Top Header */}
-        <div className="w-full bg-[#003366] text-white text-xs sm:text-sm py-2">
-          <div className="max-w-screen-2xl mx-auto flex justify-between items-center px-4 sm:px-6 xl:px-20">
-            {/* Left Side - Government Text */}
-            <div className="flex items-center space-x-2">
-              <img
-                src={indianFlag || "/india-flag.png"}
-                alt="Indian Flag"
-                className="w-6 h-4 sm:h-6"
-              />
-              <span className="font-medium text-xs sm:text-sm hover:text-[#B35400]">
-                भारत सरकार | <span className="ml-1">Government of India</span>
-              </span>
-            </div>
-
-            {/* Right Side - Accessibility & Skip Link */}
-            <div className="flex items-center space-x-3 sm:space-x-4">
-              <a href="#main-content" className="hidden sm:block">
-                Skip to Content
-              </a>
-              <div className="flex items-center space-x-2">
-                <button className="text-sm font-semibold">A+</button>
-                <button className="text-sm font-semibold">A</button>
-                <button className="text-sm font-semibold">A-</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Navbar />
 
         {/* Main Navbar */}
         <div className="max-w-screen-2xl mx-auto flex justify-between items-center px-4 sm:px-6 xl:px-20 py-7 relative">

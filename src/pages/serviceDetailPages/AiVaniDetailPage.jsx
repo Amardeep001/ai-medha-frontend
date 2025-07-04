@@ -1,11 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 const AiVaniDetailPage = () => {
   const navigate = useNavigate();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -13,7 +12,7 @@ const AiVaniDetailPage = () => {
 
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
-      <Header toggleSidebar={() => setSidebarOpen(true)} />
+      <Header />
       <div className="overflow-auto flex flex-grow">
         <div className="px-6 sm:px-20 py-6 w-full max-w-screen-2xl mx-auto">
           <button

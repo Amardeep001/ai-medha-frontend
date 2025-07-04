@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import indianFlag from "../images/ind_flag.png";
 import NicLogo from "../images/nic_logo3.svg";
 import NicLogo2 from "../images/nic_logo2.png";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 const OnboardingForm = () => {
   const navigate = useNavigate();
@@ -24,7 +24,6 @@ const OnboardingForm = () => {
     ministry: "",
     department: "",
     orgName: "",
-    website: "",
     address: "",
     pincode: "",
     city: "",
@@ -36,7 +35,7 @@ const OnboardingForm = () => {
     hodDesignation: "",
   });
 
-  const [errors, setErrors] = useState({});
+  const [personalErrors, setPersonalErrors] = useState({});
   const [orgErrors, setOrgErrors] = useState({});
 
   const handleInputChange = (field, value) => {
@@ -46,8 +45,8 @@ const OnboardingForm = () => {
     }));
 
     // Clear error for this specific field
-    if (errors[field]) {
-      setErrors((prev) => ({
+    if (personalErrors[field]) {
+      setPersonalErrors((prev) => ({
         ...prev,
         [field]: "",
       }));
@@ -70,7 +69,6 @@ const OnboardingForm = () => {
 
   const handlePersonalSubmit = (e) => {
     e.preventDefault();
-
     const newErrors = {};
 
     if (!personalDetails.gender) newErrors.gender = "Gender is required.";
@@ -94,15 +92,19 @@ const OnboardingForm = () => {
     ) {
       newErrors.officialEmail = "Enter a valid official email.";
     }
-    if (!personalDetails.phoneNumber)
+    if (!personalDetails.phoneNumber) {
       newErrors.phoneNumber = "Phone number is required.";
+    } else if (!/^[1-9][0-9]{9}$/.test(personalDetails.phoneNumber)) {
+      newErrors.phoneNumber =
+        "Enter a valid 10-digit phone number not starting with 0.";
+    }
     if (!personalDetails.organizationIdFile) {
       newErrors.organizationIdFile = "Please upload a PDF.";
     } else if (personalDetails.organizationIdFile.size > 5 * 1024 * 1024) {
       newErrors.organizationIdFile = "File size must be less than 5MB.";
     }
 
-    setErrors(newErrors);
+    setPersonalErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
       setStep(2); // Move to organization details if no errors
@@ -111,8 +113,13 @@ const OnboardingForm = () => {
 
   const handleOrganizationSubmit = (e) => {
     e.preventDefault();
-    const errors = {};
+    if (!personalDetails.officialEmail) {
+      setStep(1);
+      handlePersonalSubmit(e);
+      return;
+    }
 
+    const errors = {};
     if (!organizationDetails.orgType)
       errors.orgType = "Organization type is required";
     if (!organizationDetails.ministry)
@@ -121,8 +128,6 @@ const OnboardingForm = () => {
       errors.department = "Department name is required";
     if (!organizationDetails.orgName)
       errors.orgName = "Organization name is required";
-    if (!organizationDetails.website)
-      errors.website = "Official website is required";
     if (!organizationDetails.address) errors.address = "Address is required";
     if (
       !organizationDetails.pincode ||
@@ -143,9 +148,10 @@ const OnboardingForm = () => {
       errors.hodEmail = "Valid official email is required";
     if (
       !organizationDetails.hodPhone ||
-      !/^\d{10}$/.test(organizationDetails.hodPhone)
+      !/^[1-9][0-9]{9}$/.test(organizationDetails.hodPhone)
     )
-      errors.hodPhone = "Valid 10-digit phone number is required";
+      errors.hodPhone =
+        "Valid 10-digit phone number not starting with 0 is required";
     if (!organizationDetails.hodDesignation)
       errors.hodDesignation = "Designation is required";
 
@@ -162,34 +168,7 @@ const OnboardingForm = () => {
     <div className="min-h-screen bg-gray-200 ">
       {/* Navbar */}
       <nav className="fixed w-full z-50 bg-white shadow text-[#003366]">
-        <div className="bg-[#003366] text-white text-xs sm:text-sm py-2">
-          <div className="max-w-screen-2xl mx-auto flex justify-between items-center px-4 sm:px-6 xl:px-20">
-            <div className="flex items-center space-x-2">
-              <img
-                src={indianFlag}
-                alt="Indian Flag"
-                className="w-6 h-4 sm:h-6"
-              />
-              <span className="font-medium">
-                भारत सरकार | Government of India
-              </span>
-            </div>
-            <div className="flex items-center space-x-3 sm:space-x-4">
-              <a
-                href="#main-content"
-                className="hidden sm:block hover:underline"
-              >
-                Skip to Content
-              </a>
-              <div className="flex items-center space-x-1">
-                <button className="text-xs font-semibold">A+</button>
-                <button className="text-xs font-semibold">A</button>
-                <button className="text-xs font-semibold">A-</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <Navbar />
         <div className="max-w-screen-2xl mx-auto flex justify-between items-center px-4 sm:px-6 xl:px-20 py-5">
           <Link to="/">
             <div className="flex items-center space-x-6">
@@ -260,7 +239,8 @@ const OnboardingForm = () => {
                     ? "border-orange-500 text-orange-500"
                     : "border-transparent text-gray-600"
                 }`}
-                disabled
+                // disabled
+                onClick={() => setStep(1)}
               >
                 Personal Details
               </button>
@@ -270,7 +250,8 @@ const OnboardingForm = () => {
                     ? "border-orange-500 text-orange-500"
                     : "border-transparent text-gray-600"
                 }`}
-                disabled={step !== 2}
+                // disabled={step !== 2}
+                onClick={() => setStep(2)}
               >
                 Organization Details
               </button>
@@ -313,8 +294,10 @@ const OnboardingForm = () => {
                       Female
                     </label>
                   </div>
-                  {errors.gender && (
-                    <p className="text-red-600 text-sm mt-1">{errors.gender}</p>
+                  {personalErrors.gender && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {personalErrors.gender}
+                    </p>
                   )}
                 </div>
 
@@ -330,9 +313,9 @@ const OnboardingForm = () => {
                     }
                     className="mt-1 w-full border rounded p-2"
                   />
-                  {errors.firstName && (
+                  {personalErrors.firstName && (
                     <p className="text-red-600 text-sm mt-1">
-                      {errors.firstName}
+                      {personalErrors.firstName}
                     </p>
                   )}
                 </div>
@@ -349,9 +332,9 @@ const OnboardingForm = () => {
                     }
                     className="mt-1 w-full border rounded p-2"
                   />
-                  {errors.lastName && (
+                  {personalErrors.lastName && (
                     <p className="text-red-600 text-sm mt-1">
-                      {errors.lastName}
+                      {personalErrors.lastName}
                     </p>
                   )}
                 </div>
@@ -368,9 +351,9 @@ const OnboardingForm = () => {
                     }
                     className="mt-1 w-full border rounded p-2"
                   />
-                  {errors.designation && (
+                  {personalErrors.designation && (
                     <p className="text-red-600 text-sm mt-1">
-                      {errors.designation}
+                      {personalErrors.designation}
                     </p>
                   )}
                 </div>
@@ -387,9 +370,9 @@ const OnboardingForm = () => {
                     }
                     className="mt-1 w-full border rounded p-2"
                   />
-                  {errors.personalEmail && (
+                  {personalErrors.personalEmail && (
                     <p className="text-red-600 text-sm mt-1">
-                      {errors.personalEmail}
+                      {personalErrors.personalEmail}
                     </p>
                   )}
                 </div>
@@ -406,9 +389,9 @@ const OnboardingForm = () => {
                     }
                     className="mt-1 w-full border rounded p-2"
                   />
-                  {errors.officialEmail && (
+                  {personalErrors.officialEmail && (
                     <p className="text-red-600 text-sm mt-1">
-                      {errors.officialEmail}
+                      {personalErrors.officialEmail}
                     </p>
                   )}
                 </div>
@@ -425,9 +408,9 @@ const OnboardingForm = () => {
                     }
                     className="mt-1 w-full border rounded p-2"
                   />
-                  {errors.phoneNumber && (
+                  {personalErrors.phoneNumber && (
                     <p className="text-red-600 text-sm mt-1">
-                      {errors.phoneNumber}
+                      {personalErrors.phoneNumber}
                     </p>
                   )}
                 </div>
@@ -537,25 +520,6 @@ const OnboardingForm = () => {
                   {orgErrors.orgName && (
                     <p className="text-red-600 text-sm mt-1">
                       {orgErrors.orgName}
-                    </p>
-                  )}
-                </div>
-
-                <div>
-                  <label className="block font-medium text-gray-700">
-                    Official Website
-                  </label>
-                  <input
-                    type="text"
-                    value={organizationDetails.website}
-                    onChange={(e) =>
-                      handleOrgInputChange("website", e.target.value)
-                    }
-                    className="mt-1 w-full border rounded p-2"
-                  />
-                  {orgErrors.website && (
-                    <p className="text-red-600 text-sm mt-1">
-                      {orgErrors.website}
                     </p>
                   )}
                 </div>
