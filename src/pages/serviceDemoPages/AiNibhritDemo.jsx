@@ -52,7 +52,7 @@ const AiNibhritDemo = () => {
           <form onSubmit={handleSubmit} className="mb-10 space-y-6">
             <div>
               <label className="block font-medium text-gray-700 mb-2">
-                Upload Document (PDF / Image)
+                Upload Document (PDF, PNG, JPG, JPEG, or JFIF)
               </label>
               <input
                 type="file"
@@ -82,7 +82,12 @@ const AiNibhritDemo = () => {
               <div className="border rounded p-3 bg-gray-50 min-h-[300px] flex items-center justify-center">
                 {previewURL ? (
                   file?.type === "application/pdf" ? (
-                    <p className="text-blue-800">PDF Uploaded: {file.name}</p>
+                    // <p className="text-blue-800">PDF Uploaded: {file.name}</p>
+                    <iframe
+                      src={previewURL}
+                      title="Masked PDF Preview"
+                      className="w-full h-64 border"
+                    />
                   ) : (
                     <img
                       src={previewURL}
@@ -123,15 +128,21 @@ const AiNibhritDemo = () => {
                         </a>
                       </>
                     ) : (
-                      <div className="text-center">
+                      <div className="text-center w-full">
                         <p className="text-green-700 font-medium mb-2">
                           Masked PDF Ready
                         </p>
+                        <iframe
+                          src={maskedURL}
+                          title="Masked PDF Preview"
+                          className="w-full max-h-full border"
+                        />
                         <a
-                          href="/demo/masked-demo.pdf"
-                          download
-                          className="text-blue-700 underline"
+                          href={previewURL}
+                          download={`masked-${file.name}`}
+                          className="mt-3 text-blue-700 flex items-center gap-2 justify-center hover:underline"
                         >
+                          <FaDownload />
                           Download Masked PDF
                         </a>
                       </div>
