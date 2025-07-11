@@ -307,6 +307,7 @@ const OnboardingForm = () => {
                   </label>
                   <input
                     type="text"
+                    placeholder="Enter your first name"
                     value={personalDetails.firstName}
                     onChange={(e) =>
                       handleInputChange("firstName", e.target.value)
@@ -326,6 +327,7 @@ const OnboardingForm = () => {
                   </label>
                   <input
                     type="text"
+                    placeholder="Enter your last name"
                     value={personalDetails.lastName}
                     onChange={(e) =>
                       handleInputChange("lastName", e.target.value)
@@ -345,6 +347,7 @@ const OnboardingForm = () => {
                   </label>
                   <input
                     type="text"
+                    placeholder="Enter your job title "
                     value={personalDetails.designation}
                     onChange={(e) =>
                       handleInputChange("designation", e.target.value)
@@ -364,6 +367,7 @@ const OnboardingForm = () => {
                   </label>
                   <input
                     type="email"
+                    placeholder="Enter your personal email"
                     value={personalDetails.personalEmail}
                     onChange={(e) =>
                       handleInputChange("personalEmail", e.target.value)
@@ -383,6 +387,7 @@ const OnboardingForm = () => {
                   </label>
                   <input
                     type="email"
+                    placeholder="Enter your official email"
                     value={personalDetails.officialEmail}
                     onChange={(e) =>
                       handleInputChange("officialEmail", e.target.value)
@@ -400,14 +405,19 @@ const OnboardingForm = () => {
                   <label className="block font-medium text-gray-700">
                     Phone Number
                   </label>
-                  <input
-                    type="tel"
-                    value={personalDetails.phoneNumber}
-                    onChange={(e) =>
-                      handleInputChange("phoneNumber", e.target.value)
-                    }
-                    className="mt-1 w-full border rounded p-2"
-                  />
+                  <div className="mt-1 flex rounded border p-2 items-center">
+                    <span className="text-gray-600 mr-2">+91</span>
+                    <input
+                      type="tel"
+                      value={personalDetails.phoneNumber}
+                      onChange={(e) =>
+                        handleInputChange("phoneNumber", e.target.value)
+                      }
+                      className="w-full focus:outline-none"
+                      placeholder="Enter 10-digit phone number"
+                      maxLength={10}
+                    />
+                  </div>
                   {personalErrors.phoneNumber && (
                     <p className="text-red-600 text-sm mt-1">
                       {personalErrors.phoneNumber}
@@ -450,16 +460,23 @@ const OnboardingForm = () => {
               >
                 <div>
                   <label className="block font-medium text-gray-700">
-                    Organization Type
+                    Organization Category
                   </label>
-                  <input
-                    type="text"
+                  <select
                     value={organizationDetails.orgType}
                     onChange={(e) =>
                       handleOrgInputChange("orgType", e.target.value)
                     }
-                    className="mt-1 w-full border rounded p-2"
-                  />
+                    className="mt-1 w-full border rounded p-2 bg-white"
+                  >
+                    <option value="">Select Organization Type</option>
+                    <option value="government">Central Government</option>
+                    <option value="private">State/UT Government</option>
+                    <option value="academic">PSU</option>
+                    <option value="ngo">Judiciary</option>
+                    <option value="other">Other</option>
+                  </select>
+
                   {orgErrors.orgType && (
                     <p className="text-red-600 text-sm mt-1">
                       {orgErrors.orgType}
@@ -473,6 +490,7 @@ const OnboardingForm = () => {
                   </label>
                   <input
                     type="text"
+                    placeholder="Enter the name of the ministry (e.g., Ministry of Health)"
                     value={organizationDetails.ministry}
                     onChange={(e) =>
                       handleOrgInputChange("ministry", e.target.value)
@@ -488,29 +506,11 @@ const OnboardingForm = () => {
 
                 <div>
                   <label className="block font-medium text-gray-700">
-                    Department Name
+                    Sub Category
                   </label>
                   <input
                     type="text"
-                    value={organizationDetails.department}
-                    onChange={(e) =>
-                      handleOrgInputChange("department", e.target.value)
-                    }
-                    className="mt-1 w-full border rounded p-2"
-                  />
-                  {orgErrors.department && (
-                    <p className="text-red-600 text-sm mt-1">
-                      {orgErrors.department}
-                    </p>
-                  )}
-                </div>
-
-                <div>
-                  <label className="block font-medium text-gray-700">
-                    Organization Name
-                  </label>
-                  <input
-                    type="text"
+                    placeholder="Enter the sub category (e.g., Department, Division, Board)"
                     value={organizationDetails.orgName}
                     onChange={(e) =>
                       handleOrgInputChange("orgName", e.target.value)
@@ -524,12 +524,33 @@ const OnboardingForm = () => {
                   )}
                 </div>
 
+                <div>
+                  <label className="block font-medium text-gray-700">
+                    Department Name
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Enter the department name (e.g., IT Department)"
+                    value={organizationDetails.department}
+                    onChange={(e) =>
+                      handleOrgInputChange("department", e.target.value)
+                    }
+                    className="mt-1 w-full border rounded p-2"
+                  />
+                  {orgErrors.department && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {orgErrors.department}
+                    </p>
+                  )}
+                </div>
+
                 <div className="col-span-2">
                   <label className="block font-medium text-gray-700">
                     Official Address
                   </label>
                   <input
                     type="text"
+                    placeholder="Enter your official address"
                     value={organizationDetails.address}
                     onChange={(e) =>
                       handleOrgInputChange("address", e.target.value)
@@ -549,6 +570,7 @@ const OnboardingForm = () => {
                   </label>
                   <input
                     type="text"
+                    placeholder="Enter pincode"
                     value={organizationDetails.pincode}
                     onChange={(e) =>
                       handleOrgInputChange("pincode", e.target.value)
@@ -600,9 +622,9 @@ const OnboardingForm = () => {
 
                 <div className="col-span-2 mt-6 p-4 bg-orange-50 rounded">
                   <h4 className="text-lg font-semibold text-orange-800 mb-4">
-                    Details of your Supervisor/Head of Department
+                    Details of your Reporting/Nodal/Forwarding Officer
                   </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <input
                         type="text"
@@ -611,7 +633,7 @@ const OnboardingForm = () => {
                         onChange={(e) =>
                           handleOrgInputChange("hodFirstName", e.target.value)
                         }
-                        className="border rounded p-2"
+                        className="border rounded p-2 w-full"
                       />
                       {orgErrors.hodFirstName && (
                         <p className="text-red-600 text-sm mt-1">
@@ -627,7 +649,7 @@ const OnboardingForm = () => {
                         onChange={(e) =>
                           handleOrgInputChange("hodLastName", e.target.value)
                         }
-                        className="border rounded p-2"
+                        className="border rounded p-2 w-full "
                       />
                       {orgErrors.hodLastName && (
                         <p className="text-red-600 text-sm mt-1">
@@ -643,7 +665,7 @@ const OnboardingForm = () => {
                         onChange={(e) =>
                           handleOrgInputChange("hodEmail", e.target.value)
                         }
-                        className="border rounded p-2"
+                        className="border rounded p-2 w-full"
                       />
                       {orgErrors.hodEmail && (
                         <p className="text-red-600 text-sm mt-1">
@@ -652,15 +674,19 @@ const OnboardingForm = () => {
                       )}
                     </div>
                     <div>
-                      <input
-                        type="text"
-                        placeholder="Phone Number"
-                        value={organizationDetails.hodPhone}
-                        onChange={(e) =>
-                          handleOrgInputChange("hodPhone", e.target.value)
-                        }
-                        className="border rounded p-2"
-                      />
+                      <div className="flex items-center border rounded">
+                        <span className="text-gray-600 mx-2">+91</span>
+                        <input
+                          type="tel"
+                          placeholder="Phone Number"
+                          value={organizationDetails.hodPhone}
+                          onChange={(e) =>
+                            handleOrgInputChange("hodPhone", e.target.value)
+                          }
+                          maxLength={10}
+                          className="w-full focus:outline-none p-2 "
+                        />
+                      </div>
                       {orgErrors.hodPhone && (
                         <p className="text-red-600 text-sm mt-1">
                           {orgErrors.hodPhone}
@@ -675,7 +701,7 @@ const OnboardingForm = () => {
                         onChange={(e) =>
                           handleOrgInputChange("hodDesignation", e.target.value)
                         }
-                        className="border rounded p-2"
+                        className="border rounded p-2 w-full"
                       />
                       {orgErrors.hodDesignation && (
                         <p className="text-red-600 text-sm mt-1">
