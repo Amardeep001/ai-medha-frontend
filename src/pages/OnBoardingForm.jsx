@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import NicLogo from "../images/nic_logo3.svg";
 import NicLogo2 from "../images/nic_logo2.png";
@@ -37,6 +37,8 @@ const OnboardingForm = () => {
 
   const [personalErrors, setPersonalErrors] = useState({});
   const [orgErrors, setOrgErrors] = useState({});
+  const [fileURL, setFileURL] = useState(null);
+  const fileInputRef = useRef(null);
 
   const handleInputChange = (field, value) => {
     setPersonalDetails((prev) => ({
@@ -50,6 +52,24 @@ const OnboardingForm = () => {
         ...prev,
         [field]: "",
       }));
+    }
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      handleInputChange("organizationIdFile", file);
+      const url = URL.createObjectURL(file);
+      setFileURL(url);
+    }
+  };
+
+  const handleRemoveFile = () => {
+    handleInputChange("organizationIdFile", null);
+    setFileURL(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
     }
   };
 
@@ -100,7 +120,7 @@ const OnboardingForm = () => {
     }
     if (!personalDetails.organizationIdFile) {
       newErrors.organizationIdFile = "Please upload a PDF.";
-    } else if (personalDetails.organizationIdFile.size > 5 * 1024 * 1024) {
+    } else if (personalDetails.organizationIdFile.size > 1 * 1024 * 1024) {
       newErrors.organizationIdFile = "File size must be less than 5MB.";
     }
 
@@ -429,17 +449,55 @@ const OnboardingForm = () => {
                   <label className="block font-medium text-gray-700">
                     Upload Organization / Institution ID
                   </label>
-                  <input
-                    type="file"
-                    accept=".pdf"
-                    onChange={(e) =>
-                      handleInputChange("organizationIdFile", e.target.files[0])
-                    }
-                    className="mt-1 block"
-                  />
-                  <p className="text-xs text-red-600 mt-1">
-                    PDF should be less than 5MB
-                  </p>
+
+                  {/* Always show input */}
+                  <div className="mt-1 flex items-center gap-4">
+                    <input
+                      type="file"
+                      accept=".pdf,.png,.jpg,.jpeg"
+                      onChange={handleFileChange}
+                      ref={fileInputRef}
+                      className="block"
+                    />
+                  </div>
+
+                  {personalErrors.organizationIdFile && (
+                    <p className="text-xs text-red-600 mt-1">
+                      {personalErrors.organizationIdFile}
+                    </p>
+                  )}
+
+                  {/* Preview Section */}
+                  {personalDetails.organizationIdFile && fileURL && (
+                    <div className="mt-4">
+                      <p className="font-medium text-gray-700 mb-2">Preview:</p>
+
+                      {personalDetails.organizationIdFile.type ===
+                      "application/pdf" ? (
+                        <embed
+                          src={fileURL}
+                          type="application/pdf"
+                          className="w-full h-96 border rounded"
+                        />
+                      ) : (
+                        <img
+                          src={fileURL}
+                          alt="Uploaded preview"
+                          className="max-w-full max-h-80 rounded border"
+                        />
+                      )}
+
+                      {/* Action Buttons */}
+                      <div className="flex gap-4 mt-4">
+                        <button
+                          onClick={handleRemoveFile}
+                          className="px-4 py-1 bg-red-600 text-white rounded hover:bg-red-700 text-sm"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="col-span-2 text-right">

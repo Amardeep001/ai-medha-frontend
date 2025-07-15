@@ -25,17 +25,24 @@ import AiSatyapikaananDetailPage from "./pages/serviceDetailPages/AiSatyapikaana
 import AiVaniDetailPage from "./pages/serviceDetailPages/AiVaniDetailPage";
 import AiSaranshDetailPage from "./pages/serviceDetailPages/AiSaranshDetailPage";
 import TermsOfService from "./pages/TermsOfService";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import CookiePolicy from "./pages/CookiePolicy";
+import FAQ from "./pages/Faq";
 import About from "./pages/About";
 import ExploreServices from "./pages/ExploreServices";
 import FirstTimeProfileForm from "./pages/OnBoardingForm";
 import AiNibhritDemo from "./pages/serviceDemoPages/AiNibhritDemo";
+
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/terms-of-services" element={<TermsOfService />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/cookie-policy" element={<CookiePolicy />} />
+        <Route path="/faq" element={<FAQ />} />
         <Route path="/about" element={<About />} />
         <Route path="/explore-services" element={<ExploreServices />} />
         <Route path="auth/login" element={<Login />} />

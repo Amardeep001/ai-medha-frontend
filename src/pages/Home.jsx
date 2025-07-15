@@ -461,8 +461,8 @@ const Home = () => {
 
         {/* Add container width and horizontal padding */}
         <div className="mt-10 relative px-4 sm:px-20">
-          <div className="overflow-hidden rounded-lg">
-            <div className="flex w-[200%] animate-scroll space-x-6">
+          <div className="overflow-hidden rounded-lg group">
+            <div className="flex w-[200%] animate-scroll space-x-6 pause-on-hover">
               {duplicatedServices.map((service, index) => (
                 <div
                   key={index}

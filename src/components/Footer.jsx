@@ -5,7 +5,7 @@ import { FaTwitter, FaLinkedin, FaYoutube, FaEnvelope } from "react-icons/fa";
 const Footer = () => {
   return (
     <footer className="bg-[#002147] text-white pt-10 pb-6 text-sm">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 border-b border-blue-800 pb-8">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 border-b border-blue-800 pb-8">
         {/* About */}
         <div>
           <h4 className="text-white font-semibold text-base mb-3">
@@ -25,15 +25,22 @@ const Footer = () => {
           </h4>
           <ul className="space-y-2 text-gray-300">
             <li>
-              <Link to="/services" className="hover:text-white">
-                Services
+              <Link to="/about" className="hover:text-white">
+                About Us
               </Link>
             </li>
             <li>
-              <Link className="hover:text-white">Contact Us</Link>
+              <Link to="/explore-services" className="hover:text-white">
+                Services
+              </Link>
             </li>
+            {/* <li>
+              <Link className="hover:text-white">Contact Us</Link>
+            </li> */}
             <li>
-              <Link className="hover:text-white">FAQs</Link>
+              <Link to="/faq" className="hover:text-white">
+                FAQs
+              </Link>
             </li>
           </ul>
         </div>
@@ -50,6 +57,28 @@ const Footer = () => {
             <FaEnvelope className="text-lg" />{" "}
             <a href="mailto:support@aimedha.gov.in">support@aimedha.gov.in</a>
           </p>
+        </div>
+
+        {/* Legal Section */}
+        <div>
+          <h4 className="text-white font-semibold text-base mb-3">Legal</h4>
+          <ul className="space-y-2 text-gray-300">
+            <li>
+              <Link to="/terms-of-services" className="hover:text-white">
+                Terms & Conditions
+              </Link>
+            </li>
+            <li>
+              <Link to="/privacy-policy" className="hover:text-white">
+                Privacy Policy
+              </Link>
+            </li>
+            <li>
+              <Link to="/cookie-policy" className="hover:text-white">
+                Cookie Policy
+              </Link>
+            </li>
+          </ul>
         </div>
 
         {/* Social Media */}

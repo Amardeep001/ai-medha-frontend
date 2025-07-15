@@ -350,7 +350,7 @@ const Register = () => {
                 <span className="text-sm text-gray-700">
                   I have read and agree to the{" "}
                   <Link
-                    to={"/terms-of-service"}
+                    to={"/terms-of-services"}
                     target="_blank"
                     className="text-blue-600 underline hover:text-blue-800"
                   >
