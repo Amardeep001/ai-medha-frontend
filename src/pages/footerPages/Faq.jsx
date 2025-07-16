@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import NicLogo from "../images/nic_logo3.svg";
-import NicLogo2 from "../images/nic_logo2.png";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import NicLogo from "../../images/nic_logo3.svg";
+import NicLogo2 from "../../images/nic_logo2.png";
+import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar";
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(0); // open first by default
@@ -40,7 +40,7 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#edf1f3] ">
+    <div className="min-h-screen bg-gray-100 ">
       {/* Navbar */}
       <nav className="fixed w-full z-50 bg-white shadow text-[#003366]">
         <Navbar />

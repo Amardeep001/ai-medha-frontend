@@ -182,7 +182,7 @@ const ExploreServices = () => {
                 </Link>
               </li>
               <li>
-                <a href="/services" className="hover:text-[#FF9933]">
+                <a href="/explore-services" className="hover:text-[#FF9933]">
                   Services
                 </a>
               </li>
@@ -222,7 +222,7 @@ const ExploreServices = () => {
         {/* Services Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {serviceData.map((service) => (
-            <Link to={`/services/${service.id}`} key={service.id}>
+            <Link to={`/auth/login`} key={service.id}>
               <div className="flex flex-col h-full p-5 bg-[#faf9f8] border rounded-lg shadow-md hover:shadow-lg transition hover:scale-[1.02]">
                 <div className="flex items-center gap-4 mb-2">
                   {service.icon}
@@ -238,7 +238,9 @@ const ExploreServices = () => {
                 />
 
                 <div className="flex-1">
-                  <p className="text-gray-700">{service.description}</p>
+                  <p className="text-gray-700 white break-all">
+                    {service.description}
+                  </p>
                 </div>
 
                 <div className="mt-4">

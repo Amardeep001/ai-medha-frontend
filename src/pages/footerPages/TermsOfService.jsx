@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import NicLogo from "../images/nic_logo3.svg";
-import NicLogo2 from "../images/nic_logo2.png";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import NicLogo from "../../images/nic_logo3.svg";
+import NicLogo2 from "../../images/nic_logo2.png";
+import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar";
 
 const TermsOfService = () => {
   useEffect(() => {

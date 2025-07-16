@@ -207,7 +207,7 @@ const ServiceCatalogue = () => {
               />
 
               <div className="flex-1">
-                <p className="text-gray-700">{service.description}</p>
+                <p className="text-gray-700 break-all">{service.description}</p>
               </div>
 
               <div className="mt-4">

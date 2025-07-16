@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import NicLogo from "../images/nic_logo3.svg";
-import NicLogo2 from "../images/nic_logo2.png";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import NicLogo from "../../images/nic_logo3.svg";
+import NicLogo2 from "../../images/nic_logo2.png";
+import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar";
 
 const PrivacyPolicy = () => {
   useEffect(() => {
@@ -11,7 +11,7 @@ const PrivacyPolicy = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#f0edeb] ">
+    <div className="min-h-screen bg-gray-100 ">
       {/* Navbar */}
       <nav className="fixed w-full z-50 bg-white shadow text-[#003366]">
         <Navbar />
