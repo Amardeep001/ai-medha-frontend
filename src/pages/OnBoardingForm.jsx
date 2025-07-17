@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FaTimesCircle } from "react-icons/fa";
 import NicLogo from "../images/nic_logo3.svg";
 import NicLogo2 from "../images/nic_logo2.png";
 import Footer from "../components/Footer";
@@ -33,8 +34,9 @@ const OnboardingForm = () => {
     hodEmail: "",
     hodPhone: "",
     hodDesignation: "",
+    agree: false,
   });
-
+  const [touched, setTouched] = useState({});
   const [personalErrors, setPersonalErrors] = useState({});
   const [orgErrors, setOrgErrors] = useState({});
   const [fileURL, setFileURL] = useState(null);
@@ -174,8 +176,18 @@ const OnboardingForm = () => {
         "Valid 10-digit phone number not starting with 0 is required";
     if (!organizationDetails.hodDesignation)
       errors.hodDesignation = "Designation is required";
+    if (!organizationDetails.agree) {
+      errors.agree = "You must agree before submitting.";
+    }
 
     setOrgErrors(errors);
+
+    setTouched(
+      Object.keys(organizationDetails).reduce((acc, key) => {
+        acc[key] = true;
+        return acc;
+      }, {})
+    );
 
     if (Object.keys(errors).length === 0) {
       // Proceed with submit
@@ -768,6 +780,44 @@ const OnboardingForm = () => {
                       )}
                     </div>
                   </div>
+                </div>
+
+                {/* Terms and Conditions Checkbox */}
+                <div className="col-span-2">
+                  <label className="flex items-start gap-2">
+                    <input
+                      type="checkbox"
+                      checked={organizationDetails.agree}
+                      onChange={(e) =>
+                        handleOrgInputChange("agree", e.target.checked)
+                      }
+                      className="mt-1"
+                    />
+                    <span className="text-sm text-gray-700">
+                      I have read and agree to the{" "}
+                      <Link
+                        to="/terms-of-services"
+                        target="_blank"
+                        className="text-blue-600 underline hover:text-blue-800"
+                      >
+                        Terms of Services
+                      </Link>{" "}
+                      and confirm my{" "}
+                      <span className="relative group cursor-pointer text-blue-700 underline hover:text-blue-900">
+                        Eligibility
+                        <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden w-max rounded bg-black px-2 py-1 text-xs text-white opacity-0 group-hover:block group-hover:opacity-100 transition-opacity duration-200 z-10">
+                          I am 18+ years of age.
+                        </span>
+                      </span>{" "}
+                      to use this platform.
+                    </span>
+                  </label>
+                  {touched.agree && orgErrors.agree && (
+                    <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                      <FaTimesCircle className="text-red-500" />{" "}
+                      {orgErrors.agree}
+                    </p>
+                  )}
                 </div>
 
                 <div className="col-span-2 space-x-3 text-right mt-6">

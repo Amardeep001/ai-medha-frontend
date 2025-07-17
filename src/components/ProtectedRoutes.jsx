@@ -7,7 +7,7 @@ import { Outlet } from "react-router-dom";
 const ProtectedRoutes = () => {
   const { hasAccess } = useDevAccess();
 
-  return hasAccess ? <Outlet /> : <Outlet />;
+  return hasAccess ? <Outlet /> : <DevPasswordGate />;
 };
 
 export default ProtectedRoutes;

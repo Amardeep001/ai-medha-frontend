@@ -43,7 +43,6 @@ function App() {
         <Routes>
           <Route element={<ProtectedRoutes />}>
             <Route path="/" element={<Home />} />
-            <Route path="/terms-of-services" element={<TermsOfService />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/cookie-policy" element={<CookiePolicy />} />
             <Route path="/faq" element={<FAQ />} />
@@ -74,8 +73,9 @@ function App() {
             <Route path="/services/ai_satyapikaanan" element={<AiSatyapikaananDetailPage />} />
             <Route path="/services/ai_anveshika" element={<AiAnveshikaDetail />} />
             <Route path="/services/ai_saransh" element={<AiSaranshDetailPage />} />
-            <Route path="/services/ai_nibhrit/demo" element={<AiNibhritDemo />} />
           </Route>
+          <Route path="/terms-of-services" element={<TermsOfService />} />
+          <Route path="/services/ai_nibhrit/demo" element={<AiNibhritDemo />} />
         </Routes>
       </Router>
     </DevAccessProvider>
