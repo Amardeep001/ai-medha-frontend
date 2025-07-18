@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
-import indianFlag from "../images/ind_flag.png";
 import NicLogo from "../images/nic_logo3.svg";
 import NicLogo2 from "../images/nic_logo2.png";
+import Navbar from "./Navbar";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,40 +24,25 @@ const Header = () => {
     };
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <nav className="sticky top-0 z-50 w-full bg-white shadow-md text-[#003366]">
       {/* Top Bar */}
-      <div className="w-full bg-[#003366] text-white text-xs sm:text-sm py-2">
-        <div className="max-w-screen-2xl mx-auto flex justify-between items-center px-6 xl:px-20">
-          <div className="flex items-center space-x-2">
-            <img
-              src={indianFlag}
-              alt="Indian Flag"
-              className="w-6 h-4 sm:h-6"
-            />
-            <span className="font-medium hover:text-[#B35400]">
-              भारत सरकार | Government of India
-            </span>
-          </div>
-          <div className="flex items-center space-x-4">
-            <a href="#main-content" className="underline hidden sm:block">
-              Skip to Content
-            </a>
-            <div className="hidden sm:flex space-x-2">
-              <button className="text-base font-semibold">A+</button>
-              <button className="text-base font-semibold">A</button>
-              <button className="text-base font-semibold">A-</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Navbar />
 
       {/* Main Navbar */}
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 xl:px-20 py-4 flex justify-between items-center relative">
+      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 xl:px-20 py-5 flex justify-between items-center relative">
         {/* Logo + Title */}
         <Link to="/dashboard">
           <div className="flex items-center space-x-4">
-            <img src={NicLogo} alt="NIC Logo" className="w-[160px]" />
+            <img
+              src={NicLogo}
+              alt="NIC Logo"
+              className="w-[200px] object-contain"
+            />
             <h1 className="text-xl sm:text-3xl font-bold">AI MEDHA</h1>
           </div>
         </Link>
@@ -115,7 +100,7 @@ const Header = () => {
           <img
             src={NicLogo2}
             alt="NIC Logo Right"
-            className="w-[120px] object-contain"
+            className="w-[140px] object-contain"
           />
         </div>
 

@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import NicLogo from "../images/nic_logo3.svg";
-import NicLogo2 from "../images/nic_logo2.png";
 import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import HeaderBeforeLogin from "../components/HeaderBeforeLogin";
 
 const About = () => {
   useEffect(() => {
@@ -13,66 +10,10 @@ const About = () => {
   return (
     <div className="min-h-screen bg-gray-200 ">
       {/* Navbar */}
-      <nav className="fixed w-full z-50 bg-white shadow text-[#003366]">
-        <Navbar />
-
-        <div className="max-w-screen-2xl mx-auto flex justify-between items-center px-4 sm:px-6 xl:px-20 py-5">
-          <Link to="/">
-            <div className="flex items-center space-x-6">
-              <img
-                src={NicLogo}
-                alt="NIC Logo"
-                className="w-[220px] object-contain"
-              />
-              <h1 className="text-2xl sm:text-4xl font-bold tracking-wide">
-                AI MEDHA
-              </h1>
-            </div>
-          </Link>
-          <div className="hidden sm:flex items-center space-x-6 text-base">
-            <ul className="flex space-x-5">
-              <li>
-                <Link to="/" className="hover:text-[#FF9933]">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" className="hover:text-[#FF9933]">
-                  About
-                </Link>
-              </li>
-              <li>
-                <a href="/explore-services" className="hover:text-[#FF9933]">
-                  Services
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="hover:text-[#FF9933]">
-                  Contact
-                </a>
-              </li>
-              <li>
-                <Link to="/auth/login" className="hover:text-[#FF9933]">
-                  Login
-                </Link>
-              </li>
-              <li>
-                <Link to="/auth/register" className="hover:text-[#FF9933]">
-                  Register
-                </Link>
-              </li>
-            </ul>
-            <img
-              src={NicLogo2}
-              alt="NIC Secondary Logo"
-              className="w-[140px] object-contain"
-            />
-          </div>
-        </div>
-      </nav>
+      <HeaderBeforeLogin />
 
       {/* Main Content */}
-      <main id="main-content" className="w-full pt-36 ">
+      <main id="main-content" className="w-full ">
         <div className="bg-gradient-to-b from-[#e9ddd1] to-[#dfdfe2] min-h-screen py-16 px-6 sm:px-12">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-10">

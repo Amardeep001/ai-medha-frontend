@@ -1,4 +1,3 @@
-// src/components/ProtectedRoutes.js
 import React from "react";
 import { useDevAccess } from "../context/DevAccessContext";
 import DevPasswordGate from "../pages/DevPasswordGate";

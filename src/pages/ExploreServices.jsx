@@ -11,8 +11,6 @@ import {
   FaUserCheck,
   FaFileAlt,
 } from "react-icons/fa";
-import NicLogo from "../images/nic_logo3.svg";
-import NicLogo2 from "../images/nic_logo2.png";
 import AiNibhritImage from "../images/serviceCatalogueImages/ai_nibhrit_image.png";
 import AiPaniniImage from "../images/serviceCatalogueImages/ai_panini.png";
 import AiChatbotImage from "../images/serviceCatalogueImages/ai_chatbot_image.jpg";
@@ -24,7 +22,7 @@ import AiSatyapikananImage from "../images/serviceCatalogueImages/ai_satyapikana
 import AiAnveshika from "../images/serviceCatalogueImages/ai_anveshika.jpg";
 import AiSaransh from "../images/serviceCatalogueImages/saransh.png";
 import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import HeaderBeforeLogin from "../components/HeaderBeforeLogin";
 
 const serviceData = [
   {
@@ -153,69 +151,12 @@ const ExploreServices = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#ebdbca] to-[#f0e6db] ">
       {/* Navbar */}
-      <nav className="fixed w-full z-50 bg-white shadow text-[#003366]">
-        <Navbar />
+      <HeaderBeforeLogin />
 
-        <div className="max-w-screen-2xl mx-auto flex justify-between items-center px-4 sm:px-6 xl:px-20 py-5">
-          <Link to="/">
-            <div className="flex items-center space-x-6">
-              <img
-                src={NicLogo}
-                alt="NIC Logo"
-                className="w-[220px] object-contain"
-              />
-              <h1 className="text-2xl sm:text-4xl font-bold tracking-wide">
-                AI MEDHA
-              </h1>
-            </div>
-          </Link>
-          <div className="hidden sm:flex items-center space-x-6 text-base">
-            <ul className="flex space-x-5">
-              <li>
-                <Link to="/" className="hover:text-[#FF9933]">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" className="hover:text-[#FF9933]">
-                  About
-                </Link>
-              </li>
-              <li>
-                <a href="/explore-services" className="hover:text-[#FF9933]">
-                  Services
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="hover:text-[#FF9933]">
-                  Contact
-                </a>
-              </li>
-              <li>
-                <Link to="/auth/login" className="hover:text-[#FF9933]">
-                  Login
-                </Link>
-              </li>
-              <li>
-                <Link to="/auth/register" className="hover:text-[#FF9933]">
-                  Register
-                </Link>
-              </li>
-            </ul>
-            <img
-              src={NicLogo2}
-              alt="NIC Secondary Logo"
-              className="w-[140px] object-contain"
-            />
-          </div>
-        </div>
-      </nav>
-
-      {/* Main Content */}
       {/* Main Content */}
       <div
         id="main-content"
-        className="pt-44 pb-16 px-4 sm:px-6 xl:px-20 mx-auto max-w-screen-2xl"
+        className="pt-16 pb-16 px-4 sm:px-6 xl:px-20 mx-auto max-w-screen-2xl"
       >
         <h2 className="text-4xl font-bold text-blue-900 mb-7 ">Our Services</h2>
 

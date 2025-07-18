@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
-import Navbar from "../../components/Navbar";
 import bgImg from "../../images/inibg.svg";
-import NicLogo from "../../images/nic_logo3.svg";
-import NicLogo2 from "../../images/nic_logo2.png";
+import HeaderBeforeLogin from "../../components/HeaderBeforeLogin";
 
 const VerifyAccount = () => {
   const navigate = useNavigate();
@@ -25,51 +23,11 @@ const VerifyAccount = () => {
   return (
     <div className="min-h-screen flex flex-col justify-between">
       {/* Navbar */}
-      <nav className="fixed w-full z-50 bg-white shadow-md text-[#003366]">
-        {/* Top Header */}
-        <Navbar />
-
-        {/* Main Navbar */}
-        <div className="max-w-screen-2xl mx-auto flex flex-wrap justify-between items-center px-6 xl:px-20 py-4">
-          <Link to="/">
-            <div className="flex items-center space-x-6">
-              <img
-                src={NicLogo}
-                alt="Logo"
-                className="w-[200px] object-contain" // increased to h-32 w-32
-              />
-              <h1 className="text-2xl font-bold">AI MEDHA</h1>
-            </div>
-          </Link>
-          <div className="flex items-center space-x-6">
-            <ul className="flex flex-wrap space-x-6">
-              <li>
-                <Link to="/" className="hover:text-[#FF9933] transition">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/auth/login"
-                  className="hover:text-[#FF9933] transition"
-                >
-                  Login
-                </Link>
-              </li>
-            </ul>
-            {/* Image on the Right Side */}
-            <img
-              src={NicLogo2}
-              alt="Right Logo"
-              className="w-[160px] object-contain"
-            />
-          </div>
-        </div>
-      </nav>
+      <HeaderBeforeLogin />
 
       {/* Verification Form */}
       <div
-        className="flex-grow flex items-center justify-center bg-cover pt-48 pb-16"
+        className="flex-grow flex items-center justify-center bg-cover pt-16 pb-16"
         style={{ backgroundImage: `url(${bgImg})` }}
       >
         <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-md border-t-4 border-yellow-500">
@@ -167,11 +125,6 @@ const VerifyAccount = () => {
               Verify Account
             </button>
           </form>
-
-          {/* <p className="mt-4 text-center text-gray-700">
-            Didn't receive the code?{" "}
-            <button className="text-blue-900 font-semibold">Resend Code</button>
-          </p> */}
         </div>
       </div>
 

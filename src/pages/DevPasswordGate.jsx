@@ -9,7 +9,7 @@ const DevPasswordGate = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (input === "aimedha2025") {
+    if (input === "Aimedha@2025") {
       grantAccess();
     } else {
       setError("Incorrect password. Please try again.");
