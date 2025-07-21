@@ -126,7 +126,6 @@ const Home = () => {
 
       {/* Hero Section */}
       <header
-        id="main-content"
         // bg-[#F8F9FA]
         className="text-center pt-30 pb-10 lg:pt-[60px] text-[#003366] bg-[#f0dfce] "
       >
@@ -153,7 +152,10 @@ const Home = () => {
         </Zoom>
       </header>
 
-      <section className="bg-gradient-to-b from-[#ebdbca] to-[#d1d0d8] py-16 px-4 sm:px-8 lg:px-20">
+      <section
+        id="main-content"
+        className="bg-gradient-to-b from-[#ebdbca] to-[#d1d0d8] py-16 px-4 sm:px-8 lg:px-20"
+      >
         <div className="max-w-screen-xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           {/* Image Block */}
           <div className="rounded-2xl overflow-hidden shadow-lg">
