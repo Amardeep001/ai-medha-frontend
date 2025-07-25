@@ -55,7 +55,9 @@ const Footer = () => {
           </p>
           <p className="mt-2 text-gray-300 flex items-center gap-2">
             <FaEnvelope className="text-lg" />{" "}
-            <a href="mailto:support@aimedha.gov.in">support@aimedha.gov.in</a>
+            <a href="mailto:support@aimedha.gov.in">
+              support@aimedha.nic.gov.in
+            </a>
           </p>
         </div>
 
