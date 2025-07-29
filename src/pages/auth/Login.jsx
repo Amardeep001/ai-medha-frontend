@@ -1,17 +1,21 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import bgImg from "../../images/inibg.svg";
 import HeaderBeforeLogin from "../../components/HeaderBeforeLogin";
+import { BASE_URL } from "../../config/apiConfig";
+import swal from "sweetalert";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [loginWithEmail, setLoginWithEmail] = useState(true);
   const [emailOrPhone, setEmailOrPhone] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const strongPasswordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/;
@@ -64,7 +68,7 @@ const Login = () => {
     validate(field, value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Mark all fields as touched
@@ -78,7 +82,7 @@ const Login = () => {
     validate("password", password);
 
     // After short delay (to ensure state update), check for errors
-    setTimeout(() => {
+    setTimeout(async () => {
       const currentErrors = {};
       if (loginWithEmail) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -112,9 +116,37 @@ const Login = () => {
       setErrors(currentErrors);
 
       if (Object.keys(currentErrors).length === 0) {
-        console.log("Form submitted:", { emailOrPhone, password });
-        navigate("/auth/otp-verification");
-        // proceed with login
+        try {
+          setLoading(true);
+          const response = await axios.post(`${BASE_URL}/api/auth/login`, {
+            email: emailOrPhone,
+            password,
+          });
+          if (response.data?.status === "success") {
+            console.log("Registration Success:", response.data);
+            localStorage.setItem("email", emailOrPhone);
+            navigate("/auth/otp-verification");
+          } else {
+            swal({
+              title: "LOGIN FAILED",
+              text:
+                response?.data?.message || "Email already exist. Please Login",
+              icon: "error",
+              button: "Retry",
+            });
+          }
+        } catch (error) {
+          console.error("Login failed", error);
+          // If backend sends validation errors
+          swal({
+            title: "Error!",
+            text: error.response?.data?.message || "Something went wrong!",
+            icon: "error",
+            button: "Retry",
+          });
+        } finally {
+          setLoading(false);
+        }
       } else {
         console.log("Validation failed:", currentErrors);
       }
@@ -229,9 +261,40 @@ const Login = () => {
 
             <button
               type="submit"
-              className="w-full bg-[#FF9933] text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-800 transition"
+              disabled={loading}
+              className={`w-full px-4 py-2 mt-4 rounded-md transition flex justify-center items-center gap-2 ${
+                loading
+                  ? "bg-orange-400 cursor-not-allowed"
+                  : "bg-[#FF9933] hover:bg-blue-800"
+              } text-white`}
             >
-              Login
+              {loading ? (
+                <>
+                  <svg
+                    className="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    />
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v8H4z"
+                    />
+                  </svg>
+                  Logging in...
+                </>
+              ) : (
+                "Login"
+              )}
             </button>
 
             <button

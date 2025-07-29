@@ -3,23 +3,24 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaTimesCircle } from "react-icons/fa";
 import Footer from "../components/Footer";
 import HeaderBeforeLogin from "../components/HeaderBeforeLogin";
+import swal from "sweetalert";
 
 const OnboardingForm = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [personalDetails, setPersonalDetails] = useState({
     gender: "",
-    firstName: "",
-    lastName: "",
+    firstName: localStorage.getItem("firstName") || "",
+    lastName: localStorage.getItem("lastName") || "",
     designation: "",
     personalEmail: "",
-    officialEmail: "",
-    phoneNumber: "",
+    officialEmail: localStorage.getItem("email") || "",
+    phoneNumber: localStorage.getItem("phone") || "",
     organizationIdFile: null,
   });
 
   const [organizationDetails, setOrganizationDetails] = useState({
-    orgType: "",
+    orgType: localStorage.getItem("orgType") || "",
     ministry: "",
     department: "",
     orgName: "",
@@ -190,7 +191,15 @@ const OnboardingForm = () => {
     if (Object.keys(errors).length === 0) {
       // Proceed with submit
       console.log("Form submitted:", organizationDetails);
-      navigate("/dashboard");
+      swal({
+        title: "Success!",
+        text: "Personal and Organization details submitted successfully.",
+        icon: "success",
+        button: "OK",
+      }).then(() => {
+        localStorage.setItem("isBoardingFormSubmit", true);
+        navigate("/dashboard");
+      });
     }
   };
 
@@ -361,6 +370,7 @@ const OnboardingForm = () => {
                     Official Email ID
                   </label>
                   <input
+                    disabled
                     type="email"
                     placeholder="Enter your official email"
                     value={personalDetails.officialEmail}
@@ -383,6 +393,7 @@ const OnboardingForm = () => {
                   <div className="mt-1 flex rounded border p-2 items-center">
                     <span className="text-gray-600 mr-2">+91</span>
                     <input
+                      disabled
                       type="tel"
                       value={personalDetails.phoneNumber}
                       onChange={(e) =>

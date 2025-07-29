@@ -73,9 +73,10 @@ const serviceData = [
     name: "AI Matra - Transliteration Service",
     type: "Monitoring",
     available: true,
-    description: "Framework for evaluating and benchmarking AI models.",
+    description:
+      "Transliteration service designed to convert text from one script to another across 22 Indic languages.",
     usage:
-      "Monitors model performance for fairness, accuracy, and reliability.",
+      "Transliterates names, addresses, and short phrases from English to 22 Indic scripts for use in multilingual applications.",
     icon: <FaBalanceScale className="text-blue-700 text-4xl" />, // or FaChartLine for performance
     image: AiMatraImage, // replace this with the actual imported image or URL
   },
@@ -133,9 +134,8 @@ const serviceData = [
     type: "Natural Language Processing",
     available: true,
     description:
-      "AI-powered abstractive summarization service that condenses lengthy government documents into concise, readable summaries in English and Indian languages.",
-    usage:
-      "Used across eGovernance platforms to auto-generate summaries for minutes of meetings, reports, legal texts, and administrative orders, enabling faster content review and decision-making.",
+      "AI-powered summarization service that condenses lengthy government documents into concise, readable summaries in English and Indian languages.",
+    usage: "Available for both extractive & abstractive text summarization.",
     icon: <FaFileAlt className="text-indigo-700 text-4xl" />,
     image: AiSaransh,
   },

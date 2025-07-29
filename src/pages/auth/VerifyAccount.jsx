@@ -1,9 +1,12 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import bgImg from "../../images/inibg.svg";
 import HeaderBeforeLogin from "../../components/HeaderBeforeLogin";
+import { BASE_URL } from "../../config/apiConfig";
+import swal from "sweetalert";
 
 const VerifyAccount = () => {
   const navigate = useNavigate();
@@ -11,12 +14,65 @@ const VerifyAccount = () => {
   const [mobileOtp, setMobileOtp] = useState("");
   const isEmailCodeValid = emailCode.length === 6;
   const isMobileOtpValid = /^[0-9]{6}$/.test(mobileOtp);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (isEmailCodeValid && isMobileOtpValid) {
-      navigate("/auth/login");
+    if (isEmailCodeValid) {
+      swal({
+        title: "Success!",
+        text: "Email verified successfully.",
+        icon: "success",
+        button: "OK",
+      }).then(() => {
+        navigate("/auth/login");
+      });
+
+      try {
+        setLoading(true);
+        const response = await axios.post(`${BASE_URL}/api/auth/verifyOtp`, {
+          email: localStorage.getItem("email") || "chauhanamardeep1@gmail.com",
+          otp: emailCode,
+        });
+
+        if (response.data?.status === "success") {
+          localStorage.removeItem("email");
+          swal({
+            title: "Success!",
+            text: "Email verified successfully.",
+            icon: "success",
+            button: "OK",
+          }).then(() => {
+            navigate("/auth/login");
+          });
+        } else {
+          swal({
+            title: "Invalid Email Code",
+            text: "Invalid or Expired Email Code",
+            icon: "error",
+            button: "Retry",
+          });
+        }
+      } catch (error) {
+        if (error.response?.data?.status === "error") {
+          swal({
+            title: "Invalid Email Code",
+            text: "Invalid or Expired Email Code",
+            icon: "error",
+            button: "Retry",
+          });
+        } else {
+          swal({
+            title: "Error!",
+            text: error.response?.data?.message || "Something went wrong!",
+            icon: "error",
+            button: "Retry",
+          });
+        }
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -77,7 +133,7 @@ const VerifyAccount = () => {
             </div>
 
             {/* Mobile OTP */}
-            <div className="mt-4 relative">
+            {/* <div className="mt-4 relative">
               <label className="block text-gray-700 font-semibold">
                 Mobile OTP
               </label>
@@ -111,18 +167,44 @@ const VerifyAccount = () => {
               >
                 Resend Mobile OTP
               </button>
-            </div>
+            </div> */}
 
             <button
               type="submit"
-              disabled={!(isEmailCodeValid && isMobileOtpValid)}
-              className={`w-full px-4 py-2 mt-6 rounded-md transition ${
-                isEmailCodeValid && isMobileOtpValid
-                  ? "bg-blue-900 text-white hover:bg-blue-800"
+              disabled={!isEmailCodeValid || loading}
+              className={`w-full px-4 py-2 mt-6 rounded-md transition flex justify-center items-center gap-2 ${
+                isEmailCodeValid && !loading
+                  ? "bg-blue-900 text-white hover:bg-blue-800 cursor-pointer"
                   : "bg-gray-400 text-white cursor-not-allowed"
               }`}
             >
-              Verify Account
+              {loading ? (
+                <>
+                  <svg
+                    className="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v8H4z"
+                    ></path>
+                  </svg>
+                  Verifying...
+                </>
+              ) : (
+                "Verify Account"
+              )}
             </button>
           </form>
         </div>

@@ -1,9 +1,12 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import { FaTimesCircle, FaCheckCircle } from "react-icons/fa";
 import bgImg from "../../images/inibg.svg";
 import HeaderBeforeLogin from "../../components/HeaderBeforeLogin";
+import { BASE_URL } from "../../config/apiConfig";
+import swal from "sweetalert";
 
 const OtpVerification = () => {
   const navigate = useNavigate();
@@ -11,10 +14,45 @@ const OtpVerification = () => {
   const [isOtpValid, setIsOtpValid] = useState(false);
   const [resendDisabled, setResendDisabled] = useState(false);
 
-  const handleOTPSubmit = (e) => {
+  const handleOTPSubmit = async (e) => {
     e.preventDefault();
     console.log("Entered OTP:", otp);
-    navigate("/onboarding");
+
+    try {
+      const response = await axios.post(`${BASE_URL}/api/auth/verifyOtp`, {
+        email: localStorage.getItem("email") || "chauhanamardeep1@gmail.com",
+        otp: otp,
+      });
+
+      if (response.data?.status === "success") {
+        swal({
+          title: "Success!",
+          text: "Otp verified successfully.",
+          icon: "success",
+          button: "OK",
+        }).then(() => {
+          if (localStorage.getItem("isBoardingFormSubmit")) {
+            navigate("/dashboard");
+          } else {
+            navigate("/onboarding");
+          }
+        });
+      } else {
+        swal({
+          title: "Invalid OTP",
+          text: response.data.message || "Please try again.",
+          icon: "error",
+          button: "Retry",
+        });
+      }
+    } catch (error) {
+      swal({
+        title: "Error!",
+        text: error.response?.data?.message || "Something went wrong!",
+        icon: "error",
+        button: "Retry",
+      });
+    }
   };
 
   const handleResendOTP = () => {

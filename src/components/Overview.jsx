@@ -252,7 +252,7 @@ const Overview = () => {
     <div className="p-4">
       <div className="mb-6">
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-900">
-          Welcome, Amar
+          Welcome, {localStorage.getItem("firstName") || "Amar"}
         </h2>
         <p className="text-base text-gray-600">User</p>
       </div>

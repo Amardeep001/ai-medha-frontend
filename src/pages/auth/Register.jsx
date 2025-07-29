@@ -1,9 +1,12 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import bgImg from "../../images/inibg.svg";
 import HeaderBeforeLogin from "../../components/HeaderBeforeLogin";
+import { BASE_URL } from "../../config/apiConfig";
+import swal from "sweetalert";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -20,6 +23,7 @@ const Register = () => {
 
   const [touched, setTouched] = useState({});
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const strongPasswordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -35,7 +39,8 @@ const Register = () => {
         if (!/^\S+@\S+\.\S+$/.test(value)) return "Enter a valid email.";
         break;
       case "phone":
-        if (!/^\d{10}$/.test(value)) return "Enter a 10-digit mobile number.";
+        if (!/^[1-9][0-9]{9}$/.test(value))
+          return "Enter a valid 10-digit phone number not starting with 0.";
         break;
       case "password":
         if (!strongPasswordRegex.test(value)) {
@@ -66,7 +71,7 @@ const Register = () => {
     setErrors((prev) => ({ ...prev, [field]: error }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newErrors = {};
@@ -85,8 +90,57 @@ const Register = () => {
 
     if (Object.keys(newErrors).length === 0) {
       // Submit form
-      console.log("Form submitted!", formData);
-      navigate("/auth/verify-account");
+      try {
+        setLoading(true);
+        const payload = {
+          firstName: formData.firstName,
+          middleName: formData.middleName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          password: formData.password,
+          orgType: formData.orgType,
+        };
+
+        const response = await axios.post(
+          `${BASE_URL}/api/auth/register`,
+          payload
+        );
+
+        console.log("Registration Success:", response.data);
+        if (response.data?.status === "success") {
+          localStorage.setItem("email", formData.email);
+          localStorage.setItem("phone", formData.phone);
+          localStorage.setItem("firstName", formData.firstName);
+          localStorage.setItem("lastName", formData.lastName);
+          localStorage.setItem("orgType", formData.orgType);
+          navigate("/auth/verify-account");
+        } else {
+          swal({
+            title: "Invalid Email",
+            text: "Email already exist. Please Login",
+            icon: "error",
+            button: "Retry",
+          });
+        }
+        // Redirect to OTP verification or next step
+      } catch (error) {
+        console.error(
+          "Registration Failed:",
+          error.response?.data || error.message
+        );
+
+        // Optional: show error to user
+        alert(
+          "Registration failed: " +
+            (error.response?.data?.message || error.message)
+        );
+      } finally {
+        setLoading(false);
+      }
+
+      // console.log("Form submitted!", formData);
+      // navigate("/auth/verify-account");
     }
   };
 
@@ -333,9 +387,36 @@ const Register = () => {
 
             <button
               type="submit"
-              className="w-full bg-blue-900 text-white px-4 py-2 mt-6 rounded-md hover:bg-blue-800 transition"
+              className="w-full bg-blue-900 text-white px-4 py-2 mt-6 rounded-md hover:bg-blue-800 transition flex justify-center items-center"
+              disabled={loading}
             >
-              Register
+              {loading ? (
+                <span className="flex items-center gap-2">
+                  <svg
+                    className="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v8H4z"
+                    ></path>
+                  </svg>
+                  Registering...
+                </span>
+              ) : (
+                "Register"
+              )}
             </button>
           </form>
 

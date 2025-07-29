@@ -94,12 +94,11 @@ const AiMatraDetailPage = () => {
 
         <h1 className="text-4xl font-bold text-blue-900 mb-3">AI Matra</h1>
         <p className="text-gray-700 mb-6 text-base leading-relaxed">
-          AI Matra is a neural transliteration system designed to convert text
-          from one script to another across 22 Indic languages. It supports both
-          single and batch transliteration and is primarily used for converting
-          names and addresses for display in local languages. Unlike
-          translation, it focuses on phonetic consistency rather than semantic
-          meaning.
+          Text transliteration is provided as a service from any of the
+          scheduled indic languages to english and vice-versa. It also helps
+          user to edit or enter contents in native language using english
+          keyboard. It is based on AI open source models made available by
+          National Language Translation Mission.
         </p>
 
         {/* Overview & Use Cases */}
@@ -142,21 +141,21 @@ const AiMatraDetailPage = () => {
                 <strong>Sector:</strong> Language Technology / Localization
               </li>
               <li>
-                <strong>Supported Languages:</strong> 22 Indic languages
-                including Hindi, Bengali, Tamil, Telugu, Kannada, etc.
+                <strong>Supported Languages:</strong> 22 Official Indic
+                languages including Hindi, Bengali, Tamil, Telugu, Kannada, etc.
               </li>
               <li>
                 <strong>Use Style:</strong> Transliteration only (no semantic
                 translation)
               </li>
-              <li>
+              {/* <li>
                 <strong>Workflow:</strong> Latin Input → Script Detection →
                 Phonetic Mapping → Indic Script Output
-              </li>
+              </li> */}
             </ul>
           </div>
 
-          <div className="mt-6">
+          {/* <div className="mt-6">
             <h4 className="text-md font-semibold text-blue-700 mb-2">
               AI Matra Rollout
             </h4>
@@ -175,7 +174,7 @@ const AiMatraDetailPage = () => {
               <li>State e-Governance Portals</li>
               <li>Digital India Initiatives</li>
             </ul>
-          </div>
+          </div> */}
 
           <div className="mt-6">
             <h4 className="text-md font-semibold text-blue-700 mb-2">
@@ -187,10 +186,12 @@ const AiMatraDetailPage = () => {
                 applications
               </li>
               <li>
-                Postal address transliteration for logistics and identity
-                verification
+                Postal address transliteration in local language and scripts for
+                logistics and identity verification
               </li>
-              <li>Bilingual certificates and document generation</li>
+              <li>
+                Multilingual certificates and identification document generation
+              </li>
               <li>Integration in language localization workflows</li>
             </ul>
           </div>
@@ -201,11 +202,15 @@ const AiMatraDetailPage = () => {
             </h4>
             <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
               <li>State and Central Government e-Services Platforms</li>
-              <li>Citizen Service Portals and Application Forms</li>
               <li>
-                Departments handling identity, transport, or education records
+                Department handling Citizen Service Portals and Application
+                Forms
               </li>
-              <li>NIC and its Language Technology Projects</li>
+              <li>
+                Departments handling identity, transport, or education records,
+                local language information like land records, maps.
+              </li>
+              <li>Departments handling localization of content</li>
             </ul>
           </div>
         </div>
@@ -339,8 +344,8 @@ const AiMatraDetailPage = () => {
 
           <ul className="list-decimal pl-5 text-sm text-gray-700 space-y-2">
             <li>
-              <strong>Input:</strong> User enters names, addresses, or phrases
-              in Latin (Roman) script.
+              <strong>Input:</strong> User enters text like names, addresses, or
+              phrases in Latin (Roman) script.
             </li>
             <li>
               <strong>Language Detection:</strong> The system identifies the
@@ -354,8 +359,7 @@ const AiMatraDetailPage = () => {
             </li>
             <li>
               <strong>Transliteration Engine:</strong> AI Matra applies a neural
-              model to convert the Roman text into its phonetic equivalent in
-              the target script.
+              model to convert the Roman text into the target script.
             </li>
             <li>
               <strong>Script Rendering:</strong> The transliterated text is
@@ -373,14 +377,14 @@ const AiMatraDetailPage = () => {
           </ul>
         </div>
 
-        <div className="mt-8 bg-white rounded-lg shadow-md p-6">
+        <div className="mt-8 mb-6 bg-white rounded-lg shadow-md p-6">
           <h3 className="text-xl font-semibold text-blue-800 mb-3">
             How to Use AI Matra Service
           </h3>
           <ol className="list-decimal list-inside text-sm text-gray-700 space-y-2">
             <li>
-              Fill out the <strong>Service Request Form</strong> via NIC Cloud
-              Portal, including use case and target Indic languages for
+              Fill out the <strong>Service Request Form</strong> via AI MEDHA
+              Platform, including use case and target Indic languages for
               transliteration.
             </li>
             <li>
@@ -391,23 +395,28 @@ const AiMatraDetailPage = () => {
               Choose integration method: <strong>NAPIX Integration</strong> or{" "}
               <strong>Direct API Access</strong>.
             </li>
+            <li>
+              The Service is available on <strong>NICNet</strong> (National
+              Informatics Centre network) and also accessible over public
+              internet via <strong>Napix</strong> (National API Exchange)
+              platform.
+            </li>
 
             {/* NAPIX Integration Steps */}
             <li>
               <strong>NAPIX Integration:</strong>
               <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
                 <li>
-                  Register on the NAPIX platform using departmental credentials.
+                  Register on the NAPIX platform for external/public access.
+                </li>
+                <li>Request for transliteration API access.</li>
+                <li>
+                  Upon approval, receive a <strong>Client ID</strong> and{" "}
+                  <strong>Client Secret</strong>.
                 </li>
                 <li>
-                  Request transliteration API access via the NAPIX interface.
-                </li>
-                <li>
-                  Upon verification, receive a <strong>Client ID</strong> and{" "}
-                  <strong>Secret Key</strong>.
-                </li>
-                <li>
-                  Use these credentials in every API request for secure access.
+                  Use authorization keys - client id and client secret for every
+                  API request for secure access.
                 </li>
               </ul>
             </li>
@@ -416,7 +425,10 @@ const AiMatraDetailPage = () => {
             <li>
               <strong>Direct API Access:</strong>
               <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
-                <li>Connect via NICNET or VPN for secure access.</li>
+                <li>
+                  Ensure network access via NICNet or VPN to secure internal
+                  endpoints via FARPS request and submit IPs for whitelisting.
+                </li>
                 <li>
                   Use POST requests to submit Roman-script input text and target
                   language (e.g., Hindi, Bengali, Tamil) for real-time
@@ -428,34 +440,35 @@ const AiMatraDetailPage = () => {
                   display or official use.
                 </li>
                 <li>
-                  Optionally, use batch mode to upload bulk lists (JSON/files)
-                  for transliterating names and addresses.
+                  Optionally, use batch mode to upload bulk lists (JSON) for
+                  transliterating text.
                 </li>
               </ul>
             </li>
           </ol>
         </div>
 
-        <div className="mt-8 mb-6 bg-white rounded-lg shadow-md p-8">
+        {/* <div className="mt-8 mb-6 bg-white rounded-lg shadow-md p-8">
           <h3 className="text-xl font-semibold text-blue-800 mb-3">
             Network Access Details
           </h3>
           <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
             <li>
-              <strong>Network Access:</strong> internal only via the{" "}
+              <strong>Network Access:</strong> internal via the{" "}
               <strong>NIC</strong> Network, and external via{" "}
               <strong>NAPIX</strong>.
             </li>
             <li>
               <strong>Firewall Configuration:</strong> Only whitelisted IPs can
-              access the service.
+              access the service in internal network and authorized users via
+              NAPIX.
             </li>
             <li>
-              <strong>Access Control:</strong> Enforced via <strong>VPN</strong>{" "}
-              and <strong>IP whitelisting</strong>.
+              <strong>Access Control:</strong> Enforced via{" "}
+              <strong>IP whitelisting</strong> and user authentication.
             </li>
           </ul>
-        </div>
+        </div> */}
       </main>
 
       <Footer />
