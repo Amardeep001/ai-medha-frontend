@@ -190,7 +190,8 @@ const AiMatraDetailPage = () => {
                 logistics and identity verification
               </li>
               <li>
-                Multilingual certificates and identification document generation
+                Multilingual certificates and identification of document
+                generation
               </li>
               <li>Integration in language localization workflows</li>
             </ul>
