@@ -94,11 +94,12 @@ const AiMatraDetailPage = () => {
 
         <h1 className="text-4xl font-bold text-blue-900 mb-3">AI Matra</h1>
         <p className="text-gray-700 mb-6 text-base leading-relaxed">
-          Text transliteration is provided as a service from any of the
-          scheduled indic languages to english and vice-versa. It also helps
-          user to edit or enter contents in native language using english
-          keyboard. It is based on AI open source models made available by
-          National Language Translation Mission.
+          AI Matra is a neural transliteration system designed to convert text
+          from one script to another across 22 Indic languages. It supports both
+          single and batch transliteration and is primarily used for converting
+          names and addresses for display in local languages. Unlike
+          translation, it focuses on phonetic consistency rather than semantic
+          meaning.
         </p>
 
         {/* Overview & Use Cases */}
@@ -107,12 +108,13 @@ const AiMatraDetailPage = () => {
             About AI Matra
           </h3>
           <p className="text-sm text-gray-700 leading-relaxed">
-            AI Matra is a neural transliteration system designed to convert text
-            between scripts across 22 Indic languages. Unlike translation, it
-            focuses on phonetic representation, ensuring that names, addresses,
-            and short phrases are rendered accurately in regional scripts
-            without altering meaning. It plays a critical role in multilingual
-            content rendering for government and citizen-facing applications.
+            Text transliteration is provided as a service from any of the
+            scheduled indic languages to english and vice-versa. It also helps
+            user to edit or enter contents in native language using english
+            keyboard. It is based on AI open source models made available by
+            National Language Translation Mission. It plays a critical role in
+            multilingual content rendering for government and citizen-facing
+            applications.
           </p>
 
           <div className="pt-4 text-sm text-gray-600 space-y-1">
@@ -393,14 +395,13 @@ const AiMatraDetailPage = () => {
               department for approval and onboarding.
             </li>
             <li>
-              Choose integration method: <strong>NAPIX Integration</strong> or{" "}
-              <strong>Direct API Access</strong>.
+              Choose integration method: <strong>NAPIX </strong> (National API
+              Exchange) Integration or <strong>Direct API Access</strong>.
             </li>
             <li>
-              The Service is available on <strong>NICNet</strong> (National
+              The Service is available on <strong>NICNET</strong> (National
               Informatics Centre network) and also accessible over public
-              internet via <strong>Napix</strong> (National API Exchange)
-              platform.
+              internet via <strong>NAPIX</strong> platform.
             </li>
 
             {/* NAPIX Integration Steps */}
@@ -427,7 +428,7 @@ const AiMatraDetailPage = () => {
               <strong>Direct API Access:</strong>
               <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
                 <li>
-                  Ensure network access via NICNet or VPN to secure internal
+                  Ensure network access via NICNET or VPN to secure internal
                   endpoints via FARPS request and submit IPs for whitelisting.
                 </li>
                 <li>

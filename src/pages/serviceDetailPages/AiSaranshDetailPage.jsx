@@ -36,10 +36,13 @@ const AiSaranshDetailPage = () => {
             <p className="text-sm text-gray-700 leading-relaxed">
               AI Saransh is a comprehensive text summarization service that
               transforms large documents into concise summaries using advanced
-              extractive and abstractive techniques. Available over NICNet and
-              the Napix portal, it helps users quickly grasp the essence of
-              lengthy documents by prioritizing important points and generating
-              coherent summaries in configurable lengths.
+              extractive and abstractive techniques. Available over{" "}
+              <strong>NICNET </strong>
+              (National Informatics Centre network) and the{" "}
+              <strong>NAPIX</strong> (National API Exchange) portal, it helps
+              users quickly grasp the essence of lengthy documents by
+              prioritizing important points and generating coherent summaries in
+              configurable lengths.
             </p>
 
             <div className="pt-4 text-sm text-gray-600 space-y-1">
@@ -73,7 +76,7 @@ const AiSaranshDetailPage = () => {
                 </li>
                 <li>
                   <strong>Network Access:</strong> NIC network and public
-                  internet via Napix platform
+                  internet via NAPIX platform
                 </li>
                 <li>
                   <strong>Response Format:</strong> JSON Output
@@ -116,13 +119,13 @@ const AiSaranshDetailPage = () => {
                 </li>
                 <li>
                   Judicial and legal document processing for multi-page case
-                  judgments
+                  judgements
                 </li>
                 <li>
                   Government report summarization for administrative workflows
                 </li>
                 <li>
-                  API-based integration into e-Governance applications via NAPIx
+                  API-based integration into e-Governance applications via NAPIX
                 </li>
                 <li>
                   Digital document management with configurable summary lengths
@@ -225,9 +228,8 @@ const AiSaranshDetailPage = () => {
                 or <strong>Direct API Access</strong>.
               </li>
               <li>
-                The Service is available on <strong>NICNet</strong> (National
-                Informatics Centre network) and also accessible over public
-                internet via <strong>Napix</strong> (National API Exchange)
+                The Service is available on <strong>NICNET</strong> and also
+                accessible over public internet via <strong>NAPIX</strong>{" "}
                 platform.
               </li>
 
@@ -255,7 +257,7 @@ const AiSaranshDetailPage = () => {
                 <strong>Direct API Access:</strong>
                 <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
                   <li>
-                    Ensure network access via NICNet or VPN to secure internal
+                    Ensure network access via NICNET or VPN to secure internal
                     endpoints via FARPS request and submit IPs for whitelisting.
                   </li>
                   <li>Use summarization APIs.</li>
@@ -274,9 +276,9 @@ const AiSaranshDetailPage = () => {
             </h3>
             <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
               <li>
-                <strong>Network Access:</strong> Available on NICNet (National
+                <strong>Network Access:</strong> Available on NICNET (National
                 Informatics Centre network) and also accessible over public
-                internet via <strong>Napix platform</strong>.
+                internet via <strong>NAPIX platform</strong>.
               </li>
               <li>
                 <strong>Firewall Configuration:</strong> No specific firewall

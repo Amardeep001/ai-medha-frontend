@@ -1,1 +1,1 @@
-export const BASE_URL = "https://ai-medha-backend-service.aimedha-frontend.svc.medhasandbox.cluster.local";
+export const BASE_URL = "http://ai-medha-backend-service";

@@ -24,7 +24,7 @@ const departmentChartData = [
   { name: "Maharashtra State Center", value: 583 },
   { name: "Ministry of Ayush", value: 33 },
   { name: "NIC Tejas", value: 11042 },
-  { name: "Napix", value: 11 },
+  { name: "NAPIX", value: 11 },
   { name: "Patna High Court", value: 656 },
   { name: "Pondicherry Center", value: 9 },
   { name: "Supreme Court", value: 9849910 },

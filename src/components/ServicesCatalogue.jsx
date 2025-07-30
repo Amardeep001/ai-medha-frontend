@@ -135,7 +135,7 @@ const serviceData = [
     available: true,
     description:
       "AI-powered summarization service that condenses lengthy government documents into concise, readable summaries in English and Indian languages.",
-    usage: "Available for both extractive & abstractive text summarization.",
+    usage: "Available for both Extractive & Abstractive text summarization.",
     icon: <FaFileAlt className="text-indigo-700 text-4xl" />,
     image: AiSaransh,
   },
@@ -207,7 +207,7 @@ const ServiceCatalogue = () => {
               />
 
               <div className="flex-1">
-                <p className="text-gray-700 break-all">{service.description}</p>
+                <p className="text-gray-700 ">{service.description}</p>
               </div>
 
               <div className="mt-4">

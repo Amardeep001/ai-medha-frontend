@@ -47,16 +47,18 @@ const About = () => {
 
               <p>
                 The platform is accessible through secure networks like{" "}
-                <strong>NAPIX</strong> and <strong>NICNET</strong>, offering
-                standardized APIs, centralized dashboards, and role-based access
-                control for government institutions. It is built to ensure{" "}
-                <strong>data security</strong>, <strong>compliance</strong>, and{" "}
+                <strong>NAPIX</strong> (National API Exchange) and{" "}
+                <strong>NICNET</strong> (National Informatics Centre network),
+                offering standardized APIs, centralized dashboards, and
+                role-based access control for government institutions. It is
+                built to ensure <strong>data security</strong>,{" "}
+                <strong>compliance</strong>, and{" "}
                 <strong>high availability</strong>.
               </p>
 
               <p>
                 AI Medha’s mission is to democratize responsible AI usage for
-                the public sector—boosting transparency, efficiency, and
+                the public sector-boosting transparency, efficiency, and
                 innovation across India’s digital initiatives.
               </p>
             </div>
