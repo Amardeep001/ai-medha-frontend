@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -10,6 +10,9 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
+import swal from "sweetalert";
+import axios from "axios";
+import { BASE_URL } from "../../config/apiConfig";
 
 const departmentChartData = [
   { name: "AI Shruti", value: 32295 },
@@ -87,10 +90,98 @@ const supportedLanguages = [
 
 const AiPaniniDetailPage = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [filePreview, setFilePreview] = useState(null);
+
+  const handleDownload = () => {
+    // Trigger download of a static file
+    const link = document.createElement("a");
+    link.href = "/demo/ai_panini_user_acceptance_form.pdf"; // replace with correct path
+    link.download = `ai_panini_user_acceptance_form.pdf`;
+    link.click();
+  };
+
+  const handleUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFilePreview({
+        name: file.name,
+        type: file.type,
+        url: URL.createObjectURL(file),
+      });
+      setSelectedFile(file);
+    }
+
+    // Upload logic if any
+  };
+
+  const handleSubmit = async () => {
+    if (!selectedFile)
+      return alert("Please upload the signed user service request form first");
+
+    swal({
+      title: "Success!",
+      text: "Form submitted successfully.",
+      icon: "success",
+      button: "OK",
+    });
+
+    // try {
+    //   const formData = new FormData();
+    //   formData.append("userId", localStorage.getItem("userId")); // or retrieve as needed
+    //   formData.append("serviceName", "AI Panini");
+    //   formData.append("pdfFile", selectedFile); // selectedFile should be a File object from input
+
+    //   const response = await axios.post(
+    //     `${BASE_URL}/api/requests/submit`,
+    //     formData,
+    //     {
+    //       headers: {
+    //         "Content-Type": "multipart/form-data",
+    //       },
+    //     }
+    //   );
+
+    //   console.log("Upload success:", response.data);
+    //   if (response.data?.status === "success") {
+    //     swal({
+    //       title: "Success!",
+    //       text: "Form submitted successfully.",
+    //       icon: "success",
+    //       button: "OK",
+    //     }).then(() => {
+    //       setIsModalOpen(false);
+    //       setSelectedFile(null);
+    //     });
+    //   }
+    // } catch (error) {
+    //   console.error("Upload failed:", error);
+    //   swal({
+    //     title: "Error!",
+    //     text: "Something went wrong while submitting the form.",
+    //     icon: "error",
+    //     button: "OK",
+    //   });
+    // }
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden"; // Disable scroll
+    } else {
+      document.body.style.overflow = "auto"; // Enable scroll
+    }
+
+    // Cleanup when component unmounts or modal closes
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isModalOpen]);
 
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
@@ -106,12 +197,12 @@ const AiPaniniDetailPage = () => {
             </button>
             <div className="mb-6">
               <a
-                href="https://demoai.nic.in/translation"
+                href="/demo/ai_panini_user_acceptance_form.pdf" // replace with your actual PDF URL
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-4 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition"
+                className="inline-block px-4 py-2 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition"
               >
-                🌐 Try AI Panini
+                Download User Service Request Form
               </a>
             </div>
           </div>
@@ -359,8 +450,17 @@ const AiPaniniDetailPage = () => {
             </h3>
             <ol className="list-decimal list-inside text-sm text-gray-700 space-y-2">
               <li>
-                Fill out the <strong>User Service Request Form</strong> via NIC
-                Cloud Portal.
+                Fill out the{" "}
+                <strong>
+                  <a
+                    href="/demo/ai_panini_user_acceptance_form.pdf" // replace with your actual PDF URL
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    User Service Request Form
+                  </a>
+                </strong>{" "}
+                via NIC Cloud Portal.
               </li>
               <li>
                 Include project name, use case, and requested source-target
@@ -434,8 +534,135 @@ const AiPaniniDetailPage = () => {
               </li>
             </ul>
           </div>
+          {/* Second Request for Service Button */}
+          <div className="mt-8 mb-6 flex ">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="px-6 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition"
+            >
+              Request for Service
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center overflow-y-auto">
+          <div className="bg-white p-6 rounded shadow-md max-w-lg w-full relative">
+            <h2 className="text-xl font-bold mb-4">
+              Request Access: {"AI Panini"}
+            </h2>
+
+            {/* Instruction Steps */}
+            <div className="mb-4 space-y-3">
+              <h3 className="text-lg font-semibold text-gray-800">
+                How to Request Access
+              </h3>
+              <ul className="space-y-2 text-sm text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="mt-1 text-blue-600">📝</span>
+                  <span>
+                    <strong>Step 1:</strong> Fill out the{" "}
+                    <span className="font-medium">
+                      User Service Request Form
+                    </span>{" "}
+                    given below.
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-1 text-blue-600">📌</span>
+                  <span>
+                    <strong>Step 2:</strong> Include details such as{" "}
+                    <span className="font-medium">Project Name</span>,{" "}
+                    <span className="font-medium">Use Case</span>, and{" "}
+                    <span className="font-medium">
+                      Source-Target Language Pairs
+                    </span>
+                    .
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-1 text-blue-600">📄</span>
+                  <span>
+                    <strong>Step 3:</strong> Submit the form with a{" "}
+                    <span className="font-medium">
+                      Signed User Request Letter
+                    </span>{" "}
+                    to initiate onboarding.
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="space-y-4">
+              <button
+                onClick={handleDownload}
+                className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              >
+                Download User Service Request Form
+              </button>
+
+              <div>
+                <label
+                  htmlFor="uploadFile"
+                  className="block w-full bg-blue-600 text-white text-center py-2 rounded cursor-pointer hover:bg-blue-700 "
+                >
+                  Upload Signed User Service Request Form
+                </label>
+                <input
+                  type="file"
+                  id="uploadFile"
+                  onChange={handleUpload}
+                  className="hidden"
+                />
+              </div>
+
+              {filePreview && (
+                <div className="border border-gray-300 rounded p-3 text-sm bg-gray-50">
+                  <p className="font-medium text-gray-700 mb-2">Preview:</p>
+                  <p className="mb-2 text-gray-600">{filePreview.name}</p>
+                  {filePreview.type.startsWith("image/") ? (
+                    <img
+                      src={filePreview.url}
+                      alt="Preview"
+                      className="max-h-40 rounded border"
+                    />
+                  ) : filePreview.type === "application/pdf" ? (
+                    <a
+                      href={filePreview.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 underline hover:text-blue-800"
+                    >
+                      View PDF
+                    </a>
+                  ) : (
+                    <p className="text-gray-500">File type not previewable.</p>
+                  )}
+                </div>
+              )}
+
+              <div className="flex justify-end space-x-3">
+                <button
+                  onClick={handleSubmit}
+                  className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                >
+                  Submit
+                </button>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </div>
   );

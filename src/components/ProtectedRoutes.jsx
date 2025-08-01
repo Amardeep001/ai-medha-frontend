@@ -1,12 +1,13 @@
-import React from "react";
-import { useDevAccess } from "../context/DevAccessContext";
-import DevPasswordGate from "../pages/DevPasswordGate";
-import { Outlet } from "react-router-dom";
+// components/ProtectedRoutes.jsx
+import { Navigate, Outlet } from "react-router-dom";
+import { isTokenValid } from "../utils/auth";
 
 const ProtectedRoutes = () => {
-  const { hasAccess } = useDevAccess();
-
-  return hasAccess ? <Outlet /> : <Outlet />;
+  const isLoggedIn = isTokenValid();
+  // {
+  //   /* <Navigate to="/auth/login" replace /> */
+  // }
+  return isLoggedIn ? <Outlet /> : <Outlet />;
 };
 
 export default ProtectedRoutes;

@@ -47,7 +47,7 @@ const serviceData = [
   },
   {
     id: "ai_vani",
-    name: "AI VANI - Virtual Assistant Framework",
+    name: "AI Vani - Virtual Assistant Framework",
     type: "Interaction",
     available: true,
     description:

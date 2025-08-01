@@ -9,6 +9,7 @@ import ResetPassword from "./pages/auth/ResetPassword";
 import VerifyAccount from "./pages/auth/VerifyAccount";
 import ForgotOtpVerification from "./pages/auth/ForgotOtpVerification";
 import DashboardLayout from "./layout/DashboardLayout";
+import AdminDashboardLayout from "./layout/AdminDashboardLayout";
 import OverviewPage from "./pages/OverviewPage";
 import AiNibhritDetailPage from "./pages/serviceDetailPages/AINibhritDetailPage";
 import AnalyticsDashboard from "./pages/AnalyticsPage";
@@ -32,6 +33,8 @@ import About from "./pages/About";
 import ExploreServices from "./pages/ExploreServices";
 import FirstTimeProfileForm from "./pages/OnBoardingForm";
 import AiNibhritDemo from "./pages/serviceDemoPages/AiNibhritDemo";
+import AdminLogin from "./pages/auth/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
 import { DevAccessProvider } from "./context/DevAccessContext";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 
@@ -41,21 +44,23 @@ function App() {
     <DevAccessProvider>
       <Router>
         <Routes>
+
+          <Route path="/" element={<Home />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/terms-of-services" element={<TermsOfService />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/explore-services" element={<ExploreServices />} />
+          <Route path="/auth/login" element={<Login />} />
+          <Route path="/auth/register" element={<Register />} />
+          <Route path="/auth/verify-account" element={<VerifyAccount />} />
+          <Route path="/auth/otp-verification" element={<OtpVerification />} />
+          <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+          <Route path="/auth/verify-otp" element={<ForgotOtpVerification />} />
+          <Route path="/auth/reset-password" element={<ResetPassword />} />
+          <Route path="/onboarding" element={<FirstTimeProfileForm />} />
           <Route element={<ProtectedRoutes />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/cookie-policy" element={<CookiePolicy />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/explore-services" element={<ExploreServices />} />
-            <Route path="auth/login" element={<Login />} />
-            <Route path="auth/register" element={<Register />} />
-            <Route path="auth/verify-account" element={<VerifyAccount />} />
-            <Route path="auth/otp-verification" element={<OtpVerification />} />
-            <Route path="auth/forgot-password" element={<ForgotPassword />} />
-            <Route path="auth/verify-otp" element={<ForgotOtpVerification />} />
-            <Route path="auth/reset-password" element={<ResetPassword />} />
-            <Route path="/onboarding" element={<FirstTimeProfileForm />} />
             <Route path="/" element={<DashboardLayout />}>
               <Route path="dashboard" element={<OverviewPage />} />
               <Route path="analytics" element={<AnalyticsDashboard />} />
@@ -73,9 +78,12 @@ function App() {
             <Route path="/services/ai_satyapikaanan" element={<AiSatyapikaananDetailPage />} />
             <Route path="/services/ai_anveshika" element={<AiAnveshikaDetail />} />
             <Route path="/services/ai_saransh" element={<AiSaranshDetailPage />} />
+            <Route path="/services/ai_nibhrit/demo" element={<AiNibhritDemo />} />
           </Route>
-          <Route path="/terms-of-services" element={<TermsOfService />} />
-          <Route path="/services/ai_nibhrit/demo" element={<AiNibhritDemo />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/" element={<AdminDashboardLayout />}>
+            <Route path="admin/dashboard" element={<AdminDashboard />} />
+          </Route>
         </Routes>
       </Router>
     </DevAccessProvider>

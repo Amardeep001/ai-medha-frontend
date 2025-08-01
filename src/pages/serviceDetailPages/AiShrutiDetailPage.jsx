@@ -85,10 +85,12 @@ const AiShrutiDetailPage = () => {
 
           <h2 className="text-3xl font-bold text-blue-900 mb-2">AI Shruti</h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
-            AI Shruti is an Automatic Speech Recognition (ASR) system designed
-            to convert spoken audio into text. It supports both real-time and
-            file transcription and also integrates translation services for
-            multilingual processing.
+            AI Shruti is a Speech to Text Service in Indic languages which
+            facilitates conversion of spoken audio to text for real-time and
+            offline transcription. By enabling accurate speech-to-text
+            conversion in multiple Indic languages, AI Shruti supports
+            accessibility, documentation, and multilingual communication across
+            institutional workflows.
           </p>
 
           <div className="bg-white rounded-lg shadow-md p-6">
@@ -96,10 +98,11 @@ const AiShrutiDetailPage = () => {
               About AI Shruti
             </h3>
             <p className="text-sm text-gray-700 leading-relaxed">
-              AI Shruti transforms speech into text using ASR technology,
-              enabling transcription for live or recorded audio. It supports
-              eight languages including English, Hindi, Bangla, Marathi, Tamil,
-              Telugu, Kannada, and Gujarati. The system also provides
+              <strong>AI Shruti</strong> transforms speech into text using
+              Automatic Speech Recognition (ASR) technology, enabling
+              transcription for live or recorded audio. It supports nine
+              languages including English, Hindi, Bengali, Marathi, Malayalam,
+              Tamil, Telugu, Kannada, and Gujarati. The system provides
               translation via ASR+NMT integration.
             </p>
 
@@ -115,12 +118,12 @@ const AiShrutiDetailPage = () => {
               </h4>
               <ul className="text-sm text-gray-700 space-y-2">
                 <li>
-                  <strong>Supported transcription formats:</strong> Real-time
-                  speech (WebSocket) and recorded audio (.wav files)
+                  <strong>Supported formats:</strong> Real-time speech
+                  (WebSocket) and recorded audio (.wav files)
                 </li>
                 <li>
-                  <strong>Average transcription response time:</strong> Approx.
-                  3 seconds per audio segment
+                  <strong>Average response time:</strong> Approx. 3 seconds per
+                  audio segment
                 </li>
                 <li>
                   <strong>Category:</strong> Automatic Speech Recognition (ASR)
@@ -129,8 +132,8 @@ const AiShrutiDetailPage = () => {
                   <strong>Sector:</strong> Speech-to-Text / Language AI
                 </li>
                 <li>
-                  <strong>Parliamentary Transcription:</strong> Real-time
-                  transcription and translation of Hindi speeches into English
+                  <strong>Streaming Transcription:</strong> Real-time
+                  transcription and translation
                 </li>
                 <li>
                   <strong>Offline File Transcription:</strong> Upload .wav files
@@ -139,14 +142,10 @@ const AiShrutiDetailPage = () => {
                 <li>
                   <strong>Performance Metric:</strong> Word Error Rate (WER)
                 </li>
-                <li>
-                  <strong>Workflow:</strong> Audio Input → Pre-processing → ASR
-                  Model Inference → Text Output (optional translation)
-                </li>
               </ul>
             </div>
 
-            <div className="mt-6">
+            {/* <div className="mt-6">
               <h4 className="text-md font-semibold text-blue-700 mb-2">
                 AI Shruti Rollout
               </h4>
@@ -167,7 +166,7 @@ const AiShrutiDetailPage = () => {
                 <li>District Courts</li>
                 <li>Central and State Ministries</li>
               </ul>
-            </div>
+            </div> */}
 
             <div className="mt-6">
               <h4 className="text-md font-semibold text-blue-700 mb-2">
@@ -178,17 +177,8 @@ const AiShrutiDetailPage = () => {
                   Text transcription for government and institutional
                   applications
                 </li>
-                <li>
-                  Speech-to-text, transliteration, and translation pipelines
-                </li>
-                <li>
-                  API-based deployment for integration into e-Governance
-                  applications
-                </li>
-                <li>
-                  Domain-specific transcription solutions for courts,
-                  ministries, and local bodies
-                </li>
+                <li>Webcasting Applications</li>
+                <li>Domain-specific transcription solutions</li>
               </ul>
             </div>
 
@@ -438,70 +428,68 @@ const AiShrutiDetailPage = () => {
                 JSON with time-aligned transcripts (for file-based input).
               </li>
               <li>
-                <strong>Delivery:</strong> Text is returned via API response or
-                displayed on connected systems for real-time use.
+                <strong>Delivery:</strong> Text is returned via API response for
+                display on connected systems.
               </li>
             </ul>
           </div>
 
-          <div className="mt-8 bg-white rounded-lg shadow-md p-8">
+          <div className="mt-8 mb-6 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               How to Use AI Shruti Service
             </h3>
             <ol className="list-decimal list-inside text-gray-700 text-sm space-y-2">
               <li>
-                <strong>Onboarding & Authorization:</strong> Submit the ASR
-                service request form along with a user request letter from your
-                department/ministry via NIC MeghRaj Cloud. Specify use case and
-                desired languages.
+                Fill out the <strong>User Service Request Form</strong> via AI
+                Medha Platform.
               </li>
               <li>
-                <strong>Middleware Setup:</strong> Deploy the ASR middleware
-                package provided by NIC on your department's VM. This includes
-                the executable, SSL certificates, and environment configuration.
+                Include project use case and desired languages and authorization
+                letter.
               </li>
               <li>
-                <strong>Service Connection:</strong> Middleware establishes a
-                secure WebSocket connection to the AI Shruti API endpoint.
+                Get <strong>RBAC authorization</strong> for API usage via AI
+                Medha Service Catalogue.
               </li>
               <li>
-                <strong>Language Configuration:</strong> Define the
-                transcription or translation language pair (e.g.,{" "}
-                <code>hi</code>, <code>en</code>, or <code>hi-en</code>) in the
-                socket initiation call.
+                The service is available over <strong>NICNET</strong>
               </li>
               <li>
-                <strong>Streaming & File Upload:</strong> Choose real-time
-                speech input via microphone (WebSocket) or batch processing via
-                file upload (.wav format, mono channel) using the POST API.
-              </li>
-              <li>
-                <strong>Transcription & Translation:</strong> Receive
-                transcribed output in JSON format with live updates for
-                streaming, or full text on file completion. Translation is
-                optionally included for hi-en or en-hi pairs.
-              </li>
-              <li>
-                <strong>Result Handling:</strong> Display, store, or use the
-                returned text for documentation, search, or automated processing
-                within your system.
+                <strong>Direct API Access:</strong>
+                <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
+                  <li>
+                    Ensure network access via NICNET or VPN to secure internal
+                    endpoints via FARPS request and submit IPs for whitelisting.
+                  </li>
+                  <li>
+                    <strong>Middleware Setup: </strong>Deploy the ASR middleware
+                    package provided by NIC on user VM. This includes the
+                    executable, SSL certificates, and environment configuration.
+                  </li>
+                  <li>
+                    <strong>Service Connection: </strong> Middleware establishes
+                    a secure WebSocket connection to the AI Shruti API endpoint.
+                  </li>
+                  <li>
+                    <strong>Language Configuration: </strong> Define the
+                    transcription or translation language pair (e.g., hi, en,
+                    or hi-en) in the socket initiation call.
+                  </li>
+                  <li>
+                    <strong>Streaming &amp; File Upload: </strong>Choose
+                    real-time speech input via microphone (WebSocket) or batch
+                    processing via file upload (.wav format, mono channel) using
+                    the POST API.
+                  </li>
+                  <li>
+                    <strong>Transcription &amp; Translation: </strong>Receive
+                    transcribed output in JSON format with live updates for
+                    streaming, or full text on file completion. Translation is
+                    optionally included for hi-en or en-hi pairs.
+                  </li>
+                </ul>
               </li>
             </ol>
-          </div>
-
-          <div className="mt-8 bg-white rounded-lg shadow-md p-6 mb-6">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Network Access Details
-            </h3>
-            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
-              <li>
-                <strong>Network Access:</strong> Available only via the NIC
-                Network
-              </li>
-              <li>
-                <strong>Access Control:</strong> Enforced via IP whitelisting
-              </li>
-            </ul>
           </div>
         </div>
       </div>

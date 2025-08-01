@@ -57,15 +57,10 @@ const AiVihangamDrishtiDetail = () => {
             AI Vihangam Drishti
           </h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
-            AI Vihangam Drishti is an initiative to create a digital map of
-            different infrastructure assets such as roads and buildings. Mapping
-            Infrastructure explores the potential of GIS for better visualizing
-            and managing the built environment of rural/abadi areas in India.
-            This service has potential applications in transportation, renewable
-            energy resource management and expansion, rural area development,
-            and so on. For this service, Survey of India provides drone imagery
-            (ORI) of villages and Abadi areas to the Ministry of Panchayati Raj
-            for facilitation on the Svamitva portal.
+            AI Vihangam Drishti is an initiative to help in planning and
+            disaster management. It helps create a digital map of different
+            infrastructure assets such as roads and buildings or map areas of
+            natural assets like forest cover or glacial lakes etc.
           </p>
 
           <div className="bg-white rounded-lg shadow-md p-8">
@@ -74,20 +69,43 @@ const AiVihangamDrishtiDetail = () => {
             </h3>
             <p className="text-sm text-gray-700 leading-relaxed">
               <strong>AI Vihangam Drishti</strong> is a computer vision-based
-              service that analyzes drone imagery of rural/abadi areas in India
-              to create a digital map of infrastructure assets such as roads and
-              rooftops. Leveraging a transformer-based segmentation model, it
-              classifies drone images into six different classes - RCC roof,
-              tiled roof, tin sheet roof, other buildups, metallic road, and
-              non-metallic road - and returns their latitude-longitude
-              coordinates in geoJSON format. The service is actively utilized by
-              platforms like <code>grammanchitra.gov.in</code> to assess rooftop
-              areas for solar panel installation and infrastructure planning.
+              service that analyses drone imagery/ satellite imagery and AI
+              models to create digital map of infrastructure assets such as
+              roads, forests and populated areas. Mapping the Infrastructure
+              explores the potential of GIS for better visualizing, planning and
+              managing the built environment of rural/abadi areas in India. This
+              service has potential applications in planning, renewable energy
+              resource management and expansion, rural area development, and so
+              on.
+            </p>
+
+            <p className="mt-2 text-sm text-gray-700 leading-relaxed">
+              Leveraging a transformer-based segmentation model, the model was
+              used to classify aerial images of villages built-up area into six
+              different classes - RCC roof, tiled roof, tin sheet roof, other
+              build-ups, metallic road, and non-metallic road - and return their
+              latitude-longitude coordinates in geoJSON format as well as
+              estimated area for solar panel installation on rooftops. The
+              service is actively utilized by platforms
+              like grammanchitra.gov.in to assess areas for infrastructure
+              development.
+            </p>
+
+            <p className="text-sm mt-2 text-gray-700 leading-relaxed">
+              Additionally, the methodology is adaptable for disaster risk
+              management, particularly in the context of glacial lake outburst
+              floods (GLOFs). Surface area dynamics of glacial lakes can be
+              monitored using multispectral satellite imagery (e.g. Sentinel-2,
+              Landsat-8), while complementary INSAR time series data to provide
+              insight into terrain deformation. Coupled with in-situ IoT sensor
+              networks for hydrometeorological variables integrated through AI
+              based forecasting can facilitate early warning system for
+              proactive hazard mitigation in vulnerable mountainous regions.
             </p>
 
             <div className="pt-4 text-sm text-gray-600 space-y-1">
               <p>
-                <strong>Last Security Audit Date:</strong> In process
+                <strong>Last Security Audit Date:</strong> 30.07.2025
               </p>
             </div>
 
@@ -114,22 +132,11 @@ const AiVihangamDrishtiDetail = () => {
                   <strong>Parameters:</strong> Learning rate, batch size, epoch
                 </li>
                 <li>
-                  <strong>Workflow:</strong> Drone Image Upload → Segmentation
-                  Model → GeoJSON Output with Class & Coordinates
+                  <strong>Workflow:</strong> Drone / Satellite Imagery Upload →
+                  Segmentation Model → GeoJSON Output with Class &amp;
+                  Coordinates
                 </li>
               </ul>
-            </div>
-
-            <div className="mt-6">
-              <h4 className="text-md font-semibold text-blue-700 mb-2">
-                AI Vihangam Drishti Rollout
-              </h4>
-              <p className="text-sm text-gray-700">
-                AI Vihangam Drishti is currently being used by{" "}
-                <code>grammanchitra.gov.in</code> to provide detailed geospatial
-                maps of RCC rooftops to aid solar panel installation initiatives
-                and infrastructure visualization across Indian villages.
-              </p>
             </div>
 
             <div className="mt-6">
@@ -145,14 +152,15 @@ const AiVihangamDrishtiDetail = () => {
                   areas
                 </li>
                 <li>
-                  Estimating slum distribution via “other buildups”
+                  Estimating slum distribution via “other build-ups”
                   classification
                 </li>
-                <li>Monitoring land encroachments using building top views</li>
+                <li>Monitoring land encroachments including forest areas</li>
                 <li>
                   Improving village road infrastructure through road surface
                   classification
                 </li>
+                <li>Monitoring glacial lakes for early warning systems etc.</li>
               </ul>
             </div>
 
@@ -161,10 +169,11 @@ const AiVihangamDrishtiDetail = () => {
                 Possible Users
               </h4>
               <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
-                <li>Ministry of Panchayati Raj</li>
+                <li>Ministries</li>
                 <li>Survey of India</li>
                 <li>Solar Energy Deployment Agencies</li>
                 <li>Local Governance and Urban Planning Bodies</li>
+                <li>Hilly terrain states</li>
               </ul>
             </div>
           </div>
@@ -256,14 +265,14 @@ const AiVihangamDrishtiDetail = () => {
             </h3>
 
             <p className="text-sm text-gray-700 mb-4">
-              Below is the step-by-step flow from uploading the drone image to
-              receiving the annotated output:
+              Below is the step-by-step flow from uploading the drone/ satellite
+              image to receiving the annotated output:
             </p>
 
             <ul className="list-decimal pl-5 text-sm text-gray-700 space-y-2">
               <li>
-                <strong>Input:</strong> User uploads a top-view drone image file
-                in TIF/tif/tiff format (max size 30 MB).
+                <strong>Input:</strong> User uploads a top-view drone image/
+                satellite imagery files in TIF/tif/tiff format (max size 30 MB).
               </li>
               <li>
                 <strong>Image Reception:</strong> Image is submitted via POST
@@ -274,10 +283,8 @@ const AiVihangamDrishtiDetail = () => {
                 align with model requirements and optimize segmentation.
               </li>
               <li>
-                <strong>Model Inference:</strong> A transformer-based
-                segmentation model analyzes the image and classifies it into 6
-                categories: RCC roof, tiled roof, tin sheet roof, other
-                buildups, metalled road, and un-metalled road.
+                <strong>Model Inference:</strong> AI based segmentation and
+                classification and area estimation
               </li>
               <li>
                 <strong>Geo-Annotation:</strong> Each predicted class region is
@@ -295,75 +302,66 @@ const AiVihangamDrishtiDetail = () => {
               </li>
             </ul>
           </div>
-          <div className="mt-8 bg-white rounded-lg shadow-md p-8">
+          <div className="mt-8 mb-6 bg-white rounded-lg shadow-md p-8">
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               How to Use AI Vihangam Drishti Service
             </h3>
             <ol className="list-decimal list-inside text-gray-700 text-sm space-y-2">
               <li>
-                <strong>Account Creation:</strong> Register on the{" "}
-                <strong>NAPIX</strong> platform to gain authorized access to AI
-                Vihangam Drishti services.
+                Fill out the <strong>User Service Request Form</strong> via AI
+                Medha Platform.
+              </li>
+              <li>Include project use case and authorization letter.</li>
+              <li>
+                Get <strong>RBAC authorization</strong> for API usage via AI
+                Medha Service Catalogue.
               </li>
               <li>
-                <strong>Credential Issuance:</strong> After approval, secure
-                credentials are issued for accessing the service via NIC
-                infrastructure.
+                Choose an integration Method:{" "}
+                <strong>National API Exchange (NAPIX) Integration</strong> or
+                <strong>Direct API Access</strong>.
               </li>
               <li>
-                <strong>Network Access:</strong> The service can be accessed
-                through both the <strong>NIC Network</strong> and{" "}
-                <strong>NAPIX</strong> environment, offering flexibility in
-                deployment.
+                The service is available over <strong>NICNET</strong> and also
+                accessible over public internet via <strong>NAPIX</strong>{" "}
+                platform.
               </li>
               <li>
-                <strong>Input Preparation:</strong> Upload satellite or drone
-                imagery in supported formats such as .tif or .tiff, keeping in
-                mind the file size guidelines.
+                <strong>NAPIX Integration :</strong>
+                <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
+                  <li>
+                    Register on the NAPIX platform for external/public access.
+                  </li>
+                  <li>Apply for geospatial API access.</li>
+                  <li>
+                    Upon approval, receive your <strong>Client ID</strong> and
+                    <strong>Client Secret</strong>.
+                  </li>
+                  <li>
+                    Use authorization Keys - client id and client secret for all
+                    POST requests to geospatial endpoints.
+                  </li>
+                </ul>
               </li>
               <li>
-                <strong>Service Invocation:</strong> Submit the imagery to the
-                AI model through a secure API request using standard
-                authentication and integration methods.
-              </li>
-              <li>
-                <strong>Result Handling:</strong> The system returns structured
-                geospatial outputs, typically in <strong>GeoJSON</strong>{" "}
-                format, highlighting features like rooftops, roads, or terrain
-                elements.
-              </li>
-              <li>
-                <strong>Use of Output:</strong> Leverage the processed output
-                for applications such as infrastructure planning, digital
-                mapping, solar panel suitability analysis, or village-level
-                development initiatives.
+                <strong>Direct API Access:</strong>
+                <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
+                  <li>
+                    Ensure network access via NICNET or VPN to secure internal
+                    endpoints via FARPS request and submit IPs for whitelisting.
+                  </li>
+                  <li>Use geospatial APIs.</li>
+                  <li>
+                    Submit satellite or drone imagery in supported formats such
+                    as .tif or .tiff, keeping in mind the file size guidelines.
+                  </li>
+                  <li>
+                    Receive geospatial content in GeoJSON  format for further
+                    use.
+                  </li>
+                </ul>
               </li>
             </ol>
-          </div>
-
-          <div className="mt-8 bg-white rounded-lg shadow-md p-8 mb-6">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Network Access Details
-            </h3>
-            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
-              <li>
-                <strong>Network Access:</strong> The service is accessible both
-                through the internal <strong>NIC Network</strong> and externally
-                via the <strong>NAPIX platform</strong>, ensuring secure and
-                controlled connectivity.
-              </li>
-              <li>
-                <strong>Access Simplicity via NAPIX:</strong> When accessed
-                through NAPIX, the API does not require additional firewall
-                configurations or port openings, making integration seamless for
-                external stakeholders.
-              </li>
-              <li>
-                <strong>Security Enforcement:</strong> Credential-based access
-                control is used to authenticate users and services, ensuring
-                secure interaction with the AI Vihangam Drishti API.
-              </li>
-            </ul>
           </div>
         </div>
       </div>

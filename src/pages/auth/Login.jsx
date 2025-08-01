@@ -125,7 +125,8 @@ const Login = () => {
           if (response.data?.status === "success") {
             console.log("Registration Success:", response.data);
             localStorage.setItem("email", emailOrPhone);
-            navigate("/auth/otp-verification");
+            localStorage.setItem("token", response.data.token);
+            navigate("/dashboard");
           } else {
             swal({
               title: "LOGIN FAILED",
@@ -305,6 +306,15 @@ const Login = () => {
               Login with Parichay
             </button>
           </form>
+
+          <p className="mt-4 text-center">
+            <Link
+              to="/admin/login"
+              className="text-base text-blue-800 hover:underline font-semibold"
+            >
+              Login as Admin
+            </Link>
+          </p>
 
           <p className="mt-4 text-center text-gray-700">
             Don't have an account?{" "}

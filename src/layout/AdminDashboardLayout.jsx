@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { FaTools, FaClipboardList, FaTimes } from "react-icons/fa";
-import Header from "../components/Header";
+import HeaderAdmin from "../components/HeaderAdmin";
 import Footer from "../components/Footer";
 import { Link, useLocation, Outlet } from "react-router-dom";
 
 const menuItems = [
-  { icon: <FaClipboardList />, title: "Overview", path: "/dashboard" },
-  { icon: <FaTools />, title: "Services", path: "/services" },
+  { icon: <FaClipboardList />, title: "Overview", path: "/admin/dashboard" },
+  //   { icon: <FaTools />, title: "Services", path: "/services" },
 ];
 
-const DashboardLayout = () => {
+const AdminDashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
 
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-gray-100 text-gray-900">
-      <Header />
+      <HeaderAdmin />
 
       <div className="overflow-auto flex flex-grow">
         {/* Sidebar */}
@@ -68,4 +68,4 @@ const DashboardLayout = () => {
   );
 };
 
-export default DashboardLayout;
+export default AdminDashboardLayout;

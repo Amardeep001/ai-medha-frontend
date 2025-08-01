@@ -6,12 +6,12 @@ import HeaderBeforeLogin from "../../components/HeaderBeforeLogin";
 
 const AdminLogin = () => {
   const navigate = useNavigate();
-  const [emailOrPhone, setEmailOrPhone] = useState("admin@aimedha.gov.in");
+  const [email, setEmail] = useState("admin@aimedha.gov.in");
   const [password, setPassword] = useState("Admin@1234");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = () => {
-    navigate("/dashboard");
+    navigate("/admin/dashboard");
   };
 
   return (
@@ -37,7 +37,7 @@ const AdminLogin = () => {
               </label>
               <input
                 type="email"
-                value={emailOrPhone}
+                value={email}
                 readOnly
                 className="w-full px-4 py-2 mt-2 border border-gray-300 bg-gray-100 rounded-md text-gray-600 cursor-not-allowed"
               />

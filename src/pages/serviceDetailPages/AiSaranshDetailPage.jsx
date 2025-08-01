@@ -145,10 +145,6 @@ const AiSaranshDetailPage = () => {
                 <li>Supreme Court, High Courts, and District Courts</li>
                 <li>Legal professionals and judicial administrative staff</li>
                 <li>Government officers requiring document analysis</li>
-                <li>
-                  Authorized users with RBAC access through AI Medha Service
-                  Catalogue
-                </li>
               </ul>
             </div>
           </div>

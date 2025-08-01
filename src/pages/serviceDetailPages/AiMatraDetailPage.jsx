@@ -395,6 +395,10 @@ const AiMatraDetailPage = () => {
               department for approval and onboarding.
             </li>
             <li>
+              Get <strong>RBAC authorization</strong> for API usage via AI Medha
+              Service Catalogue.
+            </li>
+            <li>
               Choose integration method: <strong>NAPIX </strong> (National API
               Exchange) Integration or <strong>Direct API Access</strong>.
             </li>

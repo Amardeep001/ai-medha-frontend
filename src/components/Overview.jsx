@@ -1,5 +1,5 @@
-import react, { useEffect } from "react";
-import { Pie, Bar, Line } from "react-chartjs-2";
+import React, { useState, useEffect } from "react";
+// import { Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -15,27 +15,12 @@ import {
   Legend,
   Filler,
 } from "chart.js";
-
-import {
-  FaRobot,
-  FaChartPie,
-  FaLanguage,
-  FaBalanceScale,
-  FaMicrophoneAlt,
-  FaEyeSlash,
-} from "react-icons/fa";
-import {
-  FaCheckCircle,
-  FaExclamationTriangle,
-  FaTimesCircle,
-} from "react-icons/fa";
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import { FaClipboardList, FaHourglassHalf } from "react-icons/fa";
-import AiNibhritImage from "../images/serviceCatalogueImages/ai_nibhrit_image.png";
-import AiPaniniImage from "../images/serviceCatalogueImages/ai_panini.png";
-import AiChatbotImage from "../images/serviceCatalogueImages/ai_chatbot_image.jpg";
-import AiShrutiImage from "../images/serviceCatalogueImages/ai_shruti.jpg";
-import AiMatraImage from "../images/serviceCatalogueImages/ai_matra.jpg";
-import AiParkhiImage from "../images/serviceCatalogueImages/ai_parkhi.webp";
+import axios from "axios";
+import { BASE_URL } from "../config/apiConfig";
+import PdfPreview from "./PdfPreview";
+import { formatDateTime } from "../utils/dateUtils";
 
 ChartJS.register(
   ArcElement,
@@ -52,197 +37,122 @@ ChartJS.register(
   Filler
 );
 
-const statusData = [
-  {
-    label: "Service Requests",
-    subtext: "Total Requests Submitted",
-    value: 0,
-    icon: <FaClipboardList className="text-yellow-600 text-2xl" />,
-    bg: "bg-yellow-100",
-  },
-  {
-    label: "Approved Services",
-    subtext: "Total Approved AI Services",
-    value: 0,
-    icon: <FaCheckCircle className="text-green-600 text-2xl" />,
-    bg: "bg-green-100",
-  },
-  {
-    label: "Pending Services",
-    subtext: "Under Review or In Progress",
-    value: 0,
-    icon: <FaHourglassHalf className="text-blue-600 text-2xl" />,
-    bg: "bg-blue-100",
-  },
-  {
-    label: "Rejected Services",
-    subtext: "Requests Not Approved",
-    value: 0,
-    icon: <FaTimesCircle className="text-red-600 text-2xl" />,
-    bg: "bg-red-100",
-  },
-];
-
 // Data for chart
-const topServices = [
-  { name: "AI Panini", value: 4523458 },
-  { name: "AI Nibhrit", value: 3120871 },
-  { name: "AI Vani", value: 2032794 },
-  { name: "AI Shruti", value: 1657320 },
-];
+// const topServices = [
+//   { name: "AI Panini", value: 4523458 },
+//   { name: "AI Nibhrit", value: 3120871 },
+//   { name: "AI Vani", value: 2032794 },
+//   { name: "AI Shruti", value: 1657320 },
+// ];
 
-const pieServiceData = {
-  labels: topServices.map((s) => s.name),
-  datasets: [
-    {
-      label: "Usage",
-      data: topServices.map((s) => s.value),
-      backgroundColor: ["#3B82F6", "#10B981", "#F59E0B", "#EF4444"],
-      borderColor: "#fff",
-      borderWidth: 2,
-    },
-  ],
-};
+// const pieServiceData = {
+//   labels: topServices.map((s) => s.name),
+//   datasets: [
+//     {
+//       label: "Usage",
+//       data: topServices.map((s) => s.value),
+//       backgroundColor: ["#3B82F6", "#10B981", "#F59E0B", "#EF4444"],
+//       borderColor: "#fff",
+//       borderWidth: 2,
+//     },
+//   ],
+// };
 
 const Overview = () => {
-  const services = [
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedRequest, setSelectedRequest] = useState(null);
+  const [requests, setRequests] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [statusCounts, setStatusCounts] = useState({
+    total: 0,
+    approved: 0,
+    pending: 0,
+    rejected: 0,
+  });
+
+  const statusData = [
     {
-      id: "ai_nibhrit",
-      name: "AI Nibhrit - PII Masking Solution",
-      type: "Data Privacy",
-      available: true,
-      description:
-        "Smart AI for masking Aadhaar, PAN, fingerprints, and QR codes in digital documents.",
-      usage: "Securely share documents with reusable PII-masked outputs.",
-      icon: <FaEyeSlash className="text-blue-700 text-4xl" />,
-      image: AiNibhritImage,
+      label: "Service Requests",
+      subtext: "Total Requests Submitted",
+      value: statusCounts.total,
+      icon: <FaClipboardList className="text-yellow-600 text-2xl" />,
+      bg: "bg-yellow-100",
     },
     {
-      id: "ai_panini",
-      name: "AI Panini - Language Translation Service",
-      type: "Language AI",
-      available: true,
-      description:
-        "Translate between Indian languages and English using neural machine translation.",
-      usage: "Enables translation across 11 Indian languages.",
-      icon: <FaLanguage className="text-blue-700 text-4xl" />, // You can choose another icon if preferred
-      image: AiPaniniImage, // Replace with real image when available
+      label: "Approved Services",
+      subtext: "Total Approved AI Services",
+      value: statusCounts.approved,
+      icon: <FaCheckCircle className="text-green-600 text-2xl" />,
+      bg: "bg-green-100",
     },
     {
-      id: "ai_vani",
-      name: "AI VANI - Virtual Assistant Framework",
-      type: "Interaction",
-      available: true,
-      description:
-        "NIC’s virtual assistant framework used across multiple government portals for real-time query.",
-      usage:
-        "Deployed across portals like eAwas, eVigilance, Confonet, ikhedut, Sarathi RTO, and more to assist citizens 24/7.",
-      icon: <FaRobot className="text-blue-700 text-4xl" />,
-      image: AiChatbotImage, // Replace with actual image import
+      label: "Pending Services",
+      subtext: "Under Review or In Progress",
+      value: statusCounts.pending,
+      icon: <FaHourglassHalf className="text-blue-600 text-2xl" />,
+      bg: "bg-blue-100",
     },
     {
-      id: "ai_shruti",
-      name: "AI Shruti - Speech Recognition",
-      type: "Language AI",
-      available: true,
-      description:
-        "Automatic speech-to-text transcription for Indian languages.",
-      usage:
-        "Converts spoken input into text to enable voice-based interactions.",
-      icon: <FaMicrophoneAlt className="text-blue-700 text-4xl" />,
-      image: AiShrutiImage, // replace this with the actual imported image or URL
-    },
-    {
-      id: "ai_matra",
-      name: "AI Matra - Transliteration Service",
-      type: "Monitoring",
-      available: true,
-      description: "Framework for evaluating and benchmarking AI models.",
-      usage:
-        "Monitors model performance for fairness, accuracy, and reliability.",
-      icon: <FaBalanceScale className="text-blue-700 text-4xl" />, // or FaChartLine for performance
-      image: AiMatraImage, // replace this with the actual imported image or URL
-    },
-    {
-      id: "ai_parkhi",
-      name: "AI Parkhi - Image Quality Assessment",
-      type: "Analytics",
-      available: true,
-      description:
-        "AI-based system to automatically classify uploaded images as good or bad quality.",
-      usage:
-        "Evaluates image/document clarity using deep learning to improve decision-making workflows.",
-      icon: <FaChartPie className="text-blue-700 text-4xl" />,
-      image: AiParkhiImage,
+      label: "Rejected Services",
+      subtext: "Requests Not Approved",
+      value: statusCounts.rejected,
+      icon: <FaTimesCircle className="text-red-600 text-2xl" />,
+      bg: "bg-red-100",
     },
   ];
 
-  const logs = [
-    {
-      type: "success",
-      message: "AI Parkhi processed 8K images.",
-      time: "9:15 AM",
-    },
-    {
-      type: "warning",
-      message: "Shruti audio delay detected.",
-      time: "9:50 AM",
-    },
-    { type: "error", message: "VANI response timeout.", time: "10:10 AM" },
-    {
-      type: "success",
-      message: "Panini translation improved.",
-      time: "11:00 AM",
-    },
-  ];
+  const handleView = (req) => {
+    setSelectedRequest(req);
+    setIsModalOpen(true);
+  };
 
-  const getLogIcon = (type) => {
-    switch (type) {
-      case "success":
-        return <FaCheckCircle className="text-green-500 text-lg" />;
-      case "warning":
-        return <FaExclamationTriangle className="text-yellow-500 text-lg" />;
-      case "error":
-        return <FaTimesCircle className="text-red-500 text-lg" />;
-      default:
-        return null;
+  const handleAbort = (name) => {
+    // Replace with actual API logic if needed
+    const confirmed = window.confirm(`Are you sure you want to abort ${name}?`);
+    if (confirmed) {
+      console.log("Aborted:", name);
     }
   };
 
-  const pieData = {
-    labels: ["Model Management", "Chatbot", "Asset Catalogue", "Governance"],
-    datasets: [
-      {
-        data: [40, 25, 20, 15],
-        backgroundColor: ["#1E90FF", "#32CD32", "#FFD700", "#FF6347"],
-      },
-    ],
-  };
+  useEffect(() => {
+    const fetchRequests = async () => {
+      try {
+        const userId = localStorage.getItem("userId");
+        const response = await axios.get(
+          `${BASE_URL}/api/requests?userId=${userId}`
+        );
+        const data = response.data.serviceRequestList || [];
 
-  const barData = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May"],
-    datasets: [
-      {
-        label: "Service Usage",
-        data: [10, 30, 20, 50, 40],
-        backgroundColor: "#4F46E5",
-      },
-    ],
-  };
+        setRequests(data);
 
-  const lineData = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May"],
-    datasets: [
-      {
-        label: "Model Performance",
-        data: [85, 80, 82, 88, 90],
-        borderColor: "#FF4500",
-        backgroundColor: "rgba(255, 69, 0, 0.2)",
-        fill: true,
-        tension: 0.4,
-      },
-    ],
-  };
+        // Count statuses
+        const approved = data.filter((r) => r.status === "Approved").length;
+        const pending = data.filter((r) => r.status === "Pending").length;
+        const rejected = data.filter((r) => r.status === "Rejected").length;
+
+        setStatusCounts({
+          total: data.length,
+          approved,
+          pending,
+          rejected,
+        });
+      } catch (error) {
+        console.error("Error fetching requests:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRequests();
+  }, []);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isModalOpen]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -280,14 +190,150 @@ const Overview = () => {
           ))}
         </div>
 
-        {/* Top Performing Services */}
+        {/* Service Requests Table */}
         <div className="mt-10">
+          <h3 className="text-2xl font-semibold text-blue-900 mb-4 border-b pb-2">
+            Your Service Requests
+          </h3>
+
+          <div className="overflow-x-auto bg-white rounded-lg shadow-md">
+            <table className="min-w-full divide-y divide-gray-200 text-sm">
+              <thead className="bg-gray-100 text-gray-600 font-medium">
+                <tr>
+                  <th className="px-4 py-3 text-left">Service Name</th>
+                  <th className="px-4 py-3 text-left">Status</th>
+                  <th className="px-4 py-3 text-left">Created At</th>
+                  <th className="px-4 py-3 text-left">Updated At</th>
+                  <th className="px-4 py-3 text-left">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-100">
+                {loading ? (
+                  <tr>
+                    <td colSpan={5} className="text-center py-4 text-gray-500">
+                      Loading...
+                    </td>
+                  </tr>
+                ) : requests.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} className="text-center py-4 text-gray-500">
+                      No requests found.
+                    </td>
+                  </tr>
+                ) : (
+                  requests.map((req, i) => (
+                    <tr key={i}>
+                      <td className="px-4 py-3 text-gray-800">
+                        {req.serviceName}
+                      </td>
+                      <td className="px-4 py-3">
+                        <span
+                          className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                            req.status === "Approved"
+                              ? "bg-green-100 text-green-700"
+                              : req.status === "Pending"
+                              ? "bg-yellow-100 text-yellow-700"
+                              : "bg-red-100 text-red-700"
+                          }`}
+                        >
+                          {req.status}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-gray-600">
+                        {formatDateTime(req.createdAt)}
+                      </td>
+                      <td className="px-4 py-3 text-gray-600">
+                        {req.updatedAt ? formatDateTime(req.updatedAt) : "-"}
+                      </td>
+                      <td className="px-4 py-3 text-left space-x-2">
+                        <button
+                          onClick={() => handleView(req)}
+                          className="px-3 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700"
+                        >
+                          View
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {isModalOpen && selectedRequest && (
+          <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center overflow-auto">
+            <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg relative">
+              <h3 className="text-lg font-semibold text-blue-900 mb-4">
+                Uploaded File
+              </h3>
+
+              {/* File Preview */}
+              <div className="mb-4">
+                <PdfPreview fileUrl={selectedRequest.pdfUrl} />
+              </div>
+
+              {/* Status */}
+              <div className="mb-4">
+                <span className="text-sm font-medium text-gray-700">
+                  Current Status:
+                </span>{" "}
+                <span
+                  className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                    selectedRequest.status === "Approved"
+                      ? "bg-green-100 text-green-700"
+                      : selectedRequest.status === "Pending"
+                      ? "bg-yellow-100 text-yellow-700"
+                      : "bg-red-100 text-red-700"
+                  }`}
+                >
+                  {selectedRequest.status}
+                </span>
+              </div>
+
+              {/* Admin Remarks for Rejected */}
+              {selectedRequest.status === "Rejected" &&
+                selectedRequest.remarks && (
+                  <div className="mb-4">
+                    <p className="text-sm text-red-700 font-medium">
+                      Remarks from Admin:
+                    </p>
+                    <p className="mt-1 text-sm text-gray-800 bg-red-50 border border-red-300 p-2 rounded">
+                      {selectedRequest.remarks}
+                    </p>
+                  </div>
+                )}
+
+              {/* Abort Button */}
+              {selectedRequest.status === "Pending" && (
+                <button
+                  onClick={() => {
+                    handleAbort(selectedRequest.name);
+                    setIsModalOpen(false);
+                  }}
+                  className="mb-4 w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
+                >
+                  Abort Request
+                </button>
+              )}
+
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="w-full bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Top Performing Services */}
+        {/* <div className="mt-10">
           <h3 className="text-2xl font-semibold text-blue-900 mb-4 border-b pb-2">
             Top Performing Services
           </h3>
 
           <div className="flex flex-col lg:flex-row gap-6">
-            {/* Pie Chart */}
             <div className="w-full lg:w-1/2 bg-white shadow-md rounded-lg p-4 flex justify-center items-center">
               <div className="w-64 h-64">
                 <Pie
@@ -296,8 +342,6 @@ const Overview = () => {
                 />
               </div>
             </div>
-
-            {/* Table */}
             <div className="w-full lg:w-1/2 bg-white shadow-md rounded-lg overflow-hidden">
               <table className="min-w-full divide-y divide-gray-200 text-sm">
                 <thead className="bg-gray-100 text-gray-600 font-medium">
@@ -321,9 +365,9 @@ const Overview = () => {
               </table>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className="mt-6 bg-gray-100 p-6 rounded-lg shadow-md">
+        {/* <div className="mt-6 bg-gray-100 p-6 rounded-lg shadow-md">
           <h3 className="text-xl font-semibold text-blue-900 mb-4">
             Traffic & Usage Insights
           </h3>
@@ -336,52 +380,9 @@ const Overview = () => {
             <strong>AI VANI</strong> are gaining momentum. The platform ensures{" "}
             <strong>99.9% uptime</strong> for reliable performance.
           </p>
-        </div>
-
-        {/* Pie Chart Section */}
-        {/* <h3 className="text-2xl font-semibold text-blue-900 mt-6 border-b pb-2">
-          Service Distribution
-        </h3>
-        <div className="flex flex-col flex-wrap md:flex-row xl:flex-nowrap gap-6 mt-6">
-          <div className="w-full md:w-1/3 flex justify-center">
-            <div className="w-full md:w-64 h-64">
-              <Pie data={pieData} options={{ maintainAspectRatio: false }} />
-            </div>
-          </div>
-          <div className="w-full md:w-1/3 flex justify-center">
-            <div className="w-full md:w-72 h-64">
-              <Bar data={barData} options={{ maintainAspectRatio: false }} />
-            </div>
-          </div>
-          <div className="w-full md:w-1/3 flex justify-center">
-            <div className="w-full md:w-72 h-64">
-              <Line data={lineData} options={{ maintainAspectRatio: false }} />
-            </div>
-          </div>
         </div> */}
 
-        {/* <div className="mt-6 bg-gray-100 p-6 rounded-lg shadow-md">
-          <h3 className="text-xl font-semibold text-blue-900 mb-4">
-            Traffic & Usage Insights
-          </h3>
-          <p className="text-gray-700 text-base leading-relaxed">
-            AI Medha has witnessed a steady rise in adoption across central and
-            state government departments. With over{" "}
-            <strong>10 million+ API hits</strong> in the last year, services
-            like <strong>AI Panini</strong> and <strong>AI Nibhrit</strong>{" "}
-            account for nearly 60% of total usage. Peak traffic is observed
-            during working hours (10 AM–5 PM IST), primarily for language
-            translation, document anonymization, and virtual assistant
-            deployments. Real-time systems such as <strong>AI Shruti</strong>{" "}
-            and <strong>AI VANI</strong> show growing traction with increasing
-            demand for audio-based interaction models. The platform ensures{" "}
-            <strong>99.9% uptime</strong> and handles concurrent user requests
-            through a secure, scalable infrastructure powered by NAPIX.
-          </p>
-        </div> */}
-
-        {/* Live System Health */}
-        <div className="mt-10">
+        {/* <div className="mt-10">
           <h3 className="text-2xl font-semibold text-blue-900 mb-4 border-b pb-2">
             System Health & Uptime
           </h3>
@@ -390,67 +391,11 @@ const Overview = () => {
               <p className="text-sm text-gray-500">System Uptime</p>
               <p className="text-3xl font-bold text-green-600">99.95%</p>
             </div>
-            {/* <div className="bg-white shadow-md p-6 rounded-lg">
-              <p className="text-sm text-gray-500">Last Downtime</p>
-              <p className="text-3xl font-bold text-red-600">12 Mar 2025</p>
-            </div> */}
             <div className="bg-white shadow-md p-6 rounded-lg">
               <p className="text-sm text-gray-500">Avg API Latency</p>
               <p className="text-3xl font-bold text-blue-600">850ms</p>
             </div>
           </div>
-        </div>
-
-        {/* Services Section */}
-        {/* <h3 className="mt-6 text-2xl font-semibold text-blue-900 border-b pb-3">
-          Available Services
-        </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4">
-          {services.map((service) => (
-            <div
-              key={service.id}
-              className="p-6 border rounded-lg shadow-md bg-gradient-to-r from-blue-50 to-blue-100 hover:shadow-lg transition hover:scale-105"
-            >
-              <div className="flex items-center space-x-4">
-                {service.icon}
-                <h4 className="text-lg font-semibold text-blue-900">
-                  {service.name}
-                </h4>
-              </div>
-              <p className="text-gray-600 mt-2">{service.description}</p>
-              <p className="text-gray-700 mt-2 font-medium">
-                Usage: {service.usage}
-              </p>
-              <img
-                src={service.image}
-                alt={service.name}
-                className="mt-4 rounded-lg w-full h-40 object-cover"
-              />
-            </div>
-          ))}
-        </div> */}
-
-        {/* Logs Section */}
-        {/* <h3 className="text-2xl font-semibold text-blue-900 mt-6 border-b pb-2">
-          Recent Activity Logs
-        </h3>
-        <div className="bg-gray-300 p-4 rounded-lg shadow-md max-h-80 overflow-auto">
-          {logs.map((log, index) => (
-            <div
-              key={index}
-              className={`flex items-center gap-4 p-3 rounded-lg mb-2 ${
-                index % 2 === 0 ? "bg-gray-100" : "bg-white"
-              }`}
-            >
-              {getLogIcon(log.type)}
-              <div>
-                <p className="text-gray-800 text-sm font-medium">
-                  {log.message}
-                </p>
-                <p className="text-gray-500 text-xs">{log.time}</p>
-              </div>
-            </div>
-          ))}
         </div> */}
       </div>
     </div>
