@@ -124,7 +124,6 @@ const Login = () => {
           });
           if (response.data?.status === "success") {
             console.log("Registration Success:", response.data);
-            localStorage.setItem("email", emailOrPhone);
             localStorage.setItem("token", response.data.token);
             navigate("/dashboard");
           } else {

@@ -1,43 +1,129 @@
 import React, { useState, useEffect } from "react";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import { FaClipboardList, FaHourglassHalf } from "react-icons/fa";
-
-const statusData = [
-  {
-    label: "Service Requests",
-    subtext: "Total Requests Submitted",
-    value: 0,
-    icon: <FaClipboardList className="text-yellow-600 text-2xl" />,
-    bg: "bg-yellow-100",
-  },
-  {
-    label: "Approved Services",
-    subtext: "Total Approved AI Services",
-    value: 0,
-    icon: <FaCheckCircle className="text-green-600 text-2xl" />,
-    bg: "bg-green-100",
-  },
-  {
-    label: "Pending Services",
-    subtext: "Under Review or In Progress",
-    value: 0,
-    icon: <FaHourglassHalf className="text-blue-600 text-2xl" />,
-    bg: "bg-blue-100",
-  },
-  {
-    label: "Rejected Services",
-    subtext: "Requests Not Approved",
-    value: 0,
-    icon: <FaTimesCircle className="text-red-600 text-2xl" />,
-    bg: "bg-red-100",
-  },
-];
+import axios from "axios";
+import { BASE_URL } from "../config/apiConfig";
+import { formatDateTime } from "../utils/dateUtils";
+import ReviewRequestModal from "../components/modals/ReviewRequestModal";
+import swal from "sweetalert";
 
 const AdminDashboard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedRequest, setSelectedRequest] = useState(null);
   const [adminAction, setAdminAction] = useState(""); // 'approved' or 'rejected'
   const [remarks, setRemarks] = useState("");
+  const [requests, setRequests] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [statusCounts, setStatusCounts] = useState({
+    total: 0,
+    approved: 0,
+    pending: 0,
+    rejected: 0,
+  });
+
+  const statusData = [
+    {
+      label: "Service Requests",
+      subtext: "Total Requests Submitted",
+      value: statusCounts.total,
+      icon: <FaClipboardList className="text-yellow-600 text-2xl" />,
+      bg: "bg-yellow-100",
+    },
+    {
+      label: "approved Services",
+      subtext: "Total approved AI Services",
+      value: statusCounts.approved,
+      icon: <FaCheckCircle className="text-green-600 text-2xl" />,
+      bg: "bg-green-100",
+    },
+    {
+      label: "pending Services",
+      subtext: "Under Review or In Progress",
+      value: statusCounts.pending,
+      icon: <FaHourglassHalf className="text-blue-600 text-2xl" />,
+      bg: "bg-blue-100",
+    },
+    {
+      label: "rejected Services",
+      subtext: "Requests Not approved",
+      value: statusCounts.rejected,
+      icon: <FaTimesCircle className="text-red-600 text-2xl" />,
+      bg: "bg-red-100",
+    },
+  ];
+
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.put(
+        `http://localhost:3001/api/requests/${selectedRequest.id}`,
+        {
+          status: adminAction,
+          remarks,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        swal({
+          title: "Success!",
+          text: `Request has been ${
+            adminAction === "approved" ? "approved" : "rejected"
+          }.`,
+          icon: "success",
+          button: "OK",
+        }).then(() => {
+          setIsModalOpen(false);
+        });
+      }
+
+      // Refresh the request list after update
+      fetchRequests(); // make sure this is defined in your scope
+    } catch (error) {
+      console.error("Error updating request:", error);
+      swal({
+        title: "Error!",
+        text: "Something went wrong while updating the request.",
+        icon: "error",
+        button: "OK",
+      });
+    } finally {
+      setAdminAction("");
+      setRemarks("");
+    }
+  };
+
+  const fetchRequests = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/api/requests`);
+      const list = response.data.serviceRequestList || [];
+
+      // Compute counts
+      const counts = {
+        total: list.length,
+        approved: list.filter((r) => r.status.toLowerCase() === "approved")
+          .length,
+        pending: list.filter((r) => r.status.toLowerCase() === "pending")
+          .length,
+        rejected: list.filter((r) => r.status.toLowerCase() === "rejected")
+          .length,
+      };
+
+      setRequests(list);
+      setStatusCounts(counts);
+    } catch (error) {
+      console.error("Error fetching service requests:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchRequests();
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -48,8 +134,9 @@ const AdminDashboard = () => {
       const status = selectedRequest.status.toLowerCase();
       if (status === "approved" || status === "rejected") {
         setAdminAction(status);
+        setRemarks(selectedRequest.remarks);
       } else {
-        setAdminAction(""); // For "Pending" or unknown status
+        setAdminAction(""); // For "pending" or unknown status
       }
     }
   }, [selectedRequest]);
@@ -105,58 +192,46 @@ const AdminDashboard = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-100">
-                {[
-                  {
-                    name: "AI Panini",
-                    status: "Pending",
-                    userName: "Amit Sharma",
-                    userEmail: "amit.sharma@example.com",
-                    createdAt: "2025-07-28 10:12 AM",
-                    updatedAt: null,
-                    fileUrl:
-                      "https://userdatav1.blob.core.windows.net/dashboardblob/Terms_and_Conditions_Bhashini.pdf",
-                  },
-                  {
-                    name: "AI Shruti",
-                    status: "Approved",
-                    userName: "Priya Desai",
-                    userEmail: "priya.desai@example.com",
-                    createdAt: "2025-07-26 03:45 PM",
-                    updatedAt: "2025-07-27 09:10 AM",
-                    fileUrl:
-                      "https://userdatav1.blob.core.windows.net/dashboardblob/Terms_and_Conditions_Bhashini.pdf",
-                  },
-                  {
-                    name: "AI VANI",
-                    status: "Rejected",
-                    userName: "Ravi Verma",
-                    userEmail: "ravi.verma@example.com",
-                    createdAt: "2025-07-25 01:30 PM",
-                    updatedAt: "2025-07-25 06:40 PM",
-                    fileUrl:
-                      "https://userdatav1.blob.core.windows.net/dashboardblob/Terms_and_Conditions_Bhashini.pdf",
-                  },
-                ].map((req, i) => (
+                {loading && (
+                  <tr>
+                    <td colSpan={7} className="text-center py-4 text-gray-500">
+                      Loading...
+                    </td>
+                  </tr>
+                )}
+                {requests.length === 0 && !loading && (
+                  <tr>
+                    <td colSpan={7} className="text-center py-4 text-gray-500">
+                      No requests found.
+                    </td>
+                  </tr>
+                )}
+                {requests.map((req, i) => (
                   <tr key={i}>
-                    <td className="px-4 py-3 text-gray-800">{req.name}</td>
+                    <td className="px-4 py-3 text-gray-800">
+                      {req.serviceName}
+                    </td>
                     <td className="px-4 py-3">
                       <span
                         className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                          req.status === "Approved"
+                          req.status === "approved"
                             ? "bg-green-100 text-green-700"
-                            : req.status === "Pending"
+                            : req.status === "pending"
                             ? "bg-yellow-100 text-yellow-700"
                             : "bg-red-100 text-red-700"
                         }`}
                       >
-                        {req.status}
+                        {req.status.charAt(0).toUpperCase() +
+                          req.status.slice(1)}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-gray-700">{req.userName}</td>
-                    <td className="px-4 py-3 text-blue-700">{req.userEmail}</td>
-                    <td className="px-4 py-3 text-gray-600">{req.createdAt}</td>
+                    <td className="px-4 py-3 text-gray-700">{req.name}</td>
+                    <td className="px-4 py-3 text-blue-700">{req.email}</td>
                     <td className="px-4 py-3 text-gray-600">
-                      {req.updatedAt || "-"}
+                      {formatDateTime(req.createdAt)}
+                    </td>
+                    <td className="px-4 py-3 text-gray-600">
+                      {req.updatedAt ? formatDateTime(req.updatedAt) : "-"}
                     </td>
                     <td className="px-4 py-3 text-left space-x-2">
                       <button
@@ -176,114 +251,16 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        {isModalOpen && selectedRequest && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center overflow-y-auto">
-            <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-lg relative">
-              <h3 className="text-xl font-semibold mb-4 text-blue-800">
-                Review Request: {selectedRequest.name}
-              </h3>
-
-              {/* File Preview */}
-              <div className="mb-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
-                  Uploaded Form Preview:
-                </p>
-                {selectedRequest.fileUrl?.endsWith(".pdf") ? (
-                  <embed
-                    src={selectedRequest.fileUrl}
-                    type="application/pdf"
-                    className="w-full h-64 border"
-                  />
-                ) : (
-                  <img
-                    src={selectedRequest.fileUrl}
-                    alt="Uploaded"
-                    className="w-full max-h-64 object-contain border"
-                  />
-                )}
-              </div>
-
-              {/* Action Selection */}
-              <div className="mb-4 space-y-2">
-                <label className="block text-sm font-medium text-gray-700">
-                  Action:
-                </label>
-                <div className="flex gap-4">
-                  <label className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      name="action"
-                      value="approved"
-                      checked={adminAction === "approved"}
-                      onChange={() => setAdminAction("approved")}
-                    />
-                    Approve
-                  </label>
-                  <label className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      name="action"
-                      value="rejected"
-                      checked={adminAction === "rejected"}
-                      onChange={() => setAdminAction("rejected")}
-                    />
-                    Reject
-                  </label>
-                </div>
-              </div>
-
-              {/* Remarks (if rejected) */}
-              {adminAction === "rejected" && (
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Remarks (required):
-                  </label>
-                  <textarea
-                    value={remarks}
-                    onChange={(e) => setRemarks(e.target.value)}
-                    className="w-full border rounded p-2"
-                    rows={3}
-                    required
-                  />
-                </div>
-              )}
-
-              {/* Buttons */}
-              <div className="flex justify-end gap-3">
-                <button
-                  onClick={() => {
-                    // Call your API logic here (approve/reject)
-                    console.log({
-                      service: selectedRequest.name,
-                      action: adminAction,
-                      remarks,
-                    });
-
-                    setIsModalOpen(false);
-                    setAdminAction("");
-                    setRemarks("");
-                  }}
-                  disabled={
-                    !adminAction || (adminAction === "rejected" && !remarks)
-                  }
-                  className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50"
-                >
-                  Submit
-                </button>
-                <button
-                  onClick={() => {
-                    setIsModalOpen(false);
-                    setAdminAction("");
-                    setRemarks("");
-                  }}
-                  className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500"
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+        <ReviewRequestModal
+          isOpen={isModalOpen}
+          selectedRequest={selectedRequest}
+          adminAction={adminAction}
+          remarks={remarks}
+          setAdminAction={setAdminAction}
+          setRemarks={setRemarks}
+          setIsModalOpen={setIsModalOpen}
+          onSubmit={handleSubmit}
+        />
       </div>
     </div>
   );

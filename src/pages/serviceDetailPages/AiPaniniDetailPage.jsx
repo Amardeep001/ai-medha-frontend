@@ -120,50 +120,43 @@ const AiPaniniDetailPage = () => {
     if (!selectedFile)
       return alert("Please upload the signed user service request form first");
 
-    swal({
-      title: "Success!",
-      text: "Form submitted successfully.",
-      icon: "success",
-      button: "OK",
-    });
+    try {
+      const formData = new FormData();
+      formData.append("userId", localStorage.getItem("userId")); // or retrieve as needed
+      formData.append("serviceName", "AI Panini");
+      formData.append("pdfFile", selectedFile); // selectedFile should be a File object from input
 
-    // try {
-    //   const formData = new FormData();
-    //   formData.append("userId", localStorage.getItem("userId")); // or retrieve as needed
-    //   formData.append("serviceName", "AI Panini");
-    //   formData.append("pdfFile", selectedFile); // selectedFile should be a File object from input
+      const response = await axios.post(
+        `${BASE_URL}/api/requests/submit`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
-    //   const response = await axios.post(
-    //     `${BASE_URL}/api/requests/submit`,
-    //     formData,
-    //     {
-    //       headers: {
-    //         "Content-Type": "multipart/form-data",
-    //       },
-    //     }
-    //   );
-
-    //   console.log("Upload success:", response.data);
-    //   if (response.data?.status === "success") {
-    //     swal({
-    //       title: "Success!",
-    //       text: "Form submitted successfully.",
-    //       icon: "success",
-    //       button: "OK",
-    //     }).then(() => {
-    //       setIsModalOpen(false);
-    //       setSelectedFile(null);
-    //     });
-    //   }
-    // } catch (error) {
-    //   console.error("Upload failed:", error);
-    //   swal({
-    //     title: "Error!",
-    //     text: "Something went wrong while submitting the form.",
-    //     icon: "error",
-    //     button: "OK",
-    //   });
-    // }
+      console.log("Upload success:", response.data);
+      if (response.data?.status === "success") {
+        swal({
+          title: "Success!",
+          text: "Form submitted successfully.",
+          icon: "success",
+          button: "OK",
+        }).then(() => {
+          setIsModalOpen(false);
+          setSelectedFile(null);
+        });
+      }
+    } catch (error) {
+      console.error("Upload failed:", error);
+      swal({
+        title: "Error!",
+        text: "Something went wrong while submitting the form.",
+        icon: "error",
+        button: "OK",
+      });
+    }
   };
 
   useEffect(() => {

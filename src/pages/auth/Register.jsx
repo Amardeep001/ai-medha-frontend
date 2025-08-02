@@ -109,12 +109,17 @@ const Register = () => {
 
         console.log("Registration Success:", response.data);
         if (response.data?.status === "success") {
-          localStorage.setItem("email", formData.email);
-          localStorage.setItem("phone", formData.phone);
           localStorage.setItem("firstName", formData.firstName);
           localStorage.setItem("lastName", formData.lastName);
           localStorage.setItem("orgType", formData.orgType);
-          navigate("/auth/verify-account");
+          swal({
+            title: "Success!",
+            text: "User registered successfully.",
+            icon: "success",
+            button: "OK",
+          }).then(() => {
+            navigate("/auth/login");
+          });
         } else {
           swal({
             title: "Invalid Email",
