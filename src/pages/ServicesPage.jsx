@@ -94,7 +94,7 @@ const serviceData = [
   },
   {
     id: "ai_vihangam_drishti",
-    name: "AI VihangamDrishti",
+    name: "AI Vihangam Drishti",
     type: "Geospatial Intelligence",
     available: true,
     description:

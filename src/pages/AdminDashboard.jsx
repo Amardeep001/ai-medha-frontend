@@ -55,7 +55,7 @@ const AdminDashboard = () => {
   const handleSubmit = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:3001/api/requests/${selectedRequest.id}`,
+        `${BASE_URL}/api/requests/${selectedRequest.id}`,
         {
           status: adminAction,
           remarks,

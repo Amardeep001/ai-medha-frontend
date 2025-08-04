@@ -37,12 +37,11 @@ const AiSaranshDetailPage = () => {
               AI Saransh is a comprehensive text summarization service that
               transforms large documents into concise summaries using advanced
               extractive and abstractive techniques. Available over{" "}
-              <strong>NICNET </strong>
-              (National Informatics Centre network) and the{" "}
-              <strong>NAPIX</strong> (National API Exchange) portal, it helps
-              users quickly grasp the essence of lengthy documents by
-              prioritizing important points and generating coherent summaries in
-              configurable lengths.
+              <strong>National Informatics Centre network </strong>
+              (NICNET) and the <strong>National API Exchange</strong> (NAPIX)
+              portal, it helps users quickly grasp the essence of lengthy
+              documents by prioritizing important points and generating coherent
+              summaries in configurable lengths.
             </p>
 
             <div className="pt-4 text-sm text-gray-600 space-y-1">

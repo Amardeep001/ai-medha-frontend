@@ -104,21 +104,38 @@ const AiPaniniDetailPage = () => {
 
   const handleUpload = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      setFilePreview({
-        name: file.name,
-        type: file.type,
-        url: URL.createObjectURL(file),
+    if (!file) return;
+
+    if (file.type !== "application/pdf") {
+      swal({
+        title: "Invalid File",
+        text: "Only PDF files are allowed!",
+        icon: "error",
+        button: "OK",
       });
-      setSelectedFile(file);
+      e.target.value = "";
+      return;
     }
 
-    // Upload logic if any
+    const fileUrl = URL.createObjectURL(file);
+    setFilePreview({
+      name: file.name,
+      url: fileUrl,
+      type: file.type,
+    });
+    setSelectedFile(file);
   };
 
   const handleSubmit = async () => {
-    if (!selectedFile)
-      return alert("Please upload the signed user service request form first");
+    if (!selectedFile) {
+      swal({
+        title: "Form Required",
+        text: "Please upload the signed service request form first.",
+        icon: "warning",
+        button: "OK",
+      });
+      return;
+    }
 
     try {
       const formData = new FormData();
@@ -140,7 +157,7 @@ const AiPaniniDetailPage = () => {
       if (response.data?.status === "success") {
         swal({
           title: "Success!",
-          text: "Form submitted successfully.",
+          text: "Form submitted successfully. Action required: Service Owner and HOD approval pending for service request 'AI Panini'.",
           icon: "success",
           button: "OK",
         }).then(() => {
@@ -169,7 +186,6 @@ const AiPaniniDetailPage = () => {
     } else {
       document.body.style.overflow = "auto"; // Enable scroll
     }
-
     // Cleanup when component unmounts or modal closes
     return () => {
       document.body.style.overflow = "auto";
@@ -195,7 +211,7 @@ const AiPaniniDetailPage = () => {
                 rel="noopener noreferrer"
                 className="inline-block px-4 py-2 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition"
               >
-                Download User Service Request Form
+                Download Service Request Form
               </a>
             </div>
           </div>
@@ -326,14 +342,12 @@ const AiPaniniDetailPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {supportedLanguages.map((item) => {
+                {supportedLanguages.map((item, index) => {
                   return (
-                    <>
-                      <tr>
-                        <td className="p-2 border">{item}</td>
-                        <td className="p-2 border">Yes</td>
-                      </tr>
-                    </>
+                    <tr key={index}>
+                      <td className="p-2 border">{item}</td>
+                      <td className="p-2 border">Yes</td>
+                    </tr>
                   );
                 })}
               </tbody>
@@ -348,7 +362,7 @@ const AiPaniniDetailPage = () => {
               </h3>
               <p className="text-sm text-gray-600 mb-4">
                 Departments using AI Panini translation APIs for language
-                services.
+                services during <strong>April 2024 – March 2025</strong>.
               </p>
               <div className="h-72">
                 <ResponsiveContainer width="100%" height="100%">
@@ -401,7 +415,7 @@ const AiPaniniDetailPage = () => {
                 Department-wise Usage Data
               </h3>
               <p className="text-sm text-gray-600 mb-4">
-                Total Session hits in Annually year 2024:{" "}
+                Total Session Hits (April 2024 – March 2025):{" "}
                 <strong>1,04,25,825</strong>
               </p>
               <div className="max-h-72 overflow-y-auto rounded-lg border border-gray-200">
@@ -449,6 +463,7 @@ const AiPaniniDetailPage = () => {
                     href="/demo/ai_panini_user_acceptance_form.pdf" // replace with your actual PDF URL
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="hover:text-blue-700"
                   >
                     User Service Request Form
                   </a>
@@ -544,7 +559,7 @@ const AiPaniniDetailPage = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center overflow-y-auto">
           <div className="bg-white p-6 rounded shadow-md max-w-lg w-full relative">
             <h2 className="text-xl font-bold mb-4">
-              Request Access: {"AI Panini"}
+              Service Request: {"AI Panini"}
             </h2>
 
             {/* Instruction Steps */}
@@ -557,9 +572,7 @@ const AiPaniniDetailPage = () => {
                   <span className="mt-1 text-blue-600">📝</span>
                   <span>
                     <strong>Step 1:</strong> Fill out the{" "}
-                    <span className="font-medium">
-                      User Service Request Form
-                    </span>{" "}
+                    <span className="font-medium">Service Request Form</span>{" "}
                     given below.
                   </span>
                 </li>
@@ -576,13 +589,22 @@ const AiPaniniDetailPage = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
+                  <span className="mt-1 text-blue-600">✅</span>
+                  <span>
+                    <strong>Step 3:</strong> Upload{" "}
+                    <span className="font-medium">Service Request</span> form,
+                    signed and stamped by an{" "}
+                    <span className="font-medium">
+                      officer of Director level or above
+                    </span>{" "}
+                    from the concerned user department.
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
                   <span className="mt-1 text-blue-600">📄</span>
                   <span>
-                    <strong>Step 3:</strong> Submit the form with a{" "}
-                    <span className="font-medium">
-                      Signed User Request Letter
-                    </span>{" "}
-                    to initiate onboarding.
+                    <strong>Step 4:</strong> Submit the Signed Service Request
+                    form to initiate onboarding.
                   </span>
                 </li>
               </ul>
@@ -594,7 +616,7 @@ const AiPaniniDetailPage = () => {
                 onClick={handleDownload}
                 className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
               >
-                Download User Service Request Form
+                Download Service Request Form
               </button>
 
               <div>
@@ -602,7 +624,7 @@ const AiPaniniDetailPage = () => {
                   htmlFor="uploadFile"
                   className="block w-full bg-blue-600 text-white text-center py-2 rounded cursor-pointer hover:bg-blue-700 "
                 >
-                  Upload Signed User Service Request Form
+                  Upload Signed Service Request Form
                 </label>
                 <input
                   type="file"
@@ -614,15 +636,19 @@ const AiPaniniDetailPage = () => {
 
               {filePreview && (
                 <div className="border border-gray-300 rounded p-3 text-sm bg-gray-50">
-                  <p className="font-medium text-gray-700 mb-2">Preview:</p>
+                  <div className="flex justify-between items-center mb-2">
+                    <p className="font-medium text-gray-700">Preview:</p>
+                    <button
+                      onClick={() => setFilePreview(null)}
+                      className="text-red-600 text-sm hover:underline"
+                    >
+                      Remove File
+                    </button>
+                  </div>
+
                   <p className="mb-2 text-gray-600">{filePreview.name}</p>
-                  {filePreview.type.startsWith("image/") ? (
-                    <img
-                      src={filePreview.url}
-                      alt="Preview"
-                      className="max-h-40 rounded border"
-                    />
-                  ) : filePreview.type === "application/pdf" ? (
+
+                  {filePreview.type === "application/pdf" ? (
                     <a
                       href={filePreview.url}
                       target="_blank"

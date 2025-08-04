@@ -319,7 +319,7 @@ const AiVihangamDrishtiDetail = () => {
               <li>
                 Choose an integration Method:{" "}
                 <strong>National API Exchange (NAPIX) Integration</strong> or
-                <strong>Direct API Access</strong>.
+                <strong> Direct API Access</strong>.
               </li>
               <li>
                 The service is available over <strong>NICNET</strong> and also
@@ -335,7 +335,7 @@ const AiVihangamDrishtiDetail = () => {
                   <li>Apply for geospatial API access.</li>
                   <li>
                     Upon approval, receive your <strong>Client ID</strong> and
-                    <strong>Client Secret</strong>.
+                    <strong> Client Secret</strong>.
                   </li>
                   <li>
                     Use authorization Keys - client id and client secret for all
@@ -356,8 +356,8 @@ const AiVihangamDrishtiDetail = () => {
                     as .tif or .tiff, keeping in mind the file size guidelines.
                   </li>
                   <li>
-                    Receive geospatial content in GeoJSON  format for further
-                    use.
+                    Receive geospatial content in <strong>GeoJSON</strong>{" "}
+                    format for further use.
                   </li>
                 </ul>
               </li>

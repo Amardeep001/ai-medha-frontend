@@ -399,13 +399,14 @@ const AiMatraDetailPage = () => {
               Service Catalogue.
             </li>
             <li>
-              Choose integration method: <strong>NAPIX </strong> (National API
-              Exchange) Integration or <strong>Direct API Access</strong>.
+              Choose integration method: <strong>National API Exchange </strong>{" "}
+              (NAPIX) Integration or <strong>Direct API Access</strong>.
             </li>
             <li>
-              The Service is available on <strong>NICNET</strong> (National
-              Informatics Centre network) and also accessible over public
-              internet via <strong>NAPIX</strong> platform.
+              The Service is available on{" "}
+              <strong>National Informatics Centre network</strong> (NICNET) and
+              also accessible over public internet via <strong>NAPIX</strong>{" "}
+              platform.
             </li>
 
             {/* NAPIX Integration Steps */}

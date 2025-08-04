@@ -444,7 +444,7 @@ const AiShrutiDetailPage = () => {
                 Medha Platform.
               </li>
               <li>
-                Include project use case and desired languages and authorization
+                Include project use case, desired languages and authorization
                 letter.
               </li>
               <li>
