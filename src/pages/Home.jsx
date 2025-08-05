@@ -81,11 +81,11 @@ const Home = () => {
   const navigate = useNavigate();
 
   const features = [
-    "AI MEDHA offers AI-as-a-Service through a secure cloud platform for Government departments and agencies.",
+    "AI MEDHA offers AI as a Service (AIaaS) through a secure cloud platform for Government departments and agencies.",
     "Provides access to a suite of indigenous AI models including translation, summarization, voice-to-text, image analytics, and more.",
-    "Facilitates seamless integration through APIs, with both SaaS and PaaS options available via NIC Cloud and NAPIX Gateway.",
+    "Facilitates seamless integration through APIs, with both Software as a Service (SaaS) and Platform as a Service (PaaS) options available via National Informatics Centre (NIC) Cloud and National API Exchange (NAPIX) Gateway.",
     "Promotes data security, RBAC control, and adherence to CERT-In and NIC-CERT standards.",
-    "Accelerates adoption of Digital India goals by enabling scalable, reusable AI services across ministries, PSUs, and states.",
+    "Drives the Digital India vision by providing scalable and reusable AI services that empower ministries, public sector undertakings (PSUs), and state governments to accelerate digital transformation.",
   ];
 
   const stats = [

@@ -25,41 +25,47 @@ const About = () => {
               </p>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-8 space-y-6 text-gray-800 text-[17px] leading-relaxed">
+            <div className="bg-white rounded-xl shadow-lg p-8 space-y-4 text-gray-800 text-[17px] leading-relaxed">
               <p>
-                <strong>AI MEDHA</strong> is a unified platform developed by the
-                National Informatics Centre (NIC) to provide cutting-edge AI
-                solutions for governance and public service delivery. Designed
-                as a central ecosystem, AI Medha brings together speech, text,
-                vision, and language intelligence to empower ministries,
-                departments, and agencies.
+                AI MEDHA (AI Modelling Empowered Digital Hub for Applications)
+                is India's pioneering Government-to-Government, AIaaS (AI as a
+                Service) platform developed by the National Informatics Centre
+                (NIC) to provide cutting-edge AI solutions for governance and
+                public service delivery. It is designed as a unified central
+                ecosystem to empower ministries, departments, PSUs, and state
+                agencies through scalable and reusable AI capabilities.
               </p>
 
               <p>
-                With services like <strong>translation (AI Panini)</strong>,{" "}
-                <strong>speech-to-text (AI Shruti)</strong>,{" "}
-                <strong>chatbots (AI Vani)</strong>,{" "}
-                <strong>anonymization (AI Nibhrit)</strong>,{" "}
-                <strong>summarization (AI Saransh)</strong>, and more, AI Medha
-                enables seamless integration of AI into digital governance
-                workflows.
+                AI MEDHA brings together diverse AI capabilities - spanning
+                speech, text, vision, and language intelligence to streamline
+                and enhance digital governance workflows. With powerful services
+                like translation (AI Panini), speech-to-text (AI Shruti),
+                chatbots (AI VANI), masking (AI Nibhrit), summarization (AI
+                Saransh), and others, the platform simplifies AI adoption
+                through a catalog-driven, self-service experience.
               </p>
 
               <p>
-                The platform is accessible through secure networks like{" "}
-                <strong>NAPIX</strong> (National API Exchange) and{" "}
-                <strong>NICNET</strong> (National Informatics Centre network),
-                offering standardized APIs, centralized dashboards, and
-                role-based access control for government institutions. It is
-                built to ensure <strong>data security</strong>,{" "}
-                <strong>compliance</strong>, and{" "}
-                <strong>high availability</strong>.
+                Accessible through secure government networks such as NAPIX
+                (National API Exchange) and NICNET (National Informatics Centre
+                Network), AI MEDHA ensures seamless integration via standardized
+                APIs, centralized dashboards, and robust role-based access
+                controls.
               </p>
 
               <p>
-                AI Medha’s mission is to democratize responsible AI usage for
-                the public sector-boosting transparency, efficiency, and
-                innovation across India’s digital initiatives.
+                Committed to data sovereignty and public sector needs, AI MEDHA
+                is deployed on-premise through NIC’s MeghRaj cloud, maintaining
+                the highest standards of security, compliance, and availability.
+                It adheres strictly to government security protocols, including
+                NIC-CERT and CERT-IN guidelines.
+              </p>
+              <p>
+                AI MEDHA’s mission is to democratize responsible AI adoption
+                across India’s digital ecosystem boosting transparency,
+                innovation, and operational efficiency in public service
+                delivery.
               </p>
             </div>
 

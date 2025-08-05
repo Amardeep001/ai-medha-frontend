@@ -11,6 +11,10 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef();
 
+  const handleLogout = () => {
+    localStorage.clear();
+  };
+
   // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -90,7 +94,11 @@ const Header = () => {
                 >
                   Profile Settings
                 </Link>
-                <Link to="/" className="block px-4 py-2 hover:bg-gray-100">
+                <Link
+                  to="/"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                  onClick={handleLogout}
+                >
                   Logout
                 </Link>
               </div>
@@ -138,7 +146,11 @@ const Header = () => {
           >
             Profile Settings
           </Link>
-          <Link to="/" className="block text-sm text-gray-800">
+          <Link
+            to="/"
+            className="block text-sm text-gray-800"
+            onClick={handleLogout}
+          >
             Logout
           </Link>
         </div>

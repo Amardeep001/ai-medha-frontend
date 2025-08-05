@@ -1,0 +1,34 @@
+# Node modules (will be reinstalled in Docker)
+node_modules
+
+# Dependency lock files not needed (if not used)
+npm-debug.log
+yarn-debug.log*
+yarn-error.log*
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Environment files
+.env
+.env.* 
+
+# Build artifacts
+build
+dist
+
+# Editor directories and files
+.vscode
+.idea
+
+# Vercel deployment files
+.vercel
+
+# Docker-related
+Dockerfile
+.dockerignore

@@ -69,7 +69,7 @@ const AiVihangamDrishtiDetail = () => {
             </h3>
             <p className="text-sm text-gray-700 leading-relaxed">
               <strong>AI Vihangam Drishti</strong> is a computer vision-based
-              service that analyses drone imagery/ satellite imagery and AI
+              service that analyses drone imagery/satellite imagery and AI
               models to create digital map of infrastructure assets such as
               roads, forests and populated areas. Mapping the Infrastructure
               explores the potential of GIS for better visualizing, planning and
@@ -83,8 +83,8 @@ const AiVihangamDrishtiDetail = () => {
               Leveraging a transformer-based segmentation model, the model was
               used to classify aerial images of villages built-up area into six
               different classes - RCC roof, tiled roof, tin sheet roof, other
-              build-ups, metallic road, and non-metallic road - and return their
-              latitude-longitude coordinates in geoJSON format as well as
+              build-ups, metallic road, and non-metallic road and return their
+              latitude-longitude coordinates in GeoJSON format as well as
               estimated area for solar panel installation on rooftops. The
               service is actively utilized by platforms
               like grammanchitra.gov.in to assess areas for infrastructure
@@ -121,18 +121,18 @@ const AiVihangamDrishtiDetail = () => {
                   <strong>Category:</strong> Computer Vision
                 </li>
                 <li>
-                  <strong>Sector:</strong> Rural Mapping / Infrastructure
+                  <strong>Sector:</strong> Rural Mapping/Infrastructure
                   Monitoring
                 </li>
                 <li>
-                  <strong>Performance Metric:</strong> mIoU (mean Intersection
-                  over Union)
+                  <strong>Performance Metric:</strong> mean Intersection over
+                  Union (mIoU)
                 </li>
                 <li>
                   <strong>Parameters:</strong> Learning rate, batch size, epoch
                 </li>
                 <li>
-                  <strong>Workflow:</strong> Drone / Satellite Imagery Upload →
+                  <strong>Workflow:</strong> Drone/Satellite Imagery Upload →
                   Segmentation Model → GeoJSON Output with Class &amp;
                   Coordinates
                 </li>
@@ -185,7 +185,7 @@ const AiVihangamDrishtiDetail = () => {
               </h3>
               <p className="text-sm text-gray-600 mb-4">
                 Visual representation of monthly API hits for AI Vihangam
-                Drishti.
+                Drishti in the year 2024.
               </p>
               <div className="h-72">
                 <ResponsiveContainer width="100%" height="100%">
@@ -271,8 +271,9 @@ const AiVihangamDrishtiDetail = () => {
 
             <ul className="list-decimal pl-5 text-sm text-gray-700 space-y-2">
               <li>
-                <strong>Input:</strong> User uploads a top-view drone image/
-                satellite imagery files in TIF/tif/tiff format (max size 30 MB).
+                <strong>Input:</strong> User uploads a top-view drone
+                image/satellite imagery files in TIF/tif/tiff format (max size
+                30 MB).
               </li>
               <li>
                 <strong>Image Reception:</strong> Image is submitted via POST
@@ -284,20 +285,20 @@ const AiVihangamDrishtiDetail = () => {
               </li>
               <li>
                 <strong>Model Inference:</strong> AI based segmentation and
-                classification and area estimation
+                classification and area estimation.
               </li>
               <li>
                 <strong>Geo-Annotation:</strong> Each predicted class region is
                 tagged with latitude-longitude coordinates.
               </li>
               <li>
-                <strong>Output Generation:</strong> A geoJSON file is created
+                <strong>Output Generation:</strong> A GeoJSON file is created
                 containing class names and their corresponding geographic
                 coordinates.
               </li>
               <li>
                 <strong>Delivery:</strong> The annotated result is returned to
-                the user via API in geoJSON format for integration with GIS
+                the user via API in GeoJSON format for integration with GIS
                 platforms like ArcMap.
               </li>
             </ul>
@@ -308,8 +309,11 @@ const AiVihangamDrishtiDetail = () => {
             </h3>
             <ol className="list-decimal list-inside text-gray-700 text-sm space-y-2">
               <li>
-                Fill out the <strong>User Service Request Form</strong> via AI
-                Medha Platform.
+                Fill out the{" "}
+                <span className="text-blue-700 hover:text-blue-800 cursor-pointer font-semibold">
+                  User Service Request Form
+                </span>{" "}
+                via AI Medha Platform.
               </li>
               <li>Include project use case and authorization letter.</li>
               <li>

@@ -12,10 +12,11 @@ const ReviewRequestModal = ({
   onSubmit,
 }) => {
   if (!isOpen || !selectedRequest) return null;
+  const isAlreadyProcessed = selectedRequest.status !== "pending";
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center overflow-y-auto">
-      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-lg relative">
+      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-xl relative">
         <h3 className="text-xl font-semibold mb-4 text-blue-800">
           Review Request: {selectedRequest.serviceName}
         </h3>
@@ -38,6 +39,7 @@ const ReviewRequestModal = ({
                 value="approved"
                 checked={adminAction === "approved"}
                 onChange={() => setAdminAction("approved")}
+                disabled={isAlreadyProcessed}
               />
               Approve
             </label>
@@ -48,6 +50,7 @@ const ReviewRequestModal = ({
                 value="rejected"
                 checked={adminAction === "rejected"}
                 onChange={() => setAdminAction("rejected")}
+                disabled={isAlreadyProcessed}
               />
               Reject
             </label>
@@ -66,6 +69,7 @@ const ReviewRequestModal = ({
               className="w-full border rounded p-2"
               rows={3}
               required
+              disabled={isAlreadyProcessed}
             />
           </div>
         )}
@@ -74,7 +78,11 @@ const ReviewRequestModal = ({
         <div className="flex justify-end gap-3">
           <button
             onClick={onSubmit}
-            disabled={!adminAction || (adminAction === "rejected" && !remarks)}
+            disabled={
+              isAlreadyProcessed ||
+              !adminAction ||
+              (adminAction === "rejected" && !remarks)
+            }
             className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50"
           >
             Submit

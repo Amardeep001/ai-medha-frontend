@@ -140,7 +140,7 @@ const AiMatraDetailPage = () => {
                 <strong>Category:</strong> Natural Language Processing
               </li>
               <li>
-                <strong>Sector:</strong> Language Technology / Localization
+                <strong>Sector:</strong> Language Technology/Localization
               </li>
               <li>
                 <strong>Supported Languages:</strong> 22 Official Indic
@@ -251,7 +251,7 @@ const AiMatraDetailPage = () => {
             </h3>
             <p className="text-sm text-gray-600 mb-4">
               Departments using AI Matra transliteration service for Indic
-              language rendering.
+              language rendering from April 2024 to March 2025.
             </p>
             <div className="h-72">
               <ResponsiveContainer width="100%" height="100%">
