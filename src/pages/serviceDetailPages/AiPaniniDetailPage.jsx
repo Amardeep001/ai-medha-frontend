@@ -104,7 +104,7 @@ const AiPaniniDetailPage = () => {
   };
 
   const handleRequestFormDownload = async () => {
-    const url = await pdfDownload("6891edf47f5484886cfea245");
+    const url = await pdfDownload("6891ed6e897fb1889f31dd7a");
     if (url) {
       setPdfUrl(url);
     }
@@ -218,7 +218,7 @@ const AiPaniniDetailPage = () => {
             </button>
             <div className="mb-6">
               <a
-                href={pdfUrl} // replace with your actual PDF URL
+                href={pdfUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block px-4 py-2 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition"
@@ -480,7 +480,7 @@ const AiPaniniDetailPage = () => {
                     User Service Request Form
                   </a>
                 </strong>{" "}
-                via NIC Cloud Portal.
+                via AI Medha Platform.
               </li>
               <li>
                 Include project name, use case, and requested source-target
