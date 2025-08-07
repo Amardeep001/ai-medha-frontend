@@ -11,7 +11,7 @@ const UserRequestModal = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center overflow-auto">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-xl relative">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-5xl relative">
         <h3 className="text-lg font-semibold text-blue-900 mb-4">
           Uploaded File
         </h3>

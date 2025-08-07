@@ -1,7 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import swal from "sweetalert";
 
-export const isTokenValid = () => {
+export const isTokenValid = async () => {
 
     const token = localStorage.getItem("token");
     if (!token) return false;
@@ -15,15 +15,14 @@ export const isTokenValid = () => {
         return payload.exp * 1000 > Date.now(); // valid if token not expired
     } catch (error) {
         console.error("Token or user validation failed:", error);
-        swal({
+        await swal({
             title: "Authentication Error",
             text: "Your session is invalid or expired. Please login again.",
             icon: "error",
             button: "OK",
         })
-        localStorage.removeItem("token");
-        localStorage.removeItem("userId");
-        localStorage.removeItem("email");
+        localStorage.clear();
+        window.location.href = "/auth/login";
         return false;
     }
 };

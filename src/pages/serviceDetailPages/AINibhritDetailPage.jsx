@@ -1,5 +1,5 @@
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import React, { useEffect } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import {
@@ -18,6 +18,8 @@ import {
 } from "recharts";
 import YoloImage from "../../images/yolo_image.jpg";
 import OcrImage from "../../images/ocr_image.jpg";
+import { pdfDownload } from "../../utils/pdfDownload";
+import serviceMap from "../../utils/serviceMap";
 
 const mockModels = [
   {
@@ -105,6 +107,18 @@ const docHitsData = [
 
 const AiNibhritDetailPage = () => {
   const navigate = useNavigate();
+  const [pdfUrl, setPdfUrl] = useState(null);
+
+  const handleRequestFormDownload = async () => {
+    const url = await pdfDownload(serviceMap.ai_nibhrit);
+    if (url) {
+      setPdfUrl(url);
+    }
+  };
+
+  useEffect(() => {
+    handleRequestFormDownload();
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -130,6 +144,16 @@ const AiNibhritDetailPage = () => {
                 className="inline-block px-4 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition"
               >
                 🌐 Try AI Nibhrit
+              </a>
+            </div>
+            <div className="mb-6">
+              <a
+                href={pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-4 py-2 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition"
+              >
+                Download Service Request Form
               </a>
             </div>
           </div>

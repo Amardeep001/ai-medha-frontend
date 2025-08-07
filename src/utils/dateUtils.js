@@ -1,8 +1,10 @@
-// src/utils/dateUtils.js
-
 export const formatDateTime = (isoString) => {
     const date = new Date(isoString);
-    return date.toLocaleString("en-IN", {
+
+    // Add 5 hours 30 minutes (in milliseconds)
+    const istTime = new Date(date.getTime() + (5 * 60 + 30) * 60 * 1000);
+
+    return istTime.toLocaleString("en-IN", {
         day: "2-digit",
         month: "short",
         year: "numeric",

@@ -35,59 +35,56 @@ import FirstTimeProfileForm from "./pages/OnBoardingForm";
 import AiNibhritDemo from "./pages/serviceDemoPages/AiNibhritDemo";
 import AdminLogin from "./pages/auth/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
-import { DevAccessProvider } from "./context/DevAccessContext";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import NotFound from "./pages/NotFound";
 
 
 function App() {
   return (
-    <DevAccessProvider>
-      <Router>
-        <Routes>
-
-          <Route path="/" element={<Home />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/cookie-policy" element={<CookiePolicy />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/terms-of-services" element={<TermsOfService />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/explore-services" element={<ExploreServices />} />
-          <Route path="/auth/login" element={<Login />} />
-          <Route path="/auth/register" element={<Register />} />
-          <Route path="/auth/verify-account" element={<VerifyAccount />} />
-          <Route path="/auth/otp-verification" element={<OtpVerification />} />
-          <Route path="/auth/forgot-password" element={<ForgotPassword />} />
-          <Route path="/auth/verify-otp" element={<ForgotOtpVerification />} />
-          <Route path="/auth/reset-password" element={<ResetPassword />} />
-          <Route path="/onboarding" element={<FirstTimeProfileForm />} />
-          <Route element={<ProtectedRoutes />}>
-            <Route path="/" element={<DashboardLayout />}>
-              <Route path="dashboard" element={<OverviewPage />} />
-              <Route path="analytics" element={<AnalyticsDashboard />} />
-              <Route path="services" element={<ServicesPage />} />
-              <Route path="users" element={<UserManagement />} />
-              <Route path="settings" element={<SettingsPage />} />
-            </Route>
-            <Route path="/services/ai_nibhrit" element={<AiNibhritDetailPage />} />
-            <Route path="/services/ai_panini" element={<AiPaniniDetailPage />} />
-            <Route path="/services/ai_vani" element={<AiVaniDetailPage />} />
-            <Route path="/services/ai_shruti" element={<AiShrutiDetailPage />} />
-            <Route path="/services/ai_matra" element={<AiMatraDetailPage />} />
-            <Route path="/services/ai_parkhi" element={<AiParkhiDetail />} />
-            <Route path="/services/ai_vihangam_drishti" element={<AiVihangamDrishtiDetail />} />
-            <Route path="/services/ai_satyapikaanan" element={<AiSatyapikaananDetailPage />} />
-            <Route path="/services/ai_anveshika" element={<AiAnveshikaDetail />} />
-            <Route path="/services/ai_saransh" element={<AiSaranshDetailPage />} />
-            <Route path="/services/ai_nibhrit/demo" element={<AiNibhritDemo />} />
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/cookie-policy" element={<CookiePolicy />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/terms-of-services" element={<TermsOfService />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/explore-services" element={<ExploreServices />} />
+        <Route path="/auth/login" element={<Login />} />
+        <Route path="/auth/register" element={<Register />} />
+        <Route path="/auth/verify-account" element={<VerifyAccount />} />
+        <Route path="/auth/otp-verification" element={<OtpVerification />} />
+        <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+        <Route path="/auth/verify-otp" element={<ForgotOtpVerification />} />
+        <Route path="/auth/reset-password" element={<ResetPassword />} />
+        <Route path="/onboarding" element={<FirstTimeProfileForm />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/" element={<DashboardLayout />}>
+            <Route path="dashboard" element={<OverviewPage />} />
+            <Route path="analytics" element={<AnalyticsDashboard />} />
+            <Route path="services" element={<ServicesPage />} />
+            <Route path="users" element={<UserManagement />} />
+            <Route path="settings" element={<SettingsPage />} />
           </Route>
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/" element={<AdminDashboardLayout />}>
-            <Route path="admin/dashboard" element={<AdminDashboard />} />
-          </Route>
-        </Routes>
-      </Router>
-    </DevAccessProvider>
-
+          <Route path="/services/ai_nibhrit" element={<AiNibhritDetailPage />} />
+          <Route path="/services/ai_panini" element={<AiPaniniDetailPage />} />
+          <Route path="/services/ai_vani" element={<AiVaniDetailPage />} />
+          <Route path="/services/ai_shruti" element={<AiShrutiDetailPage />} />
+          <Route path="/services/ai_matra" element={<AiMatraDetailPage />} />
+          <Route path="/services/ai_parkhi" element={<AiParkhiDetail />} />
+          <Route path="/services/ai_vihangam_drishti" element={<AiVihangamDrishtiDetail />} />
+          <Route path="/services/ai_satyapikaanan" element={<AiSatyapikaananDetailPage />} />
+          <Route path="/services/ai_anveshika" element={<AiAnveshikaDetail />} />
+          <Route path="/services/ai_saransh" element={<AiSaranshDetailPage />} />
+          <Route path="/services/ai_nibhrit/demo" element={<AiNibhritDemo />} />
+        </Route>
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/" element={<AdminDashboardLayout />}>
+          <Route path="admin/dashboard" element={<AdminDashboard />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
   );
 }
 

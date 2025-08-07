@@ -1,10 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import { pdfDownload } from "../../utils/pdfDownload";
+import serviceMap from "../../utils/serviceMap";
 
 const AiParkhiDetail = () => {
   const navigate = useNavigate();
+  const [pdfUrl, setPdfUrl] = useState(null);
+
+  const handleRequestFormDownload = async () => {
+    const url = await pdfDownload(serviceMap.ai_parkhi);
+    if (url) {
+      setPdfUrl(url);
+    }
+  };
+
+  useEffect(() => {
+    handleRequestFormDownload();
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -15,12 +29,25 @@ const AiParkhiDetail = () => {
       <Header />
       <div className="overflow-auto flex flex-grow">
         <div className="px-6 sm:px-20 py-6 w-full max-w-screen-2xl mx-auto">
-          <button
-            onClick={() => navigate(-1)}
-            className="mt-3 mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all"
-          >
-            ← Back to Services
-          </button>
+          <div className="mt-3 flex space-x-3">
+            <button
+              onClick={() => navigate(-1)}
+              className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            >
+              ← Back to Services
+            </button>
+            <div className="mb-6">
+              <a
+                href={pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-4 py-2 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition"
+              >
+                Download Service Request Form
+              </a>
+            </div>
+          </div>
+
           <h2 className="text-3xl font-bold text-blue-900 mb-2">AI Parkhi</h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
             AI Parkhi is an AI-based image quality assessment tool that

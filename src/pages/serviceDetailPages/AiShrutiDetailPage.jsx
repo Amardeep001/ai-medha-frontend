@@ -1,5 +1,5 @@
 // AiShrutiDetailPage.js
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -11,13 +11,12 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
+import { pdfDownload } from "../../utils/pdfDownload";
+import serviceMap from "../../utils/serviceMap";
 
 const AiShrutiDetailPage = () => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const [pdfUrl, setPdfUrl] = useState(null);
 
   const departmentChartData = [
     { name: "eCOURTS", value: 88644 },
@@ -69,6 +68,21 @@ const AiShrutiDetailPage = () => {
     "#22d3ee", // cyan
   ];
 
+  const handleRequestFormDownload = async () => {
+    const url = await pdfDownload(serviceMap.ai_shruti);
+    if (url) {
+      setPdfUrl(url);
+    }
+  };
+
+  useEffect(() => {
+    handleRequestFormDownload();
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
       <Header />
@@ -81,6 +95,16 @@ const AiShrutiDetailPage = () => {
             >
               ← Back to Services
             </button>
+            <div className="mb-6">
+              <a
+                href={pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-4 py-2 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition"
+              >
+                Download Service Request Form
+              </a>
+            </div>
           </div>
 
           <h2 className="text-3xl font-bold text-blue-900 mb-2">AI Shruti</h2>
@@ -144,29 +168,6 @@ const AiShrutiDetailPage = () => {
                 </li>
               </ul>
             </div>
-
-            {/* <div className="mt-6">
-              <h4 className="text-md font-semibold text-blue-700 mb-2">
-                AI Shruti Rollout
-              </h4>
-              <p className="text-sm text-gray-700">
-                AI Shruti is being adopted across various government departments
-                and judicial bodies for real-time and offline transcription. By
-                enabling accurate speech-to-text conversion in multiple Indian
-                languages, AI Shruti supports accessibility, documentation, and
-                multilingual communication across institutional workflows.
-              </p>
-              <p className="text-sm text-gray-700 mt-3">
-                <strong>Organizations using AI Shruti include:</strong>
-              </p>
-              <ul className="list-disc list-inside ml-5 text-sm text-gray-700">
-                <li>Parliament</li>
-                <li>Supreme Court</li>
-                <li>High Courts</li>
-                <li>District Courts</li>
-                <li>Central and State Ministries</li>
-              </ul>
-            </div> */}
 
             <div className="mt-6">
               <h4 className="text-md font-semibold text-blue-700 mb-2">
@@ -440,8 +441,18 @@ const AiShrutiDetailPage = () => {
             </h3>
             <ol className="list-decimal list-inside text-gray-700 text-sm space-y-2">
               <li>
-                Fill out the <strong>User Service Request Form</strong> via AI
-                Medha Platform.
+                Fill out the{" "}
+                <strong>
+                  <a
+                    href={pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-700 hover:text-blue-900"
+                  >
+                    User Service Request Form
+                  </a>
+                </strong>{" "}
+                via AI Medha Platform.
               </li>
               <li>
                 Include project use case, desired languages and authorization

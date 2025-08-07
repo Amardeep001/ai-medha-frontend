@@ -16,7 +16,7 @@ const ReviewRequestModal = ({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center overflow-y-auto">
-      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-xl relative">
+      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-5xl relative">
         <h3 className="text-xl font-semibold mb-4 text-blue-800">
           Review Request: {selectedRequest.serviceName}
         </h3>

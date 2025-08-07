@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -10,9 +10,12 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
+import { pdfDownload } from "../../utils/pdfDownload";
+import serviceMap from "../../utils/serviceMap";
 
 const AiMatraDetailPage = () => {
   const navigate = useNavigate();
+  const [pdfUrl, setPdfUrl] = useState(null);
 
   const departmentChartData = [
     { name: "Health Department", value: 94538719 },
@@ -75,6 +78,17 @@ const AiMatraDetailPage = () => {
     "Urdu",
   ];
 
+  const handleRequestFormDownload = async () => {
+    const url = await pdfDownload(serviceMap.ai_matra);
+    if (url) {
+      setPdfUrl(url);
+    }
+  };
+
+  useEffect(() => {
+    handleRequestFormDownload();
+  }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -85,12 +99,24 @@ const AiMatraDetailPage = () => {
 
       <main className="flex-grow w-full max-w-screen-2xl mx-auto px-6 sm:px-20 py-6">
         {/* Back Button */}
-        <button
-          onClick={() => navigate(-1)}
-          className="mt-3 mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-        >
-          ← Back to Services
-        </button>
+        <div className="mt-3 flex space-x-3">
+          <button
+            onClick={() => navigate(-1)}
+            className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+          >
+            ← Back to Services
+          </button>
+          <div className="mb-6">
+            <a
+              href={pdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-4 py-2 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition"
+            >
+              Download Service Request Form
+            </a>
+          </div>
+        </div>
 
         <h1 className="text-4xl font-bold text-blue-900 mb-3">AI Matra</h1>
         <p className="text-gray-700 mb-6 text-base leading-relaxed">
@@ -156,27 +182,6 @@ const AiMatraDetailPage = () => {
               </li> */}
             </ul>
           </div>
-
-          {/* <div className="mt-6">
-            <h4 className="text-md font-semibold text-blue-700 mb-2">
-              AI Matra Rollout
-            </h4>
-            <p className="text-sm text-gray-700">
-              AI Matra is being used across government platforms that display
-              bilingual content. It enables the rendering of user-entered or
-              system-generated English names and terms into regional languages.
-              Integration pilots are active across state portals, digital forms,
-              and language-sensitive interfaces for citizen services.
-            </p>
-            <p className="text-sm text-gray-700 mt-3">
-              <strong>Organizations using AI Matra include:</strong>
-            </p>
-            <ul className="list-disc list-inside ml-5 text-sm text-gray-700">
-              <li>Health Project Division</li>
-              <li>State e-Governance Portals</li>
-              <li>Digital India Initiatives</li>
-            </ul>
-          </div> */}
 
           <div className="mt-6">
             <h4 className="text-md font-semibold text-blue-700 mb-2">
@@ -386,9 +391,19 @@ const AiMatraDetailPage = () => {
           </h3>
           <ol className="list-decimal list-inside text-sm text-gray-700 space-y-2">
             <li>
-              Fill out the <strong>Service Request Form</strong> via AI MEDHA
-              Platform, including use case and target Indic languages for
-              transliteration.
+              Fill out the{" "}
+              <strong>
+                <a
+                  href={pdfUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-700 hover:text-blue-900"
+                >
+                  User Service Request Form
+                </a>
+              </strong>{" "}
+              via AI MEDHA Platform, including use case and target Indic
+              languages for transliteration.
             </li>
             <li>
               Submit the form along with a signed request letter from your
@@ -454,28 +469,6 @@ const AiMatraDetailPage = () => {
             </li>
           </ol>
         </div>
-
-        {/* <div className="mt-8 mb-6 bg-white rounded-lg shadow-md p-8">
-          <h3 className="text-xl font-semibold text-blue-800 mb-3">
-            Network Access Details
-          </h3>
-          <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
-            <li>
-              <strong>Network Access:</strong> internal via the{" "}
-              <strong>NIC</strong> Network, and external via{" "}
-              <strong>NAPIX</strong>.
-            </li>
-            <li>
-              <strong>Firewall Configuration:</strong> Only whitelisted IPs can
-              access the service in internal network and authorized users via
-              NAPIX.
-            </li>
-            <li>
-              <strong>Access Control:</strong> Enforced via{" "}
-              <strong>IP whitelisting</strong> and user authentication.
-            </li>
-          </ul>
-        </div> */}
       </main>
 
       <Footer />

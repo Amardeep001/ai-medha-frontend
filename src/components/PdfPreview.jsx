@@ -34,7 +34,7 @@ const PdfPreview = ({ fileUrl }) => {
     <embed
       src={pdfBlobUrl}
       type="application/pdf"
-      className="w-full h-64 border"
+      className="w-full h-[350px] border"
       title="PDF Preview"
     />
   );

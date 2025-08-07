@@ -1,5 +1,5 @@
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import React, { useEffect } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import {
@@ -10,9 +10,12 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
+import { pdfDownload } from "../../utils/pdfDownload";
+import serviceMap from "../../utils/serviceMap";
 
 const AiSatyapikaananDetailPage = () => {
   const navigate = useNavigate();
+  const [pdfUrl, setPdfUrl] = useState(null);
 
   const satyapikaananData = [
     { name: "Sarathi Parivahan", value: 246200000 },
@@ -46,6 +49,17 @@ const AiSatyapikaananDetailPage = () => {
     "#ec4899",
   ];
 
+  const handleRequestFormDownload = async () => {
+    const url = await pdfDownload(serviceMap.ai_satyapikaanan);
+    if (url) {
+      setPdfUrl(url);
+    }
+  };
+
+  useEffect(() => {
+    handleRequestFormDownload();
+  }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -62,6 +76,16 @@ const AiSatyapikaananDetailPage = () => {
             >
               ← Back to Services
             </button>
+            <div className="mb-6">
+              <a
+                href={pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-4 py-2 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition"
+              >
+                Download Service Request Form
+              </a>
+            </div>
           </div>
           <h2 className="text-3xl font-bold text-blue-900 mb-2">
             AI Satyapikaanan
@@ -333,41 +357,6 @@ const AiSatyapikaananDetailPage = () => {
                 success/failure), a confidence score, and other relevant
                 metrics, which is then sent back to the requesting system.
               </li>
-              {/* <li>
-                <strong>Input:</strong> Real-time or uploaded biometric or
-                visual data (such as image, gesture, or posture) via mobile app
-                or web interface.
-              </li>
-              <li>
-                <strong>Liveness Detection:</strong> Validates that the input
-                comes from a genuine, live user through AI-driven spoof
-                detection techniques.
-              </li>
-              <li>
-                <strong>Feature Extraction:</strong> Extracts unique features
-                from the input data using AI/ML models for identity or behavior
-                analysis.
-              </li>
-              <li>
-                <strong>Matching & Verification:</strong> Compares extracted
-                features with records in the reference database to assess
-                similarity or match.
-              </li>
-              <li>
-                <strong>Scoring & Evaluation:</strong> Calculates confidence
-                scores and makes a decision based on predefined threshold
-                criteria for the use case.
-              </li>
-              <li>
-                <strong>Result Generation:</strong> Produces a structured
-                response including result status, scores, metadata, and user
-                identifiers.
-              </li>
-              <li>
-                <strong>Delivery:</strong> Sends the result back to the
-                requesting system to support workflows such as attendance,
-                access control, or service eligibility.
-              </li> */}
             </ul>
           </div>
 
@@ -389,45 +378,6 @@ const AiSatyapikaananDetailPage = () => {
                 granted, enabling seamless integration with your existing
                 systems.
               </li>
-              {/* <li>
-                <strong>Onboarding & Authorization:</strong> Submit a request to
-                NIC for onboarding with a signed approval letter from your
-                department. Mention your intended use case (e.g., attendance,
-                pensioner verification, etc.).
-              </li>
-              <li>
-                <strong>Client Setup:</strong> Set up your integration using
-                authorized access through the NAPIX API Gateway or Andriod
-                backend service.
-              </li>
-              <li>
-                <strong>Service Configuration:</strong> Configure your client
-                application or system to interact with the service using the
-                issued credentials and access policies.
-              </li>
-              <li>
-                <strong>Data Input:</strong> Capture relevant input (such as
-                image, gesture, or other user parameters) depending on your use
-                case. The system supports a variety of biometric and image-based
-                inputs.
-              </li>
-              <li>
-                <strong>Verification Processing:</strong> The system performs
-                liveliness detection and identity verification using AI models
-                to ensure authenticity and prevent spoofing.
-              </li>
-              <li>
-                <strong>Multi-Use Matching:</strong> AI Satyapikaanan compares
-                the input with a reference database and returns a similarity
-                score, confidence level, and decision output for identity
-                validation.
-              </li>
-              <li>
-                <strong>Result Handling:</strong> The final output includes a
-                match/mismatch decision with metadata such as timestamp and
-                result status, which can be integrated into your application
-                workflow.
-              </li> */}
             </ol>
           </div>
 
