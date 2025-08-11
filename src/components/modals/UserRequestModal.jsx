@@ -1,5 +1,6 @@
 import React from "react";
 import PdfPreview from "../PdfPreview";
+import { capitalizeFirstLetter } from "../../utils/dateUtils";
 
 const UserRequestModal = ({
   isModalOpen,
@@ -35,7 +36,7 @@ const UserRequestModal = ({
                 : "bg-red-100 text-red-700"
             }`}
           >
-            {selectedRequest.status}
+            {capitalizeFirstLetter(selectedRequest.status)}
           </span>
         </div>
 

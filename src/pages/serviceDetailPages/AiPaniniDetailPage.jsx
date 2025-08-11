@@ -10,9 +10,6 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
-import swal from "sweetalert";
-import axios from "axios";
-import { BASE_URL } from "../../config/apiConfig";
 import { pdfDownload } from "../../utils/pdfDownload";
 import serviceMap from "../../utils/serviceMap";
 import RequestServiceModal from "../../components/modals/RequestServiceModal";
@@ -98,13 +95,6 @@ const AiPaniniDetailPage = () => {
   const [filePreview, setFilePreview] = useState(null);
   const [pdfUrl, setPdfUrl] = useState(null);
 
-  const handleDownload = () => {
-    const link = document.createElement("a");
-    link.href = pdfUrl;
-    link.download = `ai_panini_service_request_form.pdf`;
-    link.click();
-  };
-
   const handleRequestFormDownload = async () => {
     const url = await pdfDownload(serviceMap.ai_panini);
     if (url) {
@@ -115,80 +105,6 @@ const AiPaniniDetailPage = () => {
   useEffect(() => {
     handleRequestFormDownload();
   }, []);
-
-  const handleUpload = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    if (file.type !== "application/pdf") {
-      swal({
-        title: "Invalid File",
-        text: "Only PDF files are allowed!",
-        icon: "error",
-        button: "OK",
-      });
-      e.target.value = "";
-      return;
-    }
-
-    const fileUrl = URL.createObjectURL(file);
-    setFilePreview({
-      name: file.name,
-      url: fileUrl,
-      type: file.type,
-    });
-    setSelectedFile(file);
-  };
-
-  const handleSubmit = async () => {
-    if (!selectedFile) {
-      swal({
-        title: "Form Required",
-        text: "Please upload the signed service request form first.",
-        icon: "warning",
-        button: "OK",
-      });
-      return;
-    }
-
-    try {
-      const formData = new FormData();
-      formData.append("userId", localStorage.getItem("userId")); // or retrieve as needed
-      formData.append("serviceName", "AI Panini");
-      formData.append("pdfFile", selectedFile); // selectedFile should be a File object from input
-
-      const response = await axios.post(
-        `${BASE_URL}/api/requests/submit`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-
-      console.log("Upload success:", response.data);
-      if (response.data?.status === "success") {
-        swal({
-          title: "Success!",
-          text: "Form submitted successfully. Action required: Service Owner and HOD approval pending for service request 'AI Panini'.",
-          icon: "success",
-          button: "OK",
-        }).then(() => {
-          setIsModalOpen(false);
-          setSelectedFile(null);
-        });
-      }
-    } catch (error) {
-      console.error("Upload failed:", error);
-      swal({
-        title: "Error!",
-        text: "Something went wrong while submitting the form.",
-        icon: "error",
-        button: "OK",
-      });
-    }
-  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -572,12 +488,12 @@ const AiPaniniDetailPage = () => {
       {isModalOpen && (
         <RequestServiceModal
           serviceName={"AI Panini"}
-          handleDownload={handleDownload}
-          handleUpload={handleUpload}
-          handleSubmit={handleSubmit}
+          pdfUrl={pdfUrl}
           filePreview={filePreview}
+          selectedFile={selectedFile}
           setFilePreview={setFilePreview}
           setIsModalOpen={setIsModalOpen}
+          setSelectedFile={setSelectedFile}
         />
       )}
 

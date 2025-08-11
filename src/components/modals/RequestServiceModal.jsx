@@ -1,14 +1,108 @@
-import React from "react";
+import React, { useRef } from "react";
+import swal from "sweetalert";
+import axios from "axios";
+import { BASE_URL } from "../../config/apiConfig";
 
 const RequestServiceModal = ({
   serviceName,
-  handleDownload,
-  handleUpload,
-  handleSubmit,
+  pdfUrl,
   filePreview,
+  selectedFile,
   setFilePreview,
   setIsModalOpen,
+  setSelectedFile,
+  serviceText,
 }) => {
+  const fileInputRef = useRef(null);
+
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = pdfUrl;
+    link.download = `${serviceName}_service_request_form.pdf`;
+    link.click();
+  };
+
+  const handleUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (file.type !== "application/pdf") {
+      swal({
+        title: "Invalid File",
+        text: "Only PDF files are allowed!",
+        icon: "error",
+        button: "OK",
+      });
+      e.target.value = "";
+      return;
+    }
+
+    const fileUrl = URL.createObjectURL(file);
+    setFilePreview({
+      name: file.name,
+      url: fileUrl,
+      type: file.type,
+    });
+    setSelectedFile(file);
+  };
+
+  const handleSubmit = async () => {
+    if (!selectedFile) {
+      swal({
+        title: "Form Required",
+        text: "Please upload the signed service request form first.",
+        icon: "warning",
+        button: "OK",
+      });
+      return;
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append("userId", localStorage.getItem("userId")); // or retrieve as needed
+      formData.append("serviceName", serviceName);
+      formData.append("pdfFile", selectedFile); // selectedFile should be a File object from input
+
+      const response = await axios.post(
+        `${BASE_URL}/api/requests/submit`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log("Upload success:", response.data);
+      if (response.data?.status === "success") {
+        swal({
+          title: "Success!",
+          text: `Form submitted successfully. Action required: Service Owner and HOD approval pending for ${serviceName} service request.`,
+          icon: "success",
+          button: "OK",
+        }).then(() => {
+          setIsModalOpen(false);
+          setSelectedFile(null);
+        });
+      }
+    } catch (error) {
+      console.error("Upload failed:", error);
+      swal({
+        title: "Error!",
+        text: "Something went wrong while submitting the form.",
+        icon: "error",
+        button: "OK",
+      });
+    }
+  };
+
+  const handleRemoveFile = () => {
+    setFilePreview(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center overflow-y-auto">
       <div className="bg-white p-6 rounded shadow-md max-w-xl w-full relative">
@@ -37,7 +131,7 @@ const RequestServiceModal = ({
                 <span className="font-medium">Project Name</span>,{" "}
                 <span className="font-medium">Use Case</span>, and{" "}
                 <span className="font-medium">
-                  Source-Target Language Pairs
+                  {serviceText || "Source-Target Language Pairs"}
                 </span>
                 .
               </span>
@@ -83,6 +177,7 @@ const RequestServiceModal = ({
             <input
               type="file"
               id="uploadFile"
+              ref={fileInputRef}
               onChange={handleUpload}
               className="hidden"
             />
@@ -93,7 +188,7 @@ const RequestServiceModal = ({
               <div className="flex justify-between items-center mb-2">
                 <p className="font-medium text-gray-700">Preview:</p>
                 <button
-                  onClick={() => setFilePreview(null)}
+                  onClick={handleRemoveFile}
                   className="text-red-600 font-medium text-sm underline"
                 >
                   Remove Attachment

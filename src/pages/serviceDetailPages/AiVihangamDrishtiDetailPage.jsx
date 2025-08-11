@@ -185,7 +185,7 @@ const AiVihangamDrishtiDetail = () => {
               </h3>
               <p className="text-sm text-gray-600 mb-4">
                 Visual representation of monthly API hits for AI Vihangam
-                Drishti in the year 2024.
+                Drishti in the <strong>year 2024</strong>.
               </p>
               <div className="h-72">
                 <ResponsiveContainer width="100%" height="100%">

@@ -4,9 +4,13 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { pdfDownload } from "../../utils/pdfDownload";
 import serviceMap from "../../utils/serviceMap";
+import RequestServiceModal from "../../components/modals/RequestServiceModal";
 
 const AiSaranshDetailPage = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [filePreview, setFilePreview] = useState(null);
   const [pdfUrl, setPdfUrl] = useState(null);
 
   const handleRequestFormDownload = async () => {
@@ -23,6 +27,18 @@ const AiSaranshDetailPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden"; // Disable scroll
+    } else {
+      document.body.style.overflow = "auto"; // Enable scroll
+    }
+    // Cleanup when component unmounts or modal closes
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isModalOpen]);
 
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
@@ -266,8 +282,29 @@ const AiSaranshDetailPage = () => {
               </li>
             </ol>
           </div>
+          <div className="mt-8 mb-6 flex ">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="px-6 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition"
+            >
+              Request for Service
+            </button>
+          </div>
         </div>
       </div>
+      {/* Modal */}
+      {isModalOpen && (
+        <RequestServiceModal
+          serviceName={"AI Saransh"}
+          pdfUrl={pdfUrl}
+          filePreview={filePreview}
+          selectedFile={selectedFile}
+          setFilePreview={setFilePreview}
+          setIsModalOpen={setIsModalOpen}
+          setSelectedFile={setSelectedFile}
+          serviceText={"Summarization type (Extractive/Abstractive)"}
+        />
+      )}
       <Footer />
     </div>
   );

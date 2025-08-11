@@ -12,9 +12,13 @@ import {
 } from "recharts";
 import { pdfDownload } from "../../utils/pdfDownload";
 import serviceMap from "../../utils/serviceMap";
+import RequestServiceModal from "../../components/modals/RequestServiceModal";
 
 const AiMatraDetailPage = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [filePreview, setFilePreview] = useState(null);
   const [pdfUrl, setPdfUrl] = useState(null);
 
   const departmentChartData = [
@@ -92,6 +96,17 @@ const AiMatraDetailPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isModalOpen]);
 
   return (
     <div className="bg-[#eee5dc] text-gray-900 min-h-screen flex flex-col">
@@ -235,14 +250,12 @@ const AiMatraDetailPage = () => {
               </tr>
             </thead>
             <tbody>
-              {supportedLanguages.map((item) => {
+              {supportedLanguages.map((item, index) => {
                 return (
-                  <>
-                    <tr>
-                      <td className="p-2 border">{item}</td>
-                      <td className="p-2 border">Yes</td>
-                    </tr>
-                  </>
+                  <tr key={index}>
+                    <td className="p-2 border">{item}</td>
+                    <td className="p-2 border">Yes</td>
+                  </tr>
                 );
               })}
             </tbody>
@@ -469,8 +482,27 @@ const AiMatraDetailPage = () => {
             </li>
           </ol>
         </div>
+        <div className="mt-8 mb-6 flex ">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="px-6 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition"
+          >
+            Request for Service
+          </button>
+        </div>
       </main>
-
+      {isModalOpen && (
+        <RequestServiceModal
+          serviceName={"AI Matra"}
+          pdfUrl={pdfUrl}
+          filePreview={filePreview}
+          selectedFile={selectedFile}
+          setFilePreview={setFilePreview}
+          setIsModalOpen={setIsModalOpen}
+          setSelectedFile={setSelectedFile}
+          serviceText={"target Indic languages for transliteration."}
+        />
+      )}
       <Footer />
     </div>
   );

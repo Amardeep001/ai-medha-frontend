@@ -22,6 +22,7 @@ import { BASE_URL } from "../config/apiConfig";
 import { formatDateTime } from "../utils/dateUtils";
 import UserRequestModal from "../components/modals/UserRequestModal";
 import swal from "sweetalert";
+import { capitalizeFirstLetter } from "../utils/dateUtils";
 
 ChartJS.register(
   ArcElement,
@@ -74,28 +75,28 @@ const OverviewPage = () => {
   const statusData = [
     {
       label: "Service Requests",
-      subtext: "Total Requests Submitted",
+      subtext: "Total requests submitted",
       value: statusCounts.total,
       icon: <FaClipboardList className="text-yellow-600 text-2xl" />,
       bg: "bg-yellow-100",
     },
     {
-      label: "approved Services",
-      subtext: "Total approved AI Services",
+      label: "Approved Services",
+      subtext: "Total approved AI services",
       value: statusCounts.approved,
       icon: <FaCheckCircle className="text-green-600 text-2xl" />,
       bg: "bg-green-100",
     },
     {
-      label: "pending Services",
-      subtext: "Under Review or In Progress",
+      label: "Pending Services",
+      subtext: "Under review or in progress",
       value: statusCounts.pending,
       icon: <FaHourglassHalf className="text-blue-600 text-2xl" />,
       bg: "bg-blue-100",
     },
     {
-      label: "rejected Services",
-      subtext: "Requests Not approved",
+      label: "Rejected Services",
+      subtext: "Requests not approved",
       value: statusCounts.rejected,
       icon: <FaTimesCircle className="text-red-600 text-2xl" />,
       bg: "bg-red-100",
@@ -217,7 +218,7 @@ const OverviewPage = () => {
         {/* Service Requests Table */}
         <div className="mt-10">
           <h3 className="text-2xl font-semibold text-blue-900 mb-4 border-b pb-2">
-            Your Service Requests
+            User Service Requests
           </h3>
 
           <div className="overflow-x-auto bg-white rounded-lg shadow-md">
@@ -260,7 +261,7 @@ const OverviewPage = () => {
                               : "bg-red-100 text-red-700"
                           }`}
                         >
-                          {req.status}
+                          {capitalizeFirstLetter(req.status)}
                         </span>
                       </td>
                       <td className="px-4 py-3 text-gray-600">

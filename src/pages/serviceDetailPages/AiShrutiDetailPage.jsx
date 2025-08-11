@@ -13,9 +13,13 @@ import {
 } from "recharts";
 import { pdfDownload } from "../../utils/pdfDownload";
 import serviceMap from "../../utils/serviceMap";
+import RequestServiceModal from "../../components/modals/RequestServiceModal";
 
 const AiShrutiDetailPage = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [filePreview, setFilePreview] = useState(null);
   const [pdfUrl, setPdfUrl] = useState(null);
 
   const departmentChartData = [
@@ -82,6 +86,17 @@ const AiShrutiDetailPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isModalOpen]);
 
   return (
     <div className="grid grid-rows-[min-content_1fr] min-h-screen bg-[#eee5dc] text-gray-900">
@@ -502,8 +517,28 @@ const AiShrutiDetailPage = () => {
               </li>
             </ol>
           </div>
+          <div className="mt-8 mb-6 flex ">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="px-6 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition"
+            >
+              Request for Service
+            </button>
+          </div>
         </div>
       </div>
+      {isModalOpen && (
+        <RequestServiceModal
+          serviceName={"AI Shruti"}
+          pdfUrl={pdfUrl}
+          filePreview={filePreview}
+          selectedFile={selectedFile}
+          setFilePreview={setFilePreview}
+          setIsModalOpen={setIsModalOpen}
+          setSelectedFile={setSelectedFile}
+          serviceText={"authorization letter."}
+        />
+      )}
       <Footer />
     </div>
   );
