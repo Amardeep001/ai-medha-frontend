@@ -12,14 +12,14 @@ import {
   FaFileAlt,
 } from "react-icons/fa";
 import AiNibhritImage from "../images/serviceCatalogueImages/ai_nibhrit_image.png";
-import AiPaniniImage from "../images/serviceCatalogueImages/ai_panini.png";
+import AiPaniniImage from "../images/serviceCatalogueImages/ai_panini.jpeg";
 import AiChatbotImage from "../images/serviceCatalogueImages/ai_chatbot_image.jpg";
 import AiShrutiImage from "../images/serviceCatalogueImages/ai_shruti.jpg";
 import AiMatraImage from "../images/serviceCatalogueImages/ai_matra.jpg";
 import AiParkhiImage from "../images/serviceCatalogueImages/ai_parkhi.webp";
 import AiVihangamImage from "../images/serviceCatalogueImages/ai_vihangam.jpg";
 import AiSatyapikananImage from "../images/serviceCatalogueImages/ai_satyapikanan.webp";
-import AiAnveshika from "../images/serviceCatalogueImages/ai_anveshika.jpg";
+import AiAnveshika from "../images/serviceCatalogueImages/ai_anveshika.png";
 import AiSaransh from "../images/serviceCatalogueImages/saransh.png";
 
 const serviceData = [
@@ -41,7 +41,7 @@ const serviceData = [
     available: true,
     description:
       "Translate between Indian languages and English using neural machine translation.",
-    usage: "Enables translation across 11 Indian languages.",
+    usage: "Enables translation across 22 Indic languages.",
     icon: <FaLanguage className="text-blue-700 text-4xl" />, // You can choose another icon if preferred
     image: AiPaniniImage, // Replace with real image when available
   },

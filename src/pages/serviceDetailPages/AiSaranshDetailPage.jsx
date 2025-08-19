@@ -142,9 +142,6 @@ const AiSaranshDetailPage = () => {
                   Government report summarization for administrative workflows
                 </li>
                 <li>
-                  API-based integration into e-Governance applications via NAPIX
-                </li>
-                <li>
                   Digital document management with configurable summary lengths
                 </li>
               </ul>
@@ -160,8 +157,6 @@ const AiSaranshDetailPage = () => {
                 </li>
                 <li>Autonomous Institutions and Local Government bodies</li>
                 <li>Supreme Court, High Courts, and District Courts</li>
-                <li>Legal professionals and judicial administrative staff</li>
-                <li>Government officers requiring document analysis</li>
               </ul>
             </div>
           </div>
@@ -187,9 +182,9 @@ const AiSaranshDetailPage = () => {
                 prepare clean input.
               </li>
               <li>
-                <strong>Transformer Model Inference:</strong> Processes the
-                cleaned text using the Transformer-based summarization model to
-                identify key information and remove redundant information.
+                <strong>Model Inference:</strong> Processes the cleaned text
+                using the Transformer-based summarization model to identify key
+                information and remove redundant information.
               </li>
               <li>
                 <strong>Summary Generation:</strong> Generates coherent summary
@@ -226,7 +221,7 @@ const AiSaranshDetailPage = () => {
                     User Service Request Form
                   </a>
                 </strong>{" "}
-                via AI MEDHA platform.
+                via AI Medha platform.
               </li>
               <li>
                 Include project use case, required summarization type
@@ -240,11 +235,6 @@ const AiSaranshDetailPage = () => {
                 Choose an integration method: <strong>NAPIX Integration</strong>{" "}
                 or <strong>Direct API Access</strong>.
               </li>
-              <li>
-                The Service is available on <strong>NICNET</strong> and also
-                accessible over public internet via <strong>NAPIX</strong>{" "}
-                platform.
-              </li>
 
               {/* NAPIX Integration Steps */}
               <li>
@@ -253,7 +243,10 @@ const AiSaranshDetailPage = () => {
                   <li>
                     Register on the NAPIX platform for external/public access.
                   </li>
-                  <li>Apply for summarization API access.</li>
+                  <li>
+                    Apply for summarization API access and submit IPs for
+                    whitelisting.
+                  </li>
                   <li>
                     Upon approval, receive your <strong>Client ID</strong> and{" "}
                     <strong>Client Secret</strong>.

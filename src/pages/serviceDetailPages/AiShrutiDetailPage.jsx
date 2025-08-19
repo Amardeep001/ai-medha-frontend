@@ -536,7 +536,6 @@ const AiShrutiDetailPage = () => {
           setFilePreview={setFilePreview}
           setIsModalOpen={setIsModalOpen}
           setSelectedFile={setSelectedFile}
-          serviceText={"authorization letter."}
         />
       )}
       <Footer />

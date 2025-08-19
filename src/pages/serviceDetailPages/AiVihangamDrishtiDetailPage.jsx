@@ -105,7 +105,7 @@ const AiVihangamDrishtiDetail = () => {
 
             <div className="pt-4 text-sm text-gray-600 space-y-1">
               <p>
-                <strong>Last Security Audit Date:</strong> 30.07.2025
+                <strong>Last Security Audit Date:</strong> 30-07-2025
               </p>
             </div>
 

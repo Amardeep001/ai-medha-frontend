@@ -4,9 +4,13 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { pdfDownload } from "../../utils/pdfDownload";
 import serviceMap from "../../utils/serviceMap";
+import RequestServiceModal from "../../components/modals/RequestServiceModal";
 
 const AiAnveshikaDetail = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [filePreview, setFilePreview] = useState(null);
   const [pdfUrl, setPdfUrl] = useState(null);
 
   const handleRequestFormDownload = async () => {
@@ -66,20 +70,20 @@ const AiAnveshikaDetail = () => {
               About AI Anveshika
             </h3>
             <p className="text-gray-700 text-sm leading-relaxed">
-              <strong>AI Anveshika</strong> is a Retrieval-Augmented Generation
-              (RAG) solution that enhances document-based question answering by
-              combining document retrieval with a large language model. It first
-              retrieves relevant text from PDFs using vector search and then
-              generates answers grounded in that content. AI Anveshika is
-              tailored for legal and policy-intensive domains where contextual
-              accuracy, traceability, and Q&A are essential.
+              <strong>AI Anveshika</strong> is a Generative AI based solution
+              that enhances document-based question answering by combining
+              document retrieval with a large language model to generate
+              response. It first retrieves relevant text from PDFs using vector
+              search and then generates answers grounded in that content. AI
+              Anveshika is tailored for legal and policy-intensive domains where
+              contextual accuracy, traceability, and Q&A are essential.
             </p>
 
-            <div className="mt-4 text-sm text-gray-700 space-y-1">
+            {/* <div className="mt-4 text-sm text-gray-700 space-y-1">
               <p>
-                <strong>Copyright:</strong> NIC
+                <strong>Last Security Audit Date:</strong> NA
               </p>
-            </div>
+            </div> */}
 
             <div className="mt-6">
               <h4 className="text-md font-semibold text-blue-700 mb-2">
@@ -106,20 +110,6 @@ const AiAnveshikaDetail = () => {
 
             <div className="mt-6">
               <h4 className="text-md font-semibold text-blue-700 mb-2">
-                AI Anveshika Rollout
-              </h4>
-              <p className="text-sm text-gray-700">
-                AI Anveshika is being used in pilot engagements with departments
-                such as e-Courts, Ministry of Finance, and Ministry of Transport
-                to extract structured insights from lengthy legal and regulatory
-                documents. It improves efficiency in policy interpretation and
-                supports decision-making by surfacing relevant legal arguments
-                or summaries from dense files.
-              </p>
-            </div>
-
-            <div className="mt-6">
-              <h4 className="text-md font-semibold text-blue-700 mb-2">
                 Ideal Use Cases
               </h4>
               <ol className="text-gray-700 text-sm space-y-2">
@@ -130,7 +120,7 @@ const AiAnveshikaDetail = () => {
                 </li>
                 <li>
                   <strong>Policy Research & Question Answering:</strong> Helps
-                  departments like Finance and Transport interrogate long
+                  departments like Finance, UPSC etc. for querying long
                   documents for targeted Q&A.
                 </li>
                 <li>
@@ -213,26 +203,32 @@ const AiAnveshikaDetail = () => {
             </h3>
             <ol className="list-decimal list-inside text-gray-700 text-sm space-y-2">
               <li>
-                <strong>Onboarding & Authorization:</strong> Submit a request
-                form through the AI Medha Platform with department details and
-                intended use case.
+                Fill out the{" "}
+                <strong>
+                  <a
+                    href={pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-700 hover:text-blue-900"
+                  >
+                    User Service Request Form
+                  </a>
+                </strong>{" "}
+                via AI Medha Platform.
               </li>
               <li>
-                <strong>Document Upload:</strong> Use the provided API to upload
-                one or more PDF files (scanned or text-based) to the AI
-                Anveshika platform.
+                Include project use case and requirements for a bot and/or query
+                to individual pdf and authorization letter.
               </li>
               <li>
-                <strong>Index Building:</strong> The system extracts text,
-                performs OCR if needed, and creates searchable vector embeddings
-                of the content.
+                Get RBAC authorization for API usage via AI Medha Service
+                Catalogue.
               </li>
               <li>
-                <strong>Metadata Tagging:</strong> Optionally, the uploaded
-                documents can be tagged with metadata for structured retrieval
-                and filtering.
+                This service is only available over NICNET through whitelisted
+                IPs.
               </li>
-              <li>
+              {/* <li>
                 <strong>Query Submission:</strong> Use the API to send natural
                 language questions related to the uploaded content.
               </li>
@@ -245,32 +241,31 @@ const AiAnveshikaDetail = () => {
                 <strong>Output Delivery:</strong> The system returns a JSON with
                 the answer, source paragraphs, and confidence score, which can
                 be displayed or stored.
-              </li>
+              </li> */}
             </ol>
           </div>
-
-          <div className="mt-8 mb-6 bg-white rounded-lg shadow-md p-8">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Network Access Details
-            </h3>
-            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
-              <li>
-                <strong>Network Access:</strong> Available on NICNET.
-              </li>
-              <li>
-                <strong>Firewall Configuration:</strong> Access is permitted
-                only from whitelisted NICNET or government department IPs.
-              </li>
-              <li>
-                <strong>Access Control:</strong> Secured using{" "}
-                <strong>Role-Based Access Control (RBAC)</strong> and
-                authenticated API tokens issued to approved departments.
-              </li>
-            </ul>
+          {/* Second Request for Service Button */}
+          <div className="mt-8 mb-6 flex ">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="px-6 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition"
+            >
+              Request for Service
+            </button>
           </div>
         </div>
       </div>
-
+      {isModalOpen && (
+        <RequestServiceModal
+          serviceName={"AI Anveshika"}
+          pdfUrl={pdfUrl}
+          filePreview={filePreview}
+          selectedFile={selectedFile}
+          setFilePreview={setFilePreview}
+          setIsModalOpen={setIsModalOpen}
+          setSelectedFile={setSelectedFile}
+        />
+      )}
       <Footer />
     </div>
   );

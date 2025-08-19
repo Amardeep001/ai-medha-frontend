@@ -174,11 +174,11 @@ const AiPaniniDetailPage = () => {
             </p>
 
             {/* Additional Info Section */}
-            <div className="pt-4 text-sm text-gray-600 space-y-1">
+            {/* <div className="pt-4 text-sm text-gray-600 space-y-1">
               <p>
-                <strong>Copyright:</strong> NIC
+                <strong>Last Security Audit Date:</strong> NA
               </p>
-            </div>
+            </div> */}
 
             <div className="mt-6">
               <h4 className="text-md font-semibold text-blue-700 mb-2">
@@ -216,30 +216,6 @@ const AiPaniniDetailPage = () => {
             </div>
 
             <div className="mt-6">
-              <h4 className="text-md font-semibold text-blue-700 mb-2">
-                AI Panini Rollout
-              </h4>
-              <p className="text-sm text-gray-700">
-                AI Panini is being actively adopted across various government
-                ministries, state departments, and judicial institutions to
-                enable seamless multilingual translation services. By supporting
-                translation across 22 indic languages and English, AI Panini
-                plays a vital role in enhancing accessibility, governance, and
-                citizen engagement across the nation.
-              </p>
-              <p className="text-sm text-gray-700 mt-3">
-                <strong>Organizations using AI Panini include:</strong>
-              </p>
-              <ul className="list-disc list-inside ml-5 text-sm text-gray-700">
-                <li>Supreme Court</li>
-                <li>Agricultural Informatics Division</li>
-                <li>eCourt MMP</li>
-                <li>NIC Tejas</li>
-                <li>and many more.</li>
-              </ul>
-            </div>
-
-            <div className="mt-6">
               <h4 className="text-blue-800 font-semibold text-md mb-2">
                 Ideal Use Cases
               </h4>
@@ -255,6 +231,18 @@ const AiPaniniDetailPage = () => {
                   Translation of well-structured formal text like policies,
                   reports, and notices.
                 </li>
+              </ul>
+            </div>
+            <div className="mt-6">
+              <h4 className="text-blue-800 font-semibold text-md mb-2">
+                Possible Users
+              </h4>
+              <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
+                <li>Courts</li>
+                <li>
+                  Central and State Government Ministries / Departments / PSUs
+                </li>
+                <li>Autonomous Institutions and Local Government bodies</li>
               </ul>
             </div>
           </div>
@@ -402,10 +390,11 @@ const AiPaniniDetailPage = () => {
               </li>
               <li>
                 Include project name, use case, and requested source-target
-                language pairs.
+                language pairs and authorization letter.
               </li>
               <li>
-                Submit with a signed user request letter to initiate onboarding.
+                Get RBAC authorization for API uasge via AI Medha Service
+                Catalogue.
               </li>
               <li>
                 Choose an integration method: <strong>NAPIX Integration</strong>{" "}
@@ -418,7 +407,8 @@ const AiPaniniDetailPage = () => {
                 <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
                   <li>Register on the NAPIX platform.</li>
                   <li>
-                    Apply for API access via the user service request form.
+                    Apply for Translation API access via the user service
+                    request form.
                   </li>
                   <li>
                     After verification by a Director-level or higher authority,
@@ -426,7 +416,7 @@ const AiPaniniDetailPage = () => {
                   </li>
                   <li>
                     You will receive a <strong>Client ID</strong> and{" "}
-                    <strong>Secret ID</strong> for authentication.
+                    <strong>Client Secret</strong> for authentication.
                   </li>
                   <li>
                     Use these credentials in each API request to access
@@ -451,27 +441,6 @@ const AiPaniniDetailPage = () => {
             </ol>
           </div>
 
-          {/* Network Availability Section */}
-          <div className="mt-8 mb-6 bg-white rounded-lg shadow-md p-8">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Network Access Details
-            </h3>
-            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
-              <li>
-                <strong>Network Access:</strong> internal only via the{" "}
-                <strong>NIC</strong> Network, and external via{" "}
-                <strong>NAPIX</strong>.
-              </li>
-              <li>
-                <strong>Firewall Configuration:</strong> Only whitelisted IPs
-                can access the service.
-              </li>
-              <li>
-                <strong>Access Control:</strong> Enforced via{" "}
-                <strong>VPN</strong> and <strong>IP whitelisting</strong>.
-              </li>
-            </ul>
-          </div>
           {/* Second Request for Service Button */}
           <div className="mt-8 mb-6 flex ">
             <button
@@ -494,6 +463,7 @@ const AiPaniniDetailPage = () => {
           setFilePreview={setFilePreview}
           setIsModalOpen={setIsModalOpen}
           setSelectedFile={setSelectedFile}
+          serviceText={"Source-Target Language Pairs"}
         />
       )}
 

@@ -131,7 +131,7 @@ const RequestServiceModal = ({
                 <span className="font-medium">Project Name</span>,{" "}
                 <span className="font-medium">Use Case</span>, and{" "}
                 <span className="font-medium">
-                  {serviceText || "Source-Target Language Pairs"}
+                  {serviceText || "Authorization letter"}
                 </span>
                 .
               </span>
@@ -218,7 +218,10 @@ const RequestServiceModal = ({
               Submit
             </button>
             <button
-              onClick={() => setIsModalOpen(false)}
+              onClick={() => {
+                setIsModalOpen(false);
+                handleRemoveFile();
+              }}
               className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500"
             >
               Cancel

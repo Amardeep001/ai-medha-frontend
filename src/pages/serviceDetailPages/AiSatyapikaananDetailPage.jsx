@@ -12,9 +12,13 @@ import {
 } from "recharts";
 import { pdfDownload } from "../../utils/pdfDownload";
 import serviceMap from "../../utils/serviceMap";
+import RequestServiceModal from "../../components/modals/RequestServiceModal";
 
 const AiSatyapikaananDetailPage = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [filePreview, setFilePreview] = useState(null);
   const [pdfUrl, setPdfUrl] = useState(null);
 
   const satyapikaananData = [
@@ -91,7 +95,7 @@ const AiSatyapikaananDetailPage = () => {
             AI Satyapikaanan
           </h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
-            AI Satyapikaanan is the "Face Recognition as a Service (FRaaS)", an
+            AI Satyapikaanan is the "Face Verification as a Service", an
             AI-driven facial recognition platform developed by NIC to support
             digital governance. It addresses key identity challenges and enables
             citizen-centric services in sectors like education, agriculture,
@@ -104,9 +108,9 @@ const AiSatyapikaananDetailPage = () => {
             </h3>
             <p className="text-sm text-gray-700 leading-relaxed">
               AI Satyapikaanan is an AI-driven{" "}
-              <strong>Face Analytics as a Service (FaaaS)</strong> platform
-              developed by the National Informatics Centre (NIC) to bolster
-              digital governance initiatives across India. It offers a secure,
+              <strong>Face Analytics as a Service</strong> platform developed by
+              the National Informatics Centre (NIC) to bolster digital
+              governance initiatives across India. It offers a secure,
               contactless, and non-invasive solution for advanced face analytics
               such as facial identity verification, face quality assessment etc,
               addressing critical challenges and enabling efficient,
@@ -115,17 +119,18 @@ const AiSatyapikaananDetailPage = () => {
 
             <div className="pt-4 text-sm text-gray-600 space-y-1">
               <p>
-                <strong>Last Security Audit Status:</strong> The last security
-                audit has expired, and a new audit is currently{" "}
-                <strong>in progress</strong> to ensure the continued integrity
-                and security of the platform.
-              </p>
-              <p>
                 <strong>Awards:</strong> AI Satyapikaanan was recognized under
                 the <strong>Project Category</strong> in the prestigious{" "}
                 <strong>20th CSI SIG eGovernance Awards 2022</strong>,
                 highlighting its significant contribution to digital
                 transformation.
+              </p>
+              {/* <p>
+                <strong>Last Security Audit Date:</strong> currently{" "}
+                <strong>in progress</strong>
+              </p> */}
+              <p>
+                <strong>Copyright:</strong> SW - 15261/2022
               </p>
             </div>
 
@@ -157,47 +162,6 @@ const AiSatyapikaananDetailPage = () => {
                 <li>
                   <strong>Security Measures:</strong> Liveness detection to
                   prevent spoofing (e.g., printed photos, digital masks)
-                </li>
-              </ul>
-            </div>
-
-            <div className="mt-6">
-              <h4 className="text-md font-semibold text-blue-700 mb-2">
-                AI Satyapikaanan Rollout
-              </h4>
-              <p className="text-sm text-gray-700">
-                AI Satyapikaanan is already making a significant impact across
-                diverse sectors, demonstrating its versatility and
-                effectiveness.
-              </p>
-            </div>
-
-            <div className="mt-6">
-              <h4 className="text-md font-semibold text-blue-700 mb-2">
-                Current Deployments:
-              </h4>
-              <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
-                <li>
-                  <strong>Attendance Management:</strong>Attendance Tracking:
-                  Successfully implemented in Technical Education, Government of
-                  West Bengal.
-                </li>
-                <li>
-                  <strong>Crop Surveyor Verification:</strong> Aiding the
-                  Ministry of Agriculture in authenticating crop surveyors.
-                </li>
-                <li>
-                  <strong>Pensioner Life Certificate Verification:</strong>{" "}
-                  Enabling seamless verification for pensioners in Meghalaya.
-                </li>
-                <li>
-                  <strong>Visitor Authentication:</strong> Enhancing security at
-                  Raj Bhavan, Uttarakhand.
-                </li>
-                <li>
-                  <strong>Learner's License Issuance:</strong> Streamlining the
-                  issuance of learner's licenses under the Ministry of Road
-                  Transport.
                 </li>
               </ul>
             </div>
@@ -239,8 +203,6 @@ const AiSatyapikaananDetailPage = () => {
               </h4>
               <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
                 <li>Central and State Government Departments</li>
-                <li>Transport, Education, and Welfare Boards</li>
-                <li>NIC and eGovernance Integrators</li>
                 <li>
                   Public-facing verification services (e.g., Pass issuance,
                   Licensing)
@@ -257,7 +219,7 @@ const AiSatyapikaananDetailPage = () => {
               </h3>
               <p className="text-sm text-gray-600 mb-4">
                 Departments leveraging AI Satyapikaanan for identity
-                verification and other services.
+                verification and other services during year 2024.
               </p>
               <div className="h-72">
                 <ResponsiveContainer width="100%" height="100%">
@@ -364,7 +326,7 @@ const AiSatyapikaananDetailPage = () => {
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               How to Use AI Satyapikaanan Service
             </h3>
-            <ol className="list-decimal pl-5 text-gray-700 text-sm space-y-2">
+            {/* <ol className="list-decimal pl-5 text-gray-700 text-sm space-y-2">
               <li>
                 <strong>Onboarding & Authorization:</strong> Submit a request to
                 NIC for onboarding with a signed approval letter from your
@@ -378,27 +340,92 @@ const AiSatyapikaananDetailPage = () => {
                 granted, enabling seamless integration with your existing
                 systems.
               </li>
+            </ol> */}
+            <ol className="list-decimal list-inside text-sm text-gray-700 space-y-2">
+              <li>
+                Fill out the{" "}
+                <strong>
+                  <a
+                    href={pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-700 hover:text-blue-900"
+                  >
+                    User Service Request Form
+                  </a>
+                </strong>{" "}
+                via AI Medha Platform.
+              </li>
+              <li>Include project name, use case and authorization letter.</li>
+              <li>
+                Get RBAC authorization for API uasge via AI Medha Service
+                Catalogue.
+              </li>
+              <li>
+                Choose an integration method: <strong>NAPIX Integration</strong>{" "}
+                or <strong>Direct API Access</strong>.
+              </li>
+
+              {/* NAPIX Integration Steps */}
+              <li>
+                <strong>NAPIX Integration:</strong>
+                <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
+                  <li>Register on the NAPIX platform.</li>
+                  <li>
+                    Apply for API access via the user service request form.
+                  </li>
+                  <li>
+                    After verification by a Director-level or higher authority,
+                    credentials will be issued.
+                  </li>
+                  <li>
+                    You will receive a <strong>Client ID</strong> and{" "}
+                    <strong>Client Secret</strong> for authentication.
+                  </li>
+                  <li>
+                    Use these credentials in each API request to access face
+                    verification services.
+                  </li>
+                </ul>
+              </li>
+
+              {/* Direct API Access Steps */}
+              <li>
+                <strong>Direct API Access:</strong>
+                <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
+                  <li>
+                    Route requests through NICNET VM or VPN for secure access.
+                  </li>
+                  <li>
+                    Use the available API endpoints to directly access face
+                    verification services.
+                  </li>
+                </ul>
+              </li>
             </ol>
           </div>
-
-          <div className="mt-8 bg-white rounded-lg shadow-md p-6 mb-6">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Network Access Details
-            </h3>
-            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
-              <li>
-                <strong>Network Access:</strong> Available through NICNET or via
-                the NAPIX API Gateway for internal or external integrations.
-              </li>
-              <li>
-                <strong>Access Control:</strong> Enforced through IP
-                whitelisting (NICNET) and authorized API credentials (NAPIX) for
-                client systems.
-              </li>
-            </ul>
+          {/* Second Request for Service Button */}
+          <div className="mt-8 mb-6 flex ">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="px-6 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition"
+            >
+              Request for Service
+            </button>
           </div>
         </div>
       </div>
+      {isModalOpen && (
+        <RequestServiceModal
+          serviceName={"AI Satyapikaanan"}
+          pdfUrl={pdfUrl}
+          filePreview={filePreview}
+          selectedFile={selectedFile}
+          setFilePreview={setFilePreview}
+          setIsModalOpen={setIsModalOpen}
+          setSelectedFile={setSelectedFile}
+        />
+      )}
       <Footer />
     </div>
   );

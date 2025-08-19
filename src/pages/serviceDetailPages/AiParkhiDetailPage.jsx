@@ -4,9 +4,13 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { pdfDownload } from "../../utils/pdfDownload";
 import serviceMap from "../../utils/serviceMap";
+import RequestServiceModal from "../../components/modals/RequestServiceModal";
 
 const AiParkhiDetail = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [filePreview, setFilePreview] = useState(null);
   const [pdfUrl, setPdfUrl] = useState(null);
 
   const handleRequestFormDownload = async () => {
@@ -50,7 +54,7 @@ const AiParkhiDetail = () => {
 
           <h2 className="text-3xl font-bold text-blue-900 mb-2">AI Parkhi</h2>
           <p className="text-gray-700 mb-6 text-base leading-relaxed">
-            AI Parkhi is an AI-based image quality assessment tool that
+            AI Parkhi is a document image quality assessment tool that
             classifies uploaded images as good or bad based on visual clarity.
             It utilizes deep learning models to generate a quality score and
             binary classification label, enabling automated filtering of
@@ -66,17 +70,17 @@ const AiParkhiDetail = () => {
             <p className="text-sm text-gray-700 leading-relaxed">
               <strong>AI Parkhi</strong> is an AI-powered image quality
               assessment service that automatically classifies uploaded images
-              as good or bad based on visual clarity. It uses deep learning to
-              return a quality score and a binary label for each image, helping
-              government platforms improve efficiency, transparency, and
-              document readability.
+              as good or bad based on visual clarity. It uses deep learning
+              models to return a quality score and a binary label for each
+              image, helping government platforms improve efficiency,
+              transparency, and document readability.
             </p>
 
-            <div className="pt-4 text-sm text-gray-600 space-y-1">
+            {/* <div className="pt-4 text-sm text-gray-600 space-y-1">
               <p>
                 <strong>Last Security Audit Date:</strong> NA
               </p>
-            </div>
+            </div> */}
 
             <div className="mt-6">
               <h4 className="text-md font-semibold text-blue-700 mb-2">
@@ -98,10 +102,6 @@ const AiParkhiDetail = () => {
                   Automation
                 </li>
                 <li>
-                  <strong>Threshold:</strong> Score ≤ 51 → Bad (Label 0), Score{" "}
-                  {">"} 51 → Good (Label 1)
-                </li>
-                <li>
                   <strong>Performance Metric:</strong> 77.6% accuracy on
                   KonIQ-10k dataset
                 </li>
@@ -110,20 +110,6 @@ const AiParkhiDetail = () => {
                   Score Calculation → Quality Prediction (0/1)
                 </li>
               </ul>
-            </div>
-
-            <div className="mt-6">
-              <h4 className="text-md font-semibold text-blue-700 mb-2">
-                AI Parkhi Rollout
-              </h4>
-              <p className="text-sm text-gray-700">
-                AI Parkhi is currently being integrated into government systems
-                such as PESO's Online Licensing Portal to ensure clarity and
-                legibility of uploaded documents. By streamlining the
-                verification of scanned documents and forms, the solution
-                reduces manual effort and improves transparency across digital
-                workflows.
-              </p>
             </div>
 
             <div className="mt-6">
@@ -195,7 +181,7 @@ const AiParkhiDetail = () => {
                 perceptual image quality score.
               </li>
               <li>
-                <strong>Classification:</strong> Based on a threshold of 51, the
+                <strong>Classification:</strong> Based on a threshold, the
                 system classifies the image as BAD or GOOD Quality.
               </li>
               <li>
@@ -209,7 +195,7 @@ const AiParkhiDetail = () => {
             <h3 className="text-xl font-semibold text-blue-800 mb-3">
               How to Use AI Parkhi Service
             </h3>
-            <ol className="list-decimal list-inside text-gray-700 text-sm space-y-2">
+            {/* <ol className="list-decimal list-inside text-gray-700 text-sm space-y-2">
               <li>
                 <strong>Onboarding & Authorization:</strong> Submit an official
                 request via NIC channels with the use case for image quality
@@ -246,30 +232,92 @@ const AiParkhiDetail = () => {
                 filtering low-quality images in document processing, improving
                 OCR accuracy, or validating scanned uploads in workflows.
               </li>
+            </ol> */}
+            <ol className="list-decimal list-inside text-sm text-gray-700 space-y-2">
+              <li>
+                Fill out the{" "}
+                <strong>
+                  <a
+                    href={pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-700 hover:text-blue-900"
+                  >
+                    User Service Request Form
+                  </a>
+                </strong>{" "}
+                via AI Medha Platform.
+              </li>
+              <li>Include project name, use case and authorization letter.</li>
+              <li>
+                Get RBAC authorization for API uasge via AI Medha Service
+                Catalogue.
+              </li>
+              <li>
+                Choose an integration method: <strong>NAPIX Integration</strong>{" "}
+                or <strong>Direct API Access</strong>.
+              </li>
+
+              {/* NAPIX Integration Steps */}
+              <li>
+                <strong>NAPIX Integration:</strong>
+                <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
+                  <li>Register on the NAPIX platform.</li>
+                  <li>
+                    Apply for API access via the user service request form.
+                  </li>
+                  <li>
+                    After verification by a Director-level or higher authority,
+                    credentials will be issued.
+                  </li>
+                  <li>
+                    You will receive a <strong>Client ID</strong> and{" "}
+                    <strong>Client Secret</strong> for authentication.
+                  </li>
+                  <li>
+                    Use these credentials in each API request to access image
+                    quality assessment services.
+                  </li>
+                </ul>
+              </li>
+
+              {/* Direct API Access Steps */}
+              <li>
+                <strong>Direct API Access:</strong>
+                <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
+                  <li>
+                    Route requests through NICNET VM or VPN for secure access.
+                  </li>
+                  <li>
+                    Use the available API endpoints to directly access image
+                    quality assessment services.
+                  </li>
+                </ul>
+              </li>
             </ol>
           </div>
-          <div className="mt-8 bg-white rounded-lg shadow-md p-8 mb-6">
-            <h3 className="text-xl font-semibold text-blue-800 mb-3">
-              Network Access Details
-            </h3>
-            <ul className="list-disc pl-5 text-sm text-gray-700 space-y-2">
-              <li>
-                <strong>Network Access:</strong> Available only within the NIC
-                network environment through secure internal endpoints.
-              </li>
-              <li>
-                <strong>Firewall Configuration:</strong> Access is restricted to
-                whitelisted IPs as per NIC guidelines to ensure data security.
-              </li>
-              <li>
-                <strong>Access Control:</strong> Enforced using{" "}
-                <strong>IP whitelisting</strong> and authenticated API
-                credentials issued post-approval.
-              </li>
-            </ul>
+          {/* Second Request for Service Button */}
+          <div className="mt-8 mb-6 flex ">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="px-6 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition"
+            >
+              Request for Service
+            </button>
           </div>
         </div>
       </div>
+      {isModalOpen && (
+        <RequestServiceModal
+          serviceName={"AI Parkhi"}
+          pdfUrl={pdfUrl}
+          filePreview={filePreview}
+          selectedFile={selectedFile}
+          setFilePreview={setFilePreview}
+          setIsModalOpen={setIsModalOpen}
+          setSelectedFile={setSelectedFile}
+        />
+      )}
       <Footer />
     </div>
   );

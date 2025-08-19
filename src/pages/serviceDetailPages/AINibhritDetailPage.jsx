@@ -20,6 +20,7 @@ import YoloImage from "../../images/yolo_image.jpg";
 import OcrImage from "../../images/ocr_image.jpg";
 import { pdfDownload } from "../../utils/pdfDownload";
 import serviceMap from "../../utils/serviceMap";
+import RequestServiceModal from "../../components/modals/RequestServiceModal";
 
 const mockModels = [
   {
@@ -107,6 +108,9 @@ const docHitsData = [
 
 const AiNibhritDetailPage = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [filePreview, setFilePreview] = useState(null);
   const [pdfUrl, setPdfUrl] = useState(null);
 
   const handleRequestFormDownload = async () => {
@@ -580,8 +584,28 @@ const AiNibhritDetailPage = () => {
               </li>
             </ul>
           </div>
+          {/* Second Request for Service Button */}
+          <div className="mt-8 mb-6 flex ">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="px-6 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition"
+            >
+              Request for Service
+            </button>
+          </div>
         </div>
       </div>
+      {isModalOpen && (
+        <RequestServiceModal
+          serviceName={"AI Nibhrit"}
+          pdfUrl={pdfUrl}
+          filePreview={filePreview}
+          selectedFile={selectedFile}
+          setFilePreview={setFilePreview}
+          setIsModalOpen={setIsModalOpen}
+          setSelectedFile={setSelectedFile}
+        />
+      )}
       <Footer />
     </div>
   );
