@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
@@ -7,6 +7,7 @@ import bgImg from "../../images/inibg.svg";
 import HeaderBeforeLogin from "../../components/HeaderBeforeLogin";
 import { BASE_URL } from "../../config/apiConfig";
 import swal from "sweetalert";
+import { loginWithParichay } from "../../utils/parichayAuth";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -60,7 +61,6 @@ const Login = () => {
   };
 
   const handleChange = (field, value) => {
-    console.log("hello", "inee19");
     if (field === "emailOrPhone") setEmailOrPhone(value);
     if (field === "password") setPassword(value);
 
@@ -153,10 +153,6 @@ const Login = () => {
     }, 0);
   };
 
-  const handleParichayLogin = () => {
-    // Your Parichay login logic
-  };
-
   const isValid = (field) => {
     return (
       touched[field] &&
@@ -165,6 +161,28 @@ const Login = () => {
         (field === "password" && password.trim() !== ""))
     );
   };
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+    // const state = params.get("state");
+    const verifier = sessionStorage.getItem("parichay_code_verifier");
+
+    if (code && verifier) {
+      axios
+        .post(`${BASE_URL}/api/auth/parichay/exchange`, {
+          code,
+          codeVerifier: verifier,
+        })
+        .then((res) => {
+          console.log("Parichay login success", res.data);
+          navigate("/dashboard");
+        })
+        .catch((err) => {
+          console.error("Parichay login failed", err);
+        });
+    }
+  }, [navigate]);
 
   return (
     <div className="min-h-screen flex flex-col justify-between">
@@ -299,7 +317,7 @@ const Login = () => {
 
             <button
               type="button"
-              onClick={handleParichayLogin}
+              onClick={loginWithParichay}
               className="w-full bg-green-500 text-white px-4 py-2 mt-4 rounded-md hover:bg-green-700 transition"
             >
               Login with Parichay

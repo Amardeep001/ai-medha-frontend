@@ -1,9 +1,9 @@
 import axios from "axios";
 
 // ---------- Common Config ----------
-const PARICHAY_BASE = import.meta.env.VITE_PARICHAY_BASE || "https://parichay.staging.nic.in";
-const CLIENT_ID = import.meta.env.VITE_PARICHAY_CLIENT_ID || "Lsb5YBifC2reXvevQZB6CfUgzqPunIik";
-const REDIRECT_URI = import.meta.env.VITE_PARICHAY_REDIRECT_URI || "https://aimedha.nic.gov.in";
+const PARICHAY_BASE = "https://parichay.staging.nic.in";
+const CLIENT_ID = "Lsb5YBifC2reXvevQZB6CfUgzqPunIik";
+const REDIRECT_URI = "https://aimedha.nic.gov.in/auth/login";
 const SCOPE = "user_details";
 
 // ---------- PKCE Helpers ----------

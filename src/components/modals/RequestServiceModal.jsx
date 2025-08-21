@@ -37,6 +37,17 @@ const RequestServiceModal = ({
       return;
     }
 
+    // File size validation (5 MB limit)
+    if (file.size > 5 * 1024 * 1024) {
+      swal({
+        title: "File Too Large",
+        text: "The uploaded file exceeds the 5MB size limit. Please upload a smaller file.",
+        icon: "error",
+        button: "OK",
+      });
+      return;
+    }
+
     const fileUrl = URL.createObjectURL(file);
     setFilePreview({
       name: file.name,
@@ -52,6 +63,17 @@ const RequestServiceModal = ({
         title: "Form Required",
         text: "Please upload the signed service request form first.",
         icon: "warning",
+        button: "OK",
+      });
+      return;
+    }
+
+    // File size validation (5 MB limit)
+    if (selectedFile.size > 5 * 1024 * 1024) {
+      swal({
+        title: "File Too Large",
+        text: "The uploaded file exceeds the 5MB size limit. Please upload a smaller file.",
+        icon: "error",
         button: "OK",
       });
       return;
@@ -181,6 +203,10 @@ const RequestServiceModal = ({
               onChange={handleUpload}
               className="hidden"
             />
+            <p className="mt-1 text-sm text-gray-600">
+              PDF size should not be greater than
+              <span className="font-medium"> 5 MB</span>.
+            </p>
           </div>
 
           {filePreview && (
