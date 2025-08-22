@@ -1,5 +1,8 @@
 import React from "react";
 import PdfPreview from "../PdfPreview";
+import swal from "sweetalert";
+import axios from "axios";
+import { BASE_URL } from "../../config/apiConfig";
 
 const ReviewRequestModal = ({
   isOpen,
@@ -13,6 +16,31 @@ const ReviewRequestModal = ({
 }) => {
   if (!isOpen || !selectedRequest) return null;
   const isAlreadyProcessed = selectedRequest.status !== "pending";
+
+  const handleRequestVC = async (selectedRequest) => {
+    try {
+      const response = await axios.post(
+        `${BASE_URL}/api/requests/${selectedRequest.id}/request-vc`
+      );
+
+      console.log("VC Request API response:", response.data);
+
+      swal({
+        title: "VC Request Sent",
+        text: `Bharat VC invitation has been sent to the user for ${selectedRequest.serviceName} service request.`,
+        icon: "success",
+        button: "OK",
+      });
+    } catch (error) {
+      console.error("VC Request failed:", error);
+      swal({
+        title: "Error!",
+        text: "Failed to send Bharat VC invitation. Please try again.",
+        icon: "error",
+        button: "OK",
+      });
+    }
+  };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center overflow-y-auto">
@@ -75,28 +103,40 @@ const ReviewRequestModal = ({
         )}
 
         {/* Buttons */}
-        <div className="flex justify-end gap-3">
+        <div className="flex justify-between items-center gap-3">
+          {/* Left Side VC Button */}
           <button
-            onClick={onSubmit}
-            disabled={
-              isAlreadyProcessed ||
-              !adminAction ||
-              (adminAction === "rejected" && !remarks)
-            }
-            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50"
+            onClick={() => handleRequestVC(selectedRequest)}
+            disabled={isAlreadyProcessed}
+            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
           >
-            Submit
+            Request for VC
           </button>
-          <button
-            onClick={() => {
-              setIsModalOpen(false);
-              setAdminAction(selectedRequest.status);
-              setRemarks(selectedRequest.remarks);
-            }}
-            className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500"
-          >
-            Cancel
-          </button>
+
+          {/* Right Side Submit / Cancel */}
+          <div className="flex gap-3">
+            <button
+              onClick={onSubmit}
+              disabled={
+                isAlreadyProcessed ||
+                !adminAction ||
+                (adminAction === "rejected" && !remarks)
+              }
+              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50"
+            >
+              Submit
+            </button>
+            <button
+              onClick={() => {
+                setIsModalOpen(false);
+                setAdminAction(selectedRequest.status);
+                setRemarks(selectedRequest.remarks);
+              }}
+              className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       </div>
     </div>
