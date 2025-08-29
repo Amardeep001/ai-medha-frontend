@@ -1,7 +1,7 @@
 import React from "react";
 import PdfPreview from "../PdfPreview";
 import swal from "sweetalert";
-import axios from "axios";
+import axiosInstance from "../../utils/axiosInstance";
 import { BASE_URL } from "../../config/apiConfig";
 
 const ReviewRequestModal = ({
@@ -18,8 +18,22 @@ const ReviewRequestModal = ({
   const isAlreadyProcessed = selectedRequest.status !== "pending";
 
   const handleRequestVC = async (selectedRequest) => {
+    // Show confirmation before calling API
+    const confirm = await swal({
+      title: "Are you sure?",
+      text: `Do you want to send a Bharat VC Requested email for ${selectedRequest.serviceName}?`,
+      icon: "warning",
+      buttons: ["Cancel", "Yes, Send"],
+      dangerMode: true,
+    });
+
+    if (!confirm) {
+      // User clicked Cancel
+      return;
+    }
+
     try {
-      const response = await axios.post(
+      const response = await axiosInstance.post(
         `${BASE_URL}/api/requests/${selectedRequest.id}/request-vc`
       );
 
@@ -27,7 +41,7 @@ const ReviewRequestModal = ({
 
       swal({
         title: "VC Request Sent",
-        text: `Bharat VC invitation has been sent to the user for ${selectedRequest.serviceName} service request.`,
+        text: `Bharat VC Requested email has been sent to the user for ${selectedRequest.serviceName} service request.`,
         icon: "success",
         button: "OK",
       });

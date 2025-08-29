@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "./axiosInstance";
 import { BASE_URL } from "../config/apiConfig";
 
 /**
@@ -8,7 +8,7 @@ import { BASE_URL } from "../config/apiConfig";
  */
 export const pdfDownload = async (serviceRequestFormId) => {
     try {
-        const response = await axios.get(`${BASE_URL}/api/service-request-forms/${serviceRequestFormId}/download`, {
+        const response = await axiosInstance.get(`${BASE_URL}/api/service-request-forms/${serviceRequestFormId}/download`, {
             responseType: "blob",
         });
 

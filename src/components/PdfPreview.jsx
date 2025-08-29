@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "../utils/axiosInstance";
 import { useEffect, useState } from "react";
 
 const PdfPreview = ({ fileUrl }) => {
@@ -7,7 +7,7 @@ const PdfPreview = ({ fileUrl }) => {
   useEffect(() => {
     const fetchPdf = async () => {
       try {
-        const response = await axios.get(fileUrl, {
+        const response = await axiosInstance.get(fileUrl, {
           responseType: "blob", // IMPORTANT: get raw binary
         });
 

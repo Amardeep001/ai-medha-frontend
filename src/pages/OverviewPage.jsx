@@ -17,12 +17,12 @@ import {
 } from "chart.js";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import { FaClipboardList, FaHourglassHalf } from "react-icons/fa";
-import axios from "axios";
 import { BASE_URL } from "../config/apiConfig";
 import { formatDateTime } from "../utils/dateUtils";
 import UserRequestModal from "../components/modals/UserRequestModal";
 import swal from "sweetalert";
 import { capitalizeFirstLetter } from "../utils/dateUtils";
+import axiosInstance from "../utils/axiosInstance";
 
 ChartJS.register(
   ArcElement,
@@ -119,7 +119,7 @@ const OverviewPage = () => {
 
     if (confirmed) {
       try {
-        await axios.delete(`${BASE_URL}/api/requests/${id}`);
+        await axiosInstance.delete(`${BASE_URL}/api/requests/${id}`);
         await swal(
           "Aborted!",
           "The request has been successfully aborted.",
@@ -142,7 +142,7 @@ const OverviewPage = () => {
   const fetchRequests = async () => {
     try {
       const userId = localStorage.getItem("userId");
-      const response = await axios.get(
+      const response = await axiosInstance.get(
         `${BASE_URL}/api/requests?userId=${userId}`
       );
       const data = response.data.serviceRequestList || [];

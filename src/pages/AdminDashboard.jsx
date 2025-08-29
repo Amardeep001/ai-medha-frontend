@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import { FaClipboardList, FaHourglassHalf } from "react-icons/fa";
-import axios from "axios";
+import axiosInstance from "../utils/axiosInstance";
 import { BASE_URL } from "../config/apiConfig";
 import { formatDateTime } from "../utils/dateUtils";
 import ReviewRequestModal from "../components/modals/ReviewRequestModal";
@@ -55,7 +55,7 @@ const AdminDashboard = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.put(
+      const response = await axiosInstance.put(
         `${BASE_URL}/api/requests/${selectedRequest.id}`,
         {
           status: adminAction,
@@ -99,7 +99,7 @@ const AdminDashboard = () => {
 
   const fetchRequests = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/api/requests`);
+      const response = await axiosInstance.get(`${BASE_URL}/api/requests`);
       const list = response.data.serviceRequestList || [];
 
       // Compute counts

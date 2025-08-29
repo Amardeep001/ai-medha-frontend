@@ -15,7 +15,7 @@ const About = () => {
       {/* Main Content */}
       <main id="main-content" className="w-full ">
         <div className="bg-gradient-to-b from-[#e9ddd1] to-[#dfdfe2] min-h-screen py-16 px-6 sm:px-12">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             <div className="text-center mb-10">
               <h1 className="text-4xl font-bold text-[#003366] mb-4">
                 About AI MEDHA

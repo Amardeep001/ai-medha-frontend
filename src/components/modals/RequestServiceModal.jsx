@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import swal from "sweetalert";
-import axios from "axios";
+import axiosInstance from "../../utils/axiosInstance";
 import { BASE_URL } from "../../config/apiConfig";
 
 const RequestServiceModal = ({
@@ -85,7 +85,7 @@ const RequestServiceModal = ({
       formData.append("serviceName", serviceName);
       formData.append("pdfFile", selectedFile); // selectedFile should be a File object from input
 
-      const response = await axios.post(
+      const response = await axiosInstance.post(
         `${BASE_URL}/api/requests/submit`,
         formData,
         {
