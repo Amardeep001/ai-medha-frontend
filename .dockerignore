@@ -15,8 +15,8 @@ Thumbs.db
 .gitignore
 
 # Environment files
-.env
-.env.* 
+# .env
+# .env.* 
 
 # Build artifacts
 build

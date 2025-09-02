@@ -12,7 +12,6 @@ const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
-    middleName: "",
     lastName: "",
     email: "",
     phone: "",
@@ -94,7 +93,6 @@ const Register = () => {
         setLoading(true);
         const payload = {
           firstName: formData.firstName,
-          middleName: formData.middleName,
           lastName: formData.lastName,
           email: formData.email,
           phone: formData.phone,
@@ -109,9 +107,6 @@ const Register = () => {
 
         console.log("Registration Success:", response.data);
         if (response.data?.status === "success") {
-          localStorage.setItem("firstName", formData.firstName);
-          localStorage.setItem("lastName", formData.lastName);
-          localStorage.setItem("orgType", formData.orgType);
           swal({
             title: "Success!",
             text: "User registered successfully.",
@@ -193,20 +188,6 @@ const Register = () => {
                   <FaTimesCircle className="text-red-500" /> {errors.firstName}
                 </p>
               )}
-            </div>
-
-            {/* Middle Name (optional) */}
-            <div className="mt-4">
-              <label className="block text-gray-700 font-semibold">
-                Middle Name
-              </label>
-              <input
-                type="text"
-                value={formData.middleName}
-                onChange={(e) => handleChange("middleName", e.target.value)}
-                placeholder="Enter your middle name (optional)"
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300"
-              />
             </div>
 
             {/* Last Name */}
@@ -341,11 +322,11 @@ const Register = () => {
                 }`}
               >
                 <option value="">Select Organization Type</option>
-                <option value="government">Central Government</option>
-                <option value="private">State/UT Government</option>
-                <option value="academic">PSU</option>
-                <option value="ngo">Judiciary</option>
-                <option value="other">Other</option>
+                <option value="Central Government">Central Government</option>
+                <option value="State/UT Government">State/UT Government</option>
+                <option value="PSU">PSU</option>
+                <option value="Judiciary">Judiciary</option>
+                <option value="Other">Other</option>
               </select>
               {touched.orgType && errors.orgType && (
                 <p className="text-red-500 text-sm mt-1 flex items-center gap-1">

@@ -1,4 +1,6 @@
 import axios from "axios";
+import { BASE_URL } from "../config/apiConfig";
+import { jwtDecode } from "jwt-decode";
 
 // ---------- Common Config ----------
 const PARICHAY_BASE = "https://parichay.staging.nic.in";
@@ -32,8 +34,60 @@ async function buildPkce() {
     return { codeVerifier, codeChallenge };
 }
 
+export const checkParichayTokenSession = async () => {
+    try {
+        const token = localStorage.getItem("token");
+        const decoded = jwtDecode(token);
+        const userId = decoded.userId;
+
+        if (!userId || !token) {
+            return false;
+        }
+
+        // 1️⃣ First call: get user details
+        const userResponse = await axios.get(`${BASE_URL}/api/auth/user/${userId}`, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+
+        const parichayAccessToken = userResponse.data?.parichayAccessToken;
+
+        if (!parichayAccessToken) {
+            console.log("No Parichay access token found for this user.");
+            return false;
+        }
+
+        const parichayResponse = await axios.get(
+            `${BASE_URL}/api/auth/parichay/userdetails`,
+            {
+                headers: { Authorization: `${parichayAccessToken}` },
+            }
+        );
+
+        if (parichayResponse.data?.status === "success") {
+            return true;
+        }
+
+        return false;
+    } catch (error) {
+        console.error("Error fetching details:", error);
+        return false;
+    }
+};
+
 // ---------- Step 1: Redirect user to Parichay ----------
 export async function loginWithParichay() {
+
+    const checkParichayToken = await checkParichayTokenSession();
+    if (checkParichayToken) {
+        window.location.href = "/dashboard";
+    }
+    else {
+        await redirectToParichay();
+    }
+
+}
+
+async function redirectToParichay() {
     const { codeVerifier, codeChallenge } = await buildPkce();
     const state = crypto.randomUUID();
 
@@ -41,8 +95,7 @@ export async function loginWithParichay() {
     sessionStorage.setItem("parichay_code_verifier", codeVerifier);
     sessionStorage.setItem("parichay_state", state);
 
-    const url =
-        `${PARICHAY_BASE}/pnv1/oauth2/authorize` +
+    const url = `${PARICHAY_BASE}/pnv1/oauth2/authorize` +
         `?response_type=code` +
         `&client_id=${encodeURIComponent(CLIENT_ID)}` +
         `&redirect_uri=${encodeURIComponent(REDIRECT_URI)}` +
@@ -52,51 +105,6 @@ export async function loginWithParichay() {
         `&state=${encodeURIComponent(state)}`;
 
     window.location.href = url;
-}
-
-// ---------- Step 2: Handle callback ----------
-export async function handleParichayCallback() {
-    const params = new URLSearchParams(window.location.search);
-    const code = params.get("code");
-    const state = params.get("state");
-
-    const savedState = sessionStorage.getItem("parichay_state");
-    const codeVerifier = sessionStorage.getItem("parichay_code_verifier");
-
-    // Cleanup
-    sessionStorage.removeItem("parichay_state");
-    sessionStorage.removeItem("parichay_code_verifier");
-
-    if (!code || !state || state !== savedState) {
-        throw new Error("Invalid callback or state mismatch");
-    }
-
-    // ---------- Step 3: Exchange code for tokens ----------
-    const tokenUrl = `${PARICHAY_BASE}/pnv1/salt/api/oauth2/token`;
-
-    const body = {
-        client_id: CLIENT_ID,
-        code_verifier: codeVerifier,
-        grant_type: "authorization_code",
-        redirect_uri: REDIRECT_URI,
-        code: code,
-    };
-
-    const { data: tokens } = await axios.post(tokenUrl, body, {
-        headers: { "Content-Type": "application/json" },
-    });
-
-    // ---------- Step 4: Fetch user details ----------
-    const { data: user } = await axios.get(`${PARICHAY_BASE}/pnv1/salt/api/oauth2/userdetails`, {
-        headers: {
-            Authorization: tokens.access_token, // spec: raw token (not Bearer)
-        },
-    });
-
-    localStorage.setItem("parichay_tokens", JSON.stringify(tokens));
-    localStorage.setItem("parichay_user", JSON.stringify(user));
-
-    return { tokens, user };
 }
 
 // ---------- Step 5: Refresh token ----------

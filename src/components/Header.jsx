@@ -12,7 +12,10 @@ const Header = () => {
   const dropdownRef = useRef();
 
   const handleLogout = () => {
-    localStorage.clear();
+    // localStorage.clear();
+    localStorage.removeItem("userId");
+    localStorage.removeItem("email");
+    localStorage.removeItem("firstName");
   };
 
   // Close dropdown on outside click

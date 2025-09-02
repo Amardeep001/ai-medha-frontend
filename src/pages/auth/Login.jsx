@@ -129,8 +129,7 @@ const Login = () => {
           } else {
             swal({
               title: "LOGIN FAILED",
-              text:
-                response?.data?.message || "Email already exist. Please Login",
+              text: response?.data?.message || "Something went wrong!",
               icon: "error",
               button: "Retry",
             });
@@ -176,6 +175,7 @@ const Login = () => {
         })
         .then((res) => {
           console.log("Parichay login success", res.data);
+          localStorage.setItem("token", res.data.token);
           navigate("/dashboard");
         })
         .catch((err) => {

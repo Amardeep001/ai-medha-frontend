@@ -4,6 +4,7 @@ COPY package.json ./
 COPY package-lock.json ./
 RUN npm install --legacy-peer-deps
 COPY . ./
+ENV NODE_ENV=production
 RUN npm run build
 RUN npm install -g serve
 EXPOSE 3000
