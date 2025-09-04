@@ -1,15 +1,22 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import NicLogo from "../images/nic_logo3.svg";
 import NicLogo2 from "../images/nic_logo2.png";
 import Navbar from "./Navbar";
+import { logout } from "../utils/parichayAuth";
 
 const HeaderAdmin = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/auth/login");
+  };
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -111,7 +118,11 @@ const HeaderAdmin = () => {
             About
           </Link>
           <hr />
-          <Link to="/" className="block text-sm text-gray-800">
+          <Link
+            to="/"
+            onClick={handleLogout}
+            className="block text-sm text-gray-800"
+          >
             Logout
           </Link>
         </div>

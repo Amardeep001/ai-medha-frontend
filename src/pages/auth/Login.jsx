@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
@@ -8,6 +7,7 @@ import HeaderBeforeLogin from "../../components/HeaderBeforeLogin";
 import { BASE_URL } from "../../config/apiConfig";
 import swal from "sweetalert";
 import { loginWithParichay } from "../../utils/parichayAuth";
+import axiosInstance from "../../utils/axiosInstance";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -118,13 +118,16 @@ const Login = () => {
       if (Object.keys(currentErrors).length === 0) {
         try {
           setLoading(true);
-          const response = await axios.post(`${BASE_URL}/api/auth/login`, {
-            email: emailOrPhone,
-            password,
-          });
+          const response = await axiosInstance.post(
+            `${BASE_URL}/api/auth/login`,
+            {
+              email: emailOrPhone,
+              password,
+            }
+          );
           if (response.data?.status === "success") {
             console.log("Registration Success:", response.data);
-            localStorage.setItem("token", response.data.token);
+            // localStorage.setItem("token", response.data.token);
             navigate("/dashboard");
           } else {
             swal({
@@ -168,9 +171,9 @@ const Login = () => {
     const verifier = sessionStorage.getItem("parichay_code_verifier");
 
     if (code && verifier) {
-      axios
+      axiosInstance
         .post(`${BASE_URL}/api/auth/parichay/exchange`, {
-          code,
+          code: code,
           codeVerifier: verifier,
         })
         .then((res) => {
@@ -180,6 +183,17 @@ const Login = () => {
         })
         .catch((err) => {
           console.error("Parichay login failed", err);
+
+          swal({
+            title: "Parichay Login Failed",
+            text:
+              err.response?.data?.message ||
+              "Something went wrong during Parichay login.",
+            icon: "error",
+            button: "Retry",
+          }).then(() => {
+            navigate("/auth/login");
+          });
         });
     }
   }, [navigate]);

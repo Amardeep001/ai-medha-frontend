@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import bgImg from "../../images/inibg.svg";
 import HeaderBeforeLogin from "../../components/HeaderBeforeLogin";
-import axios from "axios";
+import axiosInstance from "../../utils/axiosInstance";
 import { BASE_URL } from "../../config/apiConfig";
 import swal from "sweetalert";
 
@@ -17,12 +17,12 @@ const AdminLogin = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const response = await axios.post(`${BASE_URL}/api/auth/login`, {
+      const response = await axiosInstance.post(`${BASE_URL}/api/auth/login`, {
         email: email,
         password,
       });
       if (response.data?.status === "success") {
-        localStorage.setItem("token", response.data.token);
+        // localStorage.setItem("token", response.data.token);
         navigate("/admin/dashboard");
       } else {
         swal({

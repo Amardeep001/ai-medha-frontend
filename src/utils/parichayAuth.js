@@ -1,6 +1,8 @@
 import axios from "axios";
+import swal from "sweetalert";
 import { BASE_URL } from "../config/apiConfig";
-import { jwtDecode } from "jwt-decode";
+import axiosInstance from "./axiosInstance";
+axios.defaults.withCredentials = true;
 
 // ---------- Common Config ----------
 const PARICHAY_BASE = "https://parichay.staging.nic.in";
@@ -34,40 +36,26 @@ async function buildPkce() {
     return { codeVerifier, codeChallenge };
 }
 
-export const checkParichayTokenSession = async () => {
+const checkParichayTokenSession = async () => {
     try {
-        const token = localStorage.getItem("token");
-        const decoded = jwtDecode(token);
-        const userId = decoded.userId;
-
-        if (!userId || !token) {
-            return false;
-        }
-
-        // 1️⃣ First call: get user details
-        const userResponse = await axios.get(`${BASE_URL}/api/auth/user/${userId}`, {
-            headers: { Authorization: `Bearer ${token}` },
-        });
+        // 1️⃣ Get logged-in user (using backend JWT cookie)
+        const userResponse = await axiosInstance.get(`${BASE_URL}/api/auth/me`);
 
         const parichayAccessToken = userResponse.data?.parichayAccessToken;
-
         if (!parichayAccessToken) {
             console.log("No Parichay access token found for this user.");
             return false;
         }
 
-        const parichayResponse = await axios.get(
+        // 2️⃣ Validate Parichay token with your backend
+        const parichayResponse = await axiosInstance.get(
             `${BASE_URL}/api/auth/parichay/userdetails`,
             {
-                headers: { Authorization: `${parichayAccessToken}` },
+                headers: { Authorization: parichayAccessToken },
             }
         );
 
-        if (parichayResponse.data?.status === "success") {
-            return true;
-        }
-
-        return false;
+        return parichayResponse.data?.status === "success";
     } catch (error) {
         console.error("Error fetching details:", error);
         return false;
@@ -76,16 +64,14 @@ export const checkParichayTokenSession = async () => {
 
 // ---------- Step 1: Redirect user to Parichay ----------
 export async function loginWithParichay() {
-
-    const checkParichayToken = await checkParichayTokenSession();
-    if (checkParichayToken) {
+    const isValid = await checkParichayTokenSession();
+    if (isValid) {
         window.location.href = "/dashboard";
-    }
-    else {
+    } else {
         await redirectToParichay();
     }
-
 }
+
 
 async function redirectToParichay() {
     const { codeVerifier, codeChallenge } = await buildPkce();
@@ -130,15 +116,20 @@ export async function refreshParichayToken() {
 }
 
 // ---------- Step 6: Logout ----------
-export async function logoutParichay() {
-    const tokens = JSON.parse(localStorage.getItem("parichay_tokens") || "{}");
-    if (!tokens.access_token) return;
+export async function logout() {
+    try {
+        await axiosInstance.post(`${BASE_URL}/api/auth/logout`);
+        localStorage.clear();
+    } catch (error) {
+        console.error("Logout failed:", error);
 
-    await axios.get(`${PARICHAY_BASE}/pnv1/salt/api/oauth2/revoke`, {
-        headers: { Authorization: tokens.access_token },
-    });
-
-    localStorage.removeItem("parichay_tokens");
-    localStorage.removeItem("parichay_user");
+        swal.fire({
+            icon: "error",
+            title: "Logout Failed",
+            text: error.response?.data?.message || "Something went wrong while logging out.",
+            confirmButtonColor: "#d33"
+        });
+    }
 }
+
 

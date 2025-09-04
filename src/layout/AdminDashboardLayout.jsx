@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { FaTools, FaClipboardList, FaTimes } from "react-icons/fa";
+import { FaClipboardList, FaTimes } from "react-icons/fa";
 import HeaderAdmin from "../components/HeaderAdmin";
 import Footer from "../components/Footer";
 import { Link, useLocation, Outlet } from "react-router-dom";
 
 const menuItems = [
   { icon: <FaClipboardList />, title: "Overview", path: "/admin/dashboard" },
-  //   { icon: <FaTools />, title: "Services", path: "/services" },
 ];
 
 const AdminDashboardLayout = () => {
